@@ -23,7 +23,7 @@
 	    <repository>    
 	       <id>nexus</id>    
 	       <name>local private nexus</name>    
-	       <url>http://mvnrepository.com/tags/maven</url>
+	       <url>http://nexus.oa.irissz.com:8081/nexus/content/groups/public</url>
 	       <releases>    
 	           <enabled>true</enabled>    
 	       </releases>    
