@@ -171,17 +171,17 @@ public class UserController {
 //    	HttpSession session = request.getSession();
     	User user=(User) session.getAttribute("userInfo");
     	
-    	Notice notice=new Notice();
+    	/*Notice notice=new Notice();
     	notice.setMsgType(1);//智者汇 看 系统公告
     	if(user!=null && user.getUserType().compareTo(1)==0){
     		notice.setMsgType(2);//渠道商看 应用通知
     	}
     	notice.setIsSend(1);
     	notice.setIsDelete(0);
-    	List<NoticeWithBLOBs> list=noticeService.selectNoticeList(notice);
+    	List<NoticeWithBLOBs> list=noticeService.selectNoticeList(notice);*/
     	
     	model.addAttribute("user",user);
-    	model.addAttribute("list",list);
+    	model.addAttribute("list",null);
         return "head";
     }
     
