@@ -19,7 +19,7 @@ public class TaskJob {
 
 	
 	// 商品定时上架
-	@Scheduled(cron = "0 */1 * * * ?") //每一分钟调用一次 
+	//@Scheduled(cron = "0 */1 * * * ?") //每一分钟调用一次 
 	public void job1() {
 		System.out.println("================== 开始商品定时上架任务  =======================");
 		productService.changeProdStatus();
@@ -28,7 +28,7 @@ public class TaskJob {
 
 	
 	// 订单支付超时 自动关闭
-	@Scheduled(cron = "0 0 */1 * * ?")  //每一个小时调用一次  
+	//@Scheduled(cron = "0 0 */1 * * ?")  //每一个小时调用一次  
 	public void job2() {
 		System.out.println("================== 开始关闭超时订单任务  =======================");
 		orderInfoService.changeOrderStatus();
@@ -36,7 +36,7 @@ public class TaskJob {
 	}
 	
 	// 订单收货超时 自动关闭
-	@Scheduled(cron = "0 0 12 * * ?")  //每天中午12点调用  
+	//@Scheduled(cron = "0 0 12 * * ?")  //每天中午12点调用  
 	public void job3() {
 		System.out.println("================== 开始超时确认收货订单自动完成任务  =======================");
 		orderInfoService.changeOrderComplete();
