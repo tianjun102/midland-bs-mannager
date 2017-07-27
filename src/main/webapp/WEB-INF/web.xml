@@ -61,7 +61,7 @@
     
 <!--     <filter>
 	    <filter-name>returnLogin</filter-name>
-	    <filter-class>com.huixin.web.filter.loginFilter</filter-class>
+	    <filter-class>com.midlandd.web.filter.loginFilter</filter-class>
     </filter>
     <filter-mapping>
 	    <filter-name>returnLogin</filter-name>

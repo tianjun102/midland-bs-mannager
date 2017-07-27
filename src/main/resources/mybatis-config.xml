@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties>
-        <property name="dialectClass" value="com.huixin.core.feature.orm.dialect.MySql5Dialect"/>
+        <property name="dialectClass" value="com.midland.core.feature.orm.dialect.MySql5Dialect"/>
     </properties>
 
     <!-- 配置mybatis的缓存，延迟加载等等一系列属性 -->
@@ -57,13 +57,13 @@
     </settings>
 
     <typeAliases>
-        <package name="com.huixin.web.model"/>
-        <package name="com.huixin.web.enums"/>
+        <package name="com.midland.web.model"/>
+        <package name="com.midland.web.enums"/>
     </typeAliases>
 
     <!-- <plugins>
-        <plugin interceptor="com.huixin.core.feature.orm.mybatis.PaginationResultSetHandlerInterceptor"/>
-        <plugin interceptor="com.huixin.core.feature.orm.mybatis.PaginationStatementHandlerInterceptor"/>
+        <plugin interceptor="com.midlandd.core.feature.orm.mybatis.PaginationResultSetHandlerInterceptor"/>
+        <plugin interceptor="com.midlandd.core.feature.orm.mybatis.PaginationStatementHandlerInterceptor"/>
     </plugins> -->
     
     <plugins>
