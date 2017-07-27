@@ -103,21 +103,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 
 	@Override
 	public PageList<User> selectByExampleAndPage(User user,PageBounds pageBounds){
-		UserExample example = new UserExample();
-		example.setOrderByClause("modify_time desc,username desc ");
-		Criteria criteria =example.createCriteria().andStateNotEqualTo("3");
-		if(user!=null){
-			if(StringUtils.isNotEmpty(user.getUsername())){
-				criteria.andUsernameLike("%"+user.getUsername()+"%");
-			}
-			if(StringUtils.isNotEmpty(user.getUserCnName())){
-				criteria.andUserCnNameLike("%"+user.getUserCnName()+"%");
-			}
-			if(user.getUserType()!=null){
-				criteria.andUserTypeEqualTo(user.getUserType());
-			}
-		}
-		final PageList<User> list=userMapper.selectByExampleAndPage(example,pageBounds);
+		final PageList<User> list=userMapper.selectByExampleAndPage(user,pageBounds);
 		return list;
 	}
 

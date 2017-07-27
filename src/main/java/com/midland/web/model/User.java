@@ -1,5 +1,6 @@
 package com.midland.web.model;
 
+import java.beans.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +38,10 @@ public class User {
     private String state;
 
     private String createTime;
+	
+    private String startTime;
+    
+    private String endTime;
     
     private String modifyTime;
 	
@@ -53,7 +58,7 @@ public class User {
 	
 	private String blackRemark;
 	/**
-	 * 身份证照片
+	 * 身份证号码
 	 */
 	private String identification;
 	/**
@@ -94,6 +99,26 @@ public class User {
         this.password = password;
         this.flag = flag;
     }
+	
+    
+    
+    
+	
+	public String getStartTime() {
+		return startTime;
+	}
+	
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	
+	public String getEndTime() {
+		return endTime;
+	}
+	
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 	
 	public String getIdcartImg1() {
 		return idcartImg1;
@@ -290,6 +315,8 @@ public class User {
 		sb.append(", userType=").append(userType);
 		sb.append(", state='").append(state).append('\'');
 		sb.append(", createTime='").append(createTime).append('\'');
+		sb.append(", startTime='").append(startTime).append('\'');
+		sb.append(", endTime='").append(endTime).append('\'');
 		sb.append(", modifyTime='").append(modifyTime).append('\'');
 		sb.append(", source=").append(source);
 		sb.append(", realRegistrationStatus=").append(realRegistrationStatus);

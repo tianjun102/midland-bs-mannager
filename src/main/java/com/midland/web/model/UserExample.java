@@ -1,5 +1,7 @@
 package com.midland.web.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -444,13 +446,32 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeBetween(String value1, String value2) {
             addCriterion("create_time between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+        public Criteria andCreateTimeIn(String value1, String value2) {
+            if (StringUtils.isNotEmpty(value1)){
+                addCriterion("create_time >", value1, "createTime");
+    
+            }
+            if (StringUtils.isNotEmpty(value2))
+            addCriterion("create_time <", value2, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+    
+        public Criteria andAuditStatusEqualTo(Integer value) {
+            addCriterion("audit_status =", value, "auditStatus");
+            return (Criteria) this;
+        }
+        
+        public Criteria andSourceEqualTo(Date value) {
+            addCriterion("source =", value, "source");
             return (Criteria) this;
         }
     }

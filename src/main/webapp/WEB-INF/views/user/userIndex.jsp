@@ -30,17 +30,23 @@
 				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
 				<li><span>实名状态：</span><input type="text" name="realRegistrationStatus" id="realRegistrationStatus" placeholder="请输入实名状态" /></li>
 				<li><span>注册来源：</span><input type="text" name="source" id="source" placeholder="请输入注册来源" /></li>
-				<li><span>注册时间：</span><input type="text" name="createTime" id="createTime" placeholder="请输入注册时间" /></li>
-				<li>
-					<span style = "float:left;">用户类型：</span>
-					<select name="userType" id="userType" class="dropdown">
-						<option value="">全部</option>
-					    <option value="0">智者汇</option>
-					    <option value="1">渠道服务商</option>
-					    <option value="2">终端服务商</option>
-					    <option value="3">安装专员</option>
-					</select>
-				</li>
+				<li><span>注册时间</span><input class="Wdate half" id="time1"
+										onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'time2\')}'})"
+										name="startTime" /> <em class = "gang">-</em><input
+						class="Wdate half"
+						onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'time1\')}'})"
+						id="time2" name="endTime" /></li>
+
+				<%--<li>--%>
+					<%--<span style = "float:left;">用户类型：</span>--%>
+					<%--<select name="userType" id="userType" class="dropdown">--%>
+						<%--<option value="">全部</option>--%>
+					    <%--<option value="0">智者汇</option>--%>
+					    <%--<option value="1">渠道服务商</option>--%>
+					    <%--<option value="2">终端服务商</option>--%>
+					    <%--<option value="3">安装专员</option>--%>
+					<%--</select>--%>
+				<%--</li>--%>
 				<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>
 			</ul>
 			</form>
@@ -79,5 +85,6 @@
 	<script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>
 	<script type="text/javascript" src="${ctx}/assets/scripts/common.js"></script>
 	<script type="text/javascript" src="${ctx}/assets/scripts/base.js" ></script>
+	<script src="${ctx}/assets/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </body>
 </html>

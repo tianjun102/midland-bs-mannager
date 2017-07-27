@@ -2,31 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.midland.web.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.midland.web.model.User">
-        <id column="id" property="id" jdbcType="BIGINT" />
-        <result column="username" property="username" jdbcType="VARCHAR" />
-        <result column="user_cn_name" property="userCnName" jdbcType="VARCHAR" />
-        <result column="password" property="password" jdbcType="CHAR" />
-        <result column="state" property="state" jdbcType="VARCHAR" />
-        <result column="user_type" property="userType" jdbcType="VARCHAR" />
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
-        <result column="phone" property="phone" jdbcType="VARCHAR" />
-        <result column="email" property="email" jdbcType="VARCHAR" />
-        <result column="source" jdbcType="INTEGER" property="source" />
-        <result column="real_registration_status" jdbcType="INTEGER" property="realRegistrationStatus" />
-        <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
-        <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
-        <result column="is_black" jdbcType="VARCHAR" property="isBlack" />
-        <result column="black_remark" jdbcType="VARCHAR" property="blackRemark" />
-        <result column="identification" jdbcType="VARCHAR" property="identification" />
-        <result column="idcart_img" jdbcType="VARCHAR" property="idcartImg" />
-        <result column="audit_name" jdbcType="VARCHAR" property="auditName" />
-        <result column="idcart_img1" jdbcType="VARCHAR" property="idcartImg1" />
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="user_cn_name" property="userCnName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="CHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="source" jdbcType="INTEGER" property="source"/>
+        <result column="real_registration_status" jdbcType="INTEGER" property="realRegistrationStatus"/>
+        <result column="audit_status" jdbcType="INTEGER" property="auditStatus"/>
+        <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime"/>
+        <result column="is_black" jdbcType="VARCHAR" property="isBlack"/>
+        <result column="black_remark" jdbcType="VARCHAR" property="blackRemark"/>
+        <result column="identification" jdbcType="VARCHAR" property="identification"/>
+        <result column="idcart_img" jdbcType="VARCHAR" property="idcartImg"/>
+        <result column="idcart_img1" jdbcType="VARCHAR" property="idcartImg1"/>
+
+        <result column="audit_name" jdbcType="VARCHAR" property="auditName"/>
     </resultMap>
     <resultMap id="UserRoleResultMap" type="com.midland.web.model.UserRole">
-        <id column="id" property="id" jdbcType="BIGINT" />
-        <result column="user_id" property="userId" jdbcType="BIGINT" />
-        <result column="role_id" property="roleId" jdbcType="BIGINT" />
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -46,7 +47,8 @@
                                 </when>
                                 <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -75,7 +77,8 @@
                                 </when>
                                 <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator=",">
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -86,19 +89,21 @@
             </foreach>
         </where>
     </sql>
+
     <sql id="Base_Column_List">
         id, username,user_cn_name, password, user_type,state,email,phone,create_time,modify_time ,source, real_registration_status, audit_status,
-    audit_time, is_black, black_remark, identification, idcart_img
+    audit_time, is_black, black_remark, identification, idcart_img,idcart_img1,audit_name
     </sql>
+
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.midland.web.model.UserExample">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from user
         <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
+            <include refid="Example_Where_Clause"/>
         </if>
         <if test="orderByClause != null">
             order by ${orderByClause}
@@ -106,7 +111,7 @@
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from user
         where id = #{id,jdbcType=BIGINT}
     </select>
@@ -117,13 +122,15 @@
     <delete id="deleteByExample" parameterType="com.midland.web.model.UserExample">
         delete from user
         <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
+            <include refid="Example_Where_Clause"/>
         </if>
     </delete>
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.midland.web.model.User">
-        insert into user (<include refid="Base_Column_List" />)
-        values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR},#{userCnName,jdbcType=VARCHAR}, #{password,jdbcType=CHAR},
-        #{userType,jdbcType=BIGINT},#{state,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+        insert into user (<include refid="Base_Column_List"/>)
+        values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR},#{userCnName,jdbcType=VARCHAR},
+        #{password,jdbcType=CHAR},
+        #{userType,jdbcType=BIGINT},#{state,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.midland.web.model.User">
         insert into user
@@ -167,7 +174,7 @@
                 #{username,jdbcType=VARCHAR},
             </if>
             <if test="userCnName != null">
-            	#{userCnName,jdbcType=VARCHAR},
+                #{userCnName,jdbcType=VARCHAR},
             </if>
             <if test="password != null">
                 #{password,jdbcType=CHAR},
@@ -195,7 +202,7 @@
     <select id="countByExample" parameterType="com.midland.web.model.UserExample" resultType="java.lang.Integer">
         select count(*) from user
         <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
+            <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
@@ -218,7 +225,7 @@
             </if>
         </set>
         <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause" />
+            <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
@@ -229,7 +236,7 @@
         state = #{record.state,jdbcType=VARCHAR},
         create_time = #{record.createTime,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause" />
+            <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.User">
@@ -272,68 +279,61 @@
     <!-- 用户登录验证查询 -->
     <select id="authentication" resultMap="BaseResultMap" parameterType="map">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from user
-        where state=1 
+        where state=1
         <if test="record.flag==null or record.flag==''">
-        and user_type=0 
+            and user_type=0
         </if>
-        and (username = #{record.username,jdbcType=VARCHAR} 
+        and (username = #{record.username,jdbcType=VARCHAR}
         or phone=#{record.username,jdbcType=VARCHAR} )
         and password = #{record.password,jdbcType=CHAR}
     </select>
 
     <!-- 分页条件查询 -->
-    <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.midland.web.model.UserExample">
+    <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.midland.web.model.User">
         select
-        <if test="distinct">
-            distinct
-        </if>
-        <include refid="Base_Column_List" />
-        from user
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
+        <include refid="Base_Column_List"/>
+        from user where 1=1
+        <include refid="select_option"/>
+
     </select>
-    
+
     <!-- 批量新增用户角色关系 -->
-   <insert id="insertUserRoleBatch"  parameterType="java.util.List"> 
-        insert into user_role (user_id,role_id)   
-        values  
-        <foreach collection="list" item="item" index="index" separator="," >  
-            (#{item.userId,jdbcType=BIGINT},#{item.roleId,jdbcType=BIGINT}) 
-        </foreach>  
-   </insert>
-   
-   <!-- 根据用户id查找用户角色关系-->
-   <select id="findUserRoleByUserId"  resultMap="UserRoleResultMap">
+    <insert id="insertUserRoleBatch" parameterType="java.util.List">
+        insert into user_role (user_id,role_id)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.userId,jdbcType=BIGINT},#{item.roleId,jdbcType=BIGINT})
+        </foreach>
+    </insert>
+
+    <!-- 根据用户id查找用户角色关系-->
+    <select id="findUserRoleByUserId" resultMap="UserRoleResultMap">
    	SELECT id, user_id, role_id
 	  FROM user_role
 	 WHERE user_id=#{userId}
     </select>
-    
+
     <!-- 批量删除用户角色关系 -->
-   <delete id="deleteUserRoleBatch">
-	   	delete from user_role
-	   	where user_id=#{userId,jdbcType=BIGINT}
-	   	and role_id in 
-	        <foreach collection="list" item="item" index="index" open="(" close=")" separator="," >  
-	            #{item.roleId,jdbcType=BIGINT}
-	        </foreach>
-   </delete>
-   
+    <delete id="deleteUserRoleBatch">
+        delete from user_role
+        where user_id=#{userId,jdbcType=BIGINT}
+        and role_id in
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item.roleId,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
     <!-- 批量删除用户角色关系 -->
-   <delete id="deleteUserRoleBatchById">
-	   	delete from user_role
-	   	where id in 
-	        <foreach collection="list" item="item" index="index" open="(" close=")" separator="," >  
-	            #{item.id,jdbcType=BIGINT}
-	        </foreach>
-   </delete>
-   
+    <delete id="deleteUserRoleBatchById">
+        delete from user_role
+        where id in
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+
     <!-- 通过角色id 查询角色关联的用户 -->
     <select id="selectUsersByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long">
        SELECT DISTINCT u.id,
@@ -348,14 +348,53 @@
 	 WHERE u.id = ur.user_id 
 	 AND ur.role_id = #{roleId,jdbcType=BIGINT}
     </select>
-    
-    
-     <select id="queryUserForCustCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+
+
+    <select id="queryUserForCustCode" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from user
         where username = #{custCode,jdbcType=VARCHAR}
     </select>
+
+
+    <sql id="select_option">
+        <if test="username != null   and username != ''">
+            AND username like concat(concat('%',#{username,jdbcType=VARCHAR}),'%')
+        </if>
+        <if test="userCnName != null">
+            AND user_cn_name = #{userCnName,jdbcType=VARCHAR}
+        </if>
+        <if test="userType != null">
+            AND user_type = #{userType,jdbcType=VARCHAR}
+        </if>
+        <if test="password != null">
+            AND password = #{password,jdbcType=CHAR}
+        </if>
+        <if test="state != null">
+            AND state = #{state,jdbcType=VARCHAR}
+        </if>
+        <if test="email != null">
+            AND email = #{email,jdbcType=VARCHAR}
+        </if>
+        <if test="phone != null">
+            AND phone = #{phone,jdbcType=VARCHAR}
+        </if>
+        <if test="source != null">
+            AND source = #{source,jdbcType=VARCHAR}
+        </if>
+        <if test="realRegistrationStatus != null">
+            AND real_registration_status = #{realRegistrationStatus}
+        </if>
+
+        <if test="auditStatus != null">
+            AND audit_status = #{auditStatus}
+        </if>
+        <if test="auditName != null  and auditName != ''">
+            AND audit_status like concat(concat('%',#{auditStatus,jdbcType=VARCHAR}),'%')
+        </if>
+
+    </sql>
     
     
 </mapper>

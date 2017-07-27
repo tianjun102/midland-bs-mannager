@@ -18,11 +18,11 @@
 		<li><span>用户名：</span><input type="text" name="username" id="username" value="${user.username}" disabled="disabled"/></li>
 		<li><span>用户名称：</span><input type="text" name="userCnName" id="userCnName" value="${user.userCnName}" maxlength="50"/><span class="_star">*</span></li>
 		
-		<li><span>用户类型：</span><input type="text" name="userType" id="userType" 
-		<c:if test="${user.userType==0}">value="智者汇"</c:if> 
-		<c:if test="${user.userType==1}">value="渠道服务商"</c:if> 
-		<c:if test="${user.userType==2}">value="终端服务商"</c:if> 
-		<c:if test="${user.userType==3}">value="安装专员"</c:if> 
+		<li><span>用户类型：</span><input type="text" name="userType" id="userType"
+		<c:if test="${user.userType==0}">value="智者汇"</c:if>
+		<c:if test="${user.userType==1}">value="渠道服务商"</c:if>
+		<c:if test="${user.userType==2}">value="终端服务商"</c:if>
+		<c:if test="${user.userType==3}">value="安装专员"</c:if>
 		disabled="disabled"/></li>
 		<%-- <li>
 				<span>用户类型：</span>

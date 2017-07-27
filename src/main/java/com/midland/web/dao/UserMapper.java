@@ -52,10 +52,10 @@ public interface UserMapper extends GenericDao<User, Integer> {
      * 分页条件查询
      * 
      * @param pageBounds
-     * @param example
+     * @param user
      * @return
      */
-    PageList<User> selectByExampleAndPage(UserExample example,PageBounds pageBounds);
+    PageList<User> selectByExampleAndPage(User user,PageBounds pageBounds);
 
     /**
      * 批量新增用户角色关系

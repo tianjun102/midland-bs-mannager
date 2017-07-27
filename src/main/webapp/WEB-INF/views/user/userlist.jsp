@@ -45,18 +45,22 @@
 									<c:if test="${cust.userType==1}">渠道服务商</c:if>
 								</td>
 								<td>
-									<a onclick="preUpdate(${cust.id })" target="contentF" class = "edit_img" title = "编辑"></a>
-									<a onclick="userRole(${cust.id },'${cust.userCnName }')" target="contentF" class = "uList_img" title = "角色列表"></a>
-									<a href="#" onclick="isReset(${cust.id })" target="contentF" class = "reset_img" title = "重置密码"></a>
-									<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${cust.id })" 
-										<c:if test="${cust.username == 'admin'}">style="visibility: hidden;"</c:if>>
+									<%--<a onclick="preUpdate(${cust.id })" target="contentF" class = "edit_img" title = "编辑"></a>--%>
+									<%--<a onclick="userRole(${cust.id },'${cust.userCnName }')" target="contentF" class = "uList_img" title = "角色列表"></a>--%>
+									<%--<a href="#" onclick="isReset(${cust.id })" target="contentF" class = "reset_img" title = "重置密码"></a>--%>
+									<%--<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${cust.id })" --%>
+
+
+										<a target="contentF" class = "delete_img" title = "加入黑名单" onclick="viewRealRegistration(${cust.id })"
+										<c:if test="${cust.username == 'admin'}">style="visibility: hidden;"</c:if>>加入黑名单
 									</a>
-									<a href="javascript:;" target="contentF" 
-										<c:if test="${cust.state == 0}">class = "offon_img" title = "启用"</c:if>
-										<c:if test="${cust.state == 1}">class = "onoff_img"  title = "关闭"</c:if>
-										<c:if test="${cust.username == 'admin'}">style="visibility: hidden;"</c:if>
-										 onclick="isOffOn(${cust.id },'${cust.state }');">
-									</a>
+										<a target="contentF"  title = "查看实名信息" onclick="viewRealRegistration(${cust.id })"> 查看实名信息</a>
+									<%--<a href="javascript:;" target="contentF" --%>
+										<%--<c:if test="${cust.state == 0}">class = "offon_img" title = "启用"</c:if>--%>
+										<%--<c:if test="${cust.state == 1}">class = "onoff_img"  title = "关闭"</c:if>--%>
+										<%--<c:if test="${cust.username == 'admin'}">style="visibility: hidden;"</c:if>--%>
+										 <%--onclick="isOffOn(${cust.id },'${cust.state }');">--%>
+									<%--</a>--%>
 								  </td>
 							</tr>
 						</c:forEach>
@@ -79,6 +83,21 @@
 
 <script type="text/javascript">
 	//删除
+    //修改
+    function viewRealRegistration(userId){
+        layer.open({
+            type: 2,
+            title: ['用户信息'],
+            shade: 0.3,
+            area: ['450px', '400px'],
+            content: ['${ctx}/rest/user/findUser?userId='+userId+'&flag=1','no']
+        });
+    }
+
+
+
+
+
 	function isDelete(userId){
 		layer.open({
 			  type: 1,

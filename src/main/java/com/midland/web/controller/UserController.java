@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import com.midland.web.controller.base.BaseController;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -55,7 +56,7 @@ import com.midland.web.service.UserService;
  **/
 @Controller
 @RequestMapping(value = "/user")
-public class UserController {
+public class UserController extends BaseController {
 
     @Resource
     private UserService userService;
@@ -252,21 +253,25 @@ public class UserController {
 
     /**
      * 查询用户
-     * @param
+     * @param flag 0不传值，1代表打开查看实名信息
      * @return
      */
     @RequestMapping(value = "/findUser", method = {RequestMethod.GET,RequestMethod.POST})
-    public String findUser(Integer userId,Model model,HttpServletRequest request){
+    public String findUser(Integer userId,Integer flag,Model model,HttpServletRequest request){
     	User userInfo = userService.selectById(userId);
+	    model.addAttribute("user",userInfo);
+	    if(flag == 1){
+		    return "user/viewRegistration";
+	    }
     	Role role=new Role();
     	role.setState(1);
     	List<Role> roles=roleService.selectRoleList(role);//所有角色
     	List<Role> userRoles= roleService.selectRolesByUserId(userId);//用户的角色
-    	model.addAttribute("user",userInfo);
     	model.addAttribute("roles",roles);
     	model.addAttribute("userRoles",userRoles);
     	return "user/userInfo";
     }
+    
     
     /**
      * 用户的角色列表展示
@@ -650,4 +655,9 @@ public class UserController {
     public String create() {
         return "拥有user:create权限,能访问";
     }
+    
+    
+    
+    
+    
 }
