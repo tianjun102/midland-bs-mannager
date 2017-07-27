@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.midland.web.dao.AppointmentMapper" >
+  <resultMap id="BaseResultMap" type="com.midland.web.model.Appointment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="appoint_sn" property="appointSn" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="call" property="call" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="house_type" property="houseType" jdbcType="INTEGER" />
+    <result column="sell_rent" property="sellRent" jdbcType="INTEGER" />
+    <result column="appointment_time" property="appointmentTime" jdbcType="TIMESTAMP" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="layout" property="layout" jdbcType="VARCHAR" />
+    <result column="measure" property="measure" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="entrust_time" property="entrustTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_cn_name" property="userCnName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, appoint_sn, source, call, phone, house_type, sell_rent, appointment_time, area, 
+    community_name, address, layout, measure, price, entrust_time, user_id, user_cn_name, 
+    status, handle_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from appointment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from appointment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.midland.web.model.Appointment" >
+    insert into appointment (id, appoint_sn, source, 
+      call, phone, house_type, 
+      sell_rent, appointment_time, area, 
+      community_name, address, layout, 
+      measure, price, entrust_time, 
+      user_id, user_cn_name, status, 
+      handle_time)
+    values (#{id,jdbcType=INTEGER}, #{appointSn,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, 
+      #{call,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{houseType,jdbcType=INTEGER}, 
+      #{sellRent,jdbcType=INTEGER}, #{appointmentTime,jdbcType=TIMESTAMP}, #{area,jdbcType=VARCHAR}, 
+      #{communityName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{layout,jdbcType=VARCHAR}, 
+      #{measure,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{entrustTime,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=INTEGER}, #{userCnName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{handleTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.midland.web.model.Appointment" >
+    insert into appointment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appointSn != null" >
+        appoint_sn,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="call != null" >
+        call,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="houseType != null" >
+        house_type,
+      </if>
+      <if test="sellRent != null" >
+        sell_rent,
+      </if>
+      <if test="appointmentTime != null" >
+        appointment_time,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="communityName != null" >
+        community_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="layout != null" >
+        layout,
+      </if>
+      <if test="measure != null" >
+        measure,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="entrustTime != null" >
+        entrust_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userCnName != null" >
+        user_cn_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="handleTime != null" >
+        handle_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appointSn != null" >
+        #{appointSn,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="call != null" >
+        #{call,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        #{houseType,jdbcType=INTEGER},
+      </if>
+      <if test="sellRent != null" >
+        #{sellRent,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentTime != null" >
+        #{appointmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="communityName != null" >
+        #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="layout != null" >
+        #{layout,jdbcType=VARCHAR},
+      </if>
+      <if test="measure != null" >
+        #{measure,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustTime != null" >
+        #{entrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userCnName != null" >
+        #{userCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null" >
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.Appointment" >
+    update appointment
+    <set >
+      <if test="appointSn != null" >
+        appoint_sn = #{appointSn,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="call != null" >
+        call = #{call,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        house_type = #{houseType,jdbcType=INTEGER},
+      </if>
+      <if test="sellRent != null" >
+        sell_rent = #{sellRent,jdbcType=INTEGER},
+      </if>
+      <if test="appointmentTime != null" >
+        appointment_time = #{appointmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="communityName != null" >
+        community_name = #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="layout != null" >
+        layout = #{layout,jdbcType=VARCHAR},
+      </if>
+      <if test="measure != null" >
+        measure = #{measure,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustTime != null" >
+        entrust_time = #{entrustTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userCnName != null" >
+        user_cn_name = #{userCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null" >
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Appointment" >
+    update appointment
+    set appoint_sn = #{appointSn,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      call = #{call,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      house_type = #{houseType,jdbcType=INTEGER},
+      sell_rent = #{sellRent,jdbcType=INTEGER},
+      appointment_time = #{appointmentTime,jdbcType=TIMESTAMP},
+      area = #{area,jdbcType=VARCHAR},
+      community_name = #{communityName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      layout = #{layout,jdbcType=VARCHAR},
+      measure = #{measure,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      entrust_time = #{entrustTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_cn_name = #{userCnName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

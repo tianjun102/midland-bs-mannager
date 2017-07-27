@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.midland.web.dao.FilmLibraryMapper" >
+  <resultMap id="BaseResultMap" type="com.midland.web.model.FilmLibrary" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="img_desc" property="imgDesc" jdbcType="VARCHAR" />
+    <result column="houses_name" property="housesName" jdbcType="VARCHAR" />
+    <result column="houses_id" property="housesId" jdbcType="INTEGER" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.midland.web.model.FilmLibrary" extends="BaseResultMap" >
+    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    introduction
+  </sql>
+  <insert id="insert" parameterType="com.midland.web.model.FilmLibrary" >
+    insert into film_library (id, city_id, img_desc, 
+      houses_name, houses_id, video_url, 
+      introduction)
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{imgDesc,jdbcType=VARCHAR}, 
+      #{housesName,jdbcType=VARCHAR}, #{housesId,jdbcType=INTEGER}, #{videoUrl,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.midland.web.model.FilmLibrary" >
+    insert into film_library
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="imgDesc != null" >
+        img_desc,
+      </if>
+      <if test="housesName != null" >
+        houses_name,
+      </if>
+      <if test="housesId != null" >
+        houses_id,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="imgDesc != null" >
+        #{imgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="housesName != null" >
+        #{housesName,jdbcType=VARCHAR},
+      </if>
+      <if test="housesId != null" >
+        #{housesId,jdbcType=INTEGER},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

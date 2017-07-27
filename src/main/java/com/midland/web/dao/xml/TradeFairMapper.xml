@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.midland.web.dao.TradeFairMapper" >
+  <resultMap id="BaseResultMap" type="com.midland.web.model.TradeFair" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="houses_id" property="housesId" jdbcType="INTEGER" />
+    <result column="isshow" property="isshow" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.midland.web.model.TradeFair" extends="BaseResultMap" >
+    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    introduction
+  </sql>
+  <insert id="insert" parameterType="com.midland.web.model.TradeFair" >
+    insert into trade_fair (id, img_url, title, 
+      houses_id, isshow, introduction
+      )
+    values (#{id,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{housesId,jdbcType=INTEGER}, #{isshow,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.midland.web.model.TradeFair" >
+    insert into trade_fair
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="housesId != null" >
+        houses_id,
+      </if>
+      <if test="isshow != null" >
+        isshow,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="housesId != null" >
+        #{housesId,jdbcType=INTEGER},
+      </if>
+      <if test="isshow != null" >
+        #{isshow,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

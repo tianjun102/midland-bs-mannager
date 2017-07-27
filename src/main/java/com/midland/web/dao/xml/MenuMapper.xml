@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.midland.web.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.midland.web.model.Menu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="icon_img" property="iconImg" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="platform" property="platform" jdbcType="INTEGER" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="click_num" property="clickNum" jdbcType="INTEGER" />
+    <result column="orderby" property="orderby" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="isshow" property="isshow" jdbcType="INTEGER" />
+    <result column="position" property="position" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, icon_img, city_id, platform, menu_name, click_num, orderby, url, isshow, position, 
+    parent_id, source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.midland.web.model.Menu" >
+    insert into menu (id, icon_img, city_id, 
+      platform, menu_name, click_num, 
+      orderby, url, isshow, 
+      position, parent_id, source
+      )
+    values (#{id,jdbcType=INTEGER}, #{iconImg,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
+      #{platform,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{clickNum,jdbcType=INTEGER}, 
+      #{orderby,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{isshow,jdbcType=INTEGER}, 
+      #{position,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{source,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.midland.web.model.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="iconImg != null" >
+        icon_img,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="clickNum != null" >
+        click_num,
+      </if>
+      <if test="orderby != null" >
+        orderby,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="isshow != null" >
+        isshow,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="iconImg != null" >
+        #{iconImg,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="clickNum != null" >
+        #{clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isshow != null" >
+        #{isshow,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.Menu" >
+    update menu
+    <set >
+      <if test="iconImg != null" >
+        icon_img = #{iconImg,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="clickNum != null" >
+        click_num = #{clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderby != null" >
+        orderby = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isshow != null" >
+        isshow = #{isshow,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Menu" >
+    update menu
+    set icon_img = #{iconImg,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      platform = #{platform,jdbcType=INTEGER},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      click_num = #{clickNum,jdbcType=INTEGER},
+      orderby = #{orderby,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      isshow = #{isshow,jdbcType=INTEGER},
+      position = #{position,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
