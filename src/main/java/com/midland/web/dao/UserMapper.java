@@ -51,7 +51,7 @@ public interface UserMapper extends GenericDao<User, Integer> {
     /**
      * 分页条件查询
      * 
-     * @param page
+     * @param pageBounds
      * @param example
      * @return
      */
@@ -74,7 +74,7 @@ public interface UserMapper extends GenericDao<User, Integer> {
 	/**
 	 * 批量删除用户角色关系
 	 * @param userId
-	 * @param list1
+	 * @param list
 	 * @return
 	 */
 	int deleteUserRoleBatch(@Param("userId") Integer userId, @Param("list") List<UserRole> list);

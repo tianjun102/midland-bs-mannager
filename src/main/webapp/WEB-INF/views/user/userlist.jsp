@@ -15,10 +15,14 @@
 	 				<thead>
 						<tr>
 							<th style="width: 5%">序号</th>
-							<th style="width: 20%">用户名</th>
-							<th style="width: 30%">用户名称</th>
-							<th style="width: 20%">用户类型</th>
-							<th style="width: 25%">操作</th>
+							<th style="width: 10%">用户名</th>
+							<th style="width: 10%">手机号码</th>
+							<th style="width: 10%">注册时间</th>
+							<th style="width: 10%">注册来源</th>
+							<th style="width: 10%">实名状态</th>
+							<th style="width: 10%">审核人</th>
+							<th style="width: 10%">审核时间</th>
+							<th style="width: 15%">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -29,6 +33,12 @@
 							<tr>
 								<td>${xh.count }</td>
 								<td>${cust.username }</td>
+								<td>${cust.phone }</td>
+								<td>${cust.createTime }</td>
+								<td>${cust.source }</td>
+								<td>${cust.realRegistrationStatus }</td>
+								<td>${cust.userCnName }</td>
+								<td>${cust.userCnName }</td>
 								<td>${cust.userCnName }</td>
 								<td>
 									<c:if test="${cust.userType==0}">智者汇</c:if> 

@@ -125,7 +125,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 	public int addUser(User user) {
 		int n=0;
 		if(user!=null){
-			user.setCreateTime(new Date());
+			user.setCreateTime(new Date().toString());
 	    	user.setState("1");
 	    	if(user.getUserType()==null){
 	    		user.setUserType(0);//默认为0  沃可视

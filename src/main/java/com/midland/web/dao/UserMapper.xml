@@ -20,6 +20,8 @@
         <result column="black_remark" jdbcType="VARCHAR" property="blackRemark" />
         <result column="identification" jdbcType="VARCHAR" property="identification" />
         <result column="idcart_img" jdbcType="VARCHAR" property="idcartImg" />
+        <result column="audit_name" jdbcType="VARCHAR" property="auditName" />
+        <result column="idcart_img1" jdbcType="VARCHAR" property="idcartImg1" />
     </resultMap>
     <resultMap id="UserRoleResultMap" type="com.midland.web.model.UserRole">
         <id column="id" property="id" jdbcType="BIGINT" />

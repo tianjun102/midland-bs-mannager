@@ -27,10 +27,10 @@
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
 				<li><span>昵称：</span><input type="text" name="username" id="username" placeholder="请输入用户名" /></li>
-				<li><span>手机号码：</span><input type="text" name="userCnName" id="phone" placeholder="请输入用户名称" /></li>
-				<li><span>实名状态：</span><input type="text" name="userCnName" id="userCnName" placeholder="请输入用户名称" /></li>
-				<li><span>注册来源：</span><input type="text" name="userCnName" id="userCnName" placeholder="请输入用户名称" /></li>
-				<li><span>注册时间：</span><input type="text" name="userCnName" id="userCnName" placeholder="请输入用户名称" /></li>
+				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
+				<li><span>实名状态：</span><input type="text" name="realRegistrationStatus" id="realRegistrationStatus" placeholder="请输入实名状态" /></li>
+				<li><span>注册来源：</span><input type="text" name="source" id="source" placeholder="请输入注册来源" /></li>
+				<li><span>注册时间：</span><input type="text" name="createTime" id="createTime" placeholder="请输入注册时间" /></li>
 				<li>
 					<span style = "float:left;">用户类型：</span>
 					<select name="userType" id="userType" class="dropdown">

@@ -18,7 +18,7 @@ public class UserServiceTest extends TestSupport {
         User model = new User();
         model.setUsername("");
         model.setPassword(ApplicationUtils.sha256Hex("123456"));
-        model.setCreateTime(new Date());
+        model.setCreateTime(new Date().toString());
         userService.insert(model);
     }
 
@@ -28,7 +28,7 @@ public class UserServiceTest extends TestSupport {
             User model = new User();
             model.setUsername("" + i);
             model.setPassword(ApplicationUtils.sha256Hex("123456"));
-            model.setCreateTime(new Date());
+            model.setCreateTime(new Date().toString());
             userService.insert(model);
         }
     }

@@ -36,9 +36,9 @@ public class User {
 	 */
     private String state;
 
-    private Date createTime;
+    private String createTime;
     
-    private Date modifyTime;
+    private String modifyTime;
 	
 	
 	private Integer source;
@@ -52,13 +52,22 @@ public class User {
 	private String isBlack;
 	
 	private String blackRemark;
-	
+	/**
+	 * 身份证照片
+	 */
 	private String identification;
-	
+	/**
+	 * 身份证照片url
+	 */
 	private String idcartImg;
-    
-    
-    
+	/**
+	 * 身份证照片url
+	 */
+	private String idcartImg1;
+	/**
+	 * 审核人
+	 */
+	private String auditName;
 	/**
 	 *
 	 */
@@ -85,6 +94,22 @@ public class User {
         this.password = password;
         this.flag = flag;
     }
+	
+	public String getIdcartImg1() {
+		return idcartImg1;
+	}
+	
+	public void setIdcartImg1(String idcartImg1) {
+		this.idcartImg1 = idcartImg1;
+	}
+	
+	public String getAuditName() {
+		return auditName;
+	}
+	
+	public void setAuditName(String auditName) {
+		this.auditName = auditName;
+	}
 	
 	public Integer getSource() {
 		return source;
@@ -182,11 +207,11 @@ public class User {
         this.state = state == null ? null : state.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
@@ -206,11 +231,11 @@ public class User {
 		this.userType = userType;
 	}
 
-	public Date getModifyTime() {
+	public String getModifyTime() {
 		return modifyTime;
 	}
 
-	public void setModifyTime(Date modifyTime) {
+	public void setModifyTime(String modifyTime) {
 		this.modifyTime = modifyTime;
 	}
 	
@@ -264,8 +289,8 @@ public class User {
 		sb.append(", password='").append(password).append('\'');
 		sb.append(", userType=").append(userType);
 		sb.append(", state='").append(state).append('\'');
-		sb.append(", createTime=").append(createTime);
-		sb.append(", modifyTime=").append(modifyTime);
+		sb.append(", createTime='").append(createTime).append('\'');
+		sb.append(", modifyTime='").append(modifyTime).append('\'');
 		sb.append(", source=").append(source);
 		sb.append(", realRegistrationStatus=").append(realRegistrationStatus);
 		sb.append(", auditStatus=").append(auditStatus);
@@ -274,6 +299,8 @@ public class User {
 		sb.append(", blackRemark='").append(blackRemark).append('\'');
 		sb.append(", identification='").append(identification).append('\'');
 		sb.append(", idcartImg='").append(idcartImg).append('\'');
+		sb.append(", idcartImg1='").append(idcartImg1).append('\'');
+		sb.append(", auditName='").append(auditName).append('\'');
 		sb.append(", userRoles='").append(userRoles).append('\'');
 		sb.append(", phone='").append(phone).append('\'');
 		sb.append(", email='").append(email).append('\'');
