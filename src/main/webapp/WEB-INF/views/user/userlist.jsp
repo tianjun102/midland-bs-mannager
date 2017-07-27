@@ -15,13 +15,14 @@
 	 				<thead>
 						<tr>
 							<th style="width: 5%">序号</th>
-							<th style="width: 10%">用户名</th>
+							<th style="width: 5%">用户名</th>
 							<th style="width: 10%">手机号码</th>
-							<th style="width: 10%">注册时间</th>
+							<th style="width: 5%">注册时间</th>
 							<th style="width: 10%">注册来源</th>
-							<th style="width: 10%">实名状态</th>
-							<th style="width: 10%">审核人</th>
+							<th style="width: 4%">实名状态</th>
+							<th style="width: 5%">审核人</th>
 							<th style="width: 10%">审核时间</th>
+							<th style="width: 10%">用户类型</th>
 							<th style="width: 15%">操作</th>
 						</tr>
 					</thead>
@@ -37,14 +38,11 @@
 								<td>${cust.createTime }</td>
 								<td>${cust.source }</td>
 								<td>${cust.realRegistrationStatus }</td>
-								<td>${cust.userCnName }</td>
-								<td>${cust.userCnName }</td>
-								<td>${cust.userCnName }</td>
+								<td>${cust.auditName }</td>
+								<td>${cust.auditTime }</td>
 								<td>
 									<c:if test="${cust.userType==0}">智者汇</c:if> 
 									<c:if test="${cust.userType==1}">渠道服务商</c:if>
-									<c:if test="${cust.userType==2}">终端服务商</c:if>
-									<c:if test="${cust.userType==3}">安装专员</c:if>
 								</td>
 								<td>
 									<a onclick="preUpdate(${cust.id })" target="contentF" class = "edit_img" title = "编辑"></a>
