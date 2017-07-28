@@ -1,6 +1,7 @@
 package com.midland.web.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -18,9 +19,6 @@ import com.midland.web.model.UserRole;
  * @since 2016年7月5日 上午11:49:57
  **/
 public interface UserMapper extends GenericDao<User, Integer> {
-    int countByExample(UserExample example);
-
-    int deleteByExample(UserExample example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -28,13 +26,10 @@ public interface UserMapper extends GenericDao<User, Integer> {
 
     int insertSelective(User record);
 
-    List<User> selectByExample(UserExample example);
+    List<User> selectByExample(User user);
 
     User selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
-
-    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+	
 
     int updateByPrimaryKeySelective(User record);
 
@@ -46,7 +41,7 @@ public interface UserMapper extends GenericDao<User, Integer> {
      * @param record
      * @return
      */
-    User authentication(@Param("record") User record);
+    User authentication(User record);
 
     /**
      * 分页条件查询
@@ -73,15 +68,12 @@ public interface UserMapper extends GenericDao<User, Integer> {
 
 	/**
 	 * 批量删除用户角色关系
-	 * @param userId
-	 * @param list
 	 * @return
 	 */
-	int deleteUserRoleBatch(@Param("userId") Integer userId, @Param("list") List<UserRole> list);
+	int deleteUserRoleBatch(Map map);
 
 	List<User> selectUsersByRoleId(Integer roleId);
 
 	int deleteUserRoleBatchById(List<UserRole> list);
 	
-	User queryUserForCustCode(String custCode);
 }
