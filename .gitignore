@@ -1,9 +1,9 @@
 # Project ignore files
 /*
-!.gitignore
-!src
-!pom.xml
-!*.txt
-!readme.md
-/src/main/resources/application.properties
-/src/main/resources/appsetting.properties
+# !.gitignore
+# !src
+# !pom.xml
+# !*.txt
+# !readme.md
+# *.properties
+
