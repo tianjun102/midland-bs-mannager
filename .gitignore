@@ -5,3 +5,5 @@
 !pom.xml
 !*.txt
 !readme.md
+/src/main/resources/application.properties
+/src/main/resources/appsetting.properties
