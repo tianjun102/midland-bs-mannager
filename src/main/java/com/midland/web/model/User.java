@@ -58,7 +58,7 @@ public class User {
 	 */
 	private Integer auditStatus;
 	
-	private Date auditTime;
+	private String auditTime;
 	/**
 	 * 0未加入黑名单
 	 * 1已加入黑名单
@@ -190,11 +190,11 @@ public class User {
 		this.auditStatus = auditStatus;
 	}
 	
-	public Date getAuditTime() {
+	public String getAuditTime() {
 		return auditTime;
 	}
 	
-	public void setAuditTime(Date auditTime) {
+	public void setAuditTime(String auditTime) {
 		this.auditTime = auditTime;
 	}
 	

@@ -15,7 +15,7 @@
 	<ul class = "userinfo row">
 		<input type="hidden" name="id" id="id" value="${user.id}">
 		<input type="hidden" name="ph" id="ph" value="${user.phone}">
-		<li><span>用户名：</span><input type="text" name="userName" id="userName" value="${user.username}" disabled="disabled"/></li>
+		<li><span>用户名：</span><input type="text" name="userName" id="userName" value="${user.username}" disabled="true"/></li>
 		<li><span>身份证号码：</span><input type="text" name="identification" id="identification" value="${user.identification}" maxlength="50"/><span class="_star">*</span></li>
 		<li><span>身份证图片：</span><img style="width: 90px;height: 90px;" src="${user.idcartImg}"  maxlength="50"/></li>
 		<li><img style="width: 90px;height: 90px;" src="${user.idcartImg1}"  maxlength="50"/></li>
@@ -37,7 +37,7 @@
     function auditsuccess(userId){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/user/update?id="+userId+'&auditStatus=2',
+            url: "${ctx}/rest/user/audit?id="+userId+'&auditStatus=2',
             cache:false,
             async:false, // 此处必须同步
             dataType: "json",
@@ -63,7 +63,7 @@
             shade: 0.3,
             area: ['450px', '400px'],
             content:'<section class="content" style="border:none; padding-left:20px;">' +
-			'<form action="${ctx}/rest/user/update" method="post" id="adduserInfoForm">' +
+			'<form action="${ctx}/rest/user/audit" method="post" id="adduserInfoForm">' +
 			'<ul class = "userinfo row"><li><span>拒绝原因：</span>' +
 			'<textarea name="auditRemark" id="auditRemark"  style="width:260px;height:' +
 			' 150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;" >' +
@@ -87,7 +87,7 @@
     function rejust(userId){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/user/update?id="+userId+'&auditStatus=3'+'&auditRemark='+$('#auditRemark').val(),
+            url: "${ctx}/rest/user/audit?id="+userId+'&auditStatus=3'+'&auditRemark='+$('#auditRemark').val(),
             cache:false,
             async:false, // 此处必须同步
             dataType: "json",
