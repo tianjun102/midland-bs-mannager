@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.midland.web.dao.PopularMapper" >
+  <resultMap id="BaseResultMap" type="com.midland.web.model.Popular" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cate_id" property="cateId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="provinceId" property="provinceid" jdbcType="INTEGER" />
+    <result column="cityId" property="cityid" jdbcType="INTEGER" />
+    <result column="areaId" property="areaid" jdbcType="INTEGER" />
+    <result column="sheetId" property="sheetid" jdbcType="INTEGER" />
+    <result column="isDelete" property="isDelete" javaType="INTEGER"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cate_id, menu_id, name, source, url, provinceId, cityId, areaId, sheetId, isDelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from popular
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from popular
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.midland.web.model.Popular" >
+    insert into popular (id, cate_id, menu_id, 
+      name, source, url, 
+      provinceId, cityId, areaId, 
+      sheetId)
+    values (#{id,jdbcType=INTEGER}, #{cateId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{provinceid,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, #{areaid,jdbcType=INTEGER}, 
+      #{sheetid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.midland.web.model.Popular" >
+    insert into popular
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cateId != null" >
+        cate_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="provinceid != null" >
+        provinceId,
+      </if>
+      <if test="cityid != null" >
+        cityId,
+      </if>
+      <if test="areaid != null" >
+        areaId,
+      </if>
+      <if test="sheetid != null" >
+        sheetId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cateId != null" >
+        #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null" >
+        #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="sheetid != null" >
+        #{sheetid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.Popular" >
+    update popular
+    <set >
+      <if test="cateId != null" >
+        cate_id = #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null" >
+        provinceId = #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null" >
+        cityId = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        areaId = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="sheetid != null" >
+        sheetId = #{sheetid,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Popular" >
+    update popular
+    set cate_id = #{cateId,jdbcType=INTEGER},
+      menu_id = #{menuId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      provinceId = #{provinceid,jdbcType=INTEGER},
+      cityId = #{cityid,jdbcType=INTEGER},
+      areaId = #{areaid,jdbcType=INTEGER},
+      sheetId = #{sheetid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectPropularList" parameterType="com.midland.web.model.Popular" resultMap="BaseResultMap">
+
+    SELECT  <include refid="Base_Column_List"/> FROM  popular WHERE  1 = 1
+    <if test="id != null" >
+      AND  id = #{id}
+    </if>
+    <if test="cateId != null" >
+      AND cate_id = #{cateId}
+    </if>
+    <if test="menuId != null" >
+      AND menu_id = #{menuId}
+    </if>
+    <if test="name != null" >
+      AND name = #{name}
+    </if>
+    <if test="source != null" >
+      AND source = #{source,jdbcType=INTEGER}
+    </if>
+    <if test="url != null and url !='' "  >
+      AND url = #{url,jdbcType=VARCHAR}
+    </if>
+    <if test="provinceid != null" >
+      AND provinceId = #{provinceid,jdbcType=INTEGER}
+    </if>
+    <if test="cityid != null" >
+      AND cityId = #{cityid,jdbcType=INTEGER}
+    </if>
+    <if test="areaid != null" >
+      AND areaId = #{areaid,jdbcType=INTEGER}
+    </if>
+    <if test="sheetid != null" >
+      AND sheetId = #{sheetid,jdbcType=INTEGER}
+    </if>
+    <if test="isDelete ! = null">
+      AND isDelete = #{isDelete}
+    </if>.
+
+  </select>
+
+</mapper>
