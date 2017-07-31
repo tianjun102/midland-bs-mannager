@@ -530,7 +530,7 @@ jasmine.TrivialReporter.prototype.reportRunnerResults = function(runner) {
   message += " in " + ((new Date().getTime() - this.startedAt.getTime()) / 1000) + "s";
   this.runnerMessageSpan.replaceChild(this.createDom('a', { className: 'description', href: '?'}, message), this.runnerMessageSpan.firstChild);
 
-  this.finishedAtSpan.appendChild(document.createTextNode("Finished at " + new Date().toString()));
+  this.finishedAtSpan.appendChild(document.createTextNode("Finished at " + MidlandHelper.getCurrentTime()));
 };
 
 jasmine.TrivialReporter.prototype.reportSuiteResults = function(suite) {

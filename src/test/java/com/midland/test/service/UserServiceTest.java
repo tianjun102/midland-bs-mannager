@@ -1,10 +1,10 @@
 package com.midland.test.service;
 
-import java.util.Date;
 import javax.annotation.Resource;
 
 import com.midland.core.util.ApplicationUtils;
 import com.midland.core.feature.test.TestSupport;
+import com.midland.web.util.MidlandHelper;
 import com.midland.web.model.User;
 import com.midland.web.service.UserService;
 
@@ -18,7 +18,7 @@ public class UserServiceTest extends TestSupport {
         User model = new User();
         model.setUsername("");
         model.setPassword(ApplicationUtils.sha256Hex("123456"));
-        model.setCreateTime(new Date().toString());
+        model.setCreateTime(MidlandHelper.getCurrentTime());
         userService.insert(model);
     }
 
@@ -28,7 +28,7 @@ public class UserServiceTest extends TestSupport {
             User model = new User();
             model.setUsername("" + i);
             model.setPassword(ApplicationUtils.sha256Hex("123456"));
-            model.setCreateTime(new Date().toString());
+            model.setCreateTime(MidlandHelper.getCurrentTime());
             userService.insert(model);
         }
     }

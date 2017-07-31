@@ -62,12 +62,24 @@
             title: [''],
             shade: 0.3,
             area: ['450px', '400px'],
-            content:'<form action="${ctx}/rest/user/update" method="post" id="userInfoForm">'
-			+'<ul class = "userinfo row"><input type="hidden" name="id" id="id" value="${user.id}">'
-			+'<li><span>拒绝原因：</span><textarea style="width:80%;height:100px" name="auditRemark" id="auditRemark"></textarea></li>'
-			+'<li><a target="contentF" class = "public_btn bg2" id="save" onclick="rejust(${user.id })">拒绝</a>)'
-			+'</ul></form>	'
+            content:'<section class="content" style="border:none; padding-left:20px;">' +
+			'<form action="${ctx}/rest/user/update" method="post" id="adduserInfoForm">' +
+			'<ul class = "userinfo row"><li><span>拒绝原因：</span>' +
+			'<textarea name="auditRemark" id="auditRemark"  style="width:260px;height:' +
+			' 150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;" >' +
+			'</textarea></li><li style = "padding-top:30px;"><a target="contentF" class = "public_btn bg2" ' +
+			'style="margin-left: 70px;" id="save" onclick="rejust(${user.id })">拒绝</a>' +
+			'<a style="margin-left: 20px" class = "public_btn bg3" id="cancel" ' +
+			'onclick="closeWin();">取消</a></li></ul></form>'
         });
+    }
+
+
+    //取消
+    function closeWin(){
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		alert(index);
+        layer.close(index);
     }
 
 

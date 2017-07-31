@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.annotation.Resource;
 
+import com.midland.web.util.MidlandHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,6 @@ import com.midland.core.generic.GenericServiceImpl;
 import com.midland.core.util.ApplicationUtils;
 import com.midland.web.dao.UserMapper;
 import com.midland.web.model.User;
-import com.midland.web.model.UserExample;
-import com.midland.web.model.UserExample.Criteria;
 import com.midland.web.model.UserRole;
 import com.midland.web.service.UserService;
 
@@ -92,7 +91,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 	public int addUser(User user) {
 		int n=0;
 		if(user!=null){
-			user.setCreateTime(new Date().toString());
+			user.setCreateTime(MidlandHelper.getCurrentTime());
 	    	user.setState("1");
 	    	if(user.getUserType()==null){
 	    		user.setUserType(0);//默认为0  沃可视

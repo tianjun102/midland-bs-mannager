@@ -51,8 +51,8 @@
 									<%--<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${cust.id })" --%>
 
 
-										<a target="contentF" title = "" onclick="takeblacklist(${cust.id })">加入黑名单</a>
-										<a target="contentF"  title = "" onclick="viewRealRegistration(${cust.id })">
+										<a target="contentF" onclick="takeblacklist(${cust.id })">加入黑名单</a>
+										<a target="contentF" onclick="viewRealRegistration(${cust.id })">
 											<c:choose>
 												<c:when test="${cust.auditStatus==0}">审核实名信息
 												</c:when>

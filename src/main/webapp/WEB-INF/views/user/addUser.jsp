@@ -16,20 +16,16 @@
 	<ul class = "userinfo row">
 			<li><span>用户名：</span><input style = "width:264px;" type="text" name="username" id="username"  onblur="checkUserName();" maxlength="50"/><span class="_star">*</span></li>
 			<li><span>用户名称：</span><input style = "width:264px;" type="text" name="userCnName" id="userCnName" maxlength="50"/><span class="_star">*</span></li>
-			<%-- <li style = "display:flex;align-items:center">
+			<li style = "display:flex;align-items:center">
 				<span>用户类型：</span>
-				<select name="userType" id="userType" class="dropdown">
+				<select name="createBy" id="createBy" class="dropdown">
 					<!-- <option value="" >请选择</option> -->
 					<option value="0"
-						<c:if test="${userType==0}">selected="selected"</c:if>>智者汇</option>
+						<c:if test="${userType==0}">selected="selected"</c:if>>网站</option>
 					<option value="1"
-						<c:if test="${userType==1}">selected="selected"</c:if>>渠道服务商</option>
-					<option value="2"
-						<c:if test="${userType==2}">selected="selected"</c:if>>终端服务商</option>
-					<option value="3"
-						<c:if test="${userType==3}">selected="selected"</c:if>>安装专员</option>
+						<c:if test="${userType==1}">selected="selected"</c:if>>微商</option>
 				</select>
-			</li> --%>
+			</li>
 			<li><span>手机号码：</span><input style = "width:264px;" type="text" name="phone" id="phone" onblur="checkPhone();"/><span class="_star">*</span></li>
 			<li><span>邮箱：</span><input style = "width:264px;" type="text" name="email" id="email" onblur="checkEmail();"/></li>
 			<%-- <li>
