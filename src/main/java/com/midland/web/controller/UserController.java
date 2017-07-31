@@ -239,7 +239,7 @@ public class UserController extends BaseController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "/addUser", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/addUser", method = {RequestMethod.GET,RequestMethod.POST},produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String addUser(User user){
     	Map<String, Object> map = new HashMap<String, Object>();
