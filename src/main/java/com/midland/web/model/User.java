@@ -1,6 +1,5 @@
 package com.midland.web.model;
 
-import java.beans.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +37,12 @@ public class User {
     private String state;
 
     private String createTime;
+    
+    private String createBy;
+    
+    private String headImg;
+    
+    
 	
     private String startTime;
     
@@ -48,14 +53,21 @@ public class User {
 	
 	private Integer source;
 	
-	private Integer realRegistrationStatus;
-	
+	/**
+	 * 0未认证，1审核中，2审核通过，3拒绝
+	 */
 	private Integer auditStatus;
 	
 	private Date auditTime;
-	
+	/**
+	 * 0未加入黑名单
+	 * 1已加入黑名单
+	 */
 	private String isBlack;
 	
+	/**
+	 * 加入黑名单原因
+	 */
 	private String blackRemark;
 	/**
 	 * 身份证号码
@@ -73,6 +85,9 @@ public class User {
 	 * 审核人
 	 */
 	private String auditName;
+	
+	
+	private String auditRemark;
 	/**
 	 *
 	 */
@@ -100,9 +115,30 @@ public class User {
         this.flag = flag;
     }
 	
-    
-    
-    
+	
+	public String getAuditRemark() {
+		return auditRemark;
+	}
+	
+	public void setAuditRemark(String auditRemark) {
+		this.auditRemark = auditRemark;
+	}
+	
+	public String getHeadImg() {
+		return headImg;
+	}
+	
+	public void setHeadImg(String headImg) {
+		this.headImg = headImg;
+	}
+	
+	public String getCreateBy() {
+		return createBy;
+	}
+	
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
 	
 	public String getStartTime() {
 		return startTime;
@@ -144,13 +180,7 @@ public class User {
 		this.source = source;
 	}
 	
-	public Integer getRealRegistrationStatus() {
-		return realRegistrationStatus;
-	}
-	
-	public void setRealRegistrationStatus(Integer realRegistrationStatus) {
-		this.realRegistrationStatus = realRegistrationStatus;
-	}
+
 	
 	public Integer getAuditStatus() {
 		return auditStatus;
@@ -319,7 +349,6 @@ public class User {
 		sb.append(", endTime='").append(endTime).append('\'');
 		sb.append(", modifyTime='").append(modifyTime).append('\'');
 		sb.append(", source=").append(source);
-		sb.append(", realRegistrationStatus=").append(realRegistrationStatus);
 		sb.append(", auditStatus=").append(auditStatus);
 		sb.append(", auditTime=").append(auditTime);
 		sb.append(", isBlack='").append(isBlack).append('\'');

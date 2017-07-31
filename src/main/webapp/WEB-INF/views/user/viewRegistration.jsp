@@ -19,108 +19,92 @@
 		<li><span>身份证号码：</span><input type="text" name="identification" id="identification" value="${user.identification}" maxlength="50"/><span class="_star">*</span></li>
 		<li><span>身份证图片：</span><img style="width: 90px;height: 90px;" src="${user.idcartImg}"  maxlength="50"/></li>
 		<li><img style="width: 90px;height: 90px;" src="${user.idcartImg1}"  maxlength="50"/></li>
-		</ul>
+		<c:if test="${user.auditStatus == 0}" >
+		<li>
+			<span></span>
+			<a target="contentF" class = "public_btn bg2" id="save" onclick="auditsuccess(${user.id })">审核通过</a>
+			<a style="margin-left: 20px" class = "public_btn bg3" id="cancel" onclick="auditRejectView(${user.id });">审核拒绝</a>
+		</li>
+		</c:if>
+	</ul>
 			
 	</form>	
 </section>
 
 <script type="text/javascript">
-	//保存数据
-	function saveData(){
-		if(checkPhone()&&checkEmail()){
-			var id = $("#id").val();
-			var username = $("#username").val();
-			var userCnName = $("input[name='userCnName']").val();
-			// var userType = $("input[name='userType']").val();
-			// var userType = $("#userType option:selected").val();
-			var phone = $("input[name='phone']").val();
-			var email = $("input[name='email']").val();
-			var userRoles =""; 
-			$('input[name="userRoles"]:checked').each(function(){ 
-				userRoles+=$(this).val()+","; 
-			}); 
-			
-			$.ajax({ 
-					type: "post", 
-					url: "${ctx}/rest/user/edit", 
-					async:false, // 此处必须同步
-					dataType: "json",
-					data:{"id":id,"username":username,"userCnName":userCnName,
-						"phone":phone,"email":email,"userRoles":userRoles},
-					success: function(data){
-						if(data.flag==1){
-							layer.msg("保存成功！！！",{icon:1});
-							$('#save').removeAttr("onclick");
-							setTimeout(function(){parent.location.reload();},1000);
-							
-						}else{
-							layer.msg("保存失败！",{icon:2});
-						}
-					},
-					error: function(){
-						layer.msg("保存失败！",{icon:2});
-					}
-				});
-		}
-	}
-	//检查手机号格式
-	function checkPhone() {
-		debugger;
-		var phone0 = $("#ph").val();
-		var reg = /^1[3,4,5,7,8]\d{9}$/;
-		var phone = $("input[name='phone']").val();
-		if (phone.trim() == '') {
-			layer.tips("手机号不能为空！", "input[name='phone']",{tips:1});
-			return false;
-		}
-		if (!reg.test(phone)) {
-			layer.tips("手机号格式有误,请核对!", "input[name='phone']",{tips:3});
-			return false;
-		}
-		if(phone0==phone){
-			return true;
-		}
-		
-		var a=true;
-		$.ajax({ 
-			type: "post", 
-			url: "${ctx }/rest/user/checkPhoneUnique",
-			async:false, // 此处必须同步
-			dataType: "json",
-			data:{"phone":phone},
-			success: function(xmlobj){ 
-				if (xmlobj.flag==1){
-					layer.tips("当前手机号码已被使用，请更换手机号码！", "input[name='phone']",{tips:1});
-					a=false;
-				}else{
-					a=true;
-				}
-			} 
-		});
-		return a;
-	}
-	
-	//检查邮箱格式
-	function checkEmail() {
-		var reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
-		var email = $("input[name='email']").val();
-		if (email.trim() == '') {
-			//layer.tips("邮箱不能为空！", "input[name='email']",{tips:3});
-			return true;
-		}
-		if (!reg.test(email)) {
-			layer.tips("邮箱格式有误,请核对!", "input[name='email']",{tips:3});
-			//$("input[name='email']").focus();
-			return false;
-		}
-		return true;
-	}
-	
-	//取消
-	function closeWin(){
-		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-		parent.layer.close(index);
-	}
+
+
+    function auditsuccess(userId){
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/user/update?id="+userId+'&auditStatus=2',
+            cache:false,
+            async:false, // 此处必须同步
+            dataType: "json",
+            success: function(obj){
+                if(obj.state==0){
+                    layer.msg("成功！",{icon:5});
+                    parent.window.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index);
+                }
+                if(obj.state==-1){
+                    layer.msg("失败！！",{icon:7});
+                }
+
+            }
+        });
+    }
+
+    function auditRejectView(userId){
+        layer.open({
+            type: 1,
+            title: [''],
+            shade: 0.3,
+            area: ['450px', '400px'],
+            content:'<section class="content" style="border:none; padding-left:20px;">' +
+			'<form action="${ctx}/rest/user/update" method="post" id="adduserInfoForm">' +
+			'<ul class = "userinfo row"><li><span>拒绝原因：</span>' +
+			'<textarea name="auditRemark" id="auditRemark"  style="width:260px;height:' +
+			' 150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;" >' +
+			'</textarea></li><li style = "padding-top:30px;"><a target="contentF" class = "public_btn bg2" ' +
+			'style="margin-left: 70px;" id="save" onclick="rejust(${user.id })">拒绝</a>' +
+			'<a style="margin-left: 20px" class = "public_btn bg3" id="cancel" ' +
+			'onclick="closeWin();">取消</a></li></ul></form>'
+        });
+    }
+
+
+    //取消
+    function closeWin(){
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		alert(index);
+        layer.close(index);
+    }
+
+
+
+    function rejust(userId){
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/user/update?id="+userId+'&auditStatus=3'+'&auditRemark='+$('#auditRemark').val(),
+            cache:false,
+            async:false, // 此处必须同步
+            dataType: "json",
+            success: function(obj){
+                if(obj.state==0){
+                    layer.msg("成功！",{icon:5});
+                    parent.window.location.reload();
+                    parent.layer.closeAll();
+                }
+                if(obj.state==-1){
+                    layer.msg("失败！！",{icon:7});
+                }
+
+            }
+        });
+    }
+
 </script>	
 <script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>

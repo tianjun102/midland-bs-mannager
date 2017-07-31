@@ -1,11 +1,10 @@
 package com.midland.web.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.Resource;
 
+import com.midland.web.util.MidlandHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,6 @@ import com.midland.core.generic.GenericServiceImpl;
 import com.midland.core.util.ApplicationUtils;
 import com.midland.web.dao.UserMapper;
 import com.midland.web.model.User;
-import com.midland.web.model.UserExample;
-import com.midland.web.model.UserExample.Criteria;
 import com.midland.web.model.UserRole;
 import com.midland.web.service.UserService;
 
@@ -65,15 +62,14 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 
     @Override
     public User selectByUsername(String username) {
-        UserExample example = new UserExample();
-        example.createCriteria().andUsernameEqualTo(username);
-        List<User> list = userMapper.selectByExample(example);
+        User user = new User();
+		user.setUsername(username);
+        List<User> list = userMapper.selectByExample(user);
         if(list!=null && list.size()>0) {
         	return list.get(0);
         }else{
-        	 example = new UserExample();
-             example.createCriteria().andPhoneEqualTo(username);
-             list = userMapper.selectByExample(example);
+	         user.setPassword(username);
+             list = userMapper.selectByExample(user);
              if(list!=null && list.size()>0) return list.get(0); 
         }
         return null;
@@ -81,23 +77,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 
 	@Override
 	public List<User> selectUserList(User user) {
-		UserExample example = new UserExample();
-		Criteria criteria =example.createCriteria().andStateNotEqualTo("3");
-		if(user!=null){
-			if(StringUtils.isNotEmpty(user.getUsername())){
-				criteria.andUsernameEqualTo(user.getUsername());
-			}
-			if(StringUtils.isNotEmpty(user.getUserCnName())){
-				criteria.andUserCnNameEqualTo(user.getUserCnName());
-			}
-			if(StringUtils.isNotEmpty(user.getPhone())){
-				criteria.andPhoneEqualTo(user.getPhone());
-			}
-			if(user.getUserType()!=null){
-				criteria.andUserTypeEqualTo(user.getUserType());
-			}
-		}
-        List<User> list = userMapper.selectByExample(example);
+        List<User> list = userMapper.selectByExample(user);
 		return list;
 	}
 
@@ -111,7 +91,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 	public int addUser(User user) {
 		int n=0;
 		if(user!=null){
-			user.setCreateTime(new Date().toString());
+			user.setCreateTime(MidlandHelper.getCurrentTime());
 	    	user.setState("1");
 	    	if(user.getUserType()==null){
 	    		user.setUserType(0);//默认为0  沃可视
@@ -182,11 +162,15 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 			}
 			
 			if(list2!=null&&list2.size()>0){
+				
 				m=m+userMapper.insertUserRoleBatch(list2);
 			}
 		}
 		if(list1!=null&&list1.size()>0){
-			m=m+userMapper.deleteUserRoleBatch(userId,list1);
+			Map map = new HashMap<>();
+			map.put("userId",userId);
+			map.put("list",list1);
+			m=m+userMapper.deleteUserRoleBatch(map);
 		}
 		return m;
 	}

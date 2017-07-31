@@ -323,6 +323,22 @@ public class UserController extends BaseController {
     	}
     	return JSONObject.toJSONString(map);
     }
+    @RequestMapping(value = "/update")
+    @ResponseBody
+    public Object updateUserInfo(User user){
+    	Map<String, Object> map = new HashMap<>();
+    	if(userService.modifyUser(user)>0){
+    		map.put("state", 0);
+    		map.put("message","success");
+    		return map;
+    	}
+	    map.put("state", -1);
+	    map.put("message","fail");
+    	return map;
+    }
+    
+    
+    
     
     /**
      * 开启/关闭

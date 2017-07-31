@@ -28,8 +28,9 @@
 			<ul class = "userinfo row">
 				<li><span>昵称：</span><input type="text" name="username" id="username" placeholder="请输入用户名" /></li>
 				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
-				<li><span>实名状态：</span><input type="text" name="realRegistrationStatus" id="realRegistrationStatus" placeholder="请输入实名状态" /></li>
+				<li><span>实名状态：</span><input type="text" name="auditStatus" id="auditStatus" placeholder="请输入实名状态" /></li>
 				<li><span>注册来源：</span><input type="text" name="source" id="source" placeholder="请输入注册来源" /></li>
+				<li><span>审核人：</span><input type="text" name="auditName" id="auditName" placeholder="请输入审核人" /></li>
 				<li><span>注册时间</span><input class="Wdate half" id="time1"
 										onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'time2\')}'})"
 										name="startTime" /> <em class = "gang">-</em><input
@@ -60,14 +61,14 @@
 			$('#searchForm').submit();
 		}); */
 		 window.onload = function(){
-			$('#searchForm').submit();
+             $('#searchForm').submit();
 		}
-		
+
 		function toAddPage(){
 			layer.open({
 				type: 2,
 				skin: 'layer-style',
-				area: ['500px','420px'],
+				area: ['500px','500px'],
 				shadeClose: false, //点击遮罩关闭
 				title:['创建用户'],
 				resize: false,

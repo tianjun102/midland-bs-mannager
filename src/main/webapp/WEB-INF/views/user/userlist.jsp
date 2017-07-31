@@ -37,7 +37,7 @@
 								<td>${cust.phone }</td>
 								<td>${cust.createTime }</td>
 								<td>${cust.source }</td>
-								<td>${cust.realRegistrationStatus }</td>
+								<td>${cust.auditStatus }</td>
 								<td>${cust.auditName }</td>
 								<td>${cust.auditTime }</td>
 								<td>
@@ -51,10 +51,15 @@
 									<%--<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${cust.id })" --%>
 
 
-										<a target="contentF" class = "delete_img" title = "加入黑名单" onclick="viewRealRegistration(${cust.id })"
-										<c:if test="${cust.username == 'admin'}">style="visibility: hidden;"</c:if>>加入黑名单
-									</a>
-										<a target="contentF"  title = "查看实名信息" onclick="viewRealRegistration(${cust.id })"> 查看实名信息</a>
+										<a target="contentF" onclick="takeblacklist(${cust.id })">加入黑名单</a>
+										<a target="contentF" onclick="viewRealRegistration(${cust.id })">
+											<c:choose>
+												<c:when test="${cust.auditStatus==0}">审核实名信息
+												</c:when>
+												<c:otherwise>查看实名信息
+												</c:otherwise>
+											</c:choose>
+										</a>
 									<%--<a href="javascript:;" target="contentF" --%>
 										<%--<c:if test="${cust.state == 0}">class = "offon_img" title = "启用"</c:if>--%>
 										<%--<c:if test="${cust.state == 1}">class = "onoff_img"  title = "关闭"</c:if>--%>
@@ -89,12 +94,46 @@
             type: 2,
             title: ['用户信息'],
             shade: 0.3,
-            area: ['450px', '400px'],
+            area: ['500px', '500px'],
             content: ['${ctx}/rest/user/findUser?userId='+userId+'&flag=1','no']
         });
     }
 
+function takeblacklist(userId){
+        layer.open({
+            type: 1,
+            title: ['加入黑名单'],
+            shade: 0.3,
+            area: ['500px', '500px'],
+            content: '<form action="${ctx}/rest/user/update" method="post" id="blackForm">'
+            +'<ul class = "userinfo row"><input type="hidden" name="id" id="id" value="'+userId+'">'
+            +'<li><span>拉黑原因：</span><textarea style="width:80%;height:100px" name="blackRemark" id="blackRemark"></textarea></li>'
+            +'<li><a target="contentF" class = "public_btn bg2" id="save" onclick="consume('+userId+')">加入黑名单</a>'
+            +'</ul></form>'
+        });
+    }
 
+
+    function consume(userId){
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/user/update?id="+userId+'&isBlack=1'+'&blackRemark='+$('#blackRemark').val(),
+            cache:false,
+            async:false, // 此处必须同步
+            dataType: "json",
+            success: function(obj){
+                if(obj.state==0){
+                    layer.msg("成功！",{icon:5});
+                    parent.window.location.reload();
+                    parent.layer.closeAll();
+                }
+                if(obj.state==-1){
+                    layer.msg("失败！！",{icon:7});
+                }
+
+            }
+        });
+    }
 
 
 
