@@ -4,6 +4,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.Popular;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SettingService {
@@ -16,7 +17,7 @@ public interface SettingService {
 
     public int insertPopular(Popular popular);
 
-    public String queryAreaByRedis(Map<String,String> parem);
+    public List queryAreaByRedis(Map<String,String> parem);
 
 
 

@@ -3,6 +3,7 @@ package com.midland.web.service.impl;
 import java.util.List;
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.midland.core.generic.GenericDao;
 import com.midland.core.generic.GenericServiceImpl;
@@ -19,7 +20,7 @@ import com.midland.web.service.PermissionService;
 @Service
 public class PermissionServiceImpl extends GenericServiceImpl<Permission, Integer> implements PermissionService {
 
-    @Resource
+    @Autowired
     private PermissionMapper permissionMapper;
 
 
