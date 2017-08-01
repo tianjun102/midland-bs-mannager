@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "http://toolkit.alibaba-inc.com/dtd/log4j/log4j.dtd">
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-
     <!-- ===================================================================== -->
     <!--  定义全局输出适配器                                                      -->
     <!-- ===================================================================== -->
@@ -13,43 +12,43 @@
 
     <!-- Mybatis and SQL -->
     <logger name="org.apache.ibatis" additivity="true">
-        <level value="error"/>
+        <level value="DEBUG"/>
         <appender-ref ref="consoleAppender"/>
     </logger>
 
     <logger name="org.mybatis.spring" additivity="true">
-        <level value="error"/>
-        <appender-ref ref="consoleAppender"/>
-    </logger>
+    <level value="ERROR"/>
+    <appender-ref ref="consoleAppender"/>
+</logger>
     <logger name="java.sql" additivity="true">
-        <level value="debug"/>
+        <level value="DEBUG"/>
         <appender-ref ref="consoleAppender"/>
     </logger>
 
     <logger name="java.sql.Connection" additivity="true">
-        <level value="error"/>
+        <level value="DEBUG"/>
         <appender-ref ref="consoleAppender"/>
     </logger>
 
     <logger name="java.sql.Statement" additivity="true">
-        <level value="error"/>
+        <level value="DEBUG"/>
         <appender-ref ref="consoleAppender"/>
     </logger>
 
     <logger name="java.sql.PreparedStatement" additivity="true">
-        <level value="error"/>
+        <level value="DEBUG"/>
         <appender-ref ref="consoleAppender"/>
     </logger>
 
     <!-- Spring -->
     <logger name="org.springframework" additivity="true">
-        <level value="error"/>
+        <level value="ERROR"/>
         <appender-ref ref="consoleAppender"/>
     </logger>
 
     <!-- ActiveMQ -->
     <logger name="org.apache.activemq" additivity="true">
-        <level value="error"/>
+        <level value="ERROR"/>
         <appender-ref ref="consoleAppender"/>
     </logger>
     <!-- ===================================================================== -->
