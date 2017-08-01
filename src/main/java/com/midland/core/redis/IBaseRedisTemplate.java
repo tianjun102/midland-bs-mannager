@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package com.midland.core.redis;
 
 import java.util.HashMap;
@@ -10,56 +5,58 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public interface IBaseRedisTemplate<V, HK> {
-    int delByKeys(String[] var1);
+public interface IBaseRedisTemplate <V, HK>{
+	
+	public int delByKeys(final String[] keys);
+	
+	public Long incrByKey(final String keys, final long num);
+	
+	public Long decrByKey(final String keys, final long num);
+	
+	public Set<byte[]> getKeysLike(final String pattern);
 
-    Long incrByKey(String var1, long var2);
+	public void saveValue(String key, V value);
 
-    Long decrByKey(String var1, long var2);
+	public void saveValue(String key, V value, long offset);
 
-    Set<byte[]> getKeysLike(String var1);
+	public void saveValue(String key, V value, long timeout, TimeUnit unit);
+	
+	public void set(final byte[] key, final byte[] value, final long liveTime);
 
-    void saveValue(String var1, V var2);
+	public V getValueByKey(String key);
 
-    void saveValue(String var1, V var2, long var3);
+	public int addListItem(String key, V value);
 
-    void saveValue(String var1, V var2, long var3, TimeUnit var5);
+	public int removeListItem(String key, long count, V value);
+	
+	public long del(final String... keys);
 
-    void set(byte[] var1, byte[] var2, long var3);
+	public int getListSize(String key);
 
-    V getValueByKey(String var1);
+	public List<V> getListByKey(String key);
 
-    int addListItem(String var1, V var2);
+	public List<V> getListByKeyAndIndex(String key, long start, long end);
 
-    int removeListItem(String var1, long var2, V var4);
+	public void putHashItem(String key, HK hashKey, V value);
 
-    long del(String... var1);
+	public void removeHashItem(String key, HK[] hashKeys);
 
-    int getListSize(String var1);
+	public int getHashSize(String key);
 
-    List<V> getListByKey(String var1);
+	public HashMap<HK, V> getHashByKey(String key);
 
-    List<V> getListByKeyAndIndex(String var1, long var2, long var4);
+	public List<V> getHashValuesByKey(String key);
 
-    void putHashItem(String var1, HK var2, V var3);
+	public Set<HK> getHashKeysByKey(String key);
 
-    void removeHashItem(String var1, HK[] var2);
-
-    int getHashSize(String var1);
-
-    HashMap<HK, V> getHashByKey(String var1);
-
-    List<V> getHashValuesByKey(String var1);
-
-    Set<HK> getHashKeysByKey(String var1);
-
-    V getHashValueByKeyAndHashKey(String var1, HK var2);
-
-    boolean exists(String var1);
-
-    String flushDB();
-
-    long dbSize();
-
-    String ping();
+	public V getHashValueByKeyAndHashKey(String key, HK hashKey);
+	
+	public boolean exists(final String key);
+	
+	public String flushDB();
+	
+	public long dbSize();
+	
+	public String ping();
+	
 }
