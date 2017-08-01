@@ -12,7 +12,6 @@ import com.midland.web.service.SettingService;
 import com.midland.web.util.MidlandHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,7 @@ import java.util.Map;
 public class SettingServiceImpl implements SettingService {
 
     @Autowired
-    private IBaseRedisTemplate redisTemplate;
+    private IBaseRedisTemplate baseRedisTemplate;
 
     @Autowired
     private PopularMapper popularMapper;
@@ -47,9 +46,19 @@ public class SettingServiceImpl implements SettingService {
 
     @Override
     public List<Area> queryAreaByRedis(Map<String, String> parem) {
+
        String data = HttpUtils.get(AppSetting.getAppSetting("APIURL"),parem);
-       return MidlandHelper.getPojoList(data, Area.class);
+        List<Area>  areaList =  MidlandHelper.getPojoList(data, Area.class);
+        for (Area area : areaList){
+            baseRedisTemplate.addListItem(area.getId(),area.getName());
+            baseRedisTemplate.addListItem(area.getParentId(),area.getParentName());
+        }
+
+
+
+        return  null;
     }
+
 
 
 }
