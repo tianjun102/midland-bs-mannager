@@ -33,26 +33,18 @@
     from appointment
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="appointmentPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from appointment where 1=1
+    <include refid="select_option"/>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from appointment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.midland.web.model.Appointment" >
-    insert into appointment (id, appoint_sn, source, 
-      call, phone, house_type, 
-      sell_rent, appointment_time, area, 
-      community_name, address, layout, 
-      measure, price, entrust_time, 
-      user_id, user_cn_name, status, 
-      handle_time)
-    values (#{id,jdbcType=INTEGER}, #{appointSn,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, 
-      #{call,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{houseType,jdbcType=INTEGER}, 
-      #{sellRent,jdbcType=INTEGER}, #{appointmentTime,jdbcType=TIMESTAMP}, #{area,jdbcType=VARCHAR}, 
-      #{communityName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{layout,jdbcType=VARCHAR}, 
-      #{measure,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{entrustTime,jdbcType=TIMESTAMP}, 
-      #{userId,jdbcType=INTEGER}, #{userCnName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{handleTime,jdbcType=TIMESTAMP})
-  </insert>
+
   <insert id="insertSelective" parameterType="com.midland.web.model.Appointment" >
     insert into appointment
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -234,26 +226,62 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Appointment" >
-    update appointment
-    set appoint_sn = #{appointSn,jdbcType=VARCHAR},
-      source = #{source,jdbcType=INTEGER},
-      call = #{call,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      house_type = #{houseType,jdbcType=INTEGER},
-      sell_rent = #{sellRent,jdbcType=INTEGER},
-      appointment_time = #{appointmentTime,jdbcType=TIMESTAMP},
-      area = #{area,jdbcType=VARCHAR},
-      community_name = #{communityName,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      layout = #{layout,jdbcType=VARCHAR},
-      measure = #{measure,jdbcType=VARCHAR},
-      price = #{price,jdbcType=VARCHAR},
-      entrust_time = #{entrustTime,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=INTEGER},
-      user_cn_name = #{userCnName,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      handle_time = #{handleTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+
+  <sql id="select_option">
+    <if test="appointSn != null" >
+      and appoint_sn = #{appointSn,jdbcType=VARCHAR}
+    </if>
+    <if test="source != null" >
+      and source = #{source,jdbcType=INTEGER}
+    </if>
+    <if test="call != null" >
+      and call = #{call,jdbcType=VARCHAR}
+    </if>
+    <if test="phone != null" >
+      and phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="houseType != null" >
+      and house_type = #{houseType,jdbcType=INTEGER}
+    </if>
+    <if test="sellRent != null" >
+      and sell_rent = #{sellRent,jdbcType=INTEGER}
+    </if>
+    <if test="appointmentTime != null" >
+      and appointment_time = #{appointmentTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="area != null" >
+      and area = #{area,jdbcType=VARCHAR}
+    </if>
+    <if test="communityName != null" >
+      and community_name = #{communityName,jdbcType=VARCHAR}
+    </if>
+    <if test="address != null" >
+      and address = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="layout != null" >
+      and layout = #{layout,jdbcType=VARCHAR}
+    </if>
+    <if test="measure != null" >
+      and measure = #{measure,jdbcType=VARCHAR}
+    </if>
+    <if test="price != null" >
+      and price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="entrustTime != null" >
+      and entrust_time = #{entrustTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="userId != null" >
+      and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="userCnName != null" >
+      and user_cn_name = #{userCnName,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="handleTime != null" >
+      and handle_time = #{handleTime,jdbcType=TIMESTAMP}
+    </if>
+  </sql>
 </mapper>

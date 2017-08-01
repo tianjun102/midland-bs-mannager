@@ -1,17 +1,19 @@
-package com.midland.web.dao;
+package com.midland.web.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.midland.web.model.Appointment;
 
-public interface AppointmentMapper {
-    int deleteByPrimaryKey(Integer id);
+import java.util.List;
 
-    int insert(Appointment record);
+public interface AppointmentService {
+    int deleteByPrimaryKey(Integer id);
 
     int insertSelective(Appointment record);
 
     Appointment selectByPrimaryKey(Integer id);
-
+    
+    List<Appointment> appointmentPage(Appointment record, PageBounds pageBounds);
+    
     int updateByPrimaryKeySelective(Appointment record);
 
-    int updateByPrimaryKey(Appointment record);
 }

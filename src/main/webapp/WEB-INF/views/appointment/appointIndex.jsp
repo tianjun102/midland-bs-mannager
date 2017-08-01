@@ -20,10 +20,10 @@
 	<div class="box"> 
 		<section class = "content">
 			<p class = "detail-title">
-				<span>用户列表</span>
+				<span>看房记录列表</span>
 				<a class = "setup"  target="contentF" onclick="toAddPage()">创建用户</a>
 			</p>
-		<form action="${ctx }/rest/user/userList" method="POST" id="searchForm"
+		<form action="${ctx }/rest/appoint/page" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
 				<li><span>昵称：</span><input type="text" name="username" id="username" placeholder="请输入用户名" /></li>
