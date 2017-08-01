@@ -1,22 +1,20 @@
 package com.midland.core.redis;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.*;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisCallback;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 
-import com.hxin.common.cache.client.api.standalone.IBaseRedisTemplate;
 
+@Component
 public class BaseRedisTemplate<V, HK> implements IBaseRedisTemplate<V, HK>{
 
 	@Autowired
@@ -30,7 +28,7 @@ public class BaseRedisTemplate<V, HK> implements IBaseRedisTemplate<V, HK>{
 
 	@Resource(name = "redisTemplate")
 	protected HashOperations<Object, HK, V> hashOps;
-	
+
 	@SuppressWarnings("unchecked")
 	public int delByKeys(final String[] keys) {
 		return ((Integer) this.redisTemplate.execute(new RedisCallback() {
@@ -216,5 +214,5 @@ public class BaseRedisTemplate<V, HK> implements IBaseRedisTemplate<V, HK>{
 	public V getHashValueByKeyAndHashKey(String key, HK hashKey) {
 		return this.hashOps.get(key, hashKey);
 	}
-	
+
 }
