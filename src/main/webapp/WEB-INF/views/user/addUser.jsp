@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="${ctx }/assets/css/common.css">
     <link rel="stylesheet" href="${ctx }/assets/css/layer.css">
     <link rel="stylesheet" href="${ctx }/assets/css/easydropdown.css"/>
+
+    <style type="text/css">
+        .content ul.userinfo>li {
+            float: none !important;
+            margin-left: 20px;
+            padding-top: 20px;
+        }
+
+
+        .dropdown {
+            width: 268px !important;
+        }
+    </style>
+
 </head>
 <body>
 <section class="content" style="border:none;">

@@ -6,6 +6,7 @@ import com.midland.web.service.AppointLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 预约看房Service实现类
@@ -34,6 +35,13 @@ public class AppointLogServiceImpl implements AppointLogService {
     public AppointLog selectByPrimaryKey(Integer id) {
         return appointLogMapper.selectByPrimaryKey(id);
     }
+    
+    @Override
+     public List<AppointLog> selectAppointLogByAppointId(Integer id) {
+        return appointLogMapper.selectAppointLogByAppointId(id);
+    }
+    
+    
     
     
     @Override

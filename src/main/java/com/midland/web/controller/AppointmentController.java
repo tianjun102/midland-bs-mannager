@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -156,7 +157,9 @@ public class AppointmentController extends BaseController{
 	@RequestMapping("/to_update")
 	public String toUpdateAppointment(int appointId,Model model) {
 		Appointment appointment=appointmentServiceImpl.selectByPrimaryKey(appointId);
+		List<AppointLog> appointLogs = appointLogServiceImpl.selectAppointLogByAppointId(appointId);
 		model.addAttribute("appointment",appointment);
+		model.addAttribute("appointLogs",appointLogs);
 		return "appointment/updateAppointInfo";
 	}
 	

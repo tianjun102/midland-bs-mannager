@@ -19,11 +19,11 @@ public class Appointment {
      */
     private String phone;
     /**
-     * 类型
+     * 类型 0住宅，1公寓，2写字楼，3商铺
      */
     private Integer houseType;
     /**
-     * 分类
+     * 分类 0 出售，1出租
      */
     private Integer sellRent;
     /**
