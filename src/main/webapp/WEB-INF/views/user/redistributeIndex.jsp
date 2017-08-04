@@ -16,38 +16,30 @@
 <body>
 	
 	
-	<!--用户列表界面-->
+	<!--预约看房重新分配经纪人-->
 	<div class="box"> 
 		<section class = "content">
-			<p class = "detail-title">
-				<span>看房记录列表</span>
-				<a class = "setup"  target="contentF" onclick="toAddPage()">创建用户</a>
-			</p>
-		<form action="${ctx }/rest/appoint/page" method="POST" id="searchForm"
+		<form action="${ctx }/rest/user/redistribute_page" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
-				<li><span>小区名：</span><input type="text" name="communityName" id="communityName" placeholder="请输入小区" /></li>
+				<li><input type="hidden" id="appointId" value="${appointId}"/></li>
+				<li><span>经纪人：</span><input type="text" name="username" id="username" placeholder="请输入用户名" /></li>
 				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
-				<li><span>分类：</span><input type="text" name="sellRent" id="sellRent" placeholder="请输入分类" /></li>
-				<li><span>state：</span><input type="text" name="status" id="status" placeholder="请输入状态" /></li>
-				<li><span>来源：</span><input type="text" name="source" id="source" placeholder="请输入来源" /></li>
-				<li><span>预约时间</span><input class="Wdate half" id="time1"
-										onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'time2\')}'})"
-										name="startTime" /> <em class = "gang">-</em><input
-						class="Wdate half"
-						onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'time1\')}'})"
-						id="time2" name="endTime" /></li>
+				<li><span>所属门店：</span><input type="text" name="auditStatus" id="auditStatus" placeholder="请输入实名状态" /></li>
 
 				<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>
 			</ul>
 			</form>
 			<div id="listDiv"></div>
+
 		</section>
 	</div>
 	
 	
 	<script type="text/javascript">
-
+		/* $(function(){
+			$('#searchForm').submit();
+		}); */
 		 window.onload = function(){
              $('#searchForm').submit();
 		}
@@ -64,6 +56,7 @@
 				content:['${ctx}/rest/user/toAddPage', 'no']
 			});
 		}
+
 	</script>
 	<!-- 本页私有js -->
 	

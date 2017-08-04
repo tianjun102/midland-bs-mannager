@@ -72,7 +72,7 @@ CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `username` varchar(50) DEFAULT NULL COMMENT '用户名',
   `password` char(64) DEFAULT NULL COMMENT '密码',
-  `state` varchar(32) DEFAULT NULL COMMENT '状态',
+  `state` varchar(32) DEFAULT NULL COMMENT 'state',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='用户表';

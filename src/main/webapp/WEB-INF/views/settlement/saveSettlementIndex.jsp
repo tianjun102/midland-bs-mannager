@@ -76,7 +76,7 @@
 						<dl style="width:248px; position: absolute;left: 72px;top: 57px;cursor:pointer; background:#eee;" id="customer"></dl>
 					</li>
 					<li>
-						<span>状态：</span>
+						<span>state：</span>
 						<input disabled="disabled" name="" value="新增">
 						<span class = "_star ">*</span>
 					</li>

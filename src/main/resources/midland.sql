@@ -56,7 +56,7 @@ CREATE TABLE `appointment` (
   `entrust_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '委托时间',
   `user_id` int(11) DEFAULT NULL COMMENT '经纪人id',
   `user_cn_name` varchar(11) DEFAULT NULL COMMENT '经纪人名字',
-  `status` int(1) unsigned zerofill DEFAULT '0' COMMENT '状态；0=未处理；1=处理中；2已完成',
+  `status` int(1) unsigned zerofill DEFAULT '0' COMMENT 'state；0=未处理；1=处理中；2已完成',
   `handle_time` timestamp NULL DEFAULT NULL COMMENT '处理时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -225,7 +225,7 @@ CREATE TABLE `entrust` (
   `price` varchar(11) DEFAULT NULL COMMENT '价格',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `user_cn_name` varchar(11) DEFAULT NULL COMMENT '经纪人名字',
-  `status` int(1) unsigned DEFAULT NULL COMMENT '状态；0=未处理；1=处理中',
+  `status` int(1) unsigned DEFAULT NULL COMMENT 'state；0=未处理；1=处理中',
   `handle_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '处理时间',
   `call` varchar(255) DEFAULT NULL COMMENT '称呼',
   `renovation` int(11) DEFAULT NULL COMMENT '0=简装；1=精装',
@@ -247,7 +247,7 @@ CREATE TABLE `feedback` (
   `phone` varchar(25) DEFAULT NULL COMMENT '手机号码',
   `feedback_content` text,
   `add_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '反馈时间',
-  `status` int(3) DEFAULT NULL COMMENT '状态 0=已取消；1=已完成；2=处理中',
+  `status` int(3) DEFAULT NULL COMMENT 'state 0=已取消；1=已完成；2=处理中',
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -439,7 +439,7 @@ CREATE TABLE `permission` (
   `permission_path` varchar(256) DEFAULT NULL COMMENT '访问路径',
   `permission_type` int(11) DEFAULT NULL COMMENT '权限类型(0一级菜单 1二级菜单 2功能菜单)',
   `order_no` int(11) DEFAULT NULL COMMENT '排序号',
-  `status` int(11) DEFAULT NULL COMMENT '状态',
+  `status` int(11) DEFAULT NULL COMMENT 'state',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='权限表';
 
@@ -552,7 +552,7 @@ CREATE TABLE `role` (
   `role_sign` varchar(128) DEFAULT NULL COMMENT '角色标识,程序中判断使用,如"admin"',
   `description` varchar(256) DEFAULT NULL COMMENT '角色描述,UI界面显示使用',
   `role_type` int(11) DEFAULT NULL COMMENT '角色类型：0=公司内；1=客户;',
-  `state` int(11) DEFAULT NULL COMMENT '状态',
+  `state` int(11) DEFAULT NULL COMMENT 'state',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='角色表';
 
@@ -757,7 +757,7 @@ CREATE TABLE `user` (
   `user_cn_name` varchar(50) DEFAULT NULL COMMENT '用户名称',
   `password` char(64) DEFAULT NULL COMMENT '密码',
   `user_type` int(1) DEFAULT NULL COMMENT '用户类型：0=智者汇；1=渠道渠道商；2=终端服务商；3=安装专员；',
-  `state` int(1) DEFAULT NULL COMMENT '状态(0失效,1生效,3删除)',
+  `state` int(1) DEFAULT NULL COMMENT 'state(0失效,1生效,3删除)',
   `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
   `phone` varchar(20) DEFAULT NULL COMMENT '手机（可作为登录账号），唯一',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',

@@ -43,7 +43,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<th>缩略图</th>
 							<th>图片说明</th>
 							<th>排序</th>
-							<th>状态</th>
+							<th>state</th>
 							<th>操作</th>
 						</tr>
 					</thead>

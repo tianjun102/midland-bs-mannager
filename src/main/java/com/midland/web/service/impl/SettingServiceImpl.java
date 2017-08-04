@@ -11,6 +11,7 @@ import com.midland.web.model.Popular;
 import com.midland.web.service.SettingService;
 import com.midland.web.util.MidlandHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,9 @@ import java.util.Map;
 @Service
 public class SettingServiceImpl implements SettingService {
 
+    @Value("APIURL")
+    private String APIURL;
+    
     @Autowired
     private IBaseRedisTemplate redisTemplate;
 

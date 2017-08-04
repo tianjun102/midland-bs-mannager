@@ -1,18 +1,13 @@
 package com.midland.web.service.impl;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.midland.core.generic.GenericDao;
-import com.midland.core.generic.GenericServiceImpl;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.dao.AppointmentMapper;
-import com.midland.web.dao.PermissionMapper;
 import com.midland.web.model.Appointment;
-import com.midland.web.model.Permission;
 import com.midland.web.service.AppointmentService;
-import com.midland.web.service.PermissionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 预约看房Service实现类
@@ -43,7 +38,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
     
     @Override
-    public List<Appointment> appointmentPage(Appointment record, PageBounds pageBounds) {
+    public PageList<Appointment> appointmentPage(Appointment record, PageBounds pageBounds) {
         return appointmentMapper.appointmentPage(record,pageBounds);
     }
     

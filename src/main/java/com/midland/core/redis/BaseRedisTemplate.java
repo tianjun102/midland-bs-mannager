@@ -15,8 +15,6 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
-import com.hxin.common.cache.client.api.standalone.IBaseRedisTemplate;
-
 public class BaseRedisTemplate<V, HK> implements IBaseRedisTemplate<V, HK>{
 
 	@Autowired

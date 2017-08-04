@@ -77,7 +77,7 @@
 			<li><span>公司全称：</span><input type="text" name="custFullName"
 				id="custFullName" maxlength="50"/><span
 				class="_star">*</span></li>
-			<li><span>状态：</span><select name="status" id="status"
+			<li><span>state：</span><select name="status" id="status"
 				class="dropdown">
 					<option value="1"
 						<c:if test="${status==1}">selected="selected"</c:if>>合作中</option>

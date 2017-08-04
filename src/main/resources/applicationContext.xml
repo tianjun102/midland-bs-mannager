@@ -29,6 +29,7 @@
             <list>
                 <value>classpath*:application.properties</value>
                 <value>classpath*:dataBackup.properties</value>
+                <value>classpath*:appsetting.properties</value>
             </list>
         </property>
     </bean>

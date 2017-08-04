@@ -43,7 +43,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				<li>
 					<span>结算客户：</span><input disabled="disabled" id="CustName" name="" value="${settlement.cust_name}"><input type="hidden" name="cust_name" value="${settlement.cust_name}">
 				</li>
-				<li><span>状态：</span><input type="hidden" name="status" value="${settlement.status}" ><input disabled="disabled" name="" value="<c:if test="${settlement.status==0}">未确认</c:if><c:if test="${settlement.status==1}">已确认</c:if><c:if test="${settlement.status==2}">已记账</c:if>"></li>
+				<li><span>state：</span><input type="hidden" name="status" value="${settlement.status}" ><input disabled="disabled" name="" value="<c:if test="${settlement.status==0}">未确认</c:if><c:if test="${settlement.status==1}">已确认</c:if><c:if test="${settlement.status==2}">已记账</c:if>"></li>
 				<li><span>订单总额：</span><input disabled="disabled" id="" value="${settlement.total_amount}"><input type="hidden" name="total_amount" value="${settlement.total_amount}"></li>
 				<li><span>结算金额：</span><input disabled="disabled" name="" value="${settlement.sett_amount}"><input type="hidden" name="sett_amount" value="${settlement.sett_amount}"></li>
 				<li><span>描述：</span><textarea disabled="disabled" style="width:590px;height:100px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;" name="" rows="" cols="">${settlement.sett_note}</textarea><input type="hidden" name="sett_note" value="${settlement.sett_note}" ></li>

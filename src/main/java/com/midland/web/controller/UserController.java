@@ -205,25 +205,56 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/userList", method = {RequestMethod.GET,RequestMethod.POST})
     public String selectUserList(User user,Model model,HttpServletRequest request){
-    	
-    	String pageSize = request.getParameter("pageSize");
+	    String pageSize = request.getParameter("pageSize");
+	    getUserList(user,pageSize, model, request);
+    	return "user/userlist";
+    }
+	
+	/**
+	 * 用户列表查询（重新分配经纪人）
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/toRedistribute", method = {RequestMethod.GET,RequestMethod.POST})
+	public String toRedistribute(String appointId,User user,Model model,HttpServletRequest request){
+		model.addAttribute("appointId",appointId);
+		return "user/redistributeIndex";
+	}
+	
+	/**
+	 * 用户列表查询（重新分配经纪人）
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/redistribute_page", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getRedistribute(User user,Model model,HttpServletRequest request){
+		getUserList(user,"5", model, request);
+		return "user/redistributeList";
+	}
+	
+	
+	
+	
+	private void getUserList(User user,String pageSize, Model model, HttpServletRequest request) {
 		String pageNo = request.getParameter("pageNo");
+		
 		if(pageNo==null||pageNo.equals("")){
 			pageNo = ContextEnums.PAGENO;
 		}
 		if(pageSize==null||pageSize.equals("")){
+			
 			pageSize = ContextEnums.PAGESIZE;
 		}
 		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
-    	
-    	PageList<User> userList=userService.selectByExampleAndPage(user,pageBounds);
-    	Paginator paginator = userList.getPaginator();
+		
+		PageList<User> userList=userService.selectByExampleAndPage(user,pageBounds);
+		Paginator paginator = userList.getPaginator();
 		model.addAttribute("paginator", paginator);
-    	model.addAttribute("users", userList);
-    	return "user/userlist";
-    }
-    
-    /**
+		model.addAttribute("users", userList);
+	}
+	
+	
+	/**
      * 跳转到新增页面
      * @return
      */

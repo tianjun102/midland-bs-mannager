@@ -14,54 +14,51 @@
     <table class="table table-bordered table-add">
         <thead>
         <tr>
-            <th style="width: 3%">委托编号</th>
-            <th style="width: 3%">信息来源</th>
-            <th style="width: 3%">称呼</th>
-            <th style="width: 5%">电话</th>
-            <th style="width: 2%">类型</th>
-            <th style="width: 2%">分类</th>
-            <th style="width: 5%">委托时间</th>
-            <th style="width: 5%">所属区域</th>
-            <th style="width: 5%">小区名</th>
-            <th style="width: 5%">门牌地址</th>
-            <th style="width: 5%">户型</th>
-            <th style="width: 5%">面积</th>
-            <th style="width: 5%">售价/租价</th>
-            <th style="width: 15%">预约时间</th>
-            <th style="width: 5%">经纪人</th>
-            <th style="width: 5%">state</th>
-            <th style="width: 5%">处理时间</th>
-            <th style="width: 25%">操作</th>
+            <th style="width: 5%"></th>
+            <th style="width: 5%">序号</th>
+            <th style="width: 5%">用户名</th>
+            <th style="width: 10%">手机号码</th>
+            <th style="width: 5%">注册时间</th>
+            <th style="width: 10%">注册来源</th>
+            <th style="width: 4%">实名状态</th>
+            <th style="width: 5%">审核人</th>
+            <th style="width: 10%">审核时间</th>
+            <th style="width: 10%">用户类型</th>
+            <th style="width: 15%">操作</th>
         </tr>
         </thead>
         <tbody>
         <c:choose>
-            <c:when test="${!empty requestScope.appoint }">
-                <c:forEach items="${requestScope.appoint }" var="appoint"
-                           varStatus="xh">
+            <c:when test="${!empty requestScope.users }">
+                <c:forEach items="${requestScope.users }" var="cust" varStatus="xh">
                     <tr>
-                        <td>${appoint.appointSn }</td>
-                        <td>${appoint.source }</td>
-                        <td>${appoint.call }</td>
-                        <td>${appoint.phone }</td>
-                        <td>${appoint.houseType }</td>
-                        <td>${appoint.sellRent }</td>
-                        <td>${appoint.appointmentTime }</td>
-                        <td>${appoint.area }</td>
-                        <td>${appoint.communityName }</td>
-                        <td>${appoint.address }</td>
-                        <td>${appoint.layout }</td>
-                        <td>${appoint.measure }</td>
-                        <td>${appoint.price }</td>
-                        <td>${appoint.entrustTime }</td>
-                        <td>${appoint.userCnName }</td>
-                        <td>${appoint.status }</td>
-                        <td>${appoint.handleTime }</td>
+                        <td><input name="radio" type="radio" value="${cust.id }"/></td>
+
+                        <td>${xh.count }</td>
+                        <td>${cust.username }</td>
+                        <td>${cust.phone }</td>
+                        <td>${cust.createTime }</td>
+                        <td>${cust.source }</td>
+                        <td>${cust.auditStatus }</td>
+                        <td>${cust.auditName }</td>
+                        <td>${cust.auditTime }</td>
+                        <td>
+                            <c:if test="${cust.userType==0}">智者汇</c:if>
+                            <c:if test="${cust.userType==1}">渠道服务商</c:if>
+                        </td>
                         <td>
 
-                            <a target="contentF" onclick="toRedistribute(${appoint.id })">重新分配经纪人</a>
+                            <a target="contentF" onclick="alterUser(${cust.id })">编辑</a>
 
-                            <a target="contentF" onclick="takeblacklist(${appoint.id })">修改</a>
+                            <a target="contentF" onclick="takeblacklist(${cust.id })">加入黑名单</a>
+                            <a target="contentF" onclick="viewRealRegistration(${cust.id })">
+                                <c:choose>
+                                    <c:when test="${cust.auditStatus==0}">审核实名信息
+                                    </c:when>
+                                    <c:otherwise>查看实名信息
+                                    </c:otherwise>
+                                </c:choose>
+                            </a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -74,6 +71,7 @@
         </c:choose>
         </tbody>
     </table>
+
 </div>
 <!-- 分页 -->
 <c:if test="${!empty paginator}">
@@ -81,19 +79,48 @@
     <c:set var="target" value="listDiv"/>
     <%@include file="../layout/pagination.jsp" %>
 </c:if>
+<ul class = "userinfo row">
+    <li style="padding-top:30px;">
+        <span></span>
+        <a target="contentF" class="public_btn bg2" id="save" onclick="saveData()">确定</a>
+        <a style="margin-left: 20px" class="public_btn bg3" id="cancel" onclick="closeWin();">取消</a>
+    </li>
+</ul>
 
 <script type="text/javascript">
-    //删除
-    //修改
-    function toRedistribute(id) {
-        layer.open({
-            type: 2,
-            title: ['重新分配经纪人'],
-            shade: 0.3,
-            area: ['1000px', '700px'],
-            content: ['${ctx}/rest/user/toRedistribute?appointId=' + id , 'no']
+    function saveData(id){
+        var appointId = $("#appointId").val();
+        var intHot = $("input[name='radio']:checked");
+        var agentId = intHot.parent().next().text();
+        var agentName = intHot.parent().next().next().text();
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/appoint/update",
+            async: false, // 此处必须同步
+            dataType: "json",
+            data: {
+                "id": appointId, "userId": agentId, "userCnName": agentName
+            },
+            success: function (data) {
+                if (data.state == 0) {
+                    layer.msg("分配成功！！！", {icon: 1});
+                    $('#save').removeAttr("onclick");
+                    setTimeout(function () {
+                        parent.location.reload();
+                    }, 1000);
+
+                } else {
+                    layer.msg("分配失败！", {icon: 2});
+                }
+            },
+            error: function () {
+                layer.msg("分配失败！", {icon: 2});
+            }
+
         });
     }
+
+
 
 
     function takeblacklist(userId) {

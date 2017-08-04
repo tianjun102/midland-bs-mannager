@@ -1,45 +1,93 @@
 package com.midland.web.model;
 
+import java.beans.Transient;
 import java.util.Date;
 
 public class Appointment {
     private Integer id;
-
+    /**
+     * 委托编号
+     */
     private String appointSn;
-
+    /**
+     * 信息来源
+     */
     private Integer source;
-
+    /**
+     * 称呼
+     */
     private String call;
-
+    /**
+     * 电话
+     */
     private String phone;
-
+    /**
+     * 类型
+     */
     private Integer houseType;
-
+    /**
+     * 分类
+     */
     private Integer sellRent;
-
-    private Date appointmentTime;
-
+    /**
+     * 委托时间
+     */
+    private String appointmentTime;
+    /**
+     * 所属区域
+     */
     private String area;
-
+    /**
+     * 小区名
+     */
     private String communityName;
-
+    /**
+     * 门牌地址
+     */
     private String address;
-
+    /**
+     * 户型
+     */
     private String layout;
-
+    /**
+     * 面积
+     */
     private String measure;
-
+    /**
+     * 价格
+     */
     private String price;
-
-    private Date entrustTime;
-
+    /**
+     * 预约时间
+     */
+    private String entrustTime;
+    /**
+     * 经纪人id
+     */
     private Integer userId;
-
+    /**
+     * 经纪人
+     */
     private String userCnName;
-
+    /**
+     * 状态
+     */
     private Integer status;
-
-    private Date handleTime;
+    /**
+     * 处理时间
+     */
+    private String handleTime;
+    
+    /**
+     *
+     */
+    
+    private transient String startTime;
+    
+    /**
+     *
+     */
+    private transient String endTime;
 
     public Integer getId() {
         return id;
@@ -97,11 +145,11 @@ public class Appointment {
         this.sellRent = sellRent;
     }
 
-    public Date getAppointmentTime() {
+    public String getAppointmentTime() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(Date appointmentTime) {
+    public void setAppointmentTime(String appointmentTime) {
         this.appointmentTime = appointmentTime;
     }
 
@@ -153,11 +201,11 @@ public class Appointment {
         this.price = price == null ? null : price.trim();
     }
 
-    public Date getEntrustTime() {
+    public String getEntrustTime() {
         return entrustTime;
     }
 
-    public void setEntrustTime(Date entrustTime) {
+    public void setEntrustTime(String entrustTime) {
         this.entrustTime = entrustTime;
     }
 
@@ -185,11 +233,27 @@ public class Appointment {
         this.status = status;
     }
 
-    public Date getHandleTime() {
+    public String getHandleTime() {
         return handleTime;
     }
 
-    public void setHandleTime(Date handleTime) {
+    public void setHandleTime(String handleTime) {
         this.handleTime = handleTime;
+    }
+    
+    public String getStartTime() {
+        return startTime;
+    }
+    
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    
+    public String getEndTime() {
+        return endTime;
+    }
+    
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

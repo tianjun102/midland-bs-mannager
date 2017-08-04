@@ -51,7 +51,7 @@
         <property name="jmxNamePrefix" value="youyuan"/>
         <property name="blockWhenExhausted" value="false"/>
     </bean>
-    <bean id="baseRedisTemplate" class="com.hxin.common.cache.client.api.standalone.impl.BaseRedisTemplate" />
+    <bean id="baseRedisTemplate" class="com.midland.core.redis.BaseRedisTemplate" />
 
 
 

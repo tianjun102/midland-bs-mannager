@@ -5,10 +5,13 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import com.midland.core.feature.test.TestSupport;
 import com.midland.web.dao.UserMapper;
+import org.springframework.beans.factory.annotation.Value;
 
 public class UserMapperTest extends TestSupport {
-    @Resource
-    private UserMapper userMapper;
+
+    
+    @Value("APIURL")
+    private String APIURL;
 
     @Test
     public void test_selectByExampleAndPage() {
@@ -21,5 +24,10 @@ public class UserMapperTest extends TestSupport {
             System.err.println(user);
         }
         end();*/
+    }
+    
+    @Test
+    public void dsfwef(){
+        System.out.println(APIURL);
     }
 }

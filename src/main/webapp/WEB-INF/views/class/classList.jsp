@@ -51,7 +51,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<th>栏目属性</th>
 							<!-- <th>子级数</th> -->
 							<th>排序</th>
-							<th>状态</th>
+							<th>state</th>
 							<th style="display: none;">创建人</th>
 							<th style="display: none;">创建时间</th>
 							<th>操作</th>
