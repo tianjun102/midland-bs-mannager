@@ -1,6 +1,8 @@
 package com.midland.web.util;
 
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,7 +12,7 @@ import java.io.Serializable;
 
 public class SerializeUtils {
 	
-	private final static Logger logger = Logger.getLogger(SerializeUtils.class);
+	private final static Logger logger = LoggerFactory.getLogger(SerializeUtils.class);
 	
 	/**
 	 * 反序列化
