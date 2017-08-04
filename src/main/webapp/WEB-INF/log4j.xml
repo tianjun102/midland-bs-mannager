@@ -17,7 +17,7 @@
     </logger>
 
     <logger name="org.mybatis.spring" additivity="true">
-    <level value="ERROR"/>
+    <level value="DEBUG"/>
     <appender-ref ref="consoleAppender"/>
 </logger>
     <logger name="java.sql" additivity="true">
