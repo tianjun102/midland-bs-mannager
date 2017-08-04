@@ -15,14 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller("/setting")
+@Controller
+@RequestMapping(value = "/setting")
 public class SettingContorller {
 @Autowired
 private SettingService settingService;
     // 进入热门关注首页面
-    @RequestMapping(value = "showCategoryIndex", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "showPopularIndex", method = { RequestMethod.GET, RequestMethod.POST })
     public String showPopularIndex(Model model, HttpServletRequest request) {
-        return "setting/settingIndex";
+
+        return "setting/showPopularIndex";
     }
     // 进入热门关注列表页
     @RequestMapping(value = "showPopularList", method = { RequestMethod.GET, RequestMethod.POST })
@@ -37,6 +39,12 @@ private SettingService settingService;
             pageSize = ContextEnums.PAGESIZE;
         }
         PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
+/*      Map<String,String> parem = new HashMap<>();
+        parem.put("flag","sheet");
+        parem.put("cityId","085");
+        parem.put("areaId","R000010042");
+        Map result =  settingService.queryAreaByRedis(parem);*/
+
         PageList<Popular> PopularList = settingService.findPopularList(popular,pageBounds);
         model.addAttribute("PopularList",PopularList);
         model.addAttribute("paginator",PopularList.getPaginator());

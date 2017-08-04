@@ -1,12 +1,13 @@
 package com.midland.web.model;
 
-import javax.print.DocFlavor;
 
 /**
  * @author tianj
  * 区域实体类
  */
-public class Area {
+public class Area implements java.io.Serializable{
+
+    private static final long serialVersionUID = 8456182291437212997L;
 
     private String id ;
 
@@ -14,7 +15,7 @@ public class Area {
 
     private String name;
 
-    private String parent;
+    private String parentName;
 
 
     public String getId() {
@@ -41,12 +42,12 @@ public class Area {
         this.name = name;
     }
 
-    public String getParent() {
-        return parent;
+    public String getParentName() {
+        return parentName;
     }
 
-    public void setParent(String parent) {
-        this.parent = parent;
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class Area {
                 "id='" + id + '\'' +
                 ", parentId='" + parentId + '\'' +
                 ", name='" + name + '\'' +
-                ", parent='" + parent + '\'' +
+                ", parentName='" + parentName + '\'' +
                 '}';
     }
 }
