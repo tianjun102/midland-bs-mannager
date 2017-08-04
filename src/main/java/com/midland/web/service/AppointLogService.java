@@ -1,18 +1,14 @@
 package com.midland.web.service;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.midland.web.model.Appointment;
+import com.midland.web.model.AppointLog;
 
 public interface AppointLogService {
     int deleteByPrimaryKey(Integer id);
 
-    int insertSelective(Appointment record);
-
-    Appointment selectByPrimaryKey(Integer id);
+    int insertSelective(AppointLog record);
     
-    PageList<Appointment> appointmentPage(Appointment record, PageBounds pageBounds);
+    AppointLog selectByPrimaryKey(Integer id);
     
-    int updateByPrimaryKeySelective(Appointment record);
-
+    
+    int updateByPrimaryKeySelective(AppointLog record);
 }

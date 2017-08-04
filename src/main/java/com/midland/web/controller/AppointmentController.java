@@ -5,14 +5,20 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.github.miemiedev.mybatis.paginator.domain.Paginator;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
+import com.midland.web.model.AppointLog;
 import com.midland.web.model.Appointment;
+import com.midland.web.model.User;
+import com.midland.web.service.AppointLogService;
 import com.midland.web.service.AppointmentService;
+import com.midland.web.service.UserService;
+import com.midland.web.util.MidlandHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +33,13 @@ import java.util.Map;
 public class AppointmentController extends BaseController{
 	@Autowired
 	private AppointmentService appointmentServiceImpl;
+	@Autowired
+	private AppointLogService appointLogServiceImpl;
+	
+	@Autowired
+	private UserService userServiceImpl;
+	
+	
 	Logger logger = LoggerFactory.getLogger(AppointmentController.class);
 	
 	@RequestMapping("/index")
@@ -64,7 +77,45 @@ public class AppointmentController extends BaseController{
 	public Appointment selectByPrimaryKey(Integer id) {
 		return appointmentServiceImpl.selectByPrimaryKey(id);
 	}
+	/**
+	 * 用户列表查询（重新分配经纪人）
+	 * @param appointId
+	 * @return
+	 */
+	@RequestMapping(value = "/toRedistribute", method = {RequestMethod.GET,RequestMethod.POST})
+	public String toRedistribute(String appointId, Model model, HttpServletRequest request){
+		model.addAttribute("appointId",appointId);
+		return "appointment/redistributeIndex";
+	}
 	
+	/**
+	 * 用户列表查询（重新分配经纪人）
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/redistribute_page", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getRedistribute(User user,Model model,HttpServletRequest request){
+		getUserList(user,"5", model, request);
+		return "appointment/redistributeList";
+	}
+	
+	public void getUserList(User user,String pageSize, Model model, HttpServletRequest request) {
+		String pageNo = request.getParameter("pageNo");
+		
+		if(pageNo==null||pageNo.equals("")){
+			pageNo = ContextEnums.PAGENO;
+		}
+		if(pageSize==null||pageSize.equals("")){
+			
+			pageSize = ContextEnums.PAGESIZE;
+		}
+		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
+		
+		PageList<User> userList=userServiceImpl.selectByExampleAndPage(user,pageBounds);
+		Paginator paginator = userList.getPaginator();
+		model.addAttribute("paginator", paginator);
+		model.addAttribute("users", userList);
+	}
 	
 	@RequestMapping("/page")
 	public String appointmentPage(Model model, Appointment record, String pageNo, String pageSize) {
@@ -81,12 +132,51 @@ public class AppointmentController extends BaseController{
 		model.addAttribute("appoint", result);
 		return "appointment/appointlist";
 	}
-	@RequestMapping("/update")
+	
+	/**
+	 * 重新分配经纪人，把经纪人更新到预约记录里
+	 * @param record
+	 * @return
+	 */
+	@RequestMapping("/reset_agent")
 	@ResponseBody
-	public Object updateByPrimaryKeySelective(Appointment record) {
+	public Object resetAgent(Appointment record) {
 		Map map = new HashMap();
 		int result = appointmentServiceImpl.updateByPrimaryKeySelective(record);
 		if (result >0){
+			map.put("state",0);
+			return map;
+		}
+		map.put("state",-1);
+		return map;
+	}
+	
+	
+	
+	@RequestMapping("/to_update")
+	public String toUpdateAppointment(int appointId,Model model) {
+		Appointment appointment=appointmentServiceImpl.selectByPrimaryKey(appointId);
+		model.addAttribute("appointment",appointment);
+		return "appointment/updateAppointInfo";
+	}
+	
+	
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public Object updateByPrimaryKeySelective(Appointment record,HttpServletRequest request) {
+		Map map = new HashMap();
+		int result = appointmentServiceImpl.updateByPrimaryKeySelective(record);
+		if (result >0){
+			User user = (User)request.getSession().getAttribute("userInfo");
+			AppointLog appointLog = new AppointLog();
+			appointLog.setAppointId(record.getId());
+			appointLog.setLogTime(MidlandHelper.getCurrentTime());
+			appointLog.setOperatorid(user.getId());
+			appointLog.setOperatorName(user.getUsername());
+			appointLog.setRemark(record.getRemark());
+			appointLog.setState(record.getStatus());
+			appointLogServiceImpl.insertSelective(appointLog);
 			map.put("state",0);
 			return map;
 		}
