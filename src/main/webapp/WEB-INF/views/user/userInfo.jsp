@@ -87,7 +87,7 @@
 					data:{"id":id,"username":username,"userCnName":userCnName,
 						"phone":phone,"email":email,"userRoles":userRoles},
 					success: function(data){
-						if(data.flag==1){
+						if(data.state==0){
 							layer.msg("保存成功！！！",{icon:1});
 							$('#save').removeAttr("onclick");
 							setTimeout(function(){parent.location.reload();},1000);

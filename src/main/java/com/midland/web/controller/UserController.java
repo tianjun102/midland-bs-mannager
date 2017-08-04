@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.util.MidlandHelper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -204,25 +205,56 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/userList", method = {RequestMethod.GET,RequestMethod.POST})
     public String selectUserList(User user,Model model,HttpServletRequest request){
-    	
-    	String pageSize = request.getParameter("pageSize");
+	    String pageSize = request.getParameter("pageSize");
+	    getUserList(user,pageSize, model, request);
+    	return "user/userlist";
+    }
+	
+	/**
+	 * 用户列表查询（重新分配经纪人）
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/toRedistribute", method = {RequestMethod.GET,RequestMethod.POST})
+	public String toRedistribute(String appointId,User user,Model model,HttpServletRequest request){
+		model.addAttribute("appointId",appointId);
+		return "user/redistributeIndex";
+	}
+	
+	/**
+	 * 用户列表查询（重新分配经纪人）
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/redistribute_page", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getRedistribute(User user,Model model,HttpServletRequest request){
+		getUserList(user,"5", model, request);
+		return "user/redistributeList";
+	}
+	
+	
+	
+	
+	private void getUserList(User user,String pageSize, Model model, HttpServletRequest request) {
 		String pageNo = request.getParameter("pageNo");
+		
 		if(pageNo==null||pageNo.equals("")){
 			pageNo = ContextEnums.PAGENO;
 		}
 		if(pageSize==null||pageSize.equals("")){
+			
 			pageSize = ContextEnums.PAGESIZE;
 		}
 		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
-    	
-    	PageList<User> userList=userService.selectByExampleAndPage(user,pageBounds);
-    	Paginator paginator = userList.getPaginator();
+		
+		PageList<User> userList=userService.selectByExampleAndPage(user,pageBounds);
+		Paginator paginator = userList.getPaginator();
 		model.addAttribute("paginator", paginator);
-    	model.addAttribute("users", userList);
-    	return "user/userlist";
-    }
-    
-    /**
+		model.addAttribute("users", userList);
+	}
+	
+	
+	/**
      * 跳转到新增页面
      * @return
      */
@@ -234,6 +266,9 @@ public class UserController extends BaseController {
     	model.addAttribute("roles", roles);
     	return "user/addUser";
     }
+	
+	
+    
     /**
      * 新增用户
      * @param user
@@ -308,6 +343,19 @@ public class UserController extends BaseController {
     	}
     	return JSONObject.toJSONString(map);
     }
+	
+	/**
+	 * 跳转到修改页面
+	 * @return
+	 */
+	@RequestMapping(value = "/toUpdatePage", method = {RequestMethod.GET,RequestMethod.POST})
+	public String toUpdatePage(Model model,int userId,HttpServletRequest request){
+		User userInfo = userService.selectById(userId);
+		model.addAttribute("user", userInfo);
+		return "user/updateUser";
+	}
+    
+    
     /**
      * 修改用户
      * @param user
@@ -315,14 +363,45 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/edit", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public String updateUser(User user){
+    public Object updateUser(User user,int isFlag,HttpServletRequest request){
     	Map<String, Object> map = new HashMap<String, Object>();
-    	map.put("flag", 0);
+    	if (isFlag ==1){
+		    user.setUsername(null);
+		    user.setPhone(null);
+		
+	    }
     	if(userService.modifyUser(user)>0){
-    		map.put("flag", 1);
+		    map.put("state", 0);
+		    map.put("message", "success");
+		    return map;
     	}
-    	return JSONObject.toJSONString(map);
+	    map.put("state", -1);
+	    map.put("message", "fail");
+	    return map;
     }
+     /**
+     * 用户审核
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/audit", method = {RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Object auditUser(User user,HttpServletRequest request){
+    	User currUser = (User)request.getSession().getAttribute("userInfo");
+    	Map<String, Object> map = new HashMap<>();
+    	user.setAuditTime(MidlandHelper.getCurrentTime());
+    	user.setAuditName(currUser.getUsername());
+	    if(userService.modifyUser(user)>0){
+		    map.put("state", 0);
+		    map.put("message","success");
+		    return map;
+	    }
+	    map.put("state", -1);
+	    map.put("message","fail");
+	    return map;
+    }
+    
+    
     @RequestMapping(value = "/update")
     @ResponseBody
     public Object updateUserInfo(User user){

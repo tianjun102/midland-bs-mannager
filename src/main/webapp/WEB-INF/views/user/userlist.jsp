@@ -50,6 +50,7 @@
 									<%--<a href="#" onclick="isReset(${cust.id })" target="contentF" class = "reset_img" title = "重置密码"></a>--%>
 									<%--<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${cust.id })" --%>
 
+										<a target="contentF" onclick="alterUser(${cust.id })">编辑</a>
 
 										<a target="contentF" onclick="takeblacklist(${cust.id })">加入黑名单</a>
 										<a target="contentF" onclick="viewRealRegistration(${cust.id })">
@@ -110,6 +111,15 @@ function takeblacklist(userId){
             +'<li><span>拉黑原因：</span><textarea style="width:80%;height:100px" name="blackRemark" id="blackRemark"></textarea></li>'
             +'<li><a target="contentF" class = "public_btn bg2" id="save" onclick="consume('+userId+')">加入黑名单</a>'
             +'</ul></form>'
+        });
+    }
+function alterUser(userId){
+        layer.open({
+            type: 2,
+            title: ['编辑用户'],
+            shade: 0.3,
+            area: ['500px', '500px'],
+            content: ['${ctx}/rest/user/toUpdatePage?userId='+userId,'no']
         });
     }
 

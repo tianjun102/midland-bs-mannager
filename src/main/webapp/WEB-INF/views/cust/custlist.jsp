@@ -16,7 +16,7 @@
 							<th style="width: 35%">客户简称</th>
 							<th style="width: 10%">客户区域</th>
 							<th style="width: 15%">客户类别</th>
-							<th style="width: 10%">状态</th>
+							<th style="width: 10%">state</th>
 							<th style="width: 10%">操作</th>
 						</tr>
 					</thead>

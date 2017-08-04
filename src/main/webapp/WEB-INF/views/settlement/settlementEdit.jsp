@@ -65,7 +65,7 @@
 						<span>结算客户：</span><input id="CustName" name="" value="${settlement.cust_name}" style="background: url(${ctx}/assets/img/search.png) no-repeat 98% center;background-size:24px;"><dl style="width: 248px; position: absolute; left: 72px; top: 57px; cursor: pointer; background: rgb(238, 238, 238); display: none;" id="customer"></dl>
 						<span class = "_star ">*</span>
 					</li>
-					<li><span>状态：</span><input type="hidden" name="status" value="${settlement.status}" ><input disabled="disabled" name="" value="<c:if test="${settlement.status==0}">未确认</c:if><c:if test="${settlement.status==1}">已确认</c:if><c:if test="${settlement.status==2}">已记账</c:if>"><span class = "_star ">*</span></li>
+					<li><span>state：</span><input type="hidden" name="status" value="${settlement.status}" ><input disabled="disabled" name="" value="<c:if test="${settlement.status==0}">未确认</c:if><c:if test="${settlement.status==1}">已确认</c:if><c:if test="${settlement.status==2}">已记账</c:if>"><span class = "_star ">*</span></li>
 					<li><span>订单总额：</span><input disabled="disabled" id="total_amount" value="${settlement.total_amount}"><input type="hidden" name="total_amount" value="${settlement.total_amount}"></li>
 					<li><span>结算金额：</span><input onfocus="InitInput.setNumber(this,9,2,2)" name="sett_amount" value="${settlement.sett_amount}"><span class = "_star ">*</span></li>
 					<li><span>描述：</span><textarea style="width:590px;height:100px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;" name="sett_note" rows="" cols="">${settlement.sett_note}</textarea></li>

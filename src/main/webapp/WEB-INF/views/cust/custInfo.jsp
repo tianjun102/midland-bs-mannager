@@ -77,7 +77,7 @@
 				oncontextmenu = "value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g,'')"/>
 			<span class="_star">*</span></li>
 			<li><span>公司全称：</span><input type="text" name="custFullName" id="custFullName" value="${cust.custFullName }" maxlength="50"/><span class="_star">*</span></li>
-			<li><span>状态：</span><select name="status" id="status" class="dropdown">
+			<li><span>state：</span><select name="status" id="status" class="dropdown">
 					<option value="1"
 						<c:if test="${cust.status==1}">selected="selected"</c:if>>合作中</option>
 					<option value="0"

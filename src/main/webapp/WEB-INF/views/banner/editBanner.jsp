@@ -120,7 +120,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				
 				<li><span>图片说明：</span><input value="${banner.imgDesc }" type="text" name="imgDesc"></li>
 				<li style="display:flex;align-items:center">
-				<span>状态：<input name = "enabled" id = "enabled" type="hidden" value="${banner.enabled }"></span>
+				<span>state：<input name = "enabled" id = "enabled" type="hidden" value="${banner.enabled }"></span>
 					<input id="radio1" style="width: 15px;height: 15px;margin: 0px;" onchange="addIsShow();" type="radio" name="isshow" value="1">
 					<em class = "gang" style = "margin-right:15px;">开放</em> 
 					<input id="radio2" style="width: 15px;height: 15px;margin: 0px;" onchange="addIsShow();" type="radio" name="isshow" value="0">

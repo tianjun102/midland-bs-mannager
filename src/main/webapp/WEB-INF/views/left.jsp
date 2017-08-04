@@ -30,7 +30,7 @@
 				</dt>
 				<dd>
 					<shiro:hasPermission name="arealist">
-						<a id = "areaIndex" href="${ctx}/rest/cust/areaIndex" target="contentF"><span>预约记录</span></a>
+						<a id = "areaIndex" href="${ctx}/rest/appoint/index" target="contentF"><span>预约记录</span></a>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="custlist">
 						<a id = "custIndex" href="${ctx}/rest/cust/custIndex" target="contentF"><span>客户列表</span></a>

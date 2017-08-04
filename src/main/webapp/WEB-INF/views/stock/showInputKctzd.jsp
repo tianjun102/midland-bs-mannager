@@ -40,7 +40,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	   		  	<ul class = "adminfo row">
 	   		 			<li><span>调整单号：</span><input name="showDjbh" type="text"  value="${kctzd.djbh}" readonly="readonly"/>
 	   		 					<input name="djbh"type="hidden"  value="${kctzd.djbh}" />	
-	   		 				<span>状态：</span><input name="type"  type="text" readonly="readonly"  value="新增">			
+	   		 				<span>state：</span><input name="type"  type="text" readonly="readonly"  value="新增">
 	   		 			</li>
 	   		  			<li><span>总数量：</span>
 	   		  				<input name="showTotalNum" type="text" readonly="readonly"  value="0" >
@@ -77,7 +77,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
    		 				<input name="id"  type="hidden" value="${kctzd.id}"/>
    		 				<input name="showDjbh" type="text" value="${kctzd.djbh}"  readonly="readonly"/>
    		 				<input name="djbh"type="hidden"  value="${kctzd.djbh}" />	
-   		 				<span>状态：</span><input name="type" readonly="readonly" type="text"  
+   		 				<span>state：</span><input name="type" readonly="readonly" type="text"
    		  				  <c:if test="${kctzd.isComplete==1}">
    		  						value="已验收"
    		  				  </c:if>
