@@ -5,7 +5,7 @@ import java.util.Date;
 public class AppointLog {
     private Integer appointLogId;
 
-    private Date logTime;
+    private String logTime;
 
     private Integer operatorid;
 
@@ -16,7 +16,9 @@ public class AppointLog {
     private Integer state;
 
     private Integer appointId;
-
+    
+    
+    
     public Integer getAppointLogId() {
         return appointLogId;
     }
@@ -25,11 +27,11 @@ public class AppointLog {
         this.appointLogId = appointLogId;
     }
 
-    public Date getLogTime() {
+    public String getLogTime() {
         return logTime;
     }
 
-    public void setLogTime(Date logTime) {
+    public void setLogTime(String logTime) {
         this.logTime = logTime;
     }
 

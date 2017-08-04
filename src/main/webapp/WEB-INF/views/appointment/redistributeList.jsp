@@ -95,7 +95,7 @@
         var agentName = intHot.parent().next().next().text();
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/appoint/update",
+            url: "${ctx}/rest/appoint/reset_agent",
             async: false, // 此处必须同步
             dataType: "json",
             data: {

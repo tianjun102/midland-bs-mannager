@@ -1,8 +1,5 @@
 package com.midland.web.model;
 
-import java.beans.Transient;
-import java.util.Date;
-
 public class Appointment {
     private Integer id;
     /**
@@ -58,6 +55,10 @@ public class Appointment {
      */
     private String price;
     /**
+     * 装修类型，精装，豪华
+     */
+    private String decoration;
+    /**
      * 预约时间
      */
     private String entrustTime;
@@ -88,7 +89,29 @@ public class Appointment {
      *
      */
     private transient String endTime;
-
+    
+    /**
+     * 备注
+     */
+    private String remark;
+    
+    
+    public String getDecoration() {
+        return decoration;
+    }
+    
+    public void setDecoration(String decoration) {
+        this.decoration = decoration;
+    }
+    
+    public String getRemark() {
+        return remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+    
     public Integer getId() {
         return id;
     }

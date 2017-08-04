@@ -210,32 +210,10 @@ public class UserController extends BaseController {
     	return "user/userlist";
     }
 	
-	/**
-	 * 用户列表查询（重新分配经纪人）
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping(value = "/toRedistribute", method = {RequestMethod.GET,RequestMethod.POST})
-	public String toRedistribute(String appointId,User user,Model model,HttpServletRequest request){
-		model.addAttribute("appointId",appointId);
-		return "user/redistributeIndex";
-	}
-	
-	/**
-	 * 用户列表查询（重新分配经纪人）
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping(value = "/redistribute_page", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getRedistribute(User user,Model model,HttpServletRequest request){
-		getUserList(user,"5", model, request);
-		return "user/redistributeList";
-	}
 	
 	
 	
-	
-	private void getUserList(User user,String pageSize, Model model, HttpServletRequest request) {
+	public void getUserList(User user,String pageSize, Model model, HttpServletRequest request) {
 		String pageNo = request.getParameter("pageNo");
 		
 		if(pageNo==null||pageNo.equals("")){

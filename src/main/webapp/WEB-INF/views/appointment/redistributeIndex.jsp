@@ -19,7 +19,7 @@
 	<!--预约看房重新分配经纪人-->
 	<div class="box"> 
 		<section class = "content">
-		<form action="${ctx }/rest/user/redistribute_page" method="POST" id="searchForm"
+		<form action="${ctx }/rest/appoint/redistribute_page" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
 				<li><input type="hidden" id="appointId" value="${appointId}"/></li>
@@ -42,19 +42,6 @@
 		}); */
 		 window.onload = function(){
              $('#searchForm').submit();
-		}
-
-		function toAddPage(){
-			layer.open({
-				type: 2,
-				skin: 'layer-style',
-				area: ['500px','500px'],
-				shadeClose: false, //点击遮罩关闭
-				title:['创建用户'],
-				resize: false,
-				scrollbar:false,
-				content:['${ctx}/rest/user/toAddPage', 'no']
-			});
 		}
 
 	</script>
