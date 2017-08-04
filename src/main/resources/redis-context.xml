@@ -11,10 +11,7 @@
     <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
         <property
                 name="hostName"
-                value="${redis.ip}" />
-        <property
-                name="password"
-                value="${redis.password}" />
+                value="${redis.host}" />
         <property
                 name="port"
                 value="${redis.port}" />

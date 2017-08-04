@@ -2,7 +2,6 @@ package com.midland.web.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.log4j.helpers.DateTimeDateFormat;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

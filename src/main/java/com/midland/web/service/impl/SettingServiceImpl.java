@@ -55,7 +55,7 @@ public class SettingServiceImpl implements SettingService {
         List<Area>  areaList =  MidlandHelper.getPojoList(data, Area.class);
         for (Area area : areaList){
             baseRedisTemplate.addListItem(area.getId(),area.getName());
-            baseRedisTemplate.addListItem(area.getParentId(),area.getParentName());
+            baseRedisTemplate.addListItem(area.getParentId(),area.getParent());
         }
 
 
