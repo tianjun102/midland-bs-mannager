@@ -31,6 +31,10 @@
     <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
     </bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
 
     <!-- 会话DAO -->
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO"/>
@@ -47,11 +51,11 @@
                 <ref bean="securityRealm"/>
             </list>
         </property>
-        <!-- cacheManager,集合spring缓存工厂 -->
-        <!-- <property name="cacheManager" ref="shiroEhcacheManager" /> -->
-        <!-- <property name="sessionManager" ref="sessionManager" /> -->
         <property name="cacheManager" ref="shiroCacheManager" />
     </bean>
+
+    <bean id="securityRealm" class="com.midland.web.security.SecurityRealm"/>
+
     <bean id="shiroCacheManager"  class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
 
     <!-- Shiro生命周期处理器 -->

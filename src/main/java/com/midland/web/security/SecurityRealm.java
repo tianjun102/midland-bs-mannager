@@ -25,7 +25,6 @@ import com.midland.web.service.UserService;
  * @author 
  * @since 2016年6月11日 上午11:35:28
  **/
-@Component(value = "securityRealm")
 public class SecurityRealm extends AuthorizingRealm {
 
     @Resource
