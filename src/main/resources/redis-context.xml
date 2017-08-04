@@ -11,10 +11,10 @@
     <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
         <property
                 name="hostName"
-                value="${redis.host}" />
+                value="${redis.ip}" />
         <property
                 name="password"
-                value="${redis.pass}" />
+                value="${redis.password}" />
         <property
                 name="port"
                 value="${redis.port}" />
@@ -37,23 +37,17 @@
         </property>
     </bean>
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxTotal" value="2048" />
-        <property name="maxIdle" value="200" />
-        <property name="numTestsPerEvictionRun" value="1024"/>
-        <property name="timeBetweenEvictionRunsMillis" value="30000" />
-        <property name="minEvictableIdleTimeMillis" value="-1" />
-        <property name="softMinEvictableIdleTimeMillis" value="10000" />
-        <property name="maxWaitMillis" value="1500"/>
-        <property name="testOnBorrow" value="true" />
-        <property name="testWhileIdle" value="true"/>
-        <property name="testOnReturn" value="false"/>
-        <property name="jmxEnabled" value="true"/>
-        <property name="jmxNamePrefix" value="youyuan"/>
-        <property name="blockWhenExhausted" value="false"/>
+        <property
+                name="maxTotal"
+                value="${redis.pool.maxTotal}" />
+        <property
+                name="maxIdle"
+                value="${redis.pool.maxIdle}" />
+        <property
+                name="maxWaitMillis"
+                value="${redis.pool.maxWaitMillis}" />
+        <property
+                name="testOnBorrow"
+                value="${redis.pool.testOnBorrow}" />
     </bean>
-    <bean id="baseRedisTemplate" class="com.midland.core.redis.BaseRedisTemplate" />
-
-
-
-
 </beans>
