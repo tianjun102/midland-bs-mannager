@@ -12,6 +12,7 @@ import com.midland.web.service.AppointLogService;
 import com.midland.web.service.AppointmentService;
 import com.midland.web.service.UserService;
 import com.midland.web.util.MidlandHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -172,12 +173,18 @@ public class AppointmentController extends BaseController{
 		int result = appointmentServiceImpl.updateByPrimaryKeySelective(record);
 		if (result >0){
 			User user = (User)request.getSession().getAttribute("userInfo");
+			
 			AppointLog appointLog = new AppointLog();
+			if (StringUtils.isEmpty(record.getRemark())){
+				appointLog.setRemark("无");
+			}else{
+				appointLog.setRemark(record.getRemark());
+			}
 			appointLog.setAppointId(record.getId());
 			appointLog.setLogTime(MidlandHelper.getCurrentTime());
 			appointLog.setOperatorid(user.getId());
 			appointLog.setOperatorName(user.getUsername());
-			appointLog.setRemark(record.getRemark());
+			
 			appointLog.setState(record.getStatus());
 			appointLogServiceImpl.insertSelective(appointLog);
 			map.put("state",0);

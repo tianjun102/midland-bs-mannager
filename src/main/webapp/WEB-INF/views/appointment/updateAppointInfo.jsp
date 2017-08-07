@@ -8,6 +8,7 @@
     <title>Insert title here</title>
     <link rel="stylesheet" href="${ctx }/assets/css/common.css">
 
+
 </head>
 <body>
 <section class="content" style="border:none;">
@@ -62,28 +63,32 @@
                                        maxlength="50"/><span class="_star">*</span>
             </li>
             <li><span>装修：</span><input type="text" name="decoration" id="decoration" value="${appointment.decoration}"/>
+                <span>状态：</span><select name="status" id="status" class="dropdown">
+                    <!-- <option value="" >请选择</option> -->
+                    <option value="0"
+                            <c:if test="${appointment.status==0}">selected="selected"</c:if>>预约生成
+                    </option>
+                    <option value="1"
+                            <c:if test="${appointment.status==1}">selected="selected"</c:if>>经纪人重新分配
+                    </option>
+                    <option value="2"
+                            <c:if test="${appointment.status==2}">selected="selected"</c:if>>已联系
+                    </option>
+                </select>
+
             </li>
-            <li><span>状态：</span><select name="status" id="status" class="dropdown">
-                <!-- <option value="" >请选择</option> -->
-                <option value="0"
-                        <c:if test="${appointment.status==0}">selected="selected"</c:if>>预约生成
-                </option>
-                <option value="1"
-                        <c:if test="${appointment.status==1}">selected="selected"</c:if>>经纪人重新分配
-                </option>
-                <option value="2"
-                        <c:if test="${appointment.status==2}">selected="selected"</c:if>>已联系
-                </option>
-            </select>
-            </li>
+
             <li><span>备注：</span>
-                <textarea  name="remark" id="remark"  style="width:260px;height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
-
-
-
-
-
-
+                <textarea  name="remark" id="remark" style="width:300px;height:50px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;"></textarea></li>
+            </li>
+            <li><span>处理记录：</span>
+                <textarea  name="record" id="record" disabled="disabled" style="width:260px;height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
+                    <c:forEach items="${appointLogs}" var="s" >
+                        ${s.state}
+                        ${s.logTime}
+                        ${s.operatorName}
+                        ${s.remark}
+                    </c:forEach>
                 </textarea></li>
             </li>
             <li>
