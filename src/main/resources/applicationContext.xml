@@ -21,9 +21,9 @@
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath*:application.properties</value>
-                <value>classpath*:dataBackup.properties</value>
-                <value>classpath*:appsetting.properties</value>
+                <value>classpath*:properties/application.properties</value>
+                <value>classpath*:properties/dataBackup.properties</value>
+                <value>classpath*:properties/appsetting.properties</value>
             </list>
         </property>
     </bean>
@@ -66,7 +66,7 @@
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:dataSource-ref="dataSource"
-          p:configLocation="classpath:mybatis-config.xml"
+          p:configLocation="classpath:spring/mybatis-config.xml"
           p:mapperLocations="classpath:com/midland/web/dao/xml/*.xml"/>
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
@@ -107,8 +107,8 @@
     <!-- Cache配置 -->
     <cache:annotation-driven cache-manager="cacheManager"/>
     <bean id="ehCacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
-          p:configLocation="classpath:ehcache.xml"/>
+          p:configLocation="classpath:spring/ehcache.xml"/>
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
           p:cacheManager-ref="ehCacheManagerFactory"/>
-    <import resource="redis-context.xml"/>
+    <import resource="spring/redis-context.xml"/>
 </beans>

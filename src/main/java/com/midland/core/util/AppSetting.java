@@ -10,7 +10,7 @@ public class AppSetting {
         try {
             //加载appsetting.properties配置文件
         	//prop.load(Config.class.getResourceAsStream("/appsetting.properties"));
-            prop.load(new InputStreamReader(Config.class.getClassLoader().getResourceAsStream("/appsetting.properties"), "UTF-8"));
+            prop.load(new InputStreamReader(Config.class.getClassLoader().getResourceAsStream("/properties/appsetting.properties"), "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,7 +22,7 @@ public class AppSetting {
     
     public static void updateProperties(String keyname,String keyvalue) {
         try {
-            OutputStream fos = new FileOutputStream("/appsetting.properties");           
+            OutputStream fos = new FileOutputStream("/properties/appsetting.properties");
             prop.setProperty(keyname, keyvalue);
             prop.store(fos, "Update '" + keyname + "' value");
             fos.close();
