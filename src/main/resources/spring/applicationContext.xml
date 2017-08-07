@@ -110,5 +110,5 @@
           p:configLocation="classpath:spring/ehcache.xml"/>
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
           p:cacheManager-ref="ehCacheManagerFactory"/>
-    <import resource="spring/redis-context.xml"/>
+    <import resource="redis-context.xml"/>
 </beans>
