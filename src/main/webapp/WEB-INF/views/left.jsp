@@ -173,6 +173,11 @@
 					<shiro:hasPermission name="noticelist">
 						<a id = "system2" href="${ctx}/rest/product/rcms" target="contentF"><span>系统设置</span></a>
 					</shiro:hasPermission>
+
+					<shiro:hasPermission name="noticelist">
+						<a id = "system2" href="${ctx}/rest//setting/showPopularIndex" target="contentF"><span>热门关注管理</span></a>
+					</shiro:hasPermission>
+
 					<shiro:hasPermission name="backupList">
 						<a id = "system3" href="${ctx}/rest/dataBackup/index" target="contentF"><span>数据备份</span></a>
 					</shiro:hasPermission>

@@ -15,57 +15,32 @@
 	 				<thead>
 						<tr>
 							<th style="width: 5%">序号</th>
-							<th style="width: 5%">用户名</th>
-							<th style="width: 10%">手机号码</th>
-							<th style="width: 5%">注册时间</th>
-							<th style="width: 10%">注册来源</th>
-							<th style="width: 4%">实名状态</th>
-							<th style="width: 5%">审核人</th>
-							<th style="width: 10%">审核时间</th>
-							<th style="width: 10%">用户类型</th>
-							<th style="width: 15%">操作</th>
+							<th style="width: 5%">城市</th>
+							<th style="width: 10%">平台</th>
+							<th style="width: 5%">模块</th>
+							<th style="width: 10%">分类</th>
+							<th style="width: 4%">名称</th>
+							<th style="width: 5%">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 				<c:choose>
-					<c:when test="${!empty requestScope.users }">
-						<c:forEach items="${requestScope.users }" var="cust"
+					<c:when test="${!empty requestScope.popularList }">
+						<c:forEach items="${requestScope.popularList }" var="popular"
 							varStatus="xh">
 							<tr>
 								<td>${xh.count }</td>
-								<td>${cust.username }</td>
-								<td>${cust.phone }</td>
-								<td>${cust.createTime }</td>
-								<td>${cust.source }</td>
-								<td>${cust.auditStatus }</td>
-								<td>${cust.auditName }</td>
-								<td>${cust.auditTime }</td>
+								<td>${popular.cityId}</td>
 								<td>
-									<c:if test="${cust.userType==0}">智者汇</c:if> 
-									<c:if test="${cust.userType==1}">渠道服务商</c:if>
+									<c:if test="${popular.source==1}">网站</c:if>
+									<c:if test="${popular.source==2}">微站</c:if>
 								</td>
+								<td>${popular.menuId}</td>
+								<td>${popular.cateId}</td>
+								<td>${popular.name}</td>
 								<td>
-									<%--<a onclick="preUpdate(${cust.id })" target="contentF" class = "edit_img" title = "编辑"></a>--%>
-									<%--<a onclick="userRole(${cust.id },'${cust.userCnName }')" target="contentF" class = "uList_img" title = "角色列表"></a>--%>
-									<%--<a href="#" onclick="isReset(${cust.id })" target="contentF" class = "reset_img" title = "重置密码"></a>--%>
-									<%--<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${cust.id })" --%>
-
-
-										<a target="contentF" onclick="takeblacklist(${cust.id })">加入黑名单</a>
-										<a target="contentF" onclick="viewRealRegistration(${cust.id })">
-											<c:choose>
-												<c:when test="${cust.auditStatus==0}">审核实名信息
-												</c:when>
-												<c:otherwise>查看实名信息
-												</c:otherwise>
-											</c:choose>
-										</a>
-									<%--<a href="javascript:;" target="contentF" --%>
-										<%--<c:if test="${cust.state == 0}">class = "offon_img" title = "启用"</c:if>--%>
-										<%--<c:if test="${cust.state == 1}">class = "onoff_img"  title = "关闭"</c:if>--%>
-										<%--<c:if test="${cust.username == 'admin'}">style="visibility: hidden;"</c:if>--%>
-										 <%--onclick="isOffOn(${cust.id },'${cust.state }');">--%>
-									<%--</a>--%>
+									<a onclick="preUpdate(${popular.id })" target="contentF" class = "edit_img" title = "编辑"></a>
+									<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${popular.id })"></a>
 								  </td>
 							</tr>
 						</c:forEach>

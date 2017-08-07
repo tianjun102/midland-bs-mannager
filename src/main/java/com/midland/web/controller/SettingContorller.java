@@ -46,7 +46,7 @@ private SettingService settingService;
         Map result =  settingService.queryAreaByRedis(parem);*/
 
         PageList<Popular> PopularList = settingService.findPopularList(popular,pageBounds);
-        model.addAttribute("PopularList",PopularList);
+        model.addAttribute("popularList",PopularList);
         model.addAttribute("paginator",PopularList.getPaginator());
 
         return "setting/popularList";
