@@ -1,4 +1,4 @@
-package com.midland.web.model;
+package com.midland.web.model.role;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.midland.web.model;
+package com.midland.web.model.user;
 
 public class UserRole {
 	private Integer id;

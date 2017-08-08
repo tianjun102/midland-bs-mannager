@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.midland.web.dao.AppointmentMapper" >
-  <resultMap id="BaseResultMap" type="com.midland.web.model.Appointment" >
+  <resultMap id="BaseResultMap" type="com.midland.web.model.appointment.Appointment" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="appoint_sn" property="appointSn" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="INTEGER" />
@@ -46,7 +46,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insertSelective" parameterType="com.midland.web.model.Appointment" >
+  <insert id="insertSelective" parameterType="com.midland.web.model.appointment.Appointment" >
     insert into appointment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -173,7 +173,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.Appointment" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.appointment.Appointment" >
     update appointment
     <set >
       <if test="appointSn != null" >

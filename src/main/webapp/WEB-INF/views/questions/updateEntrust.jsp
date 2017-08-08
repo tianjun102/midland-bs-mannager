@@ -14,65 +14,72 @@
 <section class="content" style="border:none;">
     <form action="${ctx}/rest/appoint/update" method="post" id="appointInfoForm">
         <ul class="userinfo row">
-            <input type="hidden" name="id" id="id" value="${appointment.id}">
-            <li><span>预约编号：</span><input type="text" name="appointSn" id="appointSn" value="${appointment.appointSn}"/>
-                <span>预约时间：</span><input type="text" name="appointmentTime" id="appointmentTime"
-                                         value="${appointment.appointmentTime}" maxlength="50"/><span
+            <input type="hidden" name="id" id="id" value="${entrust.id}">
+            <li><span>预约编号：</span><input type="text" name="entrustSn" id="entrustSn" value="${entrust.entrustSn}"/>
+                <span>委托时间：</span><input type="text" name="entrustTime" id="entrustTime"
+                                         value="${entrust.entrustTime}" maxlength="50"/><span
                         class="_star">*</span>
             </li>
-            <li><span>用户：</span><input type="text" name="call" id="call" value="${appointment.call}"/>
-                <span>手机号码：</span><input type="text" name="phone" id="phone" value="${appointment.phone}"
+            <li><span>用户：</span><input type="text" name="call" id="call" value="${entrust.call}"/>
+                <span>手机号码：</span><input type="text" name="phone" id="phone" value="${entrust.phone}"
                                          maxlength="50"/><span class="_star">*</span>
-            </li>
-            <li><span>预约类型：</span>
-                <select name="houseType" id="houseType" class="dropdown">
-                    <option value="0"
-                            <c:if test="${appointment.houseType==0}">selected="selected"</c:if>>住宅
-                    </option>
-                    <option value="1"
-                            <c:if test="${appointment.houseType==1}">selected="selected"</c:if>>公寓
-                    </option>
-                    <option value="2"
-                            <c:if test="${appointment.houseType==2}">selected="selected"</c:if>>写字楼
-                    </option>
-                    <option value="3"
-                            <c:if test="${appointment.houseType==3}">selected="selected"</c:if>>商铺
-                    </option>
-                </select>
             </li>
             <li> <span>分类：</span>
                 <select name="sellRent" id="sellRent" class="dropdown">
                     <!-- <option value="" >请选择</option> -->
                     <option value="0"
-                            <c:if test="${appointment.sellRent==0}">selected="selected"</c:if>>出售
+                            <c:if test="${entrust.sellRent==0}">selected="selected"</c:if>>出售
                     </option>
                     <option value="1"
-                            <c:if test="${appointment.sellRent==1}">selected="selected"</c:if>>出租
+                            <c:if test="${entrust.sellRent==1}">selected="selected"</c:if>>出租
                     </option>
                 </select>
                 <span class="_star">*</span>
             </li>
-            <li><span>区域：</span><input type="text" name="area" id="area" value="${appointment.area}"/>
+            <li><span>委托类型：</span>
+                <select name="houseType" id="houseType" class="dropdown">
+                    <option value="0"
+                            <c:if test="${entrust.houseType==0}">selected="selected"</c:if>>新房
+                    </option>
+                    <option value="1"
+                            <c:if test="${entrust.houseType==1}">selected="selected"</c:if>>二手房
+                    </option>
+                    <option value="2"
+                            <c:if test="${entrust.houseType==2}">selected="selected"</c:if>>租房
+                    </option>
+                    <option value="3"
+                            <c:if test="${entrust.houseType==3}">selected="selected"</c:if>>写字楼
+                    </option>
+                    <option value="4"
+                            <c:if test="${entrust.houseType==4}">selected="selected"</c:if>>商铺
+                    </option>
+                    <option value="5"
+                            <c:if test="${entrust.houseType==5}">selected="selected"</c:if>>其它
+                    </option>
+                </select>
+            </li>
+
+            <li><span>区域：</span><input type="text" name="area" id="area" value="${entrust.area}"/>
                 <span>小区：</span><input type="text" name="communityName" id="communityName"
-                                       value="${appointment.communityName}" maxlength="50"/><span class="_star">*</span>
+                                       value="${entrust.communityName}" maxlength="50"/><span class="_star">*</span>
             </li>
-            <li><span>地址：</span><input type="text" name="address" id="address" value="${appointment.address}"/>
+            <li><span>地址：</span><input type="text" name="address" id="address" value="${entrust.address}"/>
             </li>
-            <li><span>户型：</span><input type="text" name="layout" id="layout" value="${appointment.layout}"/>
-                <span>面积：</span><input type="text" name="measure" id="measure" value="${appointment.measure}"
+            <li><span>户型：</span><input type="text" name="layout" id="layout" value="${entrust.layout}"/>
+                <span>面积：</span><input type="text" name="measure" id="measure" value="${entrust.measure}"
                                        maxlength="50"/><span class="_star">*</span>
             </li>
-            <li><span>装修：</span><input type="text" name="decoration" id="decoration" value="${appointment.decoration}"/>
+            <li><span>装修：</span><input type="text" name="renovation" id="renovation" value="${entrust.renovation}"/>
                 <span>状态：</span><select name="status" id="status" class="dropdown">
                     <!-- <option value="" >请选择</option> -->
                     <option value="0"
-                            <c:if test="${appointment.status==0}">selected="selected"</c:if>>预约生成
+                            <c:if test="${entrust.status==0}">selected="selected"</c:if>>处理中
                     </option>
                     <option value="1"
-                            <c:if test="${appointment.status==1}">selected="selected"</c:if>>经纪人重新分配
+                            <c:if test="${entrust.status==1}">selected="selected"</c:if>>已完成
                     </option>
                     <option value="2"
-                            <c:if test="${appointment.status==2}">selected="selected"</c:if>>已联系
+                            <c:if test="${entrust.status==2}">selected="selected"</c:if>>已取消
                     </option>
                 </select>
 
@@ -83,7 +90,7 @@
             </li>
             <li><span>处理记录：</span>
                 <textarea  name="record" id="record" disabled="disabled" style="width:260px;height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
-                    <c:forEach items="${appointLogs}" var="s" >
+                    <c:forEach items="${entrustLogs}" var="s" >
                         ${s.state}
                         ${s.logTime}
                         ${s.operatorName}
@@ -105,9 +112,10 @@
     //保存数据
     function updateData() {
         var data = $("#appointInfoForm").serialize();
+        debugger;
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/appoint/update",
+            url: "${ctx}/rest/entrust/update",
             async: false, // 此处必须同步
             dataType: "json",
             data: data,

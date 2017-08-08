@@ -7,9 +7,9 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericService;
 import com.midland.web.model.AuthRelation;
 import com.midland.web.model.Permission;
-import com.midland.web.model.Role;
-import com.midland.web.model.RoleAuth;
-import com.midland.web.model.RolePermission;
+import com.midland.web.model.role.Role;
+import com.midland.web.model.role.RoleAuth;
+import com.midland.web.model.role.RolePermission;
 
 /**
  * 角色 业务接口

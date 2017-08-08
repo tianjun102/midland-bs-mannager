@@ -19,9 +19,9 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.github.miemiedev.mybatis.paginator.domain.Paginator;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.Permission;
-import com.midland.web.model.Role;
-import com.midland.web.model.RolePermission;
-import com.midland.web.model.User;
+import com.midland.web.model.role.Role;
+import com.midland.web.model.role.RolePermission;
+import com.midland.web.model.user.User;
 import com.midland.web.service.RoleService;
 import com.midland.web.service.UserService;
 

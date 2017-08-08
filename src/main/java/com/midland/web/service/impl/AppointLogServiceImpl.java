@@ -1,7 +1,7 @@
 package com.midland.web.service.impl;
 
 import com.midland.web.dao.AppointLogMapper;
-import com.midland.web.model.AppointLog;
+import com.midland.web.model.appointment.AppointLog;
 import com.midland.web.service.AppointLogService;
 import org.springframework.stereotype.Service;
 

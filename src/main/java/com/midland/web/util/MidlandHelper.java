@@ -2,6 +2,7 @@ package com.midland.web.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -60,4 +61,24 @@ public class MidlandHelper {
 		T t = JSON.parseObject(messageStr,clazz);
 		return t;
 	}
+	
+	
+	
+	
+	public static List<String> getStringRemoveEmpty(String ids){
+		if (StringUtils.isEmpty(ids)){
+			return null;
+		}
+		String[] array = ids.split(",");
+		List<String> list = new ArrayList<>();
+		for (String str : array){
+			if (StringUtils.isNotEmpty(str)){
+				list.add(str);
+			}
+		}
+		return list;
+	}
+	
+	
+	
 }

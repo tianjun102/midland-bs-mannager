@@ -1,4 +1,4 @@
-package com.midland.web.model;
+package com.midland.web.model.appointment;
 
 import java.util.Date;
 

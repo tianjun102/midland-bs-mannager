@@ -1,7 +1,7 @@
 package com.midland.web.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.midland.web.model.User;
+import com.midland.web.model.user.User;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;

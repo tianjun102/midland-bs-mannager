@@ -90,7 +90,7 @@
 				</dt>
 				<dd>
 					<shiro:hasPermission name="orderInfoList">
-						<a id = "showOrderInfoIndex" href="${ctx}/rest/order/showOrderInfoIndex" target="contentF"><span>问答管理</span></a>
+						<a id = "showOrderInfoIndex" href="${ctx}/rest/questions/index" target="contentF"><span>问答管理</span></a>
 					</shiro:hasPermission>
 				</dd>
 			</dl>

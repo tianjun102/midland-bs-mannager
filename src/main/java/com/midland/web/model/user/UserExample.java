@@ -1,4 +1,4 @@
-package com.midland.web.model;
+package com.midland.web.model.user;
 
 import org.apache.commons.lang3.StringUtils;
 

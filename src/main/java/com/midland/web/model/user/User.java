@@ -1,6 +1,7 @@
-package com.midland.web.model;
+package com.midland.web.model.user;
 
-import java.util.Date;
+import com.midland.web.model.role.Role;
+
 import java.util.List;
 
 /**

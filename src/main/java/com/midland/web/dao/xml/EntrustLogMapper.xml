@@ -4,14 +4,14 @@
   <resultMap id="BaseResultMap" type="com.midland.web.model.EntrustLog" >
     <id column="entrust_log_id" property="entrustLogId" jdbcType="INTEGER" />
     <result column="log_time" property="logTime" jdbcType="TIMESTAMP" />
-    <result column="operatorId" property="operatorid" jdbcType="INTEGER" />
+    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
     <result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="entrust_id" property="entrustId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    entrust_log_id, DATE_FORMAT(log_time,'%Y-%m-%d %H:%i:%s')log_time , operatorId, operator_name, remark, state, entrust_id
+    entrust_log_id, log_time, operator_id, operator_name, remark, state, entrust_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,7 +24,7 @@
     select
     <include refid="Base_Column_List" />
     from entrust_log
-    where entrust_id = #{entrustId,jdbcType=INTEGER}
+    where entrust_log_id = #{entrustLogId,jdbcType=INTEGER}
   </select>
 
 
@@ -50,8 +50,8 @@
       <if test="logTime != null" >
         log_time,
       </if>
-      <if test="operatorid != null" >
-        operatorId,
+      <if test="operatorId != null" >
+        operator_id,
       </if>
       <if test="operatorName != null" >
         operator_name,
@@ -73,8 +73,8 @@
       <if test="logTime != null" >
         #{logTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="operatorid != null" >
-        #{operatorid,jdbcType=INTEGER},
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
       </if>
       <if test="operatorName != null" >
         #{operatorName,jdbcType=VARCHAR},
@@ -96,8 +96,8 @@
       <if test="logTime != null" >
         log_time = #{logTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="operatorid != null" >
-        operatorId = #{operatorid,jdbcType=INTEGER},
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=INTEGER},
       </if>
       <if test="operatorName != null" >
         operator_name = #{operatorName,jdbcType=VARCHAR},
@@ -130,8 +130,8 @@
     <if test="entrustLogId != null" >
       AND entrust_log_id = #{entrustLogId,jdbcType=INTEGER}
     </if>
-    <if test="operatorid != null" >
-      AND operatorId = #{operatorid,jdbcType=INTEGER}
+    <if test="operatorId != null" >
+      AND operator_id = #{operatorId,jdbcType=INTEGER}
     </if>
     <if test="operatorName != null" >
       AND operator_name = #{operatorName,jdbcType=VARCHAR}

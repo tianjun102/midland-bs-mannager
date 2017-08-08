@@ -3,7 +3,7 @@ package com.midland.web.service.impl;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.enums.ContextEnums;
-import com.midland.web.model.User;
+import com.midland.web.model.user.User;
 import com.midland.web.service.DingJiangService;
 import com.midland.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

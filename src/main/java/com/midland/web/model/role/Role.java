@@ -1,4 +1,4 @@
-package com.midland.web.model;
+package com.midland.web.model.role;
 
 /**
  * 角色模型

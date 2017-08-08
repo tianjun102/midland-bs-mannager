@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import com.midland.core.util.ApplicationUtils;
 import com.midland.core.feature.test.TestSupport;
 import com.midland.web.util.MidlandHelper;
-import com.midland.web.model.User;
+import com.midland.web.model.user.User;
 import com.midland.web.service.UserService;
 
 public class UserServiceTest extends TestSupport {

@@ -1,7 +1,7 @@
 package com.midland.web.dao;
 
-import com.midland.web.model.RolePermission;
-import com.midland.web.model.RolePermissionExample;
+import com.midland.web.model.role.RolePermission;
+import com.midland.web.model.role.RolePermissionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

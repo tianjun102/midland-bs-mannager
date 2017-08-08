@@ -2,7 +2,7 @@ package com.midland.web.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.midland.web.model.Appointment;
+import com.midland.web.model.appointment.Appointment;
 
 public interface AppointmentService {
     int deleteByPrimaryKey(Integer id);

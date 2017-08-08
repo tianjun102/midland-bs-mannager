@@ -1,30 +1,77 @@
 package com.midland.web.model;
 
-import java.util.Date;
-
 public class Questions {
     private Integer id;
-
+    
+    /**
+     * 问题标题
+     */
     private String questionsTitle;
-
+    /**
+     * 来源
+     */
     private Integer source;
-
-    private Date questionTime;
-
+    /**
+     * 提问时间
+     */
+    private String questionTime;
+    /**
+     * 提问人昵称
+     */
     private String questionName;
-
+    /**
+     * 提问人手机号
+     */
     private String questionPhone;
-
+    /**
+     * 审核人
+     */
     private String auditor;
-
+    /**
+     * 状态
+     */
     private Integer status;
-
+    /**
+     * 点击数
+     */
     private Integer clickNum;
-
+    /**
+     *
+     */
     private Integer fabulous;
-
+    /**
+     * 提问内容
+     */
     private String questionsArea;
-
+    private String startTime;
+    private String endTime;
+    
+    private String auditRemark;
+    
+    public String getAuditRemark() {
+        return auditRemark;
+    }
+    
+    public void setAuditRemark(String auditRemark) {
+        this.auditRemark = auditRemark;
+    }
+    
+    public String getStartTime() {
+        return startTime;
+    }
+    
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    
+    public String getEndTime() {
+        return endTime;
+    }
+    
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -49,11 +96,11 @@ public class Questions {
         this.source = source;
     }
 
-    public Date getQuestionTime() {
+    public String getQuestionTime() {
         return questionTime;
     }
 
-    public void setQuestionTime(Date questionTime) {
+    public void setQuestionTime(String questionTime) {
         this.questionTime = questionTime;
     }
 

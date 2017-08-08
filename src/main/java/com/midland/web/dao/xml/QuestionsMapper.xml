@@ -12,39 +12,40 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="click_num" property="clickNum" jdbcType="INTEGER" />
     <result column="fabulous" property="fabulous" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.midland.web.model.Questions" extends="BaseResultMap" >
     <result column="questions_area" property="questionsArea" jdbcType="LONGVARCHAR" />
+    <result column="audit_remark" property="auditRemark" jdbcType="LONGVARCHAR" />
+
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, questions_title, source, question_time, question_name, question_phone, auditor, 
-    status, click_num, fabulous
+    status, click_num, fabulous,questions_area,audit_remark
   </sql>
-  <sql id="Blob_Column_List" >
-    questions_area
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from questions
     where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="questionPage" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from questions
+    where 1=1
+    <include refid="select_option"/>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from questions
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.midland.web.model.Questions" >
-    insert into questions (id, questions_title, source, 
-      question_time, question_name, question_phone, 
-      auditor, status, click_num, 
-      fabulous, questions_area)
-    values (#{id,jdbcType=INTEGER}, #{questionsTitle,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, 
-      #{questionTime,jdbcType=TIMESTAMP}, #{questionName,jdbcType=VARCHAR}, #{questionPhone,jdbcType=VARCHAR}, 
-      #{auditor,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{clickNum,jdbcType=INTEGER}, 
-      #{fabulous,jdbcType=INTEGER}, #{questionsArea,jdbcType=LONGVARCHAR})
-  </insert>
+
+  <delete id="deleteByIds">
+    delete from questions
+    where id in <foreach collection="idlist" index="index" item="id" open="(" separator="," close=")">
+    #{id}
+  </foreach>
+  </delete>
   <insert id="insertSelective" parameterType="com.midland.web.model.Questions" >
     insert into questions
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -81,6 +82,9 @@
       <if test="questionsArea != null" >
         questions_area,
       </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -115,6 +119,9 @@
       </if>
       <if test="questionsArea != null" >
         #{questionsArea,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -151,34 +158,56 @@
       <if test="questionsArea != null" >
         questions_area = #{questionsArea,jdbcType=LONGVARCHAR},
       </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.midland.web.model.Questions" >
-    update questions
-    set questions_title = #{questionsTitle,jdbcType=VARCHAR},
-      source = #{source,jdbcType=INTEGER},
-      question_time = #{questionTime,jdbcType=TIMESTAMP},
-      question_name = #{questionName,jdbcType=VARCHAR},
-      question_phone = #{questionPhone,jdbcType=VARCHAR},
-      auditor = #{auditor,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      click_num = #{clickNum,jdbcType=INTEGER},
-      fabulous = #{fabulous,jdbcType=INTEGER},
-      questions_area = #{questionsArea,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Questions" >
-    update questions
-    set questions_title = #{questionsTitle,jdbcType=VARCHAR},
-      source = #{source,jdbcType=INTEGER},
-      question_time = #{questionTime,jdbcType=TIMESTAMP},
-      question_name = #{questionName,jdbcType=VARCHAR},
-      question_phone = #{questionPhone,jdbcType=VARCHAR},
-      auditor = #{auditor,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      click_num = #{clickNum,jdbcType=INTEGER},
-      fabulous = #{fabulous,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+  <sql id="select_option">
+    <if test="id != null" >
+      and id = #{id}
+    </if>
+    <if test="questionsTitle != null" >
+      and questions_title = #{questionsTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="source != null" >
+      and source = #{source,jdbcType=INTEGER}
+    </if>
+    <if test="questionTime != null" >
+      and question_time = #{questionTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="questionName != null" >
+      and question_name = #{questionName,jdbcType=VARCHAR}
+    </if>
+    <if test="questionPhone != null" >
+      and question_phone = #{questionPhone,jdbcType=VARCHAR}
+    </if>
+    <if test="auditor != null" >
+      and auditor = #{auditor,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="clickNum != null" >
+      and click_num = #{clickNum,jdbcType=INTEGER}
+    </if>
+    <if test="fabulous != null" >
+      and fabulous = #{fabulous,jdbcType=INTEGER}
+    </if>
+    <if test="questionsArea != null" >
+      and questions_area = #{questionsArea,jdbcType=LONGVARCHAR}
+    </if>
+    <if test="startTime != null" >
+      and question_time &gt; #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endTime != null" >
+      and question_time &lt; #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="auditRemark != null" >
+      and audit_remark = #{auditRemark,jdbcType=LONGVARCHAR}
+    </if>
+  </sql>
+
 </mapper>

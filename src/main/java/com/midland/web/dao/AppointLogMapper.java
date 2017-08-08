@@ -1,7 +1,7 @@
 package com.midland.web.dao;
 
 
-import com.midland.web.model.AppointLog;
+import com.midland.web.model.appointment.AppointLog;
 
 import java.util.List;
 

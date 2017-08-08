@@ -6,6 +6,7 @@ import com.github.miemiedev.mybatis.paginator.domain.Paginator;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.*;
+import com.midland.web.model.user.User;
 import com.midland.web.service.DingJiangService;
 import com.midland.web.service.EntrustLogService;
 import com.midland.web.service.EntrustService;
