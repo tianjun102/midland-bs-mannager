@@ -36,13 +36,9 @@
             <li style="display:flex;align-items:center">
                 <span>用户类型：</span>
                 <select name="source" id="source" class="dropdown">
-                    <!-- <option value="" >请选择</option> -->
-                    <option value="0"
-                            <c:if test="${user.source==0}">selected="selected"</c:if>>网站
-                    </option>
-                    <option value="1"
-                            <c:if test="${user.source==1}">selected="selected"</c:if>>微商
-                    </option>
+                    <option value="" >请选择</option>
+                    <option value="0">网站</option>
+                    <option value="1">微商</option>
                 </select>
             </li>
             <li><span>手机号码：</span><input style="width:264px;" type="text" name="phone" id="phone" value="${user.phone}"

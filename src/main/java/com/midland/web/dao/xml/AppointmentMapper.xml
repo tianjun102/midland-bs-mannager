@@ -16,6 +16,7 @@
     <result column="layout" property="layout" jdbcType="VARCHAR" />
     <result column="measure" property="measure" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="decoration" property="decoration" jdbcType="VARCHAR" />
     <result column="entrust_time" property="entrustTime" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="user_cn_name" property="userCnName" jdbcType="VARCHAR" />
@@ -23,9 +24,9 @@
     <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, appoint_sn, source, nick_name, phone, house_type, sell_rent, appointment_time, area,
-    community_name, address, layout, measure, price, entrust_time, user_id, user_cn_name, 
-    status, handle_time
+    id, appoint_sn, source, nick_name, phone, house_type, sell_rent,DATE_FORMAT(appointment_time,'%Y-%m-%d %H:%i:%s')appointment_time , area,
+    community_name, address, layout, measure, price, DATE_FORMAT(entrust_time,'%Y-%m-%d %H:%i:%s')entrust_time , user_id, user_cn_name,
+    status, DATE_FORMAT(handle_time,'%Y-%m-%d %H:%i:%s')handle_time,decoration
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -105,6 +106,9 @@
       <if test="handleTime != null" >
         handle_time,
       </if>
+      <if test="decoration != null" >
+        decoration,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -164,6 +168,9 @@
       <if test="handleTime != null" >
         #{handleTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="decoration != null" >
+        #{decoration},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.Appointment" >
@@ -222,6 +229,9 @@
       </if>
       <if test="handleTime != null" >
         handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="decoration != null" >
+        decoration = #{decoration,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -288,6 +298,9 @@
     </if>
     <if test="endTime != null" >
       and entrust_time &lt; #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="decoration != null" >
+      and decoration = #{decoration,jdbcType=TIMESTAMP}
     </if>
   </sql>
 </mapper>

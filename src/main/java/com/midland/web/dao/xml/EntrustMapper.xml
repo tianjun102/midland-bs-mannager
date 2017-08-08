@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="entrust_sn" property="entrustSn" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="house_type" property="houseType" jdbcType="INTEGER" />
     <result column="sell_rent" property="sellRent" jdbcType="INTEGER" />
     <result column="entrust_time" property="entrustTime" jdbcType="TIMESTAMP" />
@@ -18,14 +19,14 @@
     <result column="user_cn_name" property="userCnName" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
-    <result column="call" property="call" jdbcType="VARCHAR" />
+    <result column="nick_name" property="call" jdbcType="VARCHAR" />
     <result column="renovation" property="renovation" jdbcType="INTEGER" />
     <result column="supporting" property="supporting" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, entrust_sn, source, house_type, sell_rent, entrust_time, area, community_name, 
-    address, layout, measure, price, user_id, user_cn_name, status, handle_time, call, 
-    renovation, supporting
+    id, entrust_sn, source, house_type, sell_rent,DATE_FORMAT(entrust_time,'%Y-%m-%d %H:%i:%s')entrust_time  , area, community_name,
+    address, layout, measure, price, user_id, user_cn_name, status,DATE_FORMAT(handle_time,'%Y-%m-%d %H:%i:%s')handle_time , nick_name,
+    renovation, supporting,phone
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -33,26 +34,15 @@
     from entrust
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="entrustPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from entrust where 1=1
+    <include refid="select_option" />
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from entrust
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.midland.web.model.Entrust" >
-    insert into entrust (id, entrust_sn, source, 
-      house_type, sell_rent, entrust_time, 
-      area, community_name, address, 
-      layout, measure, price, 
-      user_id, user_cn_name, status, 
-      handle_time, call, renovation, 
-      supporting)
-    values (#{id,jdbcType=INTEGER}, #{entrustSn,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, 
-      #{houseType,jdbcType=INTEGER}, #{sellRent,jdbcType=INTEGER}, #{entrustTime,jdbcType=TIMESTAMP}, 
-      #{area,jdbcType=VARCHAR}, #{communityName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{layout,jdbcType=VARCHAR}, #{measure,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=INTEGER}, #{userCnName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{handleTime,jdbcType=TIMESTAMP}, #{call,jdbcType=VARCHAR}, #{renovation,jdbcType=INTEGER}, 
-      #{supporting,jdbcType=VARCHAR})
-  </insert>
   <insert id="insertSelective" parameterType="com.midland.web.model.Entrust" >
     insert into entrust
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -64,6 +54,9 @@
       </if>
       <if test="source != null" >
         source,
+      </if>
+      <if test="phone != null" >
+        phone,
       </if>
       <if test="houseType != null" >
         house_type,
@@ -105,7 +98,7 @@
         handle_time,
       </if>
       <if test="call != null" >
-        call,
+        nick_name,
       </if>
       <if test="renovation != null" >
         renovation,
@@ -123,6 +116,9 @@
       </if>
       <if test="source != null" >
         #{source,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone},
       </if>
       <if test="houseType != null" >
         #{houseType,jdbcType=INTEGER},
@@ -183,6 +179,10 @@
       <if test="source != null" >
         source = #{source,jdbcType=INTEGER},
       </if>
+       <if test="phone != null" >
+         phone = #{phone},
+      </if>
+
       <if test="houseType != null" >
         house_type = #{houseType,jdbcType=INTEGER},
       </if>
@@ -223,7 +223,7 @@
         handle_time = #{handleTime,jdbcType=TIMESTAMP},
       </if>
       <if test="call != null" >
-        call = #{call,jdbcType=VARCHAR},
+        nick_name = #{call,jdbcType=VARCHAR},
       </if>
       <if test="renovation != null" >
         renovation = #{renovation,jdbcType=INTEGER},
@@ -234,26 +234,78 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Entrust" >
-    update entrust
-    set entrust_sn = #{entrustSn,jdbcType=VARCHAR},
-      source = #{source,jdbcType=INTEGER},
-      house_type = #{houseType,jdbcType=INTEGER},
-      sell_rent = #{sellRent,jdbcType=INTEGER},
-      entrust_time = #{entrustTime,jdbcType=TIMESTAMP},
-      area = #{area,jdbcType=VARCHAR},
-      community_name = #{communityName,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      layout = #{layout,jdbcType=VARCHAR},
-      measure = #{measure,jdbcType=VARCHAR},
-      price = #{price,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
-      user_cn_name = #{userCnName,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      handle_time = #{handleTime,jdbcType=TIMESTAMP},
-      call = #{call,jdbcType=VARCHAR},
-      renovation = #{renovation,jdbcType=INTEGER},
-      supporting = #{supporting,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+  <sql id="select_option" >
+    <if test="id != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="entrustSn != null" >
+      and entrust_sn = #{entrustSn,jdbcType=VARCHAR}
+    </if>
+    <if test="source != null" >
+      and source = #{source,jdbcType=INTEGER}
+    </if>
+    <if test="phone != null" >
+      and phone = #{phone}
+    </if>
+
+    <if test="houseType != null" >
+      and house_type = #{houseType,jdbcType=INTEGER}
+    </if>
+    <if test="sellRent != null" >
+      and sell_rent = #{sellRent,jdbcType=INTEGER}
+    </if>
+    <if test="entrustTime != null" >
+      and entrust_time = #{entrustTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="area != null" >
+      and area = #{area,jdbcType=VARCHAR}
+    </if>
+    <if test="communityName != null" >
+      and community_name = #{communityName,jdbcType=VARCHAR}
+    </if>
+    <if test="address != null" >
+      and address = #{address,jdbcType=VARCHAR}
+    </if>
+    <if test="layout != null" >
+      and layout = #{layout,jdbcType=VARCHAR}
+    </if>
+    <if test="measure != null" >
+      and measure = #{measure,jdbcType=VARCHAR}
+    </if>
+    <if test="price != null" >
+      and price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="userId != null" >
+      and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="userCnName != null" >
+      and user_cn_name = #{userCnName,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="handleTime != null" >
+      and handle_time = #{handleTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="call != null" >
+      and nick_name = #{call,jdbcType=VARCHAR}
+    </if>
+    <if test="renovation != null" >
+      and renovation = #{renovation,jdbcType=INTEGER}
+    </if>
+    <if test="supporting != null" >
+      and supporting = #{supporting,jdbcType=VARCHAR}
+    </if>
+    <if test="id != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="startTime != null" >
+      and entrust_time &gt; #{startTime,jdbcType=INTEGER}
+    </if>
+    <if test="endTime != null" >
+      and entrust_time &lt; #{endTime,jdbcType=INTEGER}
+    </if>
+
+  </sql>
 </mapper>

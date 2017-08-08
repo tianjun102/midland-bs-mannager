@@ -36,18 +36,18 @@
         </thead>
         <tbody>
         <c:choose>
-            <c:when test="${!empty requestScope.appoint }">
-                <c:forEach items="${requestScope.appoint }" var="appoint"
+            <c:when test="${!empty requestScope.entrusts }">
+                <c:forEach items="${requestScope.entrusts }" var="appoint"
                            varStatus="xh">
                     <tr>
-                        <td>${appoint.appointSn }</td>
+                        <td>${appoint.entrustSn }</td>
                         <td> <c:if test="${appoint.source ==0 }">网站</c:if>
-                             <c:if test="${appoint.source ==1 }">微站</c:if></td>
+                            <c:if test="${appoint.source ==1 }">微站</c:if></td>
                         <td>${appoint.call }</td>
                         <td>${appoint.phone }</td>
                         <td>${appoint.houseType }</td>
                         <td>${appoint.sellRent }</td>
-                        <td>${appoint.appointmentTime }</td>
+                        <td>${appoint.entrustTime }</td>
                         <td>${appoint.area }</td>
                         <td>${appoint.communityName }</td>
                         <td>${appoint.address }</td>
@@ -92,7 +92,7 @@
             title: ['重新分配经纪人'],
             shade: 0.3,
             area: ['1000px', '700px'],
-            content: ['${ctx}/rest/appoint/toRedistribute?appointId=' + id , 'no']
+            content: ['${ctx}/rest/entrust/toRedistribute?entrustId=' + id , 'no']
         });
     }
 
@@ -103,7 +103,7 @@
             title: ['更新'],
             shade: 0.3,
             area: ['1000px', '700px'],
-            content: ['${ctx}/rest/appoint/to_update?appointId=' + appointId , 'no']
+            content: ['${ctx}/rest/entrust/to_update?entrustId=' + appointId , 'no']
         });
     }
 </script>

@@ -1,24 +1,45 @@
 package com.midland.web.model;
 
-import java.util.Date;
-
 public class Entrust {
     private Integer id;
-
+    
+    /**
+     * 委托编号
+     */
     private String entrustSn;
-
+    /**
+     * 来源，0=网站；1=微站
+     */
     private Integer source;
-
+    /**
+     * 手机号码
+     */
+    private String phone;
+    
+    /**
+     * 委托类型 0新房，1二手房，2租房，3写字楼，4商铺，5其它
+     */
     private Integer houseType;
-
+    /**
+     * 租房0，卖房1
+     */
     private Integer sellRent;
-
-    private Date entrustTime;
-
+    
+    /**
+     * 委托时间
+     */
+    private String entrustTime;
+    /**
+     * 区域
+     */
     private String area;
-
+    /**
+     * 小区
+     */
     private String communityName;
-
+    /**
+     * 地址
+     */
     private String address;
 
     private String layout;
@@ -33,14 +54,53 @@ public class Entrust {
 
     private Integer status;
 
-    private Date handleTime;
-
+    private String handleTime;
+    
+    /**
+     * 称呼
+     */
     private String call;
 
     private Integer renovation;
 
     private String supporting;
-
+    private String startTime;
+    private String endTime;
+    private String remark;
+    
+    
+    public String getPhone() {
+        return phone;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    public String getStartTime() {
+        return startTime;
+    }
+    
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    
+    public String getEndTime() {
+        return endTime;
+    }
+    
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+    
+    public String getRemark() {
+        return remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -81,11 +141,11 @@ public class Entrust {
         this.sellRent = sellRent;
     }
 
-    public Date getEntrustTime() {
+    public String getEntrustTime() {
         return entrustTime;
     }
 
-    public void setEntrustTime(Date entrustTime) {
+    public void setEntrustTime(String entrustTime) {
         this.entrustTime = entrustTime;
     }
 
@@ -161,11 +221,11 @@ public class Entrust {
         this.status = status;
     }
 
-    public Date getHandleTime() {
+    public String getHandleTime() {
         return handleTime;
     }
 
-    public void setHandleTime(Date handleTime) {
+    public void setHandleTime(String handleTime) {
         this.handleTime = handleTime;
     }
 

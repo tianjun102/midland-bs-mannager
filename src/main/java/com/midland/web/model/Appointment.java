@@ -7,7 +7,7 @@ public class Appointment {
      */
     private String appointSn;
     /**
-     * 信息来源
+     * 信息来源，0=网站；1=微站
      */
     private Integer source;
     /**
@@ -55,7 +55,7 @@ public class Appointment {
      */
     private String price;
     /**
-     * 装修类型，精装，豪华
+     * 装修类型，0简装，1精装，2豪华
      */
     private String decoration;
     /**

@@ -16,22 +16,40 @@
 <body>
 	
 	
-	<!--用户列表界面-->
+	<!--委托列表界面-->
 	<div class="box"> 
 		<section class = "content">
 			<p class = "detail-title">
-				<span>看房记录列表</span>
-				<a class = "setup"  target="contentF" onclick="toAddPage()">创建用户</a>
+				<span>委托记录列表</span>
 			</p>
-		<form action="${ctx }/rest/appoint/page" method="POST" id="searchForm"
+		<form action="${ctx }/rest/entrust/page" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
 				<li><span>小区名：</span><input type="text" name="communityName" id="communityName" placeholder="请输入小区" /></li>
 				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
-				<li><span>分类：</span><input type="text" name="sellRent" id="sellRent" placeholder="请输入分类" /></li>
-				<li><span>state：</span><input type="text" name="status" id="status" placeholder="请输入状态" /></li>
-				<li><span>来源：</span><input type="text" name="source" id="source" placeholder="请输入来源" /></li>
-				<li><span>预约时间</span><input class="Wdate half" id="time1"
+				<li><span>分类：</span>
+					<select name="sellRent" id="sellRent" class="dropdown">
+						<option value="">全部</option>
+						<option value="0">租房</option>
+						<option value="1">卖房</option>
+					</select>
+				<li><span>状态：</span>
+					<select name="status" id="status" class="dropdown">
+						<option value="">全部</option>
+						<option value="0">待分配</option>
+						<option value="1">未联系</option>
+						<option value="2">已联系</option>
+
+					</select>
+				</li>
+				<li><span>来源：</span>
+					<select name="source" id="source" class="dropdown">
+                        <option value="" >请选择</option>
+						<option value="0">网站</option>
+						<option value="1">微商</option>
+					</select>
+				</li>
+				<li><span>委托时间</span><input class="Wdate half" id="time1"
 										onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'time2\')}'})"
 										name="startTime" /> <em class = "gang">-</em><input
 						class="Wdate half"
@@ -51,7 +69,6 @@
 		 window.onload = function(){
              $('#searchForm').submit();
 		}
-
 	</script>
 	<!-- 本页私有js -->
 	
