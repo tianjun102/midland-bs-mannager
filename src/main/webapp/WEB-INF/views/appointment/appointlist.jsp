@@ -60,9 +60,9 @@
                         <td>${appoint.handleTime }</td>
                         <td>
 
-                            <a target="contentF" onclick="toRedistribute(${appoint.id })">重新分配经纪人</a>
+                            <a target="contentF" class="edit_img" title="重新分配经纪人" onclick="toRedistribute(${appoint.id })"></a>
 
-                            <a target="contentF" onclick="toUpdateAppointment(${appoint.id })">修改</a>
+                            <a target="contentF" class="edit_img" title="编辑" onclick="toUpdateAppointment(${appoint.id})"></a>
                         </td>
                     </tr>
                 </c:forEach>
