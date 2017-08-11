@@ -1,6 +1,8 @@
 package com.midland.web.service;
 
-import com.midland.web.model.AppointLog;
+import com.midland.web.model.appointment.AppointLog;
+
+import java.util.List;
 
 public interface AppointLogService {
     int deleteByPrimaryKey(Integer id);
@@ -9,6 +11,8 @@ public interface AppointLogService {
     
     AppointLog selectByPrimaryKey(Integer id);
     
+    
+    List<AppointLog> selectAppointLogByAppointId(Integer id);
     
     int updateByPrimaryKeySelective(AppointLog record);
 }

@@ -75,7 +75,7 @@
 				</dt>
 				<dd>
 					<shiro:hasPermission name="noticelist">
-						<a id = "enterPromotionIndex" href="${ctx}/rest/promotion/enterPromotionIndex" target="contentF"><span>委托记录</span></a>
+						<a id = "enterPromotionIndex" href="${ctx}/rest/entrust/index" target="contentF"><span>委托记录</span></a>
 					</shiro:hasPermission>
 				</dd>
 			</dl>
@@ -90,7 +90,7 @@
 				</dt>
 				<dd>
 					<shiro:hasPermission name="orderInfoList">
-						<a id = "showOrderInfoIndex" href="${ctx}/rest/order/showOrderInfoIndex" target="contentF"><span>问答管理</span></a>
+						<a id = "showOrderInfoIndex" href="${ctx}/rest/questions/index" target="contentF"><span>问答管理</span></a>
 					</shiro:hasPermission>
 				</dd>
 			</dl>

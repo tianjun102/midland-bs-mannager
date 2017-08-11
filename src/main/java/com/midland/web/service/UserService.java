@@ -5,7 +5,7 @@ import java.util.List;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericService;
-import com.midland.web.model.User;
+import com.midland.web.model.user.User;
 
 /**
  * 用户 业务 接口

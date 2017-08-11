@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.midland.web.dao.RoleMapper">
-    <resultMap id="BaseResultMap" type="com.midland.web.model.Role">
+    <resultMap id="BaseResultMap" type="com.midland.web.model.role.Role">
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="role_name" property="roleName" jdbcType="VARCHAR" />
         <result column="role_sign" property="roleSign" jdbcType="VARCHAR" />
@@ -9,7 +9,7 @@
         <result column="role_type" property="roleType" jdbcType="BIGINT" />
         <result column="state" property="state" jdbcType="BIGINT" />
     </resultMap>
-    <resultMap id="RoleAuthResultMap" type="com.midland.web.model.RoleAuth">
+    <resultMap id="RoleAuthResultMap" type="com.midland.web.model.role.RoleAuth">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="role_id" property="roleId" jdbcType="INTEGER" />
 		<result column="auth_id" property="authId" jdbcType="INTEGER" />
@@ -24,7 +24,7 @@
 		<result property="fatherCode" column="auth_parent_code" javaType="java.lang.String" />
 	</resultMap>
 	
-	<resultMap id="RolePermissionMap" type="com.midland.web.model.RolePermission">
+	<resultMap id="RolePermissionMap" type="com.midland.web.model.role.RolePermission">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="role_id" property="roleId" jdbcType="INTEGER" />
 		<result column="permission_id" property="permissionId" jdbcType="INTEGER" />
@@ -41,7 +41,7 @@
         <result column="orderNo" property="orderNo" jdbcType="INTEGER" />
         <result column="status" property="status" jdbcType="INTEGER" />
 	</resultMap>
-	<resultMap id="UserRoleResultMap" type="com.midland.web.model.UserRole">
+	<resultMap id="UserRoleResultMap" type="com.midland.web.model.user.UserRole">
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="user_id" property="userId" jdbcType="BIGINT" />
         <result column="role_id" property="roleId" jdbcType="BIGINT" />
@@ -108,7 +108,7 @@
     <sql id="Base_Column_List">
         id, role_name, role_sign, description,role_type,state 
     </sql>
-    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.midland.web.model.RoleExample">
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.midland.web.model.role.RoleExample">
         select
         <if test="distinct">
             distinct
@@ -132,19 +132,19 @@
         delete from role
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.midland.web.model.RoleExample">
+    <delete id="deleteByExample" parameterType="com.midland.web.model.role.RoleExample">
         delete from role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
         </if>
     </delete>
-    <insert id="insert" parameterType="com.midland.web.model.Role">
+    <insert id="insert" parameterType="com.midland.web.model.role.Role">
         insert into role (id, role_name, role_sign,
         description,role_type,state)
         values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleSign,jdbcType=VARCHAR},
         #{description,jdbcType=VARCHAR},#{roleType,jdbcType=BIGINT},#{state,jdbcType=BIGINT},)
     </insert>
-    <insert id="insertSelective" parameterType="com.midland.web.model.Role">
+    <insert id="insertSelective" parameterType="com.midland.web.model.role.Role">
         insert into role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -187,7 +187,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.midland.web.model.RoleExample" resultType="java.lang.Integer">
+    <select id="countByExample" parameterType="com.midland.web.model.role.RoleExample" resultType="java.lang.Integer">
         select count(*) from role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
@@ -224,7 +224,7 @@
             <include refid="Update_By_Example_Where_Clause" />
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.Role">
+    <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.role.Role">
         update role
         <set>
             <if test="roleName != null">
@@ -245,7 +245,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Role">
+    <update id="updateByPrimaryKey" parameterType="com.midland.web.model.role.Role">
         update role
         set role_name = #{roleName,jdbcType=VARCHAR},
         role_sign = #{roleSign,jdbcType=VARCHAR},
@@ -266,7 +266,7 @@
     </select>
     
     <!-- 分页条件查询 -->
-    <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.midland.web.model.RoleExample">
+    <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.midland.web.model.role.RoleExample">
         select
         <if test="distinct">
             distinct
@@ -281,7 +281,7 @@
         </if>
     </select>
     
-    <select id="getListAuthid" parameterType="com.midland.web.model.RoleAuth" resultMap="RoleAuthResultMap">
+    <select id="getListAuthid" parameterType="com.midland.web.model.role.RoleAuth" resultMap="RoleAuthResultMap">
 		select 	    
 	          auth_id
 	     from  role_auth 
@@ -321,7 +321,7 @@
 	</select>
     
     <!-- 获取所有该角色已有的权限-->
-    <select id="getListPermission" parameterType="com.midland.web.model.RolePermission" resultMap="RolePermissionMap">
+    <select id="getListPermission" parameterType="com.midland.web.model.role.RolePermission" resultMap="RolePermissionMap">
 		select 	    
 	          permission_id 
 	     from  role_permission 

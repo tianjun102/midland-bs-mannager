@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * @author 
  * @since 2016年5月18日 下午2:28:58
  */
-@ContextConfiguration(locations = {"classpath*:applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath*:spring/applicationContext.xml"})
 public class TestSupport extends AbstractJUnit4SpringContextTests {
     protected long startTime;
     protected long endTime;

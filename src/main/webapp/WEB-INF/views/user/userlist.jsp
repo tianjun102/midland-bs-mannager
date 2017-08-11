@@ -36,7 +36,8 @@
 								<td>${cust.username }</td>
 								<td>${cust.phone }</td>
 								<td>${cust.createTime }</td>
-								<td>${cust.source }</td>
+								<td> <c:if test="${appoint.source ==0 }">网站</c:if>
+									<c:if test="${appoint.source ==1 }">微站</c:if></td>
 								<td>${cust.auditStatus }</td>
 								<td>${cust.auditName }</td>
 								<td>${cust.auditTime }</td>

@@ -8,9 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericDao;
-import com.midland.web.model.User;
-import com.midland.web.model.UserExample;
-import com.midland.web.model.UserRole;
+import com.midland.web.model.user.User;
+import com.midland.web.model.user.UserRole;
 
 /**
  * 用户Dao接口

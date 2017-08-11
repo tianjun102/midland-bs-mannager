@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.midland.web.dao.RolePermissionMapper" >
-  <resultMap id="BaseResultMap" type="com.midland.web.model.RolePermission" >
+  <resultMap id="BaseResultMap" type="com.midland.web.model.role.RolePermission" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="role_id" property="roleId" jdbcType="BIGINT" />
     <result column="permission_id" property="permissionId" jdbcType="BIGINT" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List" >
     id, role_id, permission_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.midland.web.model.RolePermissionExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.midland.web.model.role.RolePermissionExample" >
     select
     <if test="distinct" >
       distinct
@@ -91,19 +91,19 @@
     delete from role_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.midland.web.model.RolePermissionExample" >
+  <delete id="deleteByExample" parameterType="com.midland.web.model.role.RolePermissionExample" >
     delete from role_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.midland.web.model.RolePermission" >
+  <insert id="insert" parameterType="com.midland.web.model.role.RolePermission" >
     insert into role_permission (id, role_id, permission_id
       )
     values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{permissionId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.midland.web.model.RolePermission" >
+  <insert id="insertSelective" parameterType="com.midland.web.model.role.RolePermission" >
     insert into role_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.midland.web.model.RolePermissionExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.midland.web.model.role.RolePermissionExample" resultType="java.lang.Integer" >
     select count(*) from role_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -160,7 +160,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.RolePermission" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.role.RolePermission" >
     update role_permission
     <set >
       <if test="roleId != null" >
@@ -172,7 +172,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.RolePermission" >
+  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.role.RolePermission" >
     update role_permission
     set role_id = #{roleId,jdbcType=BIGINT},
       permission_id = #{permissionId,jdbcType=BIGINT}

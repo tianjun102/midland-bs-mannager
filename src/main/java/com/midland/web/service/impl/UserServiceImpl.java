@@ -14,8 +14,8 @@ import com.midland.core.generic.GenericDao;
 import com.midland.core.generic.GenericServiceImpl;
 import com.midland.core.util.ApplicationUtils;
 import com.midland.web.dao.UserMapper;
-import com.midland.web.model.User;
-import com.midland.web.model.UserRole;
+import com.midland.web.model.user.User;
+import com.midland.web.model.user.UserRole;
 import com.midland.web.service.UserService;
 
 /**

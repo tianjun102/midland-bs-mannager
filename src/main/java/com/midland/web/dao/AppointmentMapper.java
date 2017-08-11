@@ -2,9 +2,7 @@ package com.midland.web.dao;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.midland.web.model.Appointment;
-
-import java.util.List;
+import com.midland.web.model.appointment.Appointment;
 
 public interface AppointmentMapper {
     int deleteByPrimaryKey(Integer id);

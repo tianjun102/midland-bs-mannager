@@ -10,11 +10,11 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericDao;
 import com.midland.web.model.AuthRelation;
 import com.midland.web.model.Permission;
-import com.midland.web.model.Role;
-import com.midland.web.model.RoleAuth;
-import com.midland.web.model.RoleExample;
-import com.midland.web.model.RolePermission;
-import com.midland.web.model.UserRole;
+import com.midland.web.model.role.Role;
+import com.midland.web.model.role.RoleAuth;
+import com.midland.web.model.role.RoleExample;
+import com.midland.web.model.role.RolePermission;
+import com.midland.web.model.user.UserRole;
 
 /**
  * 角色Dao 接口

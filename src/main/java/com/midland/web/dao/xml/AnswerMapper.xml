@@ -13,31 +13,25 @@
     <result column="answer_area" property="answerArea" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, answer_time, anwer_name, againstNum, supportNum, questions_id
-  </sql>
-  <sql id="Blob_Column_List" >
-    answer_area
+    id, answer_time, anwer_name, againstNum, supportNum, questions_id,answer_area
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
+  select
+  <include refid="Base_Column_List" />
+  from answer
+  where id = #{id,jdbcType=INTEGER}
+</select>
+  <select id="selectByQuestionId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from answer
-    where id = #{id,jdbcType=INTEGER}
+    where questions_id = #{questionId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from answer
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.midland.web.model.Answer" >
-    insert into answer (id, answer_time, anwer_name, 
-      againstNum, supportNum, questions_id, 
-      answer_area)
-    values (#{id,jdbcType=INTEGER}, #{answerTime,jdbcType=TIMESTAMP}, #{anwerName,jdbcType=VARCHAR}, 
-      #{againstnum,jdbcType=INTEGER}, #{supportnum,jdbcType=INTEGER}, #{questionsId,jdbcType=INTEGER}, 
-      #{answerArea,jdbcType=LONGVARCHAR})
-  </insert>
+
   <insert id="insertSelective" parameterType="com.midland.web.model.Answer" >
     insert into answer
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -109,25 +103,6 @@
         answer_area = #{answerArea,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.midland.web.model.Answer" >
-    update answer
-    set answer_time = #{answerTime,jdbcType=TIMESTAMP},
-      anwer_name = #{anwerName,jdbcType=VARCHAR},
-      againstNum = #{againstnum,jdbcType=INTEGER},
-      supportNum = #{supportnum,jdbcType=INTEGER},
-      questions_id = #{questionsId,jdbcType=INTEGER},
-      answer_area = #{answerArea,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Answer" >
-    update answer
-    set answer_time = #{answerTime,jdbcType=TIMESTAMP},
-      anwer_name = #{anwerName,jdbcType=VARCHAR},
-      againstNum = #{againstnum,jdbcType=INTEGER},
-      supportNum = #{supportnum,jdbcType=INTEGER},
-      questions_id = #{questionsId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -52,18 +52,6 @@
              $('#searchForm').submit();
 		}
 
-		function toAddPage(){
-			layer.open({
-				type: 2,
-				skin: 'layer-style',
-				area: ['500px','500px'],
-				shadeClose: false, //点击遮罩关闭
-				title:['创建用户'],
-				resize: false,
-				scrollbar:false,
-				content:['${ctx}/rest/user/toAddPage', 'no']
-			});
-		}
 	</script>
 	<!-- 本页私有js -->
 	
