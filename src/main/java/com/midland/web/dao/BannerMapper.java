@@ -1,5 +1,7 @@
 package com.midland.web.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.Banner;
 
 public interface BannerMapper {
@@ -16,4 +18,6 @@ public interface BannerMapper {
     int updateByPrimaryKeyWithBLOBs(Banner record);
 
     int updateByPrimaryKey(Banner record);
+
+    PageList<Banner> selectBannerList(Banner banner, PageBounds pageBounds);
 }

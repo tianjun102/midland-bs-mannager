@@ -5,8 +5,12 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.redis.IBaseRedisTemplate;
 import com.midland.core.util.AppSetting;
 import com.midland.core.util.HttpUtils;
+import com.midland.web.dao.BannerMapper;
+import com.midland.web.dao.LinkUrlManagerMapper;
 import com.midland.web.dao.PopularMapper;
 import com.midland.web.model.Area;
+import com.midland.web.model.Banner;
+import com.midland.web.model.LinkUrlManager;
 import com.midland.web.model.Popular;
 import com.midland.web.service.SettingService;
 import com.midland.web.util.MidlandHelper;
@@ -25,6 +29,12 @@ public class SettingServiceImpl implements SettingService {
 
     @Autowired
     private PopularMapper popularMapper;
+
+    @Autowired
+    private LinkUrlManagerMapper linkUrlMapper;
+
+
+    private BannerMapper bannerMapper;
 
     @Override
     public PageList<Popular> findPopularList(Popular popular, PageBounds pageBounds) {
@@ -52,16 +62,21 @@ public class SettingServiceImpl implements SettingService {
         Map<String, List<Area>> areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
         //如果缓存查不到再调接口查
         if (areaMap == null){
-
+            parem.put("cityId",parem.get("id"));
+            if(StringUtils.isNotEmpty(parem.get("parentId"))){
+                parem.put("areaId",parem.get("parentId"));
+            }
             String data = HttpUtils.get(AppSetting.getAppSetting("APIURL"), parem);
             List<Area> areaList = MidlandHelper.getPojoList(data, Area.class);
             String parentId = "";
-            for (Area area : areaList) {
-                if (!parentId.equals(area.getParentId())) {
-                    parentId = area.getParentId();
-                    baseRedisTemplate.saveValue("province:" + area.getParentId(), area);
-                }
+            if (areaList !=null) {
+                for (Area area : areaList) {
+                    if (!parentId.equals(area.getParentId())) {
+                        parentId = area.getParentId();
+                        baseRedisTemplate.saveValue("province:" + area.getParentId(), area);
+                    }
                     baseRedisTemplate.saveValue("city:" + area.getId() + ":" + area.getParentId(), area);
+                }
             }
 
             areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
@@ -79,26 +94,79 @@ public class SettingServiceImpl implements SettingService {
     @Override
     public Map<String, List<Area>> queryAreaByRedis(Map<String, String> parem) {
         //先在缓存中查询
-        Map<String, List<Area>> areaMap = this.getArea(parem.get("flag"),parem.get("cityId"),parem.get("areaId"));
+        Map<String, List<Area>> areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
 
         if (areaMap == null){
 
+            parem.put("cityId",parem.get("id"));
+            if(StringUtils.isNotEmpty(parem.get("parentId"))){
+                parem.put("areaId",parem.get("parentId"));
+            }
             String data = HttpUtils.get(AppSetting.getAppSetting("AREAURL"), parem);
             List<Area> areaList = MidlandHelper.getPojoList(data, Area.class);
             String parentId = "";
-            for (Area area : areaList) {
-                if(StringUtils.isNotEmpty(parem.get("cityId")) &&StringUtils.isEmpty (parem.get("areaId"))){
-                    baseRedisTemplate.saveValue("area:" + area.getId() + ":" + parem.get("cityId"), area);
-                }else if (StringUtils.isNotEmpty(parem.get("cityId")) && StringUtils.isNotEmpty(parem.get("areaId"))){
-                    baseRedisTemplate.saveValue("sheet:" + area.getId() + ":" + area.getParentId(), area);
+            if (areaList!=null) {
+                for (Area area : areaList) {
+                    if (StringUtils.isNotEmpty(parem.get("id")) && StringUtils.isEmpty(parem.get("parentId"))) {
+                        baseRedisTemplate.saveValue("area:" + area.getId() + ":" + parem.get("id"), area);
+                    } else if (StringUtils.isNotEmpty(parem.get("id")) && StringUtils.isNotEmpty(parem.get("parentId"))) {
+                        baseRedisTemplate.saveValue("sheet:" + area.getId() + ":" + area.getParentId(), area);
+                    }
                 }
             }
 
-            areaMap = this.getArea(parem.get("flag"),parem.get("cityId"),parem.get("areaId"));
+            areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
         }
 
         return areaMap;
     }
+
+    /**
+     * 友情链接列表实现方法
+     * @param linkUrlManager
+     * @param pageBounds
+     * @return
+     */
+    @Override
+    public PageList<LinkUrlManager> findLinkUrlList(LinkUrlManager linkUrlManager, PageBounds pageBounds) {
+        return linkUrlMapper.selectLinkUrlList(linkUrlManager,pageBounds);
+    }
+
+    @Override
+    public LinkUrlManager findLinkUrlManager(LinkUrlManager linkUrlManager) {
+        return linkUrlMapper.selectByPrimaryKey(linkUrlManager.getId());
+    }
+
+    @Override
+    public int updateLinkUrlManager(LinkUrlManager linkUrlManager) {
+        return linkUrlMapper.updateByPrimaryKeySelective(linkUrlManager);
+    }
+
+    @Override
+    public int insertLinkUrlManage(LinkUrlManager linkUrlManager) {
+        return linkUrlMapper.insertSelective(linkUrlManager);
+    }
+
+    @Override
+    public PageList<Banner> findBannerList(Banner banner, PageBounds pageBounds) {
+        return bannerMapper.selectBannerList(banner,pageBounds);
+    }
+
+    @Override
+    public Banner findBanner(Banner banner) {
+        return bannerMapper.selectByPrimaryKey(banner.getId());
+    }
+
+    @Override
+    public int updateBanner(Banner banner) {
+        return bannerMapper.updateByPrimaryKeySelective(banner);
+    }
+
+    @Override
+    public int insertBanner(Banner banner) {
+        return bannerMapper.insertSelective(banner);
+    }
+
 
     /**
      * 根据省份id获取下级市区
@@ -110,8 +178,8 @@ public class SettingServiceImpl implements SettingService {
         Map<String, List<Area>> result = new HashMap<>();
         List<Area> areaList = new LinkedList<>();
         Set<byte[]> keys = null;
-        if ("provice".equals(flag)) {
-             keys = baseRedisTemplate.getKeysLike("provice:*");
+        if ("province".equals(flag)) {
+             keys = baseRedisTemplate.getKeysLike("province:*");
              if(keys==null||keys.size()<=0){
                  return null;
              }
@@ -146,5 +214,7 @@ public class SettingServiceImpl implements SettingService {
 
         return  result;
     }
+
+
 
 }

@@ -8,14 +8,18 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="INTEGER" />
     <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="provinceId" property="provinceid" jdbcType="INTEGER" />
-    <result column="cityId" property="cityid" jdbcType="INTEGER" />
-    <result column="areaId" property="areaid" jdbcType="INTEGER" />
-    <result column="sheetId" property="sheetid" jdbcType="INTEGER" />
+    <result column="provinceId" property="provinceId" jdbcType="VARCHAR" />
+    <result column="cityId" property="cityId" jdbcType="VARCHAR" />
+    <result column="areaId" property="areaId" jdbcType="VARCHAR" />
+    <result column="sheetId" property="sheetId" jdbcType="VARCHAR" />
+    <result column="sheetName" property="sheetName" jdbcType="VARCHAR" />
+    <result column="provinceName" property="provinceName" jdbcType="VARCHAR" />
+    <result column="cityName" property="cityName" jdbcType="VARCHAR" />
+    <result column="areaName" property="areaName" jdbcType="VARCHAR" />
     <result column="isDelete" property="isDelete" javaType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, cate_id, menu_id, name, source, url, provinceId, cityId, areaId, sheetId, isDelete
+    id, cate_id, menu_id, name, source, url, provinceId, cityId, areaId, sheetId, isDelete, sheetName, provinceName, cityName, areaName
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -31,11 +35,11 @@
     insert into popular (id, cate_id, menu_id, 
       name, source, url, 
       provinceId, cityId, areaId, 
-      sheetId)
+      sheetId,sheetName, provinceName, cityName, areaName)
     values (#{id,jdbcType=INTEGER}, #{cateId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, 
       #{name,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
-      #{provinceid,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, #{areaid,jdbcType=INTEGER}, 
-      #{sheetid,jdbcType=INTEGER})
+      #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER},
+      #{sheetId,jdbcType=INTEGER} , #{sheetName} , #{provinceName} ,#{cityName} ,#{areaName})
   </insert>
   <insert id="insertSelective" parameterType="com.midland.web.model.Popular" >
     insert into popular
@@ -58,17 +62,29 @@
       <if test="url != null" >
         url,
       </if>
-      <if test="provinceid != null" >
+      <if test="provinceId != null" >
         provinceId,
       </if>
-      <if test="cityid != null" >
+      <if test="cityId != null" >
         cityId,
       </if>
-      <if test="areaid != null" >
+      <if test="areaId != null" >
         areaId,
       </if>
-      <if test="sheetid != null" >
+      <if test="sheetId != null" >
         sheetId,
+      </if>
+      <if test="sheetName != null" >
+        sheetName,
+      </if>
+      <if test="areaName != null" >
+        areaName,
+      </if>
+      <if test="cityName != null" >
+        cityName,
+      </if>
+      <if test="provinceName != null" >
+        provinceName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -90,17 +106,29 @@
       <if test="url != null" >
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="provinceid != null" >
-        #{provinceid,jdbcType=INTEGER},
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=VARCHAR},
       </if>
-      <if test="cityid != null" >
-        #{cityid,jdbcType=INTEGER},
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
       </if>
-      <if test="areaid != null" >
-        #{areaid,jdbcType=INTEGER},
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
       </if>
-      <if test="sheetid != null" >
-        #{sheetid,jdbcType=INTEGER},
+      <if test="sheetId != null" >
+        #{sheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="sheetName != null" >
+        #{sheetName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -122,20 +150,32 @@
       <if test="url != null" >
         url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="provinceid != null" >
-        provinceId = #{provinceid,jdbcType=INTEGER},
+      <if test="provinceId != null" >
+        provinceId = #{provinceId,jdbcType=INTEGER},
       </if>
-      <if test="cityid != null" >
-        cityId = #{cityid,jdbcType=INTEGER},
+      <if test="cityId != null" >
+        cityId = #{cityId,jdbcType=INTEGER},
       </if>
-      <if test="areaid != null" >
-        areaId = #{areaid,jdbcType=INTEGER},
+      <if test="areaId != null" >
+        areaId = #{areaId,jdbcType=INTEGER},
       </if>
-      <if test="sheetid != null" >
-        sheetId = #{sheetid,jdbcType=INTEGER},
+      <if test="sheetId != null" >
+        sheetId = #{sheetId,jdbcType=INTEGER},
       </if>
       <if test="isDelete != null">
         isDelete = #{isDelete}
+      </if>
+      <if test="sheetName != null" >
+        sheetName = #{sheetName},
+      </if>
+      <if test="areaName != null" >
+        areaName = #{areaName},
+      </if>
+      <if test="cityName != null" >
+        cityName = #{cityName},
+      </if>
+      <if test="provinceName != null" >
+        provinceName = #{provinceName},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -147,16 +187,22 @@
       name = #{name,jdbcType=VARCHAR},
       source = #{source,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
-      provinceId = #{provinceid,jdbcType=INTEGER},
-      cityId = #{cityid,jdbcType=INTEGER},
-      areaId = #{areaid,jdbcType=INTEGER},
-      sheetId = #{sheetid,jdbcType=INTEGER}
+      provinceId = #{provinceId,jdbcType=INTEGER},
+      cityId = #{cityId,jdbcType=INTEGER},
+      areaId = #{areaId,jdbcType=INTEGER},
+      sheetId = #{sheetId,jdbcType=INTEGER},
+      sheetName = #{sheetName},
+      areaName = #{areaName},
+      cityName = #{cityName},
+      provinceName = #{provinceName},
+
+
     where id = #{id,jdbcType=INTEGER}
   </update>
 
   <select id="selectPropularList" parameterType="com.midland.web.model.Popular" resultMap="BaseResultMap">
 
-    SELECT  <include refid="Base_Column_List"/> FROM  popular WHERE  1 = 1
+    SELECT  <include refid="Base_Column_List"/> FROM  popular WHERE  isDelete = 1
     <if test="id != null" >
       AND  id = #{id}
     </if>
@@ -175,21 +221,21 @@
     <if test="url != null and url !='' "  >
       AND url = #{url,jdbcType=VARCHAR}
     </if>
-    <if test="provinceid != null" >
-      AND provinceId = #{provinceid,jdbcType=INTEGER}
+    <if test="provinceId != null and provinceId != ''">
+      AND provinceId = #{provinceId,jdbcType=INTEGER}
     </if>
-    <if test="cityid != null" >
-      AND cityId = #{cityid,jdbcType=INTEGER}
+    <if test="cityId != null and cityId != ''">
+      AND cityId = #{cityId,jdbcType=INTEGER}
     </if>
-    <if test="areaid != null" >
-      AND areaId = #{areaid,jdbcType=INTEGER}
+    <if test="areaId != null and areaId !='' " >
+      AND areaId = #{areaId,jdbcType=INTEGER}
     </if>
-    <if test="sheetid != null" >
-      AND sheetId = #{sheetid,jdbcType=INTEGER}
+    <if test="sheetId != null and sheetId != '' " >
+      AND sheetId = #{sheetId,jdbcType=INTEGER}
     </if>
-    <if test="isDelete ! = null">
+    <if test="isDelete != null">
       AND isDelete = #{isDelete}
-    </if>.
+    </if>
 
   </select>
 

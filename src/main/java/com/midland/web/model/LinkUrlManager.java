@@ -3,7 +3,7 @@ package com.midland.web.model;
 public class LinkUrlManager {
     private Integer id;
 
-    private Integer cityId;
+    private String cityId;
 
     private String linkName;
 
@@ -19,6 +19,12 @@ public class LinkUrlManager {
 
     private String remarks;
 
+    private Integer source;
+
+    private String cityName;
+
+    private Integer isDelete;
+
     public Integer getId() {
         return id;
     }
@@ -27,11 +33,11 @@ public class LinkUrlManager {
         this.id = id;
     }
 
-    public Integer getCityId() {
+    public String getCityId() {
         return cityId;
     }
 
-    public void setCityId(Integer cityId) {
+    public void setCityId(String cityId) {
         this.cityId = cityId;
     }
 
@@ -83,6 +89,14 @@ public class LinkUrlManager {
         this.orderby = orderby;
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
     public String getRemarks() {
         return remarks;
     }
@@ -90,4 +104,22 @@ public class LinkUrlManager {
     public void setRemarks(String remarks) {
         this.remarks = remarks == null ? null : remarks.trim();
     }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+
 }

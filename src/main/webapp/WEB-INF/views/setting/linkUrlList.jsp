@@ -17,30 +17,26 @@
 							<th style="width: 5%">序号</th>
 							<th style="width: 5%">城市</th>
 							<th style="width: 10%">平台</th>
-							<th style="width: 5%">模块</th>
-							<th style="width: 10%">分类</th>
 							<th style="width: 4%">名称</th>
 							<th style="width: 5%">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 				<c:choose>
-					<c:when test="${!empty requestScope.popularList }">
-						<c:forEach items="${requestScope.popularList}" var="popular"
+					<c:when test="${!empty requestScope.linkUrlList}">
+						<c:forEach items="${requestScope.linkUrlList}" var="linkUrl"
 							varStatus="xh">
 							<tr>
 								<td>${xh.count }</td>
-								<td>${popular.cityName}</td>
+								<td>${linkUrl.cityName}</td>
 								<td>
-									<c:if test="${popular.source==1}">网站</c:if>
-									<c:if test="${popular.source==2}">微站</c:if>
+									<c:if test="${linkUrl.source==1}">网站</c:if>
+									<c:if test="${linkUrl.source==2}">微站</c:if>
 								</td>
-								<td>${popular.menuId}</td>
-								<td>${popular.cateId}</td>
-								<td>${popular.name}</td>
+								<td>${linkUrl.linkName}</td>
 								<td>
-									<a onclick="preUpdate(${popular.id })" target="contentF" class = "edit_img" title = "编辑"></a>
-									<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${popular.id })"></a>
+									<a onclick="preUpdate(${linkUrl.id })" target="contentF" class = "edit_img" title = "编辑"></a>
+									<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${linkUrl.id })"></a>
 								  </td>
 							</tr>
 						</c:forEach>
@@ -129,7 +125,7 @@ function takeblacklist(userId){
 			  yes: function(index){
 				  $.ajax({ 
 						type: "post", 
-						url: "${ctx}/rest/setting/deletePopular?id="+Id,
+						url: "${ctx}/rest/setting/deleteLinkUrl?id="+Id,
 						cache:false, 
 						async:false, // 此处必须同步
 						dataType: "json",
@@ -197,10 +193,10 @@ function takeblacklist(userId){
 	function preUpdate(Id){
 		layer.open({
 			type: 2,
-			title: ['修改热门关注'],
+			title: ['修改友情链接'],
 			shade: 0.3,
 			area: ['500px', '600px'],
-			content: ['${ctx}/rest/setting/toEditPage?id='+Id,'no']
+			content: ['${ctx}/rest/setting/toEditLinkUrlPage?id='+Id,'no']
 			});
 	}
 	//角色列表

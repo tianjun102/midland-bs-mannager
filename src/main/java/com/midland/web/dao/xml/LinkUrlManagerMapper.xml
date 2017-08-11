@@ -3,19 +3,22 @@
 <mapper namespace="com.midland.web.dao.LinkUrlManagerMapper" >
   <resultMap id="BaseResultMap" type="com.midland.web.model.LinkUrlManager" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
     <result column="link_name" property="linkName" jdbcType="VARCHAR" />
     <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
     <result column="contacts" property="contacts" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="isshow" property="isshow" jdbcType="INTEGER" />
     <result column="orderby" property="orderby" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="INTEGER"/>
+    <result column="cityName" property="cityName" jdbcType="VARCHAR" />
+    <result column="isDelete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.midland.web.model.LinkUrlManager" extends="BaseResultMap" >
     <result column="remarks" property="remarks" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, city_id, link_name, link_url, contacts, phone, isshow, orderby
+    id, city_id, link_name, link_url, contacts, phone, isshow, orderby,source,cityName
   </sql>
   <sql id="Blob_Column_List" >
     remarks
@@ -35,11 +38,11 @@
   <insert id="insert" parameterType="com.midland.web.model.LinkUrlManager" >
     insert into link_url_manager (id, city_id, link_name, 
       link_url, contacts, phone, 
-      isshow, orderby, remarks
+      isshow, orderby, remarks,source,cityName
       )
-    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{linkName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=VARCHAR}, #{linkName,jdbcType=VARCHAR},
       #{linkUrl,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{isshow,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER}, #{remarks,jdbcType=LONGVARCHAR}
+      #{isshow,jdbcType=INTEGER}, #{orderby,jdbcType=INTEGER}, #{remarks,jdbcType=LONGVARCHAR}, #{source,jdbcType=INTEGER},#{cityName,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.midland.web.model.LinkUrlManager" >
@@ -72,13 +75,19 @@
       <if test="remarks != null" >
         remarks,
       </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="cityName != null" >
+        cityName,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
       <if test="cityId != null" >
-        #{cityId,jdbcType=INTEGER},
+        #{cityId,jdbcType=VARCHAR},
       </if>
       <if test="linkName != null" >
         #{linkName,jdbcType=VARCHAR},
@@ -101,13 +110,19 @@
       <if test="remarks != null" >
         #{remarks,jdbcType=LONGVARCHAR},
       </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.LinkUrlManager" >
     update link_url_manager
     <set >
       <if test="cityId != null" >
-        city_id = #{cityId,jdbcType=INTEGER},
+        city_id = #{cityId,jdbcType=VARCHAR},
       </if>
       <if test="linkName != null" >
         link_name = #{linkName,jdbcType=VARCHAR},
@@ -130,30 +145,79 @@
       <if test="remarks != null" >
         remarks = #{remarks,jdbcType=LONGVARCHAR},
       </if>
+      <if test="source != null" >
+        remarks = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        cityName = #{cityName,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.midland.web.model.LinkUrlManager" >
     update link_url_manager
-    set city_id = #{cityId,jdbcType=INTEGER},
+    set city_id = #{cityId,jdbcType=VARCHAR},
       link_name = #{linkName,jdbcType=VARCHAR},
       link_url = #{linkUrl,jdbcType=VARCHAR},
       contacts = #{contacts,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       isshow = #{isshow,jdbcType=INTEGER},
       orderby = #{orderby,jdbcType=INTEGER},
-      remarks = #{remarks,jdbcType=LONGVARCHAR}
+      remarks = #{remarks,jdbcType=LONGVARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      cityName =#{cityName,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.midland.web.model.LinkUrlManager" >
     update link_url_manager
-    set city_id = #{cityId,jdbcType=INTEGER},
+    set city_id = #{cityId,jdbcType=VARCHAR},
       link_name = #{linkName,jdbcType=VARCHAR},
       link_url = #{linkUrl,jdbcType=VARCHAR},
       contacts = #{contacts,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       isshow = #{isshow,jdbcType=INTEGER},
-      orderby = #{orderby,jdbcType=INTEGER}
+      orderby = #{orderby,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER},
+      cityName =#{cityName,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectLinkUrlList" resultMap="BaseResultMap" parameterType="com.midland.web.model.LinkUrlManager">
+    SELECT <include refid="Base_Column_List"/> FROM link_url_manager WHERE isDelete = 1
+
+    <if test="cityId != null and cityId != '' " >
+     AND city_id = #{cityId,jdbcType=VARCHAR}
+    </if>
+    <if test="linkName != null and linkName != '' " >
+     AND link_name = #{linkName,jdbcType=VARCHAR}
+    </if>
+    <if test="linkUrl != null and linkUrl != '' " >
+     AND link_url = #{linkUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="contacts != null and contacts != '' " >
+     AND contacts = #{contacts,jdbcType=VARCHAR}
+    </if>
+    <if test="phone != null and phone != '' " >
+     AND phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="isshow != null" >
+     AND isshow = #{isshow,jdbcType=INTEGER}
+    </if>
+    <if test="orderby != null" >
+     AND orderby = #{orderby,jdbcType=INTEGER}
+    </if>
+    <if test="remarks != null and remarks != '' " >
+     AND remarks = #{remarks,jdbcType=LONGVARCHAR}
+    </if>
+    <if test="source != null and source != '' " >
+      AND source = #{source,jdbcType=INTEGER}
+    </if>
+    <if test="cityName != null and cityName != '' " >
+      AND source = #{cityName,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+
 </mapper>

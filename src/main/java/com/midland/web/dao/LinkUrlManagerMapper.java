@@ -1,5 +1,7 @@
 package com.midland.web.dao;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.LinkUrlManager;
 
 public interface LinkUrlManagerMapper {
@@ -16,4 +18,6 @@ public interface LinkUrlManagerMapper {
     int updateByPrimaryKeyWithBLOBs(LinkUrlManager record);
 
     int updateByPrimaryKey(LinkUrlManager record);
+
+    PageList<LinkUrlManager> selectLinkUrlList(LinkUrlManager linkUrlManager, PageBounds pageBounds);
 }

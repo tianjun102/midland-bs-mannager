@@ -175,7 +175,15 @@
 					</shiro:hasPermission>
 
 					<shiro:hasPermission name="noticelist">
-						<a id = "system2" href="${ctx}/rest//setting/showPopularIndex" target="contentF"><span>热门关注管理</span></a>
+						<a id = "system2" href="${ctx}/rest/setting/showPopularIndex" target="contentF"><span>热门关注管理</span></a>
+					</shiro:hasPermission>
+
+					<shiro:hasPermission name="noticelist">
+						<a id = "system2" href="${ctx}/rest/setting/showlinkUrlIndex" target="contentF"><span>友情链接管理</span></a>
+					</shiro:hasPermission>
+
+					<shiro:hasPermission name="noticelist">
+						<a id = "system2" href="${ctx}/rest/setting/bannerIndex" target="contentF"><span>Banner管理</span></a>
 					</shiro:hasPermission>
 
 					<shiro:hasPermission name="backupList">

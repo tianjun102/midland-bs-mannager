@@ -219,4 +219,51 @@
       video_url = #{videoUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectBannerList" resultMap="BaseResultMap" parameterType="com.midland.web.model.Banner">
+    SELECT <include refid="Base_Column_List"/> FROM banner WHERE isDelete = 1
+
+
+    <if test="bannerImg != null" >
+      AND banner_img = #{bannerImg,jdbcType=VARCHAR}
+    </if>
+    <if test="bannerLinkurl != null" >
+      AND banner_linkurl = #{bannerLinkurl,jdbcType=VARCHAR}
+    </if>
+    <if test="imgDesc != null" >
+      AND img_desc = #{imgDesc,jdbcType=VARCHAR}
+    </if>
+    <if test="sortOrder != null" >
+      AND sort_order = #{sortOrder,jdbcType=INTEGER}
+    </if>
+    <if test="enabled != null" >
+      AND enabled = #{enabled,jdbcType=INTEGER}
+    </if>
+    <if test="cityId != null" >
+      AND city_id = #{cityId,jdbcType=INTEGER}
+    </if>
+    <if test="source != null" >
+      AND source = #{source,jdbcType=INTEGER}
+    </if>
+    <if test="model != null" >
+      AND model = #{model,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime != null" >
+      AND start_time = #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endTime != null" >
+      AND end_time = #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="position != null" >
+      AND position = #{position,jdbcType=VARCHAR}
+    </if>
+    <if test="videoUrl != null" >
+      AND video_url = #{videoUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="detail != null" >
+      AND detail = #{detail,jdbcType=LONGVARCHAR}
+    </if>
+
+
+  </select>
 </mapper>

@@ -20,10 +20,10 @@
 	<div class="box"> 
 		<section class = "content">
 			<p class = "detail-title">
-				<span>热门关注链接管理</span>
+				<span>友情链接管理</span>
 				<a class = "setup"  target="contentF" onclick="toAddPage()">添加</a>
 			</p>
-		<form action="${ctx}/rest/setting/showPopularList" method="POST" id="searchForm"
+		<form action="${ctx}/rest/setting/showlinkUrlList" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
 				<li>
@@ -66,10 +66,10 @@
 				skin: 'layer-style',
 				area: ['500px','600px'],
 				shadeClose: false, //点击遮罩关闭
-				title:['创建用户'],
+				title:['新建友情链接'],
 				resize: false,
 				scrollbar:false,
-				content:['${ctx}/rest/setting/toAddPage', 'no']
+				content:['${ctx}/rest/setting/toAddLinkUrlPage', 'no']
 			});
 		}
 	</script>
