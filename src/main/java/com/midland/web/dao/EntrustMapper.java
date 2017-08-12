@@ -1,13 +1,13 @@
 package com.midland.web.dao;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.Entrust;
+
+import java.util.List;
 
 public interface EntrustMapper {
     int deleteByPrimaryKey(Integer id);
     
-    PageList<Entrust> entrustPage(Entrust record, PageBounds pageBounds);
+    List<Entrust> entrustPage(Entrust record);
 
     int insertSelective(Entrust record);
 

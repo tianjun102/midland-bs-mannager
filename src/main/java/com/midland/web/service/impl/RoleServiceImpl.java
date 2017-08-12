@@ -1,17 +1,5 @@
 package com.midland.web.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericDao;
 import com.midland.core.generic.GenericServiceImpl;
 import com.midland.web.dao.RoleMapper;
@@ -26,6 +14,14 @@ import com.midland.web.model.role.RoleExample.Criteria;
 import com.midland.web.model.role.RolePermission;
 import com.midland.web.model.user.UserRole;
 import com.midland.web.service.RoleService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 角色Service实现类
@@ -115,7 +111,7 @@ public class RoleServiceImpl extends GenericServiceImpl<Role, Integer> implement
 	}
 
 	@Override
-	public PageList<Role> selectByExampleAndPage(Role role, PageBounds pageBounds) {
+	public List<Role> selectByExampleAndPage(Role role) {
 		RoleExample example=new RoleExample();
 		Criteria criteria =example.createCriteria();
 		if(role!=null){
@@ -132,7 +128,7 @@ public class RoleServiceImpl extends GenericServiceImpl<Role, Integer> implement
 				criteria.andStateEqualTo(role.getState());
 			}
 		}
-		PageList<Role> list=roleMapper.selectByExampleAndPage(example,pageBounds);
+		List<Role> list=roleMapper.selectByExampleAndPage(example);
 		return list;
 	}
 

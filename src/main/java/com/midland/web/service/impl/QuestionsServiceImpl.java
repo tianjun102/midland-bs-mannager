@@ -1,11 +1,8 @@
 package com.midland.web.service.impl;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.dao.QuestionsMapper;
 import com.midland.web.model.Questions;
 import com.midland.web.service.QuestionsService;
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -48,8 +45,8 @@ public class QuestionsServiceImpl implements QuestionsService {
     }
     
     @Override
-    public PageList<Questions> questionPage(Questions questions, PageBounds pageBounds) {
-        return questionsMapper.questionPage(questions,pageBounds);
+    public List<Questions> questionPage(Questions questions) {
+        return questionsMapper.questionPage(questions);
     }
     
     @Override

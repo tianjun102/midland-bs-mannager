@@ -1,22 +1,9 @@
 package com.midland.web.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSONObject;
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.github.miemiedev.mybatis.paginator.domain.Paginator;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.Paginator;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.Permission;
 import com.midland.web.model.role.Role;
@@ -24,6 +11,17 @@ import com.midland.web.model.role.RolePermission;
 import com.midland.web.model.user.User;
 import com.midland.web.service.RoleService;
 import com.midland.web.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 角色控制器
@@ -70,9 +68,10 @@ public class RoleController {
 		if(pageSize==null||pageSize.equals("")){
 			pageSize = ContextEnums.PAGESIZE;
 		}
-		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
+
 		role.setState(1);//生效的
-		PageList<Role> roleList=roleService.selectByExampleAndPage(role,pageBounds);
+		PageHelper.startPage(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
+		Page<Role> roleList=(Page<Role>)roleService.selectByExampleAndPage(role);
 		Paginator paginator = roleList.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("roles", roleList);
@@ -137,14 +136,15 @@ public class RoleController {
 		if(pageSize==null||pageSize.equals("")){
 			pageSize =  ContextEnums.PAGESIZE;
 		}
-		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
-		PageList<User> users=userService.selectByExampleAndPage(null, pageBounds);//所有用户
+		PageHelper.startPage(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
+		Page<User> users=(Page<User>)userService.selectByExampleAndPage(null);//所有用户
     	
+		
     	
     	List<User> roleUsers= userService.selectUsersByRoleId(roleId);//用户的角色
     	model.addAttribute("role",roleInfo);
     	model.addAttribute("users",users);
-    	Paginator paginator = users.getPaginator();
+		Paginator paginator = users.getPaginator();
 		model.addAttribute("paginator", paginator);
 		
     	model.addAttribute("roleUsers",roleUsers);

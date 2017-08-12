@@ -1,19 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.LinkUrlManager;
+import java.util.List;
 
 public interface LinkUrlManagerMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(LinkUrlManager record);
+	LinkUrlManager selectById(Integer linkUrlManager);
 
-    int insertSelective(LinkUrlManager record);
+	int deleteById(Integer linkUrlManager);
 
-    LinkUrlManager selectByPrimaryKey(Integer id);
+	int updateById(LinkUrlManager linkUrlManager);
 
-    int updateByPrimaryKeySelective(LinkUrlManager record);
+	int insertLinkUrlManager(LinkUrlManager linkUrlManager);
 
-    int updateByPrimaryKeyWithBLOBs(LinkUrlManager record);
+	List<LinkUrlManager> findLinkUrlManagerList(LinkUrlManager linkUrlManager);
 
-    int updateByPrimaryKey(LinkUrlManager record);
 }

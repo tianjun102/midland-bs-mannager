@@ -4,12 +4,11 @@ import java.util.*;
 
 import javax.annotation.Resource;
 
+import com.github.pagehelper.Page;
 import com.midland.web.util.MidlandHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericDao;
 import com.midland.core.generic.GenericServiceImpl;
 import com.midland.core.util.ApplicationUtils;
@@ -82,8 +81,8 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
 	}
 
 	@Override
-	public PageList<User> selectByExampleAndPage(User user,PageBounds pageBounds){
-		final PageList<User> list=userMapper.selectByExampleAndPage(user,pageBounds);
+	public List<User> selectByExampleAndPage(User user){
+		final List<User> list=userMapper.selectByExampleAndPage(user);
 		return list;
 	}
 

@@ -1,13 +1,12 @@
 package com.midland.web.service.impl;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.dao.AppointmentMapper;
 import com.midland.web.model.appointment.Appointment;
 import com.midland.web.service.AppointmentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 预约看房Service实现类
@@ -38,8 +37,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
     
     @Override
-    public PageList<Appointment> appointmentPage(Appointment record, PageBounds pageBounds) {
-        return appointmentMapper.appointmentPage(record,pageBounds);
+    public List<Appointment> appointmentPage(Appointment record) {
+        return appointmentMapper.appointmentPage(record);
     }
     
     @Override

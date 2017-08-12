@@ -1,15 +1,12 @@
 package com.midland.web.dao;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Param;
-
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericDao;
 import com.midland.web.model.user.User;
 import com.midland.web.model.user.UserRole;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户Dao接口
@@ -45,11 +42,10 @@ public interface UserMapper extends GenericDao<User, Integer> {
     /**
      * 分页条件查询
      * 
-     * @param pageBounds
      * @param user
      * @return
      */
-    PageList<User> selectByExampleAndPage(User user,PageBounds pageBounds);
+    List<User> selectByExampleAndPage(User user);
 
     /**
      * 批量新增用户角色关系

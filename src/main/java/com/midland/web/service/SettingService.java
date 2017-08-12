@@ -1,7 +1,5 @@
 package com.midland.web.service;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.Area;
 import com.midland.web.model.Popular;
 
@@ -10,7 +8,7 @@ import java.util.Map;
 
 public interface SettingService {
 
-    public PageList<Popular> findPopularList(Popular popular , PageBounds pageBounds);
+    public List<Popular> findPopularList(Popular popular );
 
     public Popular findPopular(Popular popular);
 

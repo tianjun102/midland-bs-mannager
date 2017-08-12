@@ -35,12 +35,18 @@
                     <tr>
                         <td><input name="checkbox" id="checkbox" type="checkbox" value="${item.id }"/></td>
                         <td>${item.questionsTitle }</td>
-                        <td>${item.source }</td>
+                        <td> <c:if test="${item.source ==0 }">网站</c:if>
+                            <c:if test="${item.source ==1 }">微站</c:if></td>
                         <td>${item.questionTime }</td>
                         <td>${item.questionName }</td>
                         <td>${item.questionPhone }</td>
                         <td>${item.auditor }</td>
-                        <td>${item.status }</td>
+
+                        <td>
+                            <c:if test="${item.status ==0}">未审核</c:if>
+                            <c:if test="${item.status ==1}">审核通过</c:if>
+                            <c:if test="${item.status ==2}">审核失败</c:if>
+                        </td>
                         <td>
                             <c:choose>
                                 <c:when test="${item.status==0}">
@@ -109,10 +115,10 @@
     function viewQuestion(id) {
         layer.open({
             type: 2,
-            title: ['审核'],
+            title: ['查看回答'],
             shade: 0.3,
             area: ['1000px', '700px'],
-            content: ['${ctx}/rest/questions/toAudit?id=' + id , 'no']
+            content: ['${ctx}/rest/questions/to_view?id=' + id , 'no']
         });
     }
 function toAudit(id) {

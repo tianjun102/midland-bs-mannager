@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericDao;
 import com.midland.web.model.AuthRelation;
 import com.midland.web.model.Permission;
@@ -48,7 +46,6 @@ public interface RoleMapper extends GenericDao<Role, Integer> {
     /**
      * 通过用户id 查询用户 拥有的角色
      * 
-     * @param id
      * @return
      */
     List<Role> selectRolesByUserId(Integer userId);
@@ -57,10 +54,9 @@ public interface RoleMapper extends GenericDao<Role, Integer> {
      * 分页条件查询
      * 
      * @param example
-     * @param pageBounds
      * @return
      */
-    PageList<Role> selectByExampleAndPage(RoleExample example, PageBounds pageBounds);
+    List<Role> selectByExampleAndPage(RoleExample example);
 
 	List<RoleAuth> getListAuthid(RoleAuth roleAuth);
 

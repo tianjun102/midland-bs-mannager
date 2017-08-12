@@ -52,9 +52,9 @@
 				<ul>
 
 					<li style="padding-top:30px;">
-						<a target="contentF" class="public_btn bg2" style="margin-left: 70px;" id="save"
+						<a target="contentF" class="public_btn bg2" style="margin-left: 70px;"
 						   onclick="rejust()">拒绝</a>
-						<a target="contentF" class="public_btn bg2" style="margin-left: 70px;" id="save"
+						<a target="contentF" class="public_btn bg2" style="margin-left: 70px;"
 						   onclick="pass()">通过</a>
 						<a style="margin-left: 20px" class="public_btn bg3" id="cancel" onclick="closeWin();">取消</a>
 					</li>

@@ -1,9 +1,5 @@
 package com.midland.web.service;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.midland.core.generic.GenericService;
-import com.midland.web.model.Permission;
 import com.midland.web.model.Questions;
 
 import java.util.List;
@@ -21,6 +17,6 @@ public interface QuestionsService {
 	
 	int insertSelective(Questions record);
     Questions selectByPrimaryKey(Integer id);
-    PageList<Questions> questionPage(Questions questions, PageBounds pageBounds);
+    List<Questions> questionPage(Questions questions);
     int updateByPrimaryKeySelective(Questions record);
 }

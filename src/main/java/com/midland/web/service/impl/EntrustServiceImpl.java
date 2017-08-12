@@ -1,13 +1,12 @@
 package com.midland.web.service.impl;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.dao.EntrustMapper;
 import com.midland.web.model.Entrust;
 import com.midland.web.service.EntrustService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 预约看房Service实现类
@@ -38,8 +37,8 @@ public class EntrustServiceImpl implements EntrustService {
     }
     
     @Override
-    public PageList<Entrust> entrustPage(Entrust record, PageBounds pageBounds) {
-        return entrustMapper.entrustPage(record,pageBounds);
+    public List<Entrust> entrustPage(Entrust record) {
+        return entrustMapper.entrustPage(record);
     }
     
     @Override

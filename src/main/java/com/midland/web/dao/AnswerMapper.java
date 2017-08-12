@@ -1,19 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Answer;
-
 import java.util.List;
 
 public interface AnswerMapper {
-    int deleteByPrimaryKey(Integer id);
 
+	Answer selectById(Integer answer);
 
-    int insertSelective(Answer record);
+	int deleteById(Integer answer);
 
-    Answer selectByPrimaryKey(Integer id);
-    
-    List<Answer> selectByQuestionId(Integer questionId);
+	int updateById(Answer answer);
 
-    int updateByPrimaryKeySelective(Answer record);
+	int insertAnswer(Answer answer);
+
+	List<Answer> findAnswerList(Answer answer);
 
 }

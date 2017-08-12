@@ -1,7 +1,7 @@
 package com.midland.web.controller;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.Popular;
 import com.midland.web.service.SettingService;
@@ -38,14 +38,9 @@ private SettingService settingService;
         if(pageSize==null||pageSize.equals("")){
             pageSize = ContextEnums.PAGESIZE;
         }
-        PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
-/*      Map<String,String> parem = new HashMap<>();
-        parem.put("flag","sheet");
-        parem.put("cityId","085");
-        parem.put("areaId","R000010042");
-        Map result =  settingService.queryAreaByRedis(parem);*/
-
-        PageList<Popular> PopularList = settingService.findPopularList(popular,pageBounds);
+    
+        PageHelper.startPage(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
+        Page<Popular> PopularList =(Page<Popular>) settingService.findPopularList(popular);
         model.addAttribute("popularList",PopularList);
         model.addAttribute("paginator",PopularList.getPaginator());
 

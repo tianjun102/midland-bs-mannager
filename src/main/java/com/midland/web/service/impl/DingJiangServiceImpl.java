@@ -1,7 +1,7 @@
 package com.midland.web.service.impl;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.user.User;
 import com.midland.web.service.DingJiangService;
@@ -22,7 +22,7 @@ public class DingJiangServiceImpl implements DingJiangService{
 	private UserService userServiceImpl;
 	
 	@Override
-	public PageList<User> getUserList(User user, String pageSize, Model model, HttpServletRequest request) {
+	public Page<User> getUserList(User user, String pageSize, Model model, HttpServletRequest request) {
 		String pageNo = request.getParameter("pageNo");
 		
 		if(pageNo==null||pageNo.equals("")){
@@ -32,9 +32,8 @@ public class DingJiangServiceImpl implements DingJiangService{
 			
 			pageSize = ContextEnums.PAGESIZE;
 		}
-		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
-		
-		return userServiceImpl.selectByExampleAndPage(user,pageBounds);
+		PageHelper.startPage(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
+		return (Page<User>)userServiceImpl.selectByExampleAndPage(user);
 		
 	}
 }

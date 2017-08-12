@@ -1,7 +1,5 @@
 package com.midland.web.service.impl;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.redis.IBaseRedisTemplate;
 import com.midland.core.util.AppSetting;
 import com.midland.core.util.HttpUtils;
@@ -27,8 +25,8 @@ public class SettingServiceImpl implements SettingService {
     private PopularMapper popularMapper;
 
     @Override
-    public PageList<Popular> findPopularList(Popular popular, PageBounds pageBounds) {
-        return popularMapper.selectPropularList(popular, pageBounds);
+    public List<Popular> findPopularList(Popular popular) {
+        return popularMapper.selectPropularList(popular);
     }
 
     @Override

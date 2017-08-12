@@ -2,8 +2,6 @@ package com.midland.web.service;
 
 import java.util.List;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericService;
 import com.midland.web.model.user.User;
 
@@ -41,10 +39,9 @@ public interface UserService extends GenericService<User, Integer> {
     /**
      * 列表分页条件查询
      * @param user
-     * @param PageBounds
      * @return
      */
-    PageList<User> selectByExampleAndPage(User user,PageBounds PageBounds);
+    List<User> selectByExampleAndPage(User user);
    
 
     /**

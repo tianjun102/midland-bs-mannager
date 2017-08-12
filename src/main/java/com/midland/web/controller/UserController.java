@@ -1,22 +1,21 @@
 package com.midland.web.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.Paginator;
+import com.midland.core.util.AppSetting;
+import com.midland.core.util.ApplicationUtils;
+import com.midland.core.util.MD5Util;
+import com.midland.core.util.SmsUtil;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.enums.ContextEnums;
+import com.midland.web.model.role.Role;
+import com.midland.web.model.user.User;
+import com.midland.web.security.PermissionSign;
+import com.midland.web.security.RoleSign;
+import com.midland.web.service.RoleService;
+import com.midland.web.service.UserService;
 import com.midland.web.util.MidlandHelper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -33,21 +32,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.github.miemiedev.mybatis.paginator.domain.Paginator;
-import com.midland.core.util.AppSetting;
-import com.midland.core.util.ApplicationUtils;
-import com.midland.core.util.MD5Util;
-import com.midland.core.util.SmsUtil;
-import com.midland.web.enums.ContextEnums;
-import com.midland.web.model.role.Role;
-import com.midland.web.model.user.User;
-import com.midland.web.security.PermissionSign;
-import com.midland.web.security.RoleSign;
-import com.midland.web.service.RoleService;
-import com.midland.web.service.UserService;
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 用户控制器
@@ -223,9 +221,8 @@ public class UserController extends BaseController {
 			
 			pageSize = ContextEnums.PAGESIZE;
 		}
-		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo), Integer.valueOf(pageSize));
-		
-		PageList<User> userList=userService.selectByExampleAndPage(user,pageBounds);
+		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
+		Page<User> userList=(Page<User>)userService.selectByExampleAndPage(user);
 		Paginator paginator = userList.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("users", userList);

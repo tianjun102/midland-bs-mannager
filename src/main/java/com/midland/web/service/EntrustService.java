@@ -1,8 +1,8 @@
 package com.midland.web.service;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.Entrust;
+
+import java.util.List;
 
 public interface EntrustService {
     int deleteByPrimaryKey(Integer id);
@@ -11,7 +11,7 @@ public interface EntrustService {
 
     Entrust selectByPrimaryKey(Integer id);
     
-    PageList<Entrust> entrustPage(Entrust record, PageBounds pageBounds);
+    List<Entrust> entrustPage(Entrust record);
     
     int updateByPrimaryKeySelective(Entrust record);
 

@@ -1,11 +1,12 @@
 package com.midland.web.controller;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.github.miemiedev.mybatis.paginator.domain.Paginator;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.Paginator;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
-import com.midland.web.model.*;
+import com.midland.web.model.Entrust;
+import com.midland.web.model.EntrustLog;
 import com.midland.web.model.user.User;
 import com.midland.web.service.DingJiangService;
 import com.midland.web.service.EntrustLogService;
@@ -90,8 +91,8 @@ public class EntrustController extends BaseController{
 		if(pageSize==null||pageSize.equals("")){
 			pageSize = ContextEnums.PAGESIZE;
 		}
-		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
-		PageList<Entrust> result = entrustServiceImpl.entrustPage(record,pageBounds);
+		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
+		Page<Entrust> result =(Page<Entrust>) entrustServiceImpl.entrustPage(record);
 		Paginator paginator = result.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("entrusts", result);
@@ -175,7 +176,7 @@ public class EntrustController extends BaseController{
 	 */
 	@RequestMapping(value = "/redistribute_page", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getEntrustRedistribute(User user, Model model, HttpServletRequest request){
-		PageList<User> result = dingJiangServiceImpl.getUserList(user,"5", model, request);
+		Page<User> result = dingJiangServiceImpl.getUserList(user,"5", model, request);
 		Paginator paginator = result.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("users", result);

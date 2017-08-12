@@ -1,15 +1,13 @@
 package com.midland.web.service;
 
-import java.util.List;
-
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.core.generic.GenericService;
 import com.midland.web.model.AuthRelation;
 import com.midland.web.model.Permission;
 import com.midland.web.model.role.Role;
 import com.midland.web.model.role.RoleAuth;
 import com.midland.web.model.role.RolePermission;
+
+import java.util.List;
 
 /**
  * 角色 业务接口
@@ -31,10 +29,9 @@ public interface RoleService extends GenericService<Role, Integer> {
 	/**
 	 * 分页搜索查询
 	 * @param role
-	 * @param pageBounds
 	 * @return
 	 */
-	PageList<Role> selectByExampleAndPage(Role role, PageBounds pageBounds);
+	List<Role> selectByExampleAndPage(Role role);
 
 	/**
 	 * 条件查询获取对象

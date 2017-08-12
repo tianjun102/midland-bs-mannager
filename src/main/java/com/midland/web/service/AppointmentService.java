@@ -1,8 +1,8 @@
 package com.midland.web.service;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.appointment.Appointment;
+
+import java.util.List;
 
 public interface AppointmentService {
     int deleteByPrimaryKey(Integer id);
@@ -11,7 +11,7 @@ public interface AppointmentService {
 
     Appointment selectByPrimaryKey(Integer id);
     
-    PageList<Appointment> appointmentPage(Appointment record, PageBounds pageBounds);
+    List<Appointment> appointmentPage(Appointment record);
     
     int updateByPrimaryKeySelective(Appointment record);
 

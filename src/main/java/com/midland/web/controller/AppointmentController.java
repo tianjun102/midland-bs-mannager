@@ -1,8 +1,8 @@
 package com.midland.web.controller;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.github.miemiedev.mybatis.paginator.domain.Paginator;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.Paginator;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.appointment.AppointLog;
@@ -103,8 +103,8 @@ public class AppointmentController extends BaseController{
 		if(pageSize==null||pageSize.equals("")){
 			pageSize = ContextEnums.PAGESIZE;
 		}
-		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
-		PageList<Appointment> result = appointmentServiceImpl.appointmentPage(record,pageBounds);
+		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
+		Page<Appointment> result = (Page<Appointment>)appointmentServiceImpl.appointmentPage(record);
 		Paginator paginator = result.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("appoint", result);
@@ -177,7 +177,7 @@ public class AppointmentController extends BaseController{
 	 */
 	@RequestMapping(value = "/redistribute_page", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getAppointRedistribute(User user, Model model, HttpServletRequest request){
-		PageList<User> result = dingJiangServiceImpl.getUserList(user,"5", model, request);
+		Page<User> result = dingJiangServiceImpl.getUserList(user,"5", model, request);
 		Paginator paginator = result.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("users", result);

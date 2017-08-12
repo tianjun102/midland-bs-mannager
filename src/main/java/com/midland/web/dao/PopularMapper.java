@@ -1,9 +1,10 @@
 package com.midland.web.dao;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.Popular;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 @Repository
 public interface PopularMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,5 +19,5 @@ public interface PopularMapper {
 
     int updateByPrimaryKey(Popular record);
 
-    PageList<Popular> selectPropularList(Popular propular, PageBounds pageBounds);
+    List<Popular> selectPropularList(Popular propular);
 }

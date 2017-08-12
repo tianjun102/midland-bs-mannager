@@ -28,7 +28,9 @@
 			<ul class = "userinfo row">
 				<li><span>小区名：</span><input type="text" name="communityName" id="communityName" placeholder="请输入小区" /></li>
 				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
-				<li><span>分类：</span><input type="text" name="sellRent" id="sellRent" placeholder="请输入分类" /></li>
+				<li>
+					<span>分类：</span><input type="text" name="sellRent" id="sellRent" placeholder="请输入分类" />
+				</li>
 				<li><span>state：</span><input type="text" name="status" id="status" placeholder="请输入状态" /></li>
 				<li><span>来源：</span><input type="text" name="source" id="source" placeholder="请输入来源" /></li>
 				<li><span>预约时间</span><input class="Wdate half" id="time1"

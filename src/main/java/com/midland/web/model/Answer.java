@@ -2,74 +2,117 @@ package com.midland.web.model;
 
 import java.util.Date;
 
-public class Answer {
-    private Integer id;
+public class Answer{
+	/**
+	 * 回答表主键ID
+	 **/
+	private Integer id;
+	/**
+	 * 回答类容
+	 **/
+	private String answerArea;
+	/**
+	 * 回答时间
+	 **/
+	private Date answerTime;
+	/**
+	 * 回答人名字
+	 **/
+	private String answerName;
+	/**
+	 * 反对总数
+	 **/
+	private Integer againstNum;
+	/**
+	 * 支持总数
+	 **/
+	private Integer supportNum;
+	/**
+	 * 提问id 关联提问表id
+	 **/
+	private Integer questionsId;
 
-    private Date answerTime;
 
-    private String anwerName;
+	public Integer getId() {
+		return id;
+	}
 
-    private Integer againstnum;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private Integer supportnum;
+	public String getAnswerArea() {
+		return answerArea;
+	}
 
-    private Integer questionsId;
+	public void setAnswerArea(String answerArea) {
+		this.answerArea = answerArea;
+	}
 
-    private String answerArea;
+	public Date getAnswerTime() {
+		return answerTime;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setAnswerTime(Date answerTime) {
+		this.answerTime = answerTime;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public String getAnswerName() {
+		return answerName;
+	}
 
-    public Date getAnswerTime() {
-        return answerTime;
-    }
+	public void setAnswerName(String answerName) {
+		this.answerName = answerName;
+	}
 
-    public void setAnswerTime(Date answerTime) {
-        this.answerTime = answerTime;
-    }
+	public Integer getAgainstNum() {
+		return againstNum;
+	}
 
-    public String getAnwerName() {
-        return anwerName;
-    }
+	public void setAgainstNum(Integer againstNum) {
+		this.againstNum = againstNum;
+	}
 
-    public void setAnwerName(String anwerName) {
-        this.anwerName = anwerName == null ? null : anwerName.trim();
-    }
+	public Integer getSupportNum() {
+		return supportNum;
+	}
 
-    public Integer getAgainstnum() {
-        return againstnum;
-    }
+	public void setSupportNum(Integer supportNum) {
+		this.supportNum = supportNum;
+	}
 
-    public void setAgainstnum(Integer againstnum) {
-        this.againstnum = againstnum;
-    }
+	public Integer getQuestionsId() {
+		return questionsId;
+	}
 
-    public Integer getSupportnum() {
-        return supportnum;
-    }
+	public void setQuestionsId(Integer questionsId) {
+		this.questionsId = questionsId;
+	}
 
-    public void setSupportnum(Integer supportnum) {
-        this.supportnum = supportnum;
-    }
-
-    public Integer getQuestionsId() {
-        return questionsId;
-    }
-
-    public void setQuestionsId(Integer questionsId) {
-        this.questionsId = questionsId;
-    }
-
-    public String getAnswerArea() {
-        return answerArea;
-    }
-
-    public void setAnswerArea(String answerArea) {
-        this.answerArea = answerArea == null ? null : answerArea.trim();
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("Answer{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (answerArea != null) {
+			sb.append(", \"answerArea\":\"").append(answerArea).append("\"");
+		}
+		if (answerTime != null) {
+			sb.append(", \"answerTime\":\"").append(answerTime).append("\"");
+		}
+		if (answerName != null) {
+			sb.append(", \"answerName\":\"").append(answerName).append("\"");
+		}
+		if (againstNum != null) {
+			sb.append(", \"againstNum\":\"").append(againstNum).append("\"");
+		}
+		if (supportNum != null) {
+			sb.append(", \"supportNum\":\"").append(supportNum).append("\"");
+		}
+		if (questionsId != null) {
+			sb.append(", \"questionsId\":\"").append(questionsId).append("\"");
+		}
+		return sb.toString();
+	}
 }

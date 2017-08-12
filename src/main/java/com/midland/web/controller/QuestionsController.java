@@ -1,17 +1,16 @@
 package com.midland.web.controller;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.github.miemiedev.mybatis.paginator.domain.Paginator;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
+import com.midland.web.model.Answer;
 import com.midland.web.model.Questions;
-import com.midland.web.model.appointment.AppointLog;
-import com.midland.web.model.appointment.Appointment;
 import com.midland.web.model.user.User;
-import com.midland.web.service.*;
+import com.midland.web.service.AnswerService;
+import com.midland.web.service.QuestionsService;
 import com.midland.web.util.MidlandHelper;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +34,9 @@ public class QuestionsController extends BaseController{
 	@Autowired
 	private QuestionsService questionsServiceImpl;
 	
+	@Autowired
+	private AnswerService answerServiceImpl;
+	
 	Logger logger = LoggerFactory.getLogger(QuestionsController.class);
 	
 	@RequestMapping("/index")
@@ -56,6 +58,21 @@ public class QuestionsController extends BaseController{
 		}
 		return map;
 	}
+	
+	@RequestMapping("/answer/delete")
+	@ResponseBody
+	public Object deleteAnswerByPrimaryKey(Integer id) {
+		Map map = new HashMap<>();
+		try {
+			answerServiceImpl.deleteById(id);
+			map.put("state",0);
+		} catch (Exception e) {
+			logger.error("deleteAnswerByPrimaryKey {}",id,e);
+			map.put("state",-1);
+		}
+		return map;
+	}
+	
 	@RequestMapping("/add")
 	@ResponseBody
 	public Object addAppointment(Questions record) {
@@ -98,22 +115,25 @@ public class QuestionsController extends BaseController{
 		if(pageSize==null||pageSize.equals("")){
 			pageSize = ContextEnums.PAGESIZE;
 		}
-		PageBounds pageBounds = new PageBounds(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
-		PageList<Questions> result = questionsServiceImpl.questionPage(record,pageBounds);
-		Paginator paginator = result.getPaginator();
-		model.addAttribute("paginator", paginator);
-		model.addAttribute("questions", result);
+		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
+		Page<Questions> result = (Page<Questions>) questionsServiceImpl.questionPage(record);
+		model.addAttribute("paginator", result.getPaginator());
+		model.addAttribute("questions", result.getResult());
 		return "questions/questionsList";
 	}
 	
 	
 	
 	
-	@RequestMapping("/to_update")
-	public String toUpdateAppointment(int Id,Model model) {
-		Questions questions=questionsServiceImpl.selectByPrimaryKey(Id);
-		model.addAttribute("appointment",questions);
-		return "appointment/updateAppointInfo";
+	@RequestMapping("/to_view")
+	public String toUpdateAppointment(int id,Model model) throws Exception {
+		Questions questions=questionsServiceImpl.selectByPrimaryKey(id);
+		Answer answer = new Answer();
+		answer.setQuestionsId(id);
+		List<Answer> answerList = answerServiceImpl.findAnswerList(answer);
+		model.addAttribute("questions",questions);
+		model.addAttribute("answerList",answerList);
+		return "questions/updateViewQuestion";
 	}
 	
 	

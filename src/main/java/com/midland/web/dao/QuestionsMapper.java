@@ -1,7 +1,5 @@
 package com.midland.web.dao;
 
-import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.midland.web.model.Questions;
 
 import java.util.List;
@@ -12,7 +10,7 @@ public interface QuestionsMapper {
     int deleteByIds(Map<String,Object> map);
     int insertSelective(Questions record);
     Questions selectByPrimaryKey(Integer id);
-    PageList<Questions> questionPage(Questions questions,PageBounds pageBounds);
+    List<Questions> questionPage(Questions questions);
     int updateByPrimaryKeySelective(Questions record);
 
 }
