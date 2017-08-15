@@ -38,8 +38,18 @@ public class LinkUrlManager{
 	 * 排序字段
 	 **/
 	private Integer orderby;
-
-
+	
+	private Integer isDelete;
+	
+	
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+	
+	public void setIsDelete(Integer delete) {
+		isDelete = delete;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

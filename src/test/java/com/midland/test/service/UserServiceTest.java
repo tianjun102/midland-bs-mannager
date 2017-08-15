@@ -6,6 +6,7 @@ import com.github.pagehelper.Page;
 import com.midland.core.util.ApplicationUtils;
 import com.midland.core.feature.test.TestSupport;
 import com.midland.web.model.LinkUrlManager;
+import com.midland.web.service.JdbcService;
 import com.midland.web.service.LinkUrlManagerService;
 import com.midland.web.util.MidlandHelper;
 import com.midland.web.model.user.User;
@@ -24,8 +25,16 @@ public class UserServiceTest extends TestSupport {
     @Resource
     private UserService userService;
 
+     @Resource
+    private JdbcService jdbcService;
+
     
     @Test
+    public void dsfef(){
+        System.out.println(jdbcService.shiftDown("id","user",3));
+    }
+    
+   @Test
     public void sdfsf(){
         LinkUrlManager ob=new LinkUrlManager();
         try {

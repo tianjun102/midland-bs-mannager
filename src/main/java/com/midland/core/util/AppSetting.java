@@ -1,16 +1,18 @@
 package com.midland.core.util;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 public class AppSetting {
 	private static Properties prop = new Properties();    
     static{        
         try {
-            //加载appsetting.properties配置文件
-        	//prop.load(Config.class.getResourceAsStream("/appsetting.properties"));
-            prop.load(new InputStreamReader(Config.class.getClassLoader().getResourceAsStream("/properties/appsetting.properties"), "UTF-8"));
+            InputStream inputStream = AppSetting.class.getClassLoader().
+                    getResourceAsStream("/properties/appsetting.properties");
+            
+            prop.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }

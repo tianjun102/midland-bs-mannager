@@ -36,7 +36,7 @@ public class MidlandHelper {
 		if(rootJsonObject.getString("STATE").equals("SUCCESS")){
 			messageStr = rootJsonObject.getString("DATA");
 		}else{
-			messageStr = "";
+			return null;
 		}
 
 		List lists = JSON.parseObject(messageStr,List.class);

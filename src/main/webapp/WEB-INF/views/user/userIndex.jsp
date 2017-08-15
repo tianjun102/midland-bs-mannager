@@ -57,6 +57,8 @@
 				<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>
 			</ul>
 			</form>
+			<a href="#" onclick="exportUsers()">导出</a>
+
 			<div id="listDiv"></div>
 		</section>
 	</div>
@@ -69,6 +71,14 @@
 		 window.onload = function(){
              $('#searchForm').submit();
 		}
+
+
+        function exportUsers(){
+            var data = $("#searchForm").serialize();
+            debugger;
+            window.location.href="${ctx}/rest/user/export?"+data;
+        }
+
 
 		function toAddPage(){
 			layer.open({

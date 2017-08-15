@@ -69,6 +69,9 @@
           p:configLocation="classpath:spring/mybatis-config.xml"
           p:mapperLocations="classpath:com/midland/web/dao/xml/*.xml"/>
 
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+     </bean>
     <!-- spring与mybatis整合配置，扫描所有dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.midland.web.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactory"/>

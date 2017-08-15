@@ -1,6 +1,8 @@
 package com.midland.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.midland.web.controller.base.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,7 +15,7 @@ import java.util.Collections;
  * @since 2016年4月15日 下午4:16:34
  **/
 @Controller
-public class CommonController {
+public class CommonController extends BaseController{
     /**
      * 首页
      * 

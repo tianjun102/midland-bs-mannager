@@ -13,13 +13,23 @@ public class Popular {
 
     private String url;
 
-    private Integer provinceid;
+    private String provinceId;
 
-    private Integer cityid;
+    private String cityId;
 
-    private Integer areaid;
+    private String areaId;
 
-    private Integer sheetid;
+    private String sheetId;
+
+    private String provinceName;
+
+    private String cityName;
+
+    private String areaName;
+
+    private String sheetName;
+
+    private Integer isDelete;
 
     public Integer getId() {
         return id;
@@ -69,35 +79,75 @@ public class Popular {
         this.url = url == null ? null : url.trim();
     }
 
-    public Integer getProvinceid() {
-        return provinceid;
+    public String getProvinceId() {
+        return provinceId;
     }
 
-    public void setProvinceid(Integer provinceid) {
-        this.provinceid = provinceid;
+    public void setProvinceId(String provinceId) {
+        this.provinceId = provinceId;
     }
 
-    public Integer getCityid() {
-        return cityid;
+    public String getCityId() {
+        return cityId;
     }
 
-    public void setCityid(Integer cityid) {
-        this.cityid = cityid;
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 
-    public Integer getAreaid() {
-        return areaid;
+    public String getAreaId() {
+        return areaId;
     }
 
-    public void setAreaid(Integer areaid) {
-        this.areaid = areaid;
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
     }
 
-    public Integer getSheetid() {
-        return sheetid;
+    public String getSheetId() {
+        return sheetId;
     }
 
-    public void setSheetid(Integer sheetid) {
-        this.sheetid = sheetid;
+    public void setSheetId(String sheetId) {
+        this.sheetId = sheetId;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public String getSheetName() {
+        return sheetName;
+    }
+
+    public void setSheetName(String sheetName) {
+        this.sheetName = sheetName;
     }
 }

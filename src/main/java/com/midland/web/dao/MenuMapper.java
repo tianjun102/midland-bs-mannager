@@ -1,17 +1,19 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Menu;
+import java.util.List;
 
 public interface MenuMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Menu record);
+	Menu selectById(Integer menu);
+	List<Menu> selectByParentId(Integer menu);
 
-    int insertSelective(Menu record);
+	int deleteById(Integer menu);
 
-    Menu selectByPrimaryKey(Integer id);
+	int updateById(Menu menu);
 
-    int updateByPrimaryKeySelective(Menu record);
+	int insertMenu(Menu menu);
 
-    int updateByPrimaryKey(Menu record);
+	List<Menu> findMenuList(Menu menu);
+
 }

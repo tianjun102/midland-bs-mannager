@@ -10,19 +10,23 @@ import com.midland.core.util.MD5Util;
 import com.midland.core.util.SmsUtil;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
+import com.midland.web.model.Menu;
 import com.midland.web.model.role.Role;
 import com.midland.web.model.user.User;
 import com.midland.web.security.PermissionSign;
 import com.midland.web.security.RoleSign;
+import com.midland.web.service.MenuService;
 import com.midland.web.service.RoleService;
 import com.midland.web.service.UserService;
 import com.midland.web.util.MidlandHelper;
+import com.midland.web.util.PoiExcelExport;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
@@ -41,10 +45,7 @@ import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -62,7 +63,8 @@ public class UserController extends BaseController {
     
     @Resource
 	private RoleService roleService;
-	
+	@Autowired
+	private MenuService menuServiceImpl;
     
     @Resource
 	private RedisTemplate<String, Object> redisTemplate;
@@ -181,8 +183,30 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/left", method = {RequestMethod.GET,RequestMethod.POST})
-    public String left(Model model,HttpSession session) {
+    public String left(Model model,HttpSession session) throws Exception {
+    	//父菜单
+    	List<Menu> menusTemp = new ArrayList<>();
+    	List<Menu> menus = new ArrayList<>();
     	
+	    List<Menu> menuRootList = menuServiceImpl.findMenuList(new Menu());
+	    for (Menu temp : menuRootList){
+		    if (temp.getParentId() == 0){
+			    menusTemp.add(temp);
+		    }
+	    }
+	    
+	    for (Menu temp : menusTemp){
+	    	List<Menu> menuTemp = new ArrayList<>();
+	    	//遍历子菜单
+	        for (Menu menu : menuRootList){
+	            if (menu.getParentId() == temp.getId()){
+				    menuTemp.add(menu);
+			    }
+		    }
+		    temp.setMenuChild(menuTemp);
+		    menus.add(temp);
+	    }
+	    model.addAttribute("items",menus);
         return "left";
     }
     /**
@@ -726,6 +750,18 @@ public class UserController extends BaseController {
         return "拥有user:create权限,能访问";
     }
     
+    
+    @RequestMapping("/export")
+    public void userInfoExportExcel(User user,HttpServletResponse response){
+	    List<User> dataList = userService.selectUserList(user);
+	    PoiExcelExport pee = new PoiExcelExport(response,"用户","sheet1");
+	    //调用
+	    String titleColumn[] = {"id","username","userCnName","userType","state"};
+	    String titleName[] = {"用户id","用户名","昵称","用户类型","状态"};
+	    int titleSize[] = {13,13,13,13,13};
+	    //其他设置 set方法可全不调用
+	    pee.wirteExcel(titleColumn, titleName, titleSize, dataList);
+    }
     
     
     

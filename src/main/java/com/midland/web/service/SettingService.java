@@ -1,6 +1,8 @@
 package com.midland.web.service;
 
 import com.midland.web.model.Area;
+import com.midland.web.model.Banner;
+import com.midland.web.model.LinkUrlManager;
 import com.midland.web.model.Popular;
 
 import java.util.List;
@@ -20,7 +22,32 @@ public interface SettingService {
 
     public Map<String, List<Area>> queryAreaByRedis(Map<String,String> parem);
 
+    /**
+     * 友情链接
+     * @param linkUrlManager
+     * @return
+     */
 
+    public List<LinkUrlManager> findLinkUrlList(LinkUrlManager linkUrlManager );
+
+    public LinkUrlManager findLinkUrlManager(LinkUrlManager linkUrlManager);
+
+    public int updateLinkUrlManager(LinkUrlManager linkUrlManager);
+
+    public int insertLinkUrlManage(LinkUrlManager linkUrlManager);
+
+
+    /**
+     * Banner管理
+     */
+
+    public List<Banner> findBannerList(Banner banner );
+
+    public Banner findBanner(Banner banner);
+
+    public int updateBanner(Banner banner);
+
+    public int insertBanner(Banner banner);
 
 
 }

@@ -756,7 +756,7 @@ body .layer-style .layui-layer-title {
 body .layer-style .layui-layer-btn .layui-layer-btn0 {
 	font-size: 14px;
 	color: #ffffff;
-	background-color: #dc000e;
+	background-color: #ffd200;
 	width: 120px;
 	height: 38px;
 	line-height: 38px;
@@ -766,7 +766,7 @@ body .layer-style .layui-layer-btn .layui-layer-btn0 {
 	text-indent: 0;
 }
 body .layer-style .layui-layer-btn .layui-layer-btn0:hover {
-	background-color: #ca0000;
+	background-color: #ffd200;
 }
 body .layer-style .layui-layer-btn .layui-layer-btn1 {
 	font-size: 14px;

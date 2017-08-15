@@ -11,6 +11,7 @@
 
 
 <div class = "table-responsive m40">
+
 				<table class="table table-bordered table-add">
 	 				<thead>
 						<tr>
@@ -36,8 +37,8 @@
 								<td>${cust.username }</td>
 								<td>${cust.phone }</td>
 								<td>${cust.createTime }</td>
-								<td> <c:if test="${appoint.source ==0 }">网站</c:if>
-									<c:if test="${appoint.source ==1 }">微站</c:if></td>
+								<td> <c:if test="${cust.source ==0 }">网站</c:if>
+									<c:if test="${cust.source ==1 }">微站</c:if></td>
 								<td>${cust.auditStatus }</td>
 								<td>${cust.auditName }</td>
 								<td>${cust.auditTime }</td>
@@ -91,6 +92,8 @@
 <script type="text/javascript">
 	//删除
     //修改
+
+
     function viewRealRegistration(userId){
         layer.open({
             type: 2,
@@ -100,6 +103,8 @@
             content: ['${ctx}/rest/user/findUser?userId='+userId+'&flag=1','no']
         });
     }
+
+
 
 function takeblacklist(userId){
         layer.open({

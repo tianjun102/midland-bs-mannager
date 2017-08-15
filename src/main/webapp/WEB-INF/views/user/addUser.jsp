@@ -23,6 +23,27 @@
         }
     </style>
 
+    <style type="text/css">
+        .content ul.userinfo>li {
+            float: none !important;
+            margin-left: 20px;
+            padding-top: 20px;
+        }
+    </style>
+
+    <style type="text/css">
+        .content ul.userinfo>li {
+            float: none !important;
+            margin-left: 20px;
+            padding-top: 20px;
+        }
+
+
+        .dropdown {
+            width: 268px !important;
+        }
+    </style>
+
 </head>
 <body>
 <section class="content" style="border:none;">

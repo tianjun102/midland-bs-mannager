@@ -2,6 +2,8 @@ package com.midland.web.dao;
 
 import com.midland.web.model.Banner;
 
+import java.util.List;
+
 public interface BannerMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,6 @@ public interface BannerMapper {
     int updateByPrimaryKeyWithBLOBs(Banner record);
 
     int updateByPrimaryKey(Banner record);
+
+    List<Banner> selectBannerList(Banner banner);
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.Paginator;
+import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.Permission;
 import com.midland.web.model.role.Role;
@@ -30,7 +31,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/role")
-public class RoleController {
+public class RoleController extends BaseController {
 
 	@Resource
 	private RoleService roleService;
