@@ -1,8 +1,6 @@
 package com.midland.web.model;
 
 
-import java.util.List;
-
 public class Menu{
 	/**
 	 * 菜单表主键
@@ -16,6 +14,11 @@ public class Menu{
 	 * 城市id
 	 **/
 	private Integer cityId;
+	/**
+	 * 城市名称
+	 **/
+	private String city;
+	
 	/**
 	 * 0=pc网站；1=微站
 	 **/
@@ -53,19 +56,16 @@ public class Menu{
 	 **/
 	private Integer source;
 	
-	/**
-	 * 下级菜单
-	 */
-	private List<Menu> menuChilds;
 	
 	
-	public List<Menu> getMenuChilds() {
-		return menuChilds;
+	public String getCity() {
+		return city;
 	}
 	
-	public void setMenuChild(List<Menu> menuChilds) {
-		this.menuChilds = menuChilds;
+	public void setCity(String city) {
+		this.city = city;
 	}
+	
 	
 	public Integer getId() {
 		return id;

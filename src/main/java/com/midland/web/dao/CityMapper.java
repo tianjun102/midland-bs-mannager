@@ -1,17 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.City;
+import java.util.List;
 
 public interface CityMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(City record);
+	City selectById(Integer city);
 
-    int insertSelective(City record);
+	int deleteById(Integer city);
 
-    City selectByPrimaryKey(Integer id);
+	int updateById(City city);
 
-    int updateByPrimaryKeySelective(City record);
+	int insertCity(City city);
 
-    int updateByPrimaryKey(City record);
+	List<City> findCityList(City city);
+
 }

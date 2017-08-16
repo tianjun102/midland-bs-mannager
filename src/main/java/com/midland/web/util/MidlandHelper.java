@@ -2,8 +2,11 @@ package com.midland.web.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.midland.web.enums.ContextEnums;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +23,25 @@ public class MidlandHelper {
 		long intTime = System.currentTimeMillis();
 		DateFormat format = new SimpleDateFormat(COMMON_DATE);
 		return format.format(intTime);
+	}
+	
+	
+	/**
+	 * request 包含 pageNo，pageSize
+	 * @param request
+	 */
+	public  static void doPage(HttpServletRequest request) {
+		String pageNo = request.getParameter("pageNo");
+		String pageSize = request.getParameter("pageSize");
+		
+		if(pageNo==null||pageNo.equals("")){
+			pageNo = ContextEnums.PAGENO;
+		}
+		if(pageSize==null||pageSize.equals("")){
+			
+			pageSize = ContextEnums.PAGESIZE;
+		}
+		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
 	}
 
 	/**

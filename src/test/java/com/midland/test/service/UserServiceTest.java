@@ -29,10 +29,6 @@ public class UserServiceTest extends TestSupport {
     private JdbcService jdbcService;
 
     
-    @Test
-    public void dsfef(){
-        System.out.println(jdbcService.shiftDown("id","user",3));
-    }
     
    @Test
     public void sdfsf(){

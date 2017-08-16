@@ -21,203 +21,207 @@
 	<!--左侧导航-->
 	<nav class="nav">
 
-		<c:forEach items="${items}" var="item">
-			<shiro:hasPermission name="custManage">
-				<dl class="list-left1">
-					<dt>
-						<a href="javascript:;"
-						   dota="url(${ctx}/assets/img/01.png) no-repeat 20px center"
-						   data-img="url(${ctx}/assets/img/01_w.png) no-repeat 20px center">${item.menuName}<span
-								class="glyphicon glyphicon-menu-right"></span></a>
-					</dt>
-					<dd>
-						<c:forEach items="${item.menuChilds}" var="s" >
-							<shiro:hasPermission name="arealist">
-								<a id = "areaIndex" href="${ctx}/rest/${s.url}" target="contentF"><span>${s.menuName}</span></a>
-							</shiro:hasPermission>
-						</c:forEach>
+		<%--<c:forEach items="${items}" var="item">--%>
+			<%--<shiro:hasPermission name="custManage">--%>
+				<%--<dl class="list-left1">--%>
+					<%--<dt>--%>
+						<%--<a href="javascript:;"--%>
+						   <%--dota="url(${ctx}/assets/img/01.png) no-repeat 20px center"--%>
+						   <%--data-img="url(${ctx}/assets/img/01_w.png) no-repeat 20px center">${item.menuName}<span--%>
+								<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
+					<%--</dt>--%>
+					<%--<dd>--%>
+						<%--<c:forEach items="${item.menuChilds}" var="s" >--%>
+							<%--<shiro:hasPermission name="arealist">--%>
+								<%--<a id = "areaIndex" href="${ctx}/rest/${s.url}" target="contentF"><span>${s.menuName}</span></a>--%>
+							<%--</shiro:hasPermission>--%>
+						<%--</c:forEach>--%>
 
-					</dd>
-				</dl>
-			</shiro:hasPermission>
-		</c:forEach>
+					<%--</dd>--%>
+				<%--</dl>--%>
+			<%--</shiro:hasPermission>--%>
+		<%--</c:forEach>--%>
 
 
 
-		<%--<shiro:hasPermission name="custManage">--%>
-			<%--<dl class="list-left1">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/01.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/01_w.png) no-repeat 20px center">预约管理<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="arealist">--%>
-						<%--<a id = "areaIndex" href="${ctx}/rest/appoint/index" target="contentF"><span>预约记录</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="custlist">--%>
-						<%--<a id = "custIndex" href="${ctx}/rest/cust/custIndex" target="contentF"><span>客户列表</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="product">--%>
-			<%--<dl class="list-left2">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/02.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/02_w.png) no-repeat 20px center">资讯管理<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="categoryList">--%>
-						<%--<a id = "showCategoryIndex" href="${ctx}/rest/product/showCategoryIndex" target="contentF"><span>分类</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="productList">--%>
-						<%--<a id = "showProductIndex" href="${ctx}/rest/product/showProductIndex" target="contentF"><span>产品列表</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="kctzdList">--%>
-						<%--<a id = "showKctzdIndex" href="${ctx}/rest/stock/showKctzdIndex" target="contentF"><span>库存调整单</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="queryList">--%>
-						<%--<a id = "stockQueryIndex" href="${ctx}/rest/stock/stockQueryIndex" target="contentF"><span>库存查询</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="distPlanList">--%>
-						<%--<a id = "showDistPlanIndex" href="${ctx}/rest/distPlan/showDistPlanIndex" target="contentF"><span>产品分销区域</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="noticelist">--%>
-			<%--<dl class="list-left3">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/03.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/03_w.png) no-repeat 20px center">委托管理<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "enterPromotionIndex" href="${ctx}/rest/entrust/index" target="contentF"><span>委托记录</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="orderInfo">--%>
-			<%--<dl class="list-left4">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/04.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/04_w.png) no-repeat 20px center">买房助手<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="orderInfoList">--%>
-						<%--<a id = "showOrderInfoIndex" href="${ctx}/rest/questions/index" target="contentF"><span>问答管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="settlement">--%>
-			<%--<dl class="list-left5">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/05.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/05_w.png) no-repeat 20px center">行情信息管理<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="settlementList">--%>
-						<%--<a id = "settlementIndex" target="contentF" href="${ctx}/rest/settlement/settlementIndex"><span>行情信息列表</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="dataTable">--%>
-			<%--<dl class="list-left6">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/06.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/06_w.png) no-repeat 20px center">市场调究管理<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="showCustDataTable">--%>
-						<%--<a id = "report1" href="${ctx}/rest/dataTable/showCustDataTable" target="contentF"><span>市场调究列表</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="noticelist">--%>
-			<%--<dl class="list-left7">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/07.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/07_w.png) no-repeat 20px center">内容管理<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "content1" href="${ctx}/rest/class/index" target="contentF"><span>栏目管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "content2" href="${ctx}/rest/activity/index" target="contentF"><span>活动管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "content3" href="${ctx}/rest/ad/listindex" target="contentF"><span>广告管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "content4" href="${ctx}/rest/banner/bannerindex" target="contentF"><span>Banner管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
-		<%--<shiro:hasPermission name="systemManage">--%>
-			<%--<dl class="list-left8">--%>
-				<%--<dt>--%>
-					<%--<a href="javascript:;"--%>
-						<%--dota="url(${ctx}/assets/img/08.png) no-repeat 20px center"--%>
-						<%--data-img="url(${ctx}/assets/img/08_w.png) no-repeat 20px center">系统管理<span--%>
-						<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-				<%--</dt>--%>
-				<%--<dd>--%>
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "system1" href="${ctx}/rest/notice/noticeIndex" target="contentF"><span>公告管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "system2" href="${ctx}/rest/product/rcms" target="contentF"><span>系统设置</span></a>--%>
-					<%--</shiro:hasPermission>--%>
+		<shiro:hasPermission name="custManage">
+			<dl class="list-left1">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/01.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/01_w.png) no-repeat 20px center">预约管理<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="arealist">
+						<a id = "areaIndex" href="${ctx}/rest/appoint/index" target="contentF"><span>预约记录</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="custlist">
+						<a id = "custIndex" href="${ctx}/rest/cust/custIndex" target="contentF"><span>客户列表</span></a>
+					</shiro:hasPermission>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="product">
+			<dl class="list-left2">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/02.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/02_w.png) no-repeat 20px center">资讯管理<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="categoryList">
+						<a id = "showCategoryIndex" href="${ctx}/rest/product/showCategoryIndex" target="contentF"><span>分类</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="productList">
+						<a id = "showProductIndex" href="${ctx}/rest/product/showProductIndex" target="contentF"><span>产品列表</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="kctzdList">
+						<a id = "showKctzdIndex" href="${ctx}/rest/stock/showKctzdIndex" target="contentF"><span>库存调整单</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="queryList">
+						<a id = "stockQueryIndex" href="${ctx}/rest/stock/stockQueryIndex" target="contentF"><span>库存查询</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="distPlanList">
+						<a id = "showDistPlanIndex" href="${ctx}/rest/distPlan/showDistPlanIndex" target="contentF"><span>产品分销区域</span></a>
+					</shiro:hasPermission>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="noticelist">
+			<dl class="list-left3">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/03.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/03_w.png) no-repeat 20px center">委托管理<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="noticelist">
+						<a id = "enterPromotionIndex" href="${ctx}/rest/entrust/index" target="contentF"><span>委托记录</span></a>
+					</shiro:hasPermission>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="orderInfo">
+			<dl class="list-left4">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/04.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/04_w.png) no-repeat 20px center">买房助手<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="orderInfoList">
+						<a id = "showOrderInfoIndex" href="${ctx}/rest/questions/index" target="contentF"><span>问答管理</span></a>
+					</shiro:hasPermission>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="settlement">
+			<dl class="list-left5">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/05.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/05_w.png) no-repeat 20px center">行情信息管理<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="settlementList">
+						<a id = "settlementIndex" target="contentF" href="${ctx}/rest/settlement/settlementIndex"><span>行情信息列表</span></a>
+					</shiro:hasPermission>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="dataTable">
+			<dl class="list-left6">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/06.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/06_w.png) no-repeat 20px center">市场调究管理<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="showCustDataTable">
+						<a id = "report1" href="${ctx}/rest/dataTable/showCustDataTable" target="contentF"><span>市场调究列表</span></a>
+					</shiro:hasPermission>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="noticelist">
+			<dl class="list-left7">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/07.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/07_w.png) no-repeat 20px center">内容管理<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="noticelist">
+						<a id = "content1" href="${ctx}/rest/class/index" target="contentF"><span>栏目管理</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="noticelist">
+						<a id = "content2" href="${ctx}/rest/activity/index" target="contentF"><span>活动管理</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="noticelist">
+						<a id = "content3" href="${ctx}/rest/ad/listindex" target="contentF"><span>广告管理</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="noticelist">
+						<a id = "content4" href="${ctx}/rest/banner/bannerindex" target="contentF"><span>Banner管理</span></a>
+					</shiro:hasPermission>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
+		<shiro:hasPermission name="systemManage">
+			<dl class="list-left8">
+				<dt>
+					<a href="javascript:;"
+						dota="url(${ctx}/assets/img/08.png) no-repeat 20px center"
+						data-img="url(${ctx}/assets/img/08_w.png) no-repeat 20px center">系统管理<span
+						class="glyphicon glyphicon-menu-right"></span></a>
+				</dt>
+				<dd>
+					<shiro:hasPermission name="noticelist">
+						<a id = "system1" href="${ctx}/rest/notice/noticeIndex" target="contentF"><span>公告管理</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="noticelist">
+						<a id = "system2" href="${ctx}/rest/product/rcms" target="contentF"><span>系统设置</span></a>
+					</shiro:hasPermission>
 
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "system2" href="${ctx}/rest/setting/showPopularIndex" target="contentF"><span>热门关注管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
+					<shiro:hasPermission name="noticelist">
+						<a id = "system2" href="${ctx}/rest/setting/showPopularIndex" target="contentF"><span>热门关注管理</span></a>
+					</shiro:hasPermission>
 
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "system2" href="${ctx}/rest/setting/showlinkUrlIndex" target="contentF"><span>友情链接管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
+					<shiro:hasPermission name="noticelist">
+						<a id = "system2" href="${ctx}/rest/setting/showlinkUrlIndex" target="contentF"><span>友情链接管理</span></a>
+					</shiro:hasPermission>
 
-					<%--<shiro:hasPermission name="noticelist">--%>
-						<%--<a id = "system2" href="${ctx}/rest/setting/bannerIndex" target="contentF"><span>Banner管理</span></a>--%>
-					<%--</shiro:hasPermission>--%>
+					<shiro:hasPermission name="noticelist">
+						<a id = "system2" href="${ctx}/rest/setting/bannerIndex" target="contentF"><span>Banner管理</span></a>
+					</shiro:hasPermission>
 
-					<%--<shiro:hasPermission name="backupList">--%>
-						<%--<a id = "system3" href="${ctx}/rest/dataBackup/index" target="contentF"><span>数据备份</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="userList">--%>
-						<%--<a id = "system4" href="${ctx}/rest/user/userIndex" target="contentF"><span>用户列表</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="rolelist">--%>
-						<%--<a id = "system5" href="${ctx}/rest/role/roleIndex" target="contentF"><span>角色列表</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-					<%--<shiro:hasPermission name="sysLoglist">--%>
-						<%--<a id = "system6" href="${ctx}/rest/sysLog/sysLogIndex" target="contentF"><span>系统日志</span></a>--%>
-					<%--</shiro:hasPermission>--%>
-						<%--<a id = "system7" href="${ctx}/rest/user/toModifyPwdPage" target="contentF"><span>修改密码</span></a>--%>
-						<%--<a id = "system8" href="${ctx}/rest/user/about" target="contentF"><span>关于平台</span></a>--%>
-				<%--</dd>--%>
-			<%--</dl>--%>
-		<%--</shiro:hasPermission>--%>
+					<shiro:hasPermission name="backupList">
+						<a id = "system3" href="${ctx}/rest/dataBackup/index" target="contentF"><span>数据备份</span></a>
+					</shiro:hasPermission>
+
+					<shiro:hasPermission name="noticelist">
+						<a id = "system1" href="${ctx}/rest/menu/index" target="contentF"><span>菜单管理</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="userList">
+						<a id = "system4" href="${ctx}/rest/user/userIndex" target="contentF"><span>用户列表</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="rolelist">
+						<a id = "system5" href="${ctx}/rest/role/roleIndex" target="contentF"><span>角色列表</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="sysLoglist">
+						<a id = "system6" href="${ctx}/rest/sysLog/sysLogIndex" target="contentF"><span>系统日志</span></a>
+					</shiro:hasPermission>
+						<a id = "system7" href="${ctx}/rest/user/toModifyPwdPage" target="contentF"><span>修改密码</span></a>
+						<a id = "system8" href="${ctx}/rest/user/about" target="contentF"><span>关于平台</span></a>
+				</dd>
+			</dl>
+		</shiro:hasPermission>
 	</nav>
 	<script type="text/javascript"
 		src="${ctx}/assets/scripts/jquery.min.js"></script>

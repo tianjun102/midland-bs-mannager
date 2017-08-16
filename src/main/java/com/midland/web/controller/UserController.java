@@ -184,29 +184,29 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/left", method = {RequestMethod.GET,RequestMethod.POST})
     public String left(Model model,HttpSession session) throws Exception {
-    	//父菜单
-    	List<Menu> menusTemp = new ArrayList<>();
-    	List<Menu> menus = new ArrayList<>();
-    	
-	    List<Menu> menuRootList = menuServiceImpl.findMenuList(new Menu());
-	    for (Menu temp : menuRootList){
-		    if (temp.getParentId() == 0){
-			    menusTemp.add(temp);
-		    }
-	    }
-	    
-	    for (Menu temp : menusTemp){
-	    	List<Menu> menuTemp = new ArrayList<>();
-	    	//遍历子菜单
-	        for (Menu menu : menuRootList){
-	            if (menu.getParentId() == temp.getId()){
-				    menuTemp.add(menu);
-			    }
-		    }
-		    temp.setMenuChild(menuTemp);
-		    menus.add(temp);
-	    }
-	    model.addAttribute("items",menus);
+//    	//父菜单
+//    	List<Menu> menusTemp = new ArrayList<>();
+//    	List<Menu> menus = new ArrayList<>();
+//
+//	    List<Menu> menuRootList = menuServiceImpl.findMenuList(new Menu());
+//	    for (Menu temp : menuRootList){
+//		    if (temp.getParentId() == 0){
+//			    menusTemp.add(temp);
+//		    }
+//	    }
+//
+//	    for (Menu temp : menusTemp){
+//	    	List<Menu> menuTemp = new ArrayList<>();
+//	    	//遍历子菜单
+//	        for (Menu menu : menuRootList){
+//	            if (menu.getParentId() == temp.getId()){
+//				    menuTemp.add(menu);
+//			    }
+//		    }
+//		    temp.setMenuChild(menuTemp);
+//		    menus.add(temp);
+//	    }
+//	    model.addAttribute("items",menus);
         return "left";
     }
     /**
@@ -227,30 +227,22 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/userList", method = {RequestMethod.GET,RequestMethod.POST})
     public String selectUserList(User user,Model model,HttpServletRequest request){
-	    String pageSize = request.getParameter("pageSize");
-	    getUserList(user,pageSize, model, request);
+	    getUserList(user,model, request);
     	return "user/userlist";
     }
 	
 	
 	
 	
-	public void getUserList(User user,String pageSize, Model model, HttpServletRequest request) {
-		String pageNo = request.getParameter("pageNo");
-		
-		if(pageNo==null||pageNo.equals("")){
-			pageNo = ContextEnums.PAGENO;
-		}
-		if(pageSize==null||pageSize.equals("")){
-			
-			pageSize = ContextEnums.PAGESIZE;
-		}
-		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
+	public void getUserList(User user,Model model, HttpServletRequest request) {
+		MidlandHelper.doPage(request);
 		Page<User> userList=(Page<User>)userService.selectByExampleAndPage(user);
 		Paginator paginator = userList.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("users", userList);
 	}
+	
+	
 	
 	
 	/**

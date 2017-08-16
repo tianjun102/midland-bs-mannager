@@ -15,10 +15,11 @@
 		<result column="position" property="position" jdbcType="INTEGER" />
 		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
 		<result column="source" property="source" jdbcType="INTEGER" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,icon_img,city_id,platform,menu_name,click_num,orderby,url,isshow,position,parent_id,source
+		menu.id,icon_img,city_id,platform,menu_name,click_num,orderby,url,isshow,position,menu.parent_id,source
 	</sql>
 
 	<select id="selectById" resultMap="BaseResultMap">
@@ -47,9 +48,10 @@
 	</update>
 
 	<select id="findMenuList" parameterType="com.midland.web.model.Menu" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List" /> from menu
+		select <include refid="Base_Column_List" />,city_name as city from menu,city
 		where 1=1
 		<include refid="select_option" />
+		and city_id=city.id order by orderby asc
 	</select>
 
 	<insert id="insertMenu" parameterType="com.midland.web.model.Menu">
