@@ -36,22 +36,22 @@ public class SettingServiceImpl implements SettingService {
 
     @Override
     public List<Popular> findPopularList(Popular popular) {
-        return popularMapper.selectPropularList(popular);
+        return popularMapper.findPopularList(popular);
     }
 
     @Override
     public Popular findPopular(Popular popular) {
-        return popularMapper.selectByPrimaryKey(popular.getId());
+        return popularMapper.selectById(popular.getId());
     }
 
     @Override
     public int updatePopular(Popular popular) {
-        return popularMapper.updateByPrimaryKeySelective(popular);
+        return popularMapper.updateById(popular);
     }
 
     @Override
     public int insertPopular(Popular popular) {
-        return popularMapper.insert(popular);
+        return popularMapper.insertPopular(popular);
     }
 
     @Override
@@ -146,22 +146,22 @@ public class SettingServiceImpl implements SettingService {
 
     @Override
     public List<Banner> findBannerList(Banner banner) {
-        return bannerMapper.selectBannerList(banner);
+        return bannerMapper.findBannerList(banner);
     }
 
     @Override
     public Banner findBanner(Banner banner) {
-        return bannerMapper.selectByPrimaryKey(banner.getId());
+        return bannerMapper.selectById(banner.getId());
     }
 
     @Override
     public int updateBanner(Banner banner) {
-        return bannerMapper.updateByPrimaryKeySelective(banner);
+        return bannerMapper.updateById(banner);
     }
 
     @Override
     public int insertBanner(Banner banner) {
-        return bannerMapper.insertSelective(banner);
+        return bannerMapper.insertBanner(banner);
     }
 
 

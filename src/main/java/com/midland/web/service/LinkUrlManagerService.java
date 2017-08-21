@@ -25,7 +25,7 @@ public interface LinkUrlManagerService {
 	void insertLinkUrlManager(LinkUrlManager linkUrlManager) throws Exception;
 
 	/**
-	 * 分页，这里建议使用插件（com.com.github.pagehelper.PageHelper）
+	 * 分页，这里建议使用插件（com.github.pagehelper.PageHelper）
 	 **/
 	List<LinkUrlManager> findLinkUrlManagerList(LinkUrlManager linkUrlManager) throws Exception;
 

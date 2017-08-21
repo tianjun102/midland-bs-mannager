@@ -156,7 +156,7 @@ private SettingService settingService;
     @ResponseBody
     public Object deletePopular(Model model, HttpServletRequest request,Popular popular){
         Map<String,String> parem = new HashMap<>();
-        popular.setIsDelete(0);
+        popular.setIsDelete(1);
         Integer num = settingService.updatePopular(popular);
         if (num>0){
             parem.put("flag","1");
@@ -255,7 +255,7 @@ private SettingService settingService;
     @ResponseBody
     public Object deleteLinkUrl(Model model, HttpServletRequest request,LinkUrlManager linkUrlManager){
         Map<String,String> parem = new HashMap<>();
-        linkUrlManager.setIsDelete(0);
+        linkUrlManager.setIsDelete(1);
         Integer num = settingService.updateLinkUrlManager(linkUrlManager);
         if (num>0){
             parem.put("flag","1");

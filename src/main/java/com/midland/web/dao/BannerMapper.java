@@ -1,23 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Banner;
-
 import java.util.List;
 
 public interface BannerMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Banner record);
+	Banner selectById(Integer banner);
 
-    int insertSelective(Banner record);
+	int deleteById(Integer banner);
 
-    Banner selectByPrimaryKey(Integer id);
+	int updateById(Banner banner);
 
-    int updateByPrimaryKeySelective(Banner record);
+	int insertBanner(Banner banner);
 
-    int updateByPrimaryKeyWithBLOBs(Banner record);
+	List<Banner> findBannerList(Banner banner);
 
-    int updateByPrimaryKey(Banner record);
-
-    List<Banner> selectBannerList(Banner banner);
 }

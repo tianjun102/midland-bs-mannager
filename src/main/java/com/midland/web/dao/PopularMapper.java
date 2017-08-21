@@ -1,23 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Popular;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
-@Repository
 public interface PopularMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Popular record);
+	Popular selectById(Integer popular);
 
-    int insertSelective(Popular record);
+	int deleteById(Integer popular);
 
-    Popular selectByPrimaryKey(Integer id);
+	int updateById(Popular popular);
 
-    int updateByPrimaryKeySelective(Popular record);
+	int insertPopular(Popular popular);
 
-    int updateByPrimaryKey(Popular record);
+	List<Popular> findPopularList(Popular popular);
 
-    List<Popular> selectPropularList(Popular propular);
 }
