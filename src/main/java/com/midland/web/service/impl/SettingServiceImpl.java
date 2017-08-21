@@ -57,9 +57,7 @@ public class SettingServiceImpl implements SettingService {
     @Override
     public Map<String, List<Area>> queryCityByRedis(Map<String, String> parem) {
         //先在缓存中查询
-       // Map<String, List<Area>> areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
-    
-        Map<String, List<Area>> areaMap=null;
+        Map<String, List<Area>> areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
         //如果缓存查不到再调接口查
         if (areaMap == null){
             parem.put("cityId",parem.get("id"));
