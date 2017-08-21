@@ -40,8 +40,8 @@ public class LinkUrlManager{
 	private Integer orderby;
 	
 	private Integer isDelete;
-	
-	
+
+
 	public Integer getIsDelete() {
 		return isDelete;
 	}
