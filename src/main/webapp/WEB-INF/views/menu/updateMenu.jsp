@@ -7,59 +7,61 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
     <link rel="stylesheet" href="${ctx }/assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${ctx }/assets/scripts/uploadify/uploadify.css">
+    <script type="text/javascript" src="${ctx }/assets/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx }/assets/scripts/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#file_upload').uploadify({
+                'swf': '${ctx }/assets/scripts/uploadify/uploadify.swf',
+                'uploader': '${ctx }/rest/upload/img',
+                'multi': false,// 是否支持多个文件上传
+                'onUploadSuccess': function (file, data, response) {
+                    $("#iconImg").attr("value", data);
+                    $("#iconImg1").attr("src", data);
+                },
+                'onQueueComplete': function (queueData) {
+                    if (queueData.uploadsSuccessful < 1) {
+                        alert('文件上传失败');
+                    }
+                }
 
+                // Your options here
+            });
+        })
+    </script>
 
 </head>
 <body>
 <section class="content" style="border:none;">
-    <form action="${ctx}/rest/appoint/update" method="post" id="appointInfoForm">
+    <form action="${ctx}/rest/appoint/update" method="post" id="dataForm">
         <ul class="userinfo row">
             <input type="hidden" name="id" id="id" value="${item.id}">
-            <li><span>：城市</span>
-                <input type="text" name="entrustSn" id="entrustSn" value="${item.entrustSn}"/>
-
+            <li style="display:flex;align-items:center">
+                <span>城市：</span>
+                <select name="source" id="source" class="dropdown">
+                    <c:forEach items="${citys}" var="s">
+                        <option value="${s.id}" <c:if test="${s.id == item.cityId}">selected="selected"</c:if>>
+                                ${s.cityName}
+                        </option>
+                    </c:forEach>
+                </select>
             </li>
+
             <li><span>菜单名：</span>
                 <input type="text" name="menuName" id="menuName" value="${item.menuName}"/>
             </li>
-            <li> <span>链接：</span>
+            <li><span>链接：</span>
                 <input type="text" name="url" id="url" value="${item.url}"/>
+            </li>
+            <li><span>图标：</span>
+                <div style="float: left;">
+                    <input type="hidden" name="iconImg" id="iconImg" value="${item.iconImg}">
 
-            </li>
-            <li><span>地址：</span><input type="text" name="address" id="address" value="${entrust.address}"/>
-            </li>
-            <li><span>户型：</span><input type="text" name="layout" id="layout" value="${entrust.layout}"/>
-                <span>面积：</span><input type="text" name="measure" id="measure" value="${entrust.measure}"
-                                       maxlength="50"/><span class="_star">*</span>
-            </li>
-            <li><span>装修：</span><input type="text" name="renovation" id="renovation" value="${entrust.renovation}"/>
-                <span>状态：</span><select name="status" id="status" class="dropdown">
-                    <!-- <option value="" >请选择</option> -->
-                    <option value="0"
-                            <c:if test="${entrust.status==0}">selected="selected"</c:if>>处理中
-                    </option>
-                    <option value="1"
-                            <c:if test="${entrust.status==1}">selected="selected"</c:if>>已完成
-                    </option>
-                    <option value="2"
-                            <c:if test="${entrust.status==2}">selected="selected"</c:if>>已取消
-                    </option>
-                </select>
-
-            </li>
-
-            <li><span>备注：</span>
-                <textarea  name="remark" id="remark" style="width:300px;height:50px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;"></textarea></li>
-            </li>
-            <li><span>处理记录：</span>
-                <textarea  name="record" id="record" disabled="disabled" style="width:260px;height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
-                    <c:forEach items="${entrustLogs}" var="s" >
-                        ${s.state}
-                        ${s.logTime}
-                        ${s.operatorName}
-                        ${s.remark}
-                    </c:forEach>
-                </textarea></li>
+                    <img style="margin-bottom: 10px;max-width:80px;max-height:80px" id="iconImg1"
+                         src="${item.iconImg}">
+                    <input type="file" name="file_upload" id="file_upload"/>
+                </div>
             </li>
             <li>
                 <span></span>
@@ -74,11 +76,11 @@
 <script type="text/javascript">
     //保存数据
     function updateData() {
-        var data = $("#appointInfoForm").serialize();
+        var data = $("#dataForm").serialize();
         debugger;
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/entrust/update",
+            url: "${ctx}/rest/menu/update",
             async: false, // 此处必须同步
             dataType: "json",
             data: data,
@@ -99,66 +101,17 @@
             }
         });
     }
-    //检查手机号格式
-    function checkPhone() {
-        debugger;
-        var phone0 = $("#ph").val();
-        var reg = /^1[3,4,5,7,8]\d{9}$/;
-        var phone = $("input[name='phone']").val();
-        if (phone.trim() == '') {
-            layer.tips("手机号不能为空！", "input[name='phone']", {tips: 1});
-            return false;
-        }
-        if (!reg.test(phone)) {
-            layer.tips("手机号格式有误,请核对!", "input[name='phone']", {tips: 3});
-            return false;
-        }
-        if (phone0 == phone) {
-            return true;
-        }
-
-        var a = true;
-        $.ajax({
-            type: "post",
-            url: "${ctx }/rest/user/checkPhoneUnique",
-            async: false, // 此处必须同步
-            dataType: "json",
-            data: {"phone": phone},
-            success: function (xmlobj) {
-                if (xmlobj.flag == 1) {
-                    layer.tips("当前手机号码已被使用，请更换手机号码！", "input[name='phone']", {tips: 1});
-                    a = false;
-                } else {
-                    a = true;
-                }
-            }
-        });
-        return a;
-    }
-
-    //检查邮箱格式
-    function checkEmail() {
-        var reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;
-        var email = $("input[name='email']").val();
-        if (email.trim() == '') {
-            //layer.tips("邮箱不能为空！", "input[name='email']",{tips:3});
-            return true;
-        }
-        if (!reg.test(email)) {
-            layer.tips("邮箱格式有误,请核对!", "input[name='email']", {tips: 3});
-            //$("input[name='email']").focus();
-            return false;
-        }
-        return true;
-    }
 
     //取消
     function closeWin() {
         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
         parent.layer.close(index);
     }
+
+
 </script>
-<script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
 <script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>
+
+
 </body>
 </html>

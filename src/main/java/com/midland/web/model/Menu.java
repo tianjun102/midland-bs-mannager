@@ -40,7 +40,7 @@ public class Menu{
 	 **/
 	private String url;
 	/**
-	 * 是否开启
+	 * 是否开启 0隐藏，1开启
 	 **/
 	private Integer isshow;
 	/**

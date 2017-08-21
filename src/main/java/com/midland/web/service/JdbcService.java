@@ -1,6 +1,8 @@
 package com.midland.web.service;
 
 import com.midland.web.dao.SqlMapperDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.Map;
  */
 @Service
 public class JdbcService {
+	private final  Logger log = LoggerFactory.getLogger(JdbcService.class);
+	
 	@Autowired
 	private SqlMapperDao sqlMapperDao;
 	public Map querySql(String sql){
@@ -105,7 +109,8 @@ public class JdbcService {
 	
 	private void doExchangeDescNum(String primaryKeyName, String id, String orderByColumn,String orderByParam, String tableName, Map map) {
 		if(map == null){
-			throw new IllegalArgumentException("没有数据");
+			log.warn("上移下移排序，第一条不能上移，最后一条不能下移");
+			return;
 		}
 		String primaryKeyId=String.valueOf(map.get(primaryKeyName));
 		//要交换的排序号

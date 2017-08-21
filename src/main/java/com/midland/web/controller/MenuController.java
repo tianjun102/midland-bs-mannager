@@ -3,9 +3,12 @@ package com.midland.web.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.Paginator;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.model.City;
 import com.midland.web.model.Menu;
 import com.midland.web.service.*;
 import com.midland.web.util.MidlandHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,8 +26,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/menu")
 public class MenuController extends BaseController{
+	private final Logger logger = LoggerFactory.getLogger(MenuController.class);
 	@Autowired
 	private MenuService menuServiceImpl;
+	@Autowired
+	private CityService cityServiceImpl;
 	@Autowired
 	private JdbcService jdbcService;
 	@RequestMapping("/index")
@@ -58,8 +65,34 @@ public class MenuController extends BaseController{
 	@RequestMapping("to_update")
 	public String toUpdate(int id, Model model, HttpServletRequest request) throws Exception {
 		Menu result = menuServiceImpl.selectById(id);
+		List<City> cityList = cityServiceImpl.findCityList(new City());
 		model.addAttribute("item",result);
+		model.addAttribute("citys",cityList);
 		return "/menu/updateMenu";
+	}
+	
+	@RequestMapping("update")
+	@ResponseBody
+	public Object update(Menu menu) throws Exception {
+		menuServiceImpl.updateById(menu);
+		Map map = new HashMap();
+		map.put("state",0);
+		return map;
+	}
+	@RequestMapping("delete")
+	@ResponseBody
+	public Object delete(Integer id) {
+		Map map = new HashMap();
+		try {
+			menuServiceImpl.deleteById(id);
+			map.put("state",0);
+			
+		} catch (Exception e) {
+			logger.error("delete : id={}",id,e);
+			map.put("state",-1);
+		}
+		
+		return map;
 	}
 	
 }

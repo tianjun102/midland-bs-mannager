@@ -39,9 +39,16 @@
 
                         <td>
 
-                            <a target="contentF" onclick="edit(${item.id })">编辑</a>
-                            <a target="contentF" onclick="toRedistribute(${item.id })">删除</a>
-                            <a target="contentF" onclick="toRedistribute(${item.id })">隐藏</a>
+                            <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
+                            <a target="contentF" onclick="delete1(${item.id })">删除</a>
+                            <c:choose>
+                                <c:when test="${item.isshow==0}">
+                                    <a target="contentF" onclick="hiddenOrShow(${item.id },1)">显示</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a target="contentF" onclick="hiddenOrShow(${item.id },0)">隐藏</a>
+                                </c:otherwise>
+                            </c:choose>
                             <a target="contentF" onclick="sort(${item.id },${item.orderby},1)">上移</a>
                             <a target="contentF" onclick="sort(${item.id },${item.orderby},2)">下移</a>
                         </td>
@@ -66,18 +73,55 @@
 
 <script type="text/javascript">
 
+    function delete1(id){
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/menu/delete?id="+id,
+            async: false, // 此处必须同步
+            dataType: "json",
+
+            success: function (data) {
+                if (data.state==0){
+                    $('#searchForm').submit();
+                }
+            },
+            error: function () {
+                layer.msg("操作失败！", {icon: 2});
+            }
+        })
+    }
+
+    function hiddenOrShow(id, flag){
+        //0隐藏，1显示
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/menu/update?id="+id+"&isshow="+flag,
+            async: false, // 此处必须同步
+            dataType: "json",
+
+            success: function (data) {
+                if (data.state==0){
+                    $('#searchForm').submit();
+                }
+            },
+            error: function () {
+                layer.msg("操作失败！", {icon: 2});
+            }
+        })
+    }
 
 
-    function edit(id){
+
+    function to_edit(id){
         layer.open({
             type: 2,
             title: ['修改'],
             shade: 0.3,
             area: ['500px', '500px'],
-            content: ['${ctx}/rest/user/findUser?userId='+userId+'&flag=1','no']
+            content: ['${ctx}/rest/menu/to_update?id='+id,'no']
         });
     }
-    //删除
+    //排序
     function sort(id,orderById,sort) {
         $.ajax({
             type: "post",
@@ -96,16 +140,6 @@
         })
     }
 
-
-    function toUpdateAppointment(appointId) {
-        layer.open({
-            type: 2,
-            title: ['更新'],
-            shade: 0.3,
-            area: ['1000px', '700px'],
-            content: ['${ctx}/rest/entrust/to_update?entrustId=' + appointId , 'no']
-        });
-    }
 </script>
 </body>
 </html>
