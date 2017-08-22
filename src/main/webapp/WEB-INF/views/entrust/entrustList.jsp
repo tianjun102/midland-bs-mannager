@@ -37,32 +37,32 @@
         <tbody>
         <c:choose>
             <c:when test="${!empty requestScope.entrusts }">
-                <c:forEach items="${requestScope.entrusts }" var="appoint"
+                <c:forEach items="${requestScope.entrusts }" var="item"
                            varStatus="xh">
                     <tr>
                         <td>${appoint.entrustSn }</td>
-                        <td> <c:if test="${appoint.source ==0 }">网站</c:if>
-                            <c:if test="${appoint.source ==1 }">微站</c:if></td>
-                        <td>${appoint.call }</td>
-                        <td>${appoint.phone }</td>
-                        <td>${appoint.houseType }</td>
-                        <td>${appoint.sellRent }</td>
-                        <td>${appoint.entrustTime }</td>
-                        <td>${appoint.area }</td>
-                        <td>${appoint.communityName }</td>
-                        <td>${appoint.address }</td>
-                        <td>${appoint.layout }</td>
-                        <td>${appoint.measure }</td>
-                        <td>${appoint.price }</td>
-                        <td>${appoint.entrustTime }</td>
-                        <td>${appoint.userCnName }</td>
-                        <td>${appoint.status }</td>
-                        <td>${appoint.handleTime }</td>
+                        <td> <c:if test="${item.source ==0 }">网站</c:if>
+                            <c:if test="${item.source ==1 }">微站</c:if></td>
+                        <td>${item.nickName }</td>
+                        <td>${item.phone }</td>
+                        <td>${item.houseType }</td>
+                        <td>${item.sellRent }</td>
+                        <td>${item.entrustTime }</td>
+                        <td>${item.area }</td>
+                        <td>${item.communityName }</td>
+                        <td>${item.address }</td>
+                        <td>${item.layout }</td>
+                        <td>${item.measure }</td>
+                        <td>${item.price }</td>
+                        <td>${item.entrustTime }</td>
+                        <td>${item.userCnName }</td>
+                        <td>${item.status }</td>
+                        <td>${item.handleTime }</td>
                         <td>
 
-                            <a target="contentF" onclick="toRedistribute(${appoint.id })">重新分配经纪人</a>
+                            <a target="contentF" onclick="toRedistribute(${item.id })">重新分配经纪人</a>
 
-                            <a target="contentF" onclick="toUpdateAppointment(${appoint.id })">修改</a>
+                            <a target="contentF" onclick="toUpdateAppointment(${item.id })">修改</a>
                         </td>
                     </tr>
                 </c:forEach>

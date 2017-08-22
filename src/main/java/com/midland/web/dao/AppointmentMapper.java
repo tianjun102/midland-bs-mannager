@@ -1,18 +1,18 @@
 package com.midland.web.dao;
 
-import com.midland.web.model.appointment.Appointment;
-
+import com.midland.web.model.Appointment;
 import java.util.List;
 
 public interface AppointmentMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insertSelective(Appointment record);
-    
-    List<Appointment> appointmentPage(Appointment record);
+	Appointment selectAppointmentById(Integer appointment);
 
-    Appointment selectByPrimaryKey(Integer id);
+	int deleteAppointmentById(Integer appointment);
 
-    int updateByPrimaryKeySelective(Appointment record);
+	int updateAppointmentById(Appointment appointment);
+
+	int insertAppointment(Appointment appointment);
+
+	List<Appointment> findAppointmentList(Appointment appointment);
 
 }

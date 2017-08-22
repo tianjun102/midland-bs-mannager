@@ -31,7 +31,7 @@
                     <tr>
                         <input type="hidden" id="id" value="${item.id}"/>
                         <td>${xh.count }</td>
-                        <td>${item.cityName }</td>
+                        <td>${item.city }</td>
                         <td> <c:if test="${item.source ==0 }">网站</c:if>
                             <c:if test="${item.source ==1 }">微站</c:if></td>
                         <td>${item.menuName }</td>
@@ -42,15 +42,15 @@
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>
                             <c:choose>
-                                <c:when test="${item.isShow==0}">
+                                <c:when test="${item.isshow==0}">
                                     <a target="contentF" onclick="hiddenOrShow(${item.id },1)">显示</a>
                                 </c:when>
                                 <c:otherwise>
                                     <a target="contentF" onclick="hiddenOrShow(${item.id },0)">隐藏</a>
                                 </c:otherwise>
                             </c:choose>
-                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},1)">上移</a>
-                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},2)">下移</a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderby},1)">上移</a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderby},2)">下移</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -76,7 +76,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/menu/delete?id="+id+"&isDelete=1",
+            url: "${ctx}/rest/menu/delete?id="+id,
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -95,7 +95,7 @@
         //0隐藏，1显示
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/menu/update?id="+id+"&isShow="+flag,
+            url: "${ctx}/rest/menu/update?id="+id+"&isshow="+flag,
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -125,7 +125,7 @@
     function sort(id,orderById,sort) {
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/menu/sort?sort="+sort+"&orderBy="+orderById+"&id="+id,
+            url: "${ctx}/rest/menu/sort?sort="+sort+"&orderby="+orderById+"&id="+id,
             async: false, // 此处必须同步
             dataType: "json",
 

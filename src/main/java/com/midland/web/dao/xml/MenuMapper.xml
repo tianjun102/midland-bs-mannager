@@ -6,39 +6,34 @@
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="icon_img" property="iconImg" jdbcType="VARCHAR" />
 		<result column="city_id" property="cityId" jdbcType="INTEGER" />
+		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
 		<result column="platform" property="platform" jdbcType="INTEGER" />
 		<result column="menu_name" property="menuName" jdbcType="VARCHAR" />
 		<result column="click_num" property="clickNum" jdbcType="INTEGER" />
-		<result column="orderby" property="orderby" jdbcType="INTEGER" />
+		<result column="order_by" property="orderBy" jdbcType="INTEGER" />
 		<result column="url" property="url" jdbcType="VARCHAR" />
-		<result column="isshow" property="isshow" jdbcType="INTEGER" />
+		<result column="is_show" property="isShow" jdbcType="INTEGER" />
 		<result column="position" property="position" jdbcType="INTEGER" />
 		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
 		<result column="source" property="source" jdbcType="INTEGER" />
-		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		menu.id,icon_img,city_id,platform,menu_name,click_num,orderby,url,isshow,position,menu.parent_id,source
+		menu.id,icon_img,city_id,platform,menu_name,click_num,menu.order_by,url,is_show,position,menu.parent_id,source,menu.is_delete
 	</sql>
 
-	<select id="selectById" resultMap="BaseResultMap">
+	<select id="selectMenuById" resultMap="BaseResultMap">
 		select <include refid="Base_Column_List" /> from menu
 		 where id= #{id}
 	</select>
 
-
-	<select id="selectByParentId" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List" /> from menu
-		where parent_id= #{parentId}
-	</select>
-
-	<delete id="deleteById" >
+	<delete id="deleteMenuById" >
 		delete from menu
 		 where id= #{id}
 	</delete>
 
-	<update id="updateById" >
+	<update id="updateMenuById" >
 		update menu 
 		<set>
 		<include refid="update_option"/>
@@ -48,10 +43,11 @@
 	</update>
 
 	<select id="findMenuList" parameterType="com.midland.web.model.Menu" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List" />,city_name as city from menu,city
-		where 1=1
+		select <include refid="Base_Column_List" />,city.city_name from menu ,city
+		where menu.city_id=city.id and
+		menu.is_delete=0
 		<include refid="select_option" />
-		and city_id=city.id order by orderby asc
+		order by menu.order_by asc
 	</select>
 
 	<insert id="insertMenu" parameterType="com.midland.web.model.Menu">
@@ -72,14 +68,14 @@
 			<if test="clickNum != null">
 				click_num,
 			</if>
-			<if test="orderby != null">
-				orderby,
+			<if test="orderBy != null">
+				order_by,
 			</if>
 			<if test="url != null">
 				url,
 			</if>
-			<if test="isshow != null">
-				isshow,
+			<if test="isShow != null">
+				is_show,
 			</if>
 			<if test="position != null">
 				position,
@@ -90,40 +86,47 @@
 			<if test="source != null">
 				source,
 			</if>
+			<if test="isDelete != null">
+				is_delete,
+			</if>
 		</trim>
+		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="iconImg != null">
-				icon_img= #{iconImg,jdbcType=VARCHAR},
+				#{iconImg,jdbcType=VARCHAR},
 			</if>
 			<if test="cityId != null">
-				city_id= #{cityId,jdbcType=INTEGER},
+				#{cityId,jdbcType=INTEGER},
 			</if>
 			<if test="platform != null">
-				platform= #{platform,jdbcType=INTEGER},
+				#{platform,jdbcType=INTEGER},
 			</if>
 			<if test="menuName != null">
-				menu_name= #{menuName,jdbcType=VARCHAR},
+				#{menuName,jdbcType=VARCHAR},
 			</if>
 			<if test="clickNum != null">
-				click_num= #{clickNum,jdbcType=INTEGER},
+				#{clickNum,jdbcType=INTEGER},
 			</if>
-			<if test="orderby != null">
-				orderby= #{orderby,jdbcType=INTEGER},
+			<if test="orderBy != null">
+				#{orderBy,jdbcType=INTEGER},
 			</if>
 			<if test="url != null">
-				url= #{url,jdbcType=VARCHAR},
+				#{url,jdbcType=VARCHAR},
 			</if>
-			<if test="isshow != null">
-				isshow= #{isshow,jdbcType=INTEGER},
+			<if test="isShow != null">
+				#{isShow,jdbcType=INTEGER},
 			</if>
 			<if test="position != null">
-				position= #{position,jdbcType=INTEGER},
+				#{position,jdbcType=INTEGER},
 			</if>
 			<if test="parentId != null">
-				parent_id= #{parentId,jdbcType=INTEGER},
+				#{parentId,jdbcType=INTEGER},
 			</if>
 			<if test="source != null">
-				source= #{source,jdbcType=INTEGER},
+				#{source,jdbcType=INTEGER},
+			</if>
+			<if test="isDelete != null">
+				#{isDelete,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -144,14 +147,14 @@
 		<if test="clickNum != null">
 			click_num= #{clickNum,jdbcType=INTEGER},
 		</if>
-		<if test="orderby != null">
-			orderby= #{orderby,jdbcType=INTEGER},
+		<if test="orderBy != null">
+			order_by= #{orderBy,jdbcType=INTEGER},
 		</if>
 		<if test="url != null">
 			url= #{url,jdbcType=VARCHAR},
 		</if>
-		<if test="isshow != null">
-			isshow= #{isshow,jdbcType=INTEGER},
+		<if test="isShow != null">
+			is_show= #{isShow,jdbcType=INTEGER},
 		</if>
 		<if test="position != null">
 			position= #{position,jdbcType=INTEGER},
@@ -161,6 +164,9 @@
 		</if>
 		<if test="source != null">
 			source= #{source,jdbcType=INTEGER},
+		</if>
+		<if test="isDelete != null">
+			is_delete= #{isDelete,jdbcType=INTEGER},
 		</if>
 	</sql>
 
@@ -183,14 +189,14 @@
 		<if test="clickNum != null">
 			 and click_num= #{clickNum,jdbcType=INTEGER}
 		</if>
-		<if test="orderby != null">
-			 and orderby= #{orderby,jdbcType=INTEGER}
+		<if test="orderBy != null">
+			 and order_by= #{orderBy,jdbcType=INTEGER}
 		</if>
 		<if test="url != null">
 			 and url= #{url,jdbcType=VARCHAR}
 		</if>
-		<if test="isshow != null">
-			 and isshow= #{isshow,jdbcType=INTEGER}
+		<if test="isShow != null">
+			 and is_show= #{isShow,jdbcType=INTEGER}
 		</if>
 		<if test="position != null">
 			 and position= #{position,jdbcType=INTEGER}
@@ -200,6 +206,9 @@
 		</if>
 		<if test="source != null">
 			 and source= #{source,jdbcType=INTEGER}
+		</if>
+		<if test="isDelete != null">
+			 and is_delete= #{isDelete,jdbcType=INTEGER}
 		</if>
 	</sql>
 

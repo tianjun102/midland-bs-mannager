@@ -1,22 +1,22 @@
 package com.midland.web.dao;
 
-
-import com.midland.web.model.appointment.AppointLog;
-
+import com.midland.web.model.AppointLog;
 import java.util.List;
 
 public interface AppointLogMapper {
-    int deleteByPrimaryKey(Integer appointLogId);
 
-    int insert(AppointLog record);
+	AppointLog selectAppointLogByAppointLogId(Integer appointLogId);
+	List<AppointLog> selectAppointLogByAppointId(Integer appointId);
+	
+	
+	
 
-    int insertSelective(AppointLog record);
+	int deleteAppointLogByAppointLogId(Integer appointLogId);
 
-    AppointLog selectByPrimaryKey(Integer appointLogId);
-    
-    List<AppointLog> selectAppointLogByAppointId(Integer appointLogId);
+	int updateAppointLogByAppointLogId(AppointLog appointLog);
 
-    int updateByPrimaryKeySelective(AppointLog record);
+	int insertAppointLog(AppointLog appointLog);
 
-    int updateByPrimaryKey(AppointLog record);
+	List<AppointLog> findAppointLogList(AppointLog appointLog);
+
 }

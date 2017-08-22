@@ -17,8 +17,7 @@ public class Menu{
 	/**
 	 * 城市名称
 	 **/
-	private String city;
-	
+	private String cityName;
 	/**
 	 * 0=pc网站；1=微站
 	 **/
@@ -34,7 +33,7 @@ public class Menu{
 	/**
 	 * 排序字段
 	 **/
-	private Integer orderby;
+	private Integer orderBy;
 	/**
 	 * 菜单栏链接
 	 **/
@@ -42,7 +41,7 @@ public class Menu{
 	/**
 	 * 是否开启 0隐藏，1开启
 	 **/
-	private Integer isshow;
+	private Integer isShow;
 	/**
 	 * position=1顶部；position=0底部
 	 **/
@@ -55,17 +54,18 @@ public class Menu{
 	 * 平台来源 0=网站；1=微站
 	 **/
 	private Integer source;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
 	
-	
-	
-	public String getCity() {
-		return city;
+	public String getCityName() {
+		return cityName;
 	}
 	
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
-	
 	
 	public Integer getId() {
 		return id;
@@ -115,12 +115,12 @@ public class Menu{
 		this.clickNum = clickNum;
 	}
 
-	public Integer getOrderby() {
-		return orderby;
+	public Integer getOrderBy() {
+		return orderBy;
 	}
 
-	public void setOrderby(Integer orderby) {
-		this.orderby = orderby;
+	public void setOrderBy(Integer orderBy) {
+		this.orderBy = orderBy;
 	}
 
 	public String getUrl() {
@@ -131,12 +131,12 @@ public class Menu{
 		this.url = url;
 	}
 
-	public Integer getIsshow() {
-		return isshow;
+	public Integer getIsShow() {
+		return isShow;
 	}
 
-	public void setIsshow(Integer isshow) {
-		this.isshow = isshow;
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
 	}
 
 	public Integer getPosition() {
@@ -163,6 +163,14 @@ public class Menu{
 		this.source = source;
 	}
 
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("Menu{");
@@ -184,14 +192,14 @@ public class Menu{
 		if (clickNum != null) {
 			sb.append(", \"clickNum\":\"").append(clickNum).append("\"");
 		}
-		if (orderby != null) {
-			sb.append(", \"orderby\":\"").append(orderby).append("\"");
+		if (orderBy != null) {
+			sb.append(", \"orderBy\":\"").append(orderBy).append("\"");
 		}
 		if (url != null) {
 			sb.append(", \"url\":\"").append(url).append("\"");
 		}
-		if (isshow != null) {
-			sb.append(", \"isshow\":\"").append(isshow).append("\"");
+		if (isShow != null) {
+			sb.append(", \"isShow\":\"").append(isShow).append("\"");
 		}
 		if (position != null) {
 			sb.append(", \"position\":\"").append(position).append("\"");
@@ -201,6 +209,9 @@ public class Menu{
 		}
 		if (source != null) {
 			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
 		}
 		return sb.toString();
 	}

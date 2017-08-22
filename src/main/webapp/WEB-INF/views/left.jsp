@@ -104,6 +104,21 @@
 				</dd>
 			</dl>
 		</shiro:hasPermission>
+			<shiro:hasPermission name="noticelist">
+				<dl class="list-left3">
+					<dt>
+						<a href="javascript:;"
+						   dota="url(${ctx}/assets/img/03.png) no-repeat 20px center"
+						   data-img="url(${ctx}/assets/img/03_w.png) no-repeat 20px center">外销网管理<span
+								class="glyphicon glyphicon-menu-right"></span></a>
+					</dt>
+					<dd>
+						<shiro:hasPermission name="noticelist">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/tradeFair/index" target="contentF"><span>楼盘展销会</span></a>
+						</shiro:hasPermission>
+					</dd>
+				</dl>
+			</shiro:hasPermission>
 		<shiro:hasPermission name="orderInfo">
 			<dl class="list-left4">
 				<dt>

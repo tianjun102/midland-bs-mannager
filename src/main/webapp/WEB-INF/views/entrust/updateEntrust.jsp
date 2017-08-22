@@ -20,7 +20,7 @@
                                          value="${entrust.entrustTime}" maxlength="50"/><span
                         class="_star">*</span>
             </li>
-            <li><span>用户：</span><input type="text" name="call" id="call" value="${entrust.call}"/>
+            <li><span>用户：</span><input type="text" name="nickName" id="nickName" value="${entrust.nickName}"/>
                 <span>手机号码：</span><input type="text" name="phone" id="phone" value="${entrust.phone}"
                                          maxlength="50"/><span class="_star">*</span>
             </li>

@@ -1,51 +1,95 @@
 package com.midland.web.service.impl;
 
+import com.midland.web.model.AppointLog;
 import com.midland.web.dao.AppointLogMapper;
-import com.midland.web.model.appointment.AppointLog;
 import com.midland.web.service.AppointLogService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.util.List;
-
-/**
- * 预约看房Service实现类
- *
- * @author 
- * @since 2016年6月10日 下午12:05:03
- */
 @Service
 public class AppointLogServiceImpl implements AppointLogService {
 
-    @Resource
-    private AppointLogMapper appointLogMapper;
-    
-    
-    @Override
-    public int deleteByPrimaryKey(Integer id) {
-        return appointLogMapper.deleteByPrimaryKey(id);
-    }
-    
-    @Override
-    public int insertSelective(AppointLog record) {
-        return appointLogMapper.insertSelective(record);
-    }
-    
-    @Override
-    public AppointLog selectByPrimaryKey(Integer id) {
-        return appointLogMapper.selectByPrimaryKey(id);
-    }
-    
-    @Override
-     public List<AppointLog> selectAppointLogByAppointId(Integer id) {
-        return appointLogMapper.selectAppointLogByAppointId(id);
-    }
-    
-    
-    
-    
-    @Override
-    public int updateByPrimaryKeySelective(AppointLog record) {
-        return appointLogMapper.updateByPrimaryKeySelective(record);
-    }
+	private Logger log = LoggerFactory.getLogger(AppointLogServiceImpl.class);
+	@Autowired
+	private AppointLogMapper appointLogMapper;
+
+	/**
+	 * 插入
+	 **/
+	@Override
+	public void insertAppointLog(AppointLog appointLog) throws Exception {
+		try {
+			log.info("insert {}",appointLog);
+			appointLogMapper.insertAppointLog(appointLog);
+		} catch(Exception e) {
+			log.error("insertAppointLog异常 {}",appointLog,e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 查询
+	 **/
+	@Override
+	public AppointLog selectAppointLogByAppointLogId(Integer appointLogId) {
+		log.info("selectAppointLogByAppointLogId  {}",appointLogId);
+		return appointLogMapper.selectAppointLogByAppointLogId(appointLogId);
+	}
+	/**
+	 * 查询
+	 **/
+	@Override
+	public List<AppointLog> selectAppointLogByAppointId(Integer appointId) {
+		log.info("selectAppointLogByAppointId  {}",appointId);
+		return appointLogMapper.selectAppointLogByAppointId(appointId);
+	}
+
+	/**
+	 * 删除
+	 **/
+	@Override
+	public void deleteAppointLogByAppointLogId(Integer appointLogId)throws Exception {
+		try {
+			log.info("deleteAppointLogByAppointLogId  {}",appointLogId);
+			int result = appointLogMapper.deleteAppointLogByAppointLogId(appointLogId);
+			if (result < 1) {
+				throw new Exception("deleteAppointLogByAppointLogId失败");
+			}
+		} catch(Exception e) {
+			log.error("deleteAppointLogByAppointLogId  {}",appointLogId,e);
+			throw e;
+		}
+	}
+	/**
+	 * 更新
+	 **/
+	@Override
+	public void updateAppointLogByAppointLogId(AppointLog appointLog) throws Exception {
+		try {
+			log.info("updateAppointLogByAppointLogId  {}",appointLog);
+			int result = appointLogMapper.updateAppointLogByAppointLogId(appointLog);
+			if (result < 1) {
+				throw new Exception("updateAppointLogByAppointLogId失败");
+			}
+		} catch(Exception e) {
+			log.error("updateAppointLogByAppointLogId  {}",appointLog,e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 分页，这里建议使用插件（com.github.pagehelper.PageHelper）
+	 **/
+	@Override
+	public List<AppointLog> findAppointLogList(AppointLog appointLog) throws Exception {
+		try {
+			log.info("findAppointLogList  {}",appointLog);
+			return appointLogMapper.findAppointLogList(appointLog);
+		} catch(Exception e) {
+			log.error("findAppointLogList  {}",appointLog,e);
+			throw e;
+		}
+	}
 }

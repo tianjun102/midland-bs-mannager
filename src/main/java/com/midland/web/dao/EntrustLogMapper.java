@@ -1,22 +1,19 @@
 package com.midland.web.dao;
 
-
 import com.midland.web.model.EntrustLog;
-
 import java.util.List;
 
 public interface EntrustLogMapper {
-    int deleteByPrimaryKey(Integer entrustLogId);
 
-    int insert(EntrustLog record);
+	EntrustLog selectEntrustLogByEntrustLogId(Integer entrustLogId);
+	List<EntrustLog> selectEntrustLogByEntrustId(Integer entrustId);
 
-    int insertSelective(EntrustLog record);
-    
-    EntrustLog selectByPrimaryKey(Integer appointLogId);
-    
-    List<EntrustLog> selectEntrustLogByEntrustId(Integer entrustId);
+	int deleteEntrustLogByEntrustLogId(Integer entrustLog);
 
-    int updateByPrimaryKeySelective(EntrustLog record);
+	int updateEntrustLogByEntrustLogId(EntrustLog entrustLog);
 
-    int updateByPrimaryKey(EntrustLog record);
+	int insertEntrustLog(EntrustLog entrustLog);
+
+	List<EntrustLog> findEntrustLogList(EntrustLog entrustLog);
+
 }

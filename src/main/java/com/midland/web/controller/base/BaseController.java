@@ -25,7 +25,7 @@ public abstract class BaseController {
 	@ExceptionHandler({Exception.class})
 	public void handlerException(Exception e, HttpServletResponse response) throws IOException {
 		e.printStackTrace();
-		responseInfo(response, "啊，出了致命错误...");
+		responseInfo(response, "系统繁忙，请重试！...");
 	}
 	
 	private void responseInfo(HttpServletResponse response, String info) throws IOException {
