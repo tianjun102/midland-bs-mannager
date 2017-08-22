@@ -1,6 +1,5 @@
 package com.midland.web.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.midland.web.model.LinkUrlManager;
 import com.midland.web.dao.LinkUrlManagerMapper;
 import com.midland.web.service.LinkUrlManagerService;
@@ -73,13 +72,12 @@ public class LinkUrlManagerServiceImpl implements LinkUrlManagerService {
 	}
 
 	/**
-	 * 分页，这里建议使用插件（com.com.github.pagehelper.PageHelper）
+	 * 分页，这里建议使用插件（com.github.pagehelper.PageHelper）
 	 **/
 	@Override
 	public List<LinkUrlManager> findLinkUrlManagerList(LinkUrlManager linkUrlManager) throws Exception {
 		try {
 			log.info("findLinkUrlManagerList  {}",linkUrlManager);
-			PageHelper.startPage(1,2);
 			return linkUrlManagerMapper.findLinkUrlManagerList(linkUrlManager);
 		} catch(Exception e) {
 			log.error("findLinkUrlManagerList  {}",linkUrlManager,e);

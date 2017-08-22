@@ -2,144 +2,237 @@ package com.midland.web.model;
 
 import java.util.Date;
 
-public class Banner {
-    private Integer id;
+public class Banner{
+	/**
+	 * 
+	 **/
+	private Integer id;
+	/**
+	 * PCbanner图地址
+	 **/
+	private String bannerImg;
+	/**
+	 * 图片链接
+	 **/
+	private String bannerLinkurl;
+	/**
+	 * 图片说明
+	 **/
+	private String imgDesc;
+	/**
+	 * 排序，默认升序
+	 **/
+	private Integer sortOrder;
+	/**
+	 * 是否启用：0=未启用；1=启用；
+	 **/
+	private Integer enabled;
+	/**
+	 * 
+	 **/
+	private Integer cityId;
+	/**
+	 * 0=网站；1=微站
+	 **/
+	private Integer source;
+	/**
+	 * 模块；0=首页；1=资讯；2调研市场
+	 **/
+	private String model;
+	/**
+	 * 开始时间
+	 **/
+	private Date startTime;
+	/**
+	 * 结束时间
+	 **/
+	private Date endTime;
+	/**
+	 * banner位置
+	 **/
+	private String position;
+	/**
+	 * 视频链接
+	 **/
+	private String videoUrl;
+	/**
+	 * 详情
+	 **/
+	private String detail;
+	/**
+	 * 1=删除；0=正常
+	 **/
+	private Integer isDelete;
 
-    private String bannerImg;
 
-    private String bannerLinkurl;
+	public Integer getId() {
+		return id;
+	}
 
-    private String imgDesc;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private Integer sortOrder;
+	public String getBannerImg() {
+		return bannerImg;
+	}
 
-    private Integer enabled;
+	public void setBannerImg(String bannerImg) {
+		this.bannerImg = bannerImg;
+	}
 
-    private Integer cityId;
+	public String getBannerLinkurl() {
+		return bannerLinkurl;
+	}
 
-    private Integer source;
+	public void setBannerLinkurl(String bannerLinkurl) {
+		this.bannerLinkurl = bannerLinkurl;
+	}
 
-    private String model;
+	public String getImgDesc() {
+		return imgDesc;
+	}
 
-    private Date startTime;
+	public void setImgDesc(String imgDesc) {
+		this.imgDesc = imgDesc;
+	}
 
-    private Date endTime;
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
 
-    private String position;
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 
-    private String videoUrl;
+	public Integer getEnabled() {
+		return enabled;
+	}
 
-    private String detail;
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    public String getBannerImg() {
-        return bannerImg;
-    }
+	public Integer getSource() {
+		return source;
+	}
 
-    public void setBannerImg(String bannerImg) {
-        this.bannerImg = bannerImg == null ? null : bannerImg.trim();
-    }
+	public void setSource(Integer source) {
+		this.source = source;
+	}
 
-    public String getBannerLinkurl() {
-        return bannerLinkurl;
-    }
+	public String getModel() {
+		return model;
+	}
 
-    public void setBannerLinkurl(String bannerLinkurl) {
-        this.bannerLinkurl = bannerLinkurl == null ? null : bannerLinkurl.trim();
-    }
+	public void setModel(String model) {
+		this.model = model;
+	}
 
-    public String getImgDesc() {
-        return imgDesc;
-    }
+	public Date getStartTime() {
+		return startTime;
+	}
 
-    public void setImgDesc(String imgDesc) {
-        this.imgDesc = imgDesc == null ? null : imgDesc.trim();
-    }
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
 
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
+	public Date getEndTime() {
+		return endTime;
+	}
 
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
 
-    public Integer getEnabled() {
-        return enabled;
-    }
+	public String getPosition() {
+		return position;
+	}
 
-    public void setEnabled(Integer enabled) {
-        this.enabled = enabled;
-    }
+	public void setPosition(String position) {
+		this.position = position;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public String getVideoUrl() {
+		return videoUrl;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
 
-    public Integer getSource() {
-        return source;
-    }
+	public String getDetail() {
+		return detail;
+	}
 
-    public void setSource(Integer source) {
-        this.source = source;
-    }
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
 
-    public String getModel() {
-        return model;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public void setModel(String model) {
-        this.model = model == null ? null : model.trim();
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position == null ? null : position.trim();
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl == null ? null : videoUrl.trim();
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail == null ? null : detail.trim();
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("Banner{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (bannerImg != null) {
+			sb.append(", \"bannerImg\":\"").append(bannerImg).append("\"");
+		}
+		if (bannerLinkurl != null) {
+			sb.append(", \"bannerLinkurl\":\"").append(bannerLinkurl).append("\"");
+		}
+		if (imgDesc != null) {
+			sb.append(", \"imgDesc\":\"").append(imgDesc).append("\"");
+		}
+		if (sortOrder != null) {
+			sb.append(", \"sortOrder\":\"").append(sortOrder).append("\"");
+		}
+		if (enabled != null) {
+			sb.append(", \"enabled\":\"").append(enabled).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (source != null) {
+			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (model != null) {
+			sb.append(", \"model\":\"").append(model).append("\"");
+		}
+		if (startTime != null) {
+			sb.append(", \"startTime\":\"").append(startTime).append("\"");
+		}
+		if (endTime != null) {
+			sb.append(", \"endTime\":\"").append(endTime).append("\"");
+		}
+		if (position != null) {
+			sb.append(", \"position\":\"").append(position).append("\"");
+		}
+		if (videoUrl != null) {
+			sb.append(", \"videoUrl\":\"").append(videoUrl).append("\"");
+		}
+		if (detail != null) {
+			sb.append(", \"detail\":\"").append(detail).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		return sb.toString();
+	}
 }

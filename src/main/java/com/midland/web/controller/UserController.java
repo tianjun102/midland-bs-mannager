@@ -168,7 +168,7 @@ public class UserController extends BaseController {
     		notice.setMsgType(2);//渠道商看 应用通知
     	}
     	notice.setIsSend(1);
-    	notice.setIsDelete(0);
+    	notice.setIsDelete(1);
     	List<NoticeWithBLOBs> list=noticeService.selectNoticeList(notice);*/
     	
     	model.addAttribute("user",user);

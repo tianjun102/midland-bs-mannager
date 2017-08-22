@@ -9,7 +9,7 @@ public class LinkUrlManager{
 	/**
 	 * 城市id
 	 **/
-	private Integer cityId;
+	private String cityId;
 	/**
 	 * 链接名
 	 **/
@@ -33,23 +33,25 @@ public class LinkUrlManager{
 	/**
 	 * 是否开启 0=开启；1=关闭
 	 **/
-	private Integer isshow;
+	private Integer isShow;
 	/**
 	 * 排序字段
 	 **/
-	private Integer orderby;
-	
+	private Integer orderBy;
+	/**
+	 * 1=删除；0=正常
+	 **/
 	private Integer isDelete;
+	/**
+	 * 来源 1=网站；2=微站
+	 **/
+	private Integer source;
+	/**
+	 * 
+	 **/
+	private String cityName;
 
 
-	public Integer getIsDelete() {
-		return isDelete;
-	}
-	
-	public void setIsDelete(Integer delete) {
-		isDelete = delete;
-	}
-	
 	public Integer getId() {
 		return id;
 	}
@@ -58,11 +60,11 @@ public class LinkUrlManager{
 		this.id = id;
 	}
 
-	public Integer getCityId() {
+	public String getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 
@@ -106,20 +108,44 @@ public class LinkUrlManager{
 		this.remarks = remarks;
 	}
 
-	public Integer getIsshow() {
-		return isshow;
+	public Integer getIsShow() {
+		return isShow;
 	}
 
-	public void setIsshow(Integer isshow) {
-		this.isshow = isshow;
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
 	}
 
-	public Integer getOrderby() {
-		return orderby;
+	public Integer getOrderBy() {
+		return orderBy;
 	}
 
-	public void setOrderby(Integer orderby) {
-		this.orderby = orderby;
+	public void setOrderBy(Integer orderBy) {
+		this.orderBy = orderBy;
+	}
+
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public Integer getSource() {
+		return source;
+	}
+
+	public void setSource(Integer source) {
+		this.source = source;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
 	@Override
@@ -146,11 +172,20 @@ public class LinkUrlManager{
 		if (remarks != null) {
 			sb.append(", \"remarks\":\"").append(remarks).append("\"");
 		}
-		if (isshow != null) {
-			sb.append(", \"isshow\":\"").append(isshow).append("\"");
+		if (isShow != null) {
+			sb.append(", \"isShow\":\"").append(isShow).append("\"");
 		}
-		if (orderby != null) {
-			sb.append(", \"orderby\":\"").append(orderby).append("\"");
+		if (orderBy != null) {
+			sb.append(", \"orderBy\":\"").append(orderBy).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (source != null) {
+			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
 		}
 		return sb.toString();
 	}

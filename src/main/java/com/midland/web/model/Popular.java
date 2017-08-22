@@ -1,153 +1,237 @@
 package com.midland.web.model;
 
-public class Popular {
-    private Integer id;
 
-    private Integer cateId;
+public class Popular{
+	/**
+	 * 热门关注配置表id 主键
+	 **/
+	private Integer id;
+	/**
+	 * 分类表id
+	 **/
+	private Integer cateId;
+	/**
+	 * 模块菜单id
+	 **/
+	private Integer menuId;
+	/**
+	 * 热门关注名称
+	 **/
+	private String name;
+	/**
+	 * 来源 1=网站；2=微站
+	 **/
+	private Integer source;
+	/**
+	 * url链接
+	 **/
+	private String url;
+	/**
+	 * 省份id
+	 **/
+	private String provinceId;
+	/**
+	 * 城市id
+	 **/
+	private String cityId;
+	/**
+	 * 区域id
+	 **/
+	private String areaId;
+	/**
+	 * 片区id
+	 **/
+	private String sheetId;
+	/**
+	 * 1=删除；0=正常
+	 **/
+	private Integer isDelete;
+	/**
+	 * 省份名称
+	 **/
+	private String provinceName;
+	/**
+	 * 城市名称
+	 **/
+	private String cityName;
+	/**
+	 * 区域名称
+	 **/
+	private String areaName;
+	/**
+	 * 片区名称
+	 **/
+	private String sheetName;
 
-    private Integer menuId;
 
-    private String name;
+	public Integer getId() {
+		return id;
+	}
 
-    private Integer source;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private String url;
+	public Integer getCateId() {
+		return cateId;
+	}
 
-    private String provinceId;
+	public void setCateId(Integer cateId) {
+		this.cateId = cateId;
+	}
 
-    private String cityId;
+	public Integer getMenuId() {
+		return menuId;
+	}
 
-    private String areaId;
+	public void setMenuId(Integer menuId) {
+		this.menuId = menuId;
+	}
 
-    private String sheetId;
+	public String getName() {
+		return name;
+	}
 
-    private String provinceName;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    private String cityName;
+	public Integer getSource() {
+		return source;
+	}
 
-    private String areaName;
+	public void setSource(Integer source) {
+		this.source = source;
+	}
 
-    private String sheetName;
+	public String getUrl() {
+		return url;
+	}
 
-    private Integer isDelete;
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public String getProvinceId() {
+		return provinceId;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setProvinceId(String provinceId) {
+		this.provinceId = provinceId;
+	}
 
-    public Integer getCateId() {
-        return cateId;
-    }
+	public String getCityId() {
+		return cityId;
+	}
 
-    public void setCateId(Integer cateId) {
-        this.cateId = cateId;
-    }
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
 
-    public Integer getMenuId() {
-        return menuId;
-    }
+	public String getAreaId() {
+		return areaId;
+	}
 
-    public void setMenuId(Integer menuId) {
-        this.menuId = menuId;
-    }
+	public void setAreaId(String areaId) {
+		this.areaId = areaId;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getSheetId() {
+		return sheetId;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setSheetId(String sheetId) {
+		this.sheetId = sheetId;
+	}
 
-    public Integer getSource() {
-        return source;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public void setSource(Integer source) {
-        this.source = source;
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public String getProvinceName() {
+		return provinceName;
+	}
 
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
 
-    public String getProvinceId() {
-        return provinceId;
-    }
+	public String getCityName() {
+		return cityName;
+	}
 
-    public void setProvinceId(String provinceId) {
-        this.provinceId = provinceId;
-    }
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
 
-    public String getCityId() {
-        return cityId;
-    }
+	public String getAreaName() {
+		return areaName;
+	}
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
-    }
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
 
-    public String getAreaId() {
-        return areaId;
-    }
+	public String getSheetName() {
+		return sheetName;
+	}
 
-    public void setAreaId(String areaId) {
-        this.areaId = areaId;
-    }
+	public void setSheetName(String sheetName) {
+		this.sheetName = sheetName;
+	}
 
-    public String getSheetId() {
-        return sheetId;
-    }
-
-    public void setSheetId(String sheetId) {
-        this.sheetId = sheetId;
-    }
-
-    public Integer getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
-    }
-
-    public String getProvinceName() {
-        return provinceName;
-    }
-
-    public void setProvinceName(String provinceName) {
-        this.provinceName = provinceName;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public String getSheetName() {
-        return sheetName;
-    }
-
-    public void setSheetName(String sheetName) {
-        this.sheetName = sheetName;
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("Popular{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (cateId != null) {
+			sb.append(", \"cateId\":\"").append(cateId).append("\"");
+		}
+		if (menuId != null) {
+			sb.append(", \"menuId\":\"").append(menuId).append("\"");
+		}
+		if (name != null) {
+			sb.append(", \"name\":\"").append(name).append("\"");
+		}
+		if (source != null) {
+			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (url != null) {
+			sb.append(", \"url\":\"").append(url).append("\"");
+		}
+		if (provinceId != null) {
+			sb.append(", \"provinceId\":\"").append(provinceId).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (areaId != null) {
+			sb.append(", \"areaId\":\"").append(areaId).append("\"");
+		}
+		if (sheetId != null) {
+			sb.append(", \"sheetId\":\"").append(sheetId).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (provinceName != null) {
+			sb.append(", \"provinceName\":\"").append(provinceName).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
+		}
+		if (areaName != null) {
+			sb.append(", \"areaName\":\"").append(areaName).append("\"");
+		}
+		if (sheetName != null) {
+			sb.append(", \"sheetName\":\"").append(sheetName).append("\"");
+		}
+		return sb.toString();
+	}
 }
