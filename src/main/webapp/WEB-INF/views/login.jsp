@@ -36,13 +36,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
      String password = "";
  
      Cookie[] cookies = request.getCookies();
-     for (int i = 0; i < cookies.length; i++) {
-    	 if ("username".equals(cookies[i].getName())) {
-    		   username = cookies[i].getValue();
-    	} else if ("password".equals(cookies[i].getName())) {
-    		   password = cookies[i].getValue();
-    	}
-     }
+     if (cookies != null) {
+		 for (int i = 0; i < cookies.length; i++) {
+			 if ("username".equals(cookies[i].getName())) {
+				 username = cookies[i].getValue();
+			 } else if ("password".equals(cookies[i].getName())) {
+				 password = cookies[i].getValue();
+			 }
+		 }
+	 }
 %>
 <script type="text/javascript" > 
 if (window != top) 

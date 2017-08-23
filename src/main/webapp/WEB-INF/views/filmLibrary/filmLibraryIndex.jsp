@@ -20,35 +20,20 @@
 	<div class="box"> 
 		<section class = "content">
 			<p class = "detail-title">
-				<span>委托记录列表</span>
+				<a class = "setup"  target="contentF" onclick="toAddPage()">新增</a>
 			</p>
-		<form action="${ctx }/rest/tradeFair/tradeFairList" method="POST" id="searchForm"
+		<form action="${ctx }/rest/filmLibrary/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
 
 				<li><span>状态：</span>
-					<select name="status" id="status" class="dropdown">
+					<select name="isShow" id="isShow" class="dropdown">
 						<option value="">全部</option>
-						<option value="0">待分配</option>
-						<option value="1">未联系</option>
-						<option value="2">已联系</option>
+						<option value="0">上线</option>
+						<option value="1">下线</option>
 
 					</select>
 				</li>
-				<li><span>来源：</span>
-					<select name="source" id="source" class="dropdown">
-                        <option value="" >请选择</option>
-						<option value="0">网站</option>
-						<option value="1">微商</option>
-					</select>
-				</li>
-				<li><span>委托时间</span><input class="Wdate half" id="time1"
-										onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'time2\')}'})"
-										name="startTime" /> <em class = "gang">-</em><input
-						class="Wdate half"
-						onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'time1\')}'})"
-						id="time2" name="endTime" /></li>
-
 				<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>
 			</ul>
 			</form>
@@ -59,6 +44,21 @@
 	
 	<script type="text/javascript">
 
+
+
+
+        function toAddPage(){
+            layer.open({
+                type: 2,
+                skin: 'layer-style',
+                area: ['500px','700px'],
+                shadeClose: false, //点击遮罩关闭
+                title:['新增楼盘信息'],
+                resize: false,
+                scrollbar:false,
+                content:['${ctx}/rest/filmLibrary/to_add', 'no']
+            });
+        }
 		 window.onload = function(){
              $('#searchForm').submit();
 		}

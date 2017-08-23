@@ -1,73 +1,222 @@
 package com.midland.web.model;
 
-public class FilmLibrary {
-    private Integer id;
 
-    private Integer cityId;
+public class FilmLibrary{
+	/**
+	 * 片库id
+	 **/
+	private Integer id;
+	/**
+	 * 城市id
+	 **/
+	private Integer cityId;
+	/**
+	 * 图片描述
+	 **/
+	private String imgDesc;
+	/**
+	 * 楼盘名称
+	 **/
+	private String housesName;
+	/**
+	 * 楼盘id
+	 **/
+	private Integer housesId;
+	/**
+	 * 简介
+	 **/
+	private String introduction;
+	/**
+	 * 视频url地址
+	 **/
+	private String videoUrl;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
+	/**
+	 * 点击数
+	 **/
+	private Integer clickNum;
+	/**
+	 * 类型，0住宅，1商铺，2写字楼
+	 **/
+	private Integer filmType;
+	/**
+	 * 图片地址
+	 **/
+	private String imgUrl;
+	/**
+	 * 录盘人id
+	 **/
+	private Integer operatorId;
+	/**
+	 * 录盘人名称
+	 **/
+	private String operatorName;
+	/**
+	 * 视频时长
+	 **/
+	private Integer duration;
 
-    private String imgDesc;
 
-    private String housesName;
+	public Integer getId() {
+		return id;
+	}
 
-    private Integer housesId;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private String videoUrl;
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    private String introduction;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public String getImgDesc() {
+		return imgDesc;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setImgDesc(String imgDesc) {
+		this.imgDesc = imgDesc;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public String getHousesName() {
+		return housesName;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setHousesName(String housesName) {
+		this.housesName = housesName;
+	}
 
-    public String getImgDesc() {
-        return imgDesc;
-    }
+	public Integer getHousesId() {
+		return housesId;
+	}
 
-    public void setImgDesc(String imgDesc) {
-        this.imgDesc = imgDesc == null ? null : imgDesc.trim();
-    }
+	public void setHousesId(Integer housesId) {
+		this.housesId = housesId;
+	}
 
-    public String getHousesName() {
-        return housesName;
-    }
+	public String getIntroduction() {
+		return introduction;
+	}
 
-    public void setHousesName(String housesName) {
-        this.housesName = housesName == null ? null : housesName.trim();
-    }
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
 
-    public Integer getHousesId() {
-        return housesId;
-    }
+	public String getVideoUrl() {
+		return videoUrl;
+	}
 
-    public void setHousesId(Integer housesId) {
-        this.housesId = housesId;
-    }
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl == null ? null : videoUrl.trim();
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public String getIntroduction() {
-        return introduction;
-    }
+	public Integer getClickNum() {
+		return clickNum;
+	}
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
-    }
+	public void setClickNum(Integer clickNum) {
+		this.clickNum = clickNum;
+	}
+
+	public Integer getFilmType() {
+		return filmType;
+	}
+
+	public void setFilmType(Integer filmType) {
+		this.filmType = filmType;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public Integer getOperatorId() {
+		return operatorId;
+	}
+
+	public void setOperatorId(Integer operatorId) {
+		this.operatorId = operatorId;
+	}
+
+	public String getOperatorName() {
+		return operatorName;
+	}
+
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
+	}
+
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("FilmLibrary{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (imgDesc != null) {
+			sb.append(", \"imgDesc\":\"").append(imgDesc).append("\"");
+		}
+		if (housesName != null) {
+			sb.append(", \"housesName\":\"").append(housesName).append("\"");
+		}
+		if (housesId != null) {
+			sb.append(", \"housesId\":\"").append(housesId).append("\"");
+		}
+		if (introduction != null) {
+			sb.append(", \"introduction\":\"").append(introduction).append("\"");
+		}
+		if (videoUrl != null) {
+			sb.append(", \"videoUrl\":\"").append(videoUrl).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (clickNum != null) {
+			sb.append(", \"clickNum\":\"").append(clickNum).append("\"");
+		}
+		if (filmType != null) {
+			sb.append(", \"filmType\":\"").append(filmType).append("\"");
+		}
+		if (imgUrl != null) {
+			sb.append(", \"imgUrl\":\"").append(imgUrl).append("\"");
+		}
+		if (operatorId != null) {
+			sb.append(", \"operatorId\":\"").append(operatorId).append("\"");
+		}
+		if (operatorName != null) {
+			sb.append(", \"operatorName\":\"").append(operatorName).append("\"");
+		}
+		if (duration != null) {
+			sb.append(", \"duration\":\"").append(duration).append("\"");
+		}
+		return sb.toString();
+	}
 }
