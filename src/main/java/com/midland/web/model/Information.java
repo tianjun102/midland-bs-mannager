@@ -1,5 +1,6 @@
 package com.midland.web.model;
 
+import java.util.Date;
 
 public class Information{
 	/**
@@ -62,6 +63,18 @@ public class Information{
 	 * 0未删除，1删除
 	 **/
 	private Integer isDelete;
+	/**
+	 * 0=市场调研；1=资讯
+	 **/
+	private Integer articeType;
+	/**
+	 * 发布时间
+	 **/
+	private Date releaseTime;
+	/**
+	 * 评论
+	 **/
+	private String comment;
 
 
 	public Integer getId() {
@@ -184,6 +197,30 @@ public class Information{
 		this.isDelete = isDelete;
 	}
 
+	public Integer getArticeType() {
+		return articeType;
+	}
+
+	public void setArticeType(Integer articeType) {
+		this.articeType = articeType;
+	}
+
+	public Date getReleaseTime() {
+		return releaseTime;
+	}
+
+	public void setReleaseTime(Date releaseTime) {
+		this.releaseTime = releaseTime;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("Information{");
@@ -231,6 +268,15 @@ public class Information{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (articeType != null) {
+			sb.append(", \"articeType\":\"").append(articeType).append("\"");
+		}
+		if (releaseTime != null) {
+			sb.append(", \"releaseTime\":\"").append(releaseTime).append("\"");
+		}
+		if (comment != null) {
+			sb.append(", \"comment\":\"").append(comment).append("\"");
 		}
 		return sb.toString();
 	}

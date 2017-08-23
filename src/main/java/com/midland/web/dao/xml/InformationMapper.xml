@@ -18,10 +18,13 @@
 		<result column="order_by" property="orderBy" jdbcType="INTEGER" />
 		<result column="click_num" property="clickNum" jdbcType="INTEGER" />
 		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+		<result column="artice_type" property="articeType" jdbcType="INTEGER" />
+		<result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
+		<result column="comment" property="comment" jdbcType="LONGVARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,cate_id,cate_parentId,type,title,source,enclosure,meta_keywords,meta_desc,img_url,img_desc,details,order_by,click_num,is_delete
+		id,cate_id,cate_parentId,type,title,source,enclosure,meta_keywords,meta_desc,img_url,img_desc,details,order_by,click_num,is_delete,artice_type,release_time,comment
 	</sql>
 
 	<select id="selectInformationById" resultMap="BaseResultMap">
@@ -95,6 +98,15 @@
 			<if test="isDelete != null">
 				is_delete,
 			</if>
+			<if test="articeType != null">
+				artice_type,
+			</if>
+			<if test="releaseTime != null">
+				release_time,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -139,6 +151,15 @@
 			</if>
 			<if test="isDelete != null">
 				#{isDelete,jdbcType=INTEGER},
+			</if>
+			<if test="articeType != null">
+				#{articeType,jdbcType=INTEGER},
+			</if>
+			<if test="releaseTime != null">
+				#{releaseTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=LONGVARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -185,6 +206,15 @@
 		</if>
 		<if test="isDelete != null">
 			is_delete= #{isDelete,jdbcType=INTEGER},
+		</if>
+		<if test="articeType != null">
+			artice_type= #{articeType,jdbcType=INTEGER},
+		</if>
+		<if test="releaseTime != null">
+			release_time= #{releaseTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="comment != null">
+			comment= #{comment,jdbcType=LONGVARCHAR},
 		</if>
 	</sql>
 
@@ -233,6 +263,15 @@
 		</if>
 		<if test="isDelete != null">
 			 and is_delete= #{isDelete,jdbcType=INTEGER}
+		</if>
+		<if test="articeType != null">
+			 and artice_type= #{articeType,jdbcType=INTEGER}
+		</if>
+		<if test="releaseTime != null">
+			 and release_time= #{releaseTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="comment != null">
+			 and comment= #{comment,jdbcType=LONGVARCHAR}
 		</if>
 	</sql>
 
