@@ -32,18 +32,29 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 			<div class = "table-responsive m40">
 				<table class="table table-bordered table-add">
-				<col width="20%" >
-				<col width="40%" >
 				<col width="10%" >
+				<col width="7%" >
+				<col width="7%" >
+				<col width="7%" >
+				<col width="7%" >
+				<col width="7%" >
 				<col width="10%" >
 				<col width="15%" >
+				<col width="15%" >
+				<col width="6%" >
+				<col width="20%" >
 	 				<thead>
 						<tr>
-							<!-- <th>序号</th> -->
-							<th>缩略图</th>
-							<th>图片说明</th>
-							<th>排序</th>
-							<th>state</th>
+							<th>轮播图</th>
+							<th>状态</th>
+							<th>城市</th>
+							<th>平台</th>
+							<th>模块</th>
+							<th>位置</th>
+							<th>编号</th>
+							<th>上线时间</th>
+							<th>下线时间</th>
+							<th>点击量</th>
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -51,12 +62,18 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<c:forEach items="${bannerList}" var="banner">
 						<tr>
 							<%-- <td>${banner.id}</td> --%>
-							<td><img style="height: 36px;" src="${banner.bannerImg1}" class="suo"/></td>
-							<td>${banner.imgDesc}</td>
-							<td>${banner.sortOrder}</td>
-							<td><c:if test="${banner.enabled =='0'}">关闭</c:if><c:if test="${banner.enabled =='1'}">开放</c:if>  </td>
+							<td><img style="height: 36px;" src="http://localhost${banner.bannerImg}" class="suo"/></td>
+							<td><c:if test="${banner.enabled =='0'}">关闭</c:if><c:if test="${banner.enabled =='1'}">开放</c:if></td>
+							<td>${banner.cityName}</td>
+							<td><c:if test="${banner.source =='0'}">网站</c:if><c:if test="${banner.source =='1'}">微站</c:if></td>
+							<td>${banner.model}</td>
+							<td>${banner.position}</td>
+							<td>${banner.id}</td>
+							<td>${banner.startTime}</td>
+							<td>${banner.endTime}</td>
+							<td>${banner.clikNum}</td>
 							<td>
-								<a target="contentF" class = "edit_img" title = "编辑" href="${ctx}/rest/banner/enterEditBanner?id=${banner.id}"></a>
+								<a target="contentF" class = "edit_img" title = "编辑" href="${ctx}/rest/setting/enterEditBanner?id=${banner.id}"></a>
 								<a onclick="deleteBanner(${banner.id})"  class = "delete_img" title = "删除"></a>
 								<!-- <a href="javascript:;" target="contentFrame" class = "admin_img" title = "管理图片"></a> -->
 							</td>

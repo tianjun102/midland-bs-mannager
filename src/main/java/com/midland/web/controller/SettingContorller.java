@@ -2,6 +2,7 @@ package com.midland.web.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.Paginator;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.Area;
@@ -9,6 +10,7 @@ import com.midland.web.model.Banner;
 import com.midland.web.model.LinkUrlManager;
 import com.midland.web.model.Popular;
 import com.midland.web.service.SettingService;
+import com.midland.web.util.MidlandHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -279,9 +281,101 @@ private SettingService settingService;
 
     @RequestMapping(value = "bannerList", method = { RequestMethod.GET, RequestMethod.POST })
     public String bannerList(Model model, HttpServletRequest request,Banner Banner){
-
+        MidlandHelper.doPage(request);
+        Page<Banner> bannerList =  (Page<Banner>) settingService.findBannerList(Banner);
+        Paginator paginator = bannerList.getPaginator();
+        model.addAttribute("paginator",paginator);
+        model.addAttribute("bannerList",bannerList);
         return "setting/bannerList";
     }
+
+    /**
+     * 进入新建banner页面
+     * @param model
+     * @param request
+     * @param banner
+     * @return
+     */
+    @RequestMapping(value = "enterBanner", method = { RequestMethod.GET, RequestMethod.POST })
+    public String enterBanner(Model model, HttpServletRequest request,Banner banner){
+        Map<String,String> parem = new HashMap<>();
+        parem.put("flag","city");
+        parem.put("id","*");
+        Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+        List<Area> cityList = cityMap.get("city");
+        model.addAttribute("cityList",cityList);
+
+        return "setting/addBanner";
+    }
+
+
+    @RequestMapping(value = "addBanner", method = { RequestMethod.GET, RequestMethod.POST })
+    @ResponseBody
+    public Object addBanner(Model model, HttpServletRequest request,Banner banner){
+        Map<String,Object> map = new HashMap<>();
+        Integer num = settingService.insertBanner(banner);
+        if (num>0){
+            map.put("result","ok");
+        }
+        return map;
+    }
+
+    /**
+     * 跳转到修改banner页面
+     * @param model
+     * @param request
+     * @param banner
+     * @return
+     */
+    @RequestMapping(value = "enterEditBanner", method = { RequestMethod.GET, RequestMethod.POST })
+    public String enterEditBanner(Model model, HttpServletRequest request,Banner banner){
+        Map<String,String> parem = new HashMap<>();
+        parem.put("flag","city");
+        parem.put("id","*");
+        Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+        List<Area> cityList = cityMap.get("city");
+        model.addAttribute("cityList",cityList);
+        banner = settingService.findBanner(banner);
+        model.addAttribute("banner",banner);
+        return "/setting/editBanner";
+    }
+
+
+    /**
+     * 修改banner
+     * @param model
+     * @param request
+     * @param banner
+     * @return
+     */
+
+    @RequestMapping(value = "editBanner", method = { RequestMethod.GET, RequestMethod.POST })
+    @ResponseBody
+    public Object editBanner(Model model, HttpServletRequest request,Banner banner){
+        Map<String,Object> map = new HashMap<>();
+        Integer num = settingService.updateBanner(banner);
+        if (num>0){
+            map.put("result","ok");
+        }
+        return map;
+    }
+
+
+
+    @RequestMapping(value = "deleteBanner", method = { RequestMethod.GET, RequestMethod.POST })
+    @ResponseBody
+    public Object deleteBanner(Model model, HttpServletRequest request,Banner banner){
+        Map<String,Object> map = new HashMap<>();
+        banner.setIsDelete(1);
+        Integer num = settingService.updateBanner(banner);
+        if (num>0){
+            map.put("result","ok");
+        }
+        return map;
+    }
+
+
+
 
 
 

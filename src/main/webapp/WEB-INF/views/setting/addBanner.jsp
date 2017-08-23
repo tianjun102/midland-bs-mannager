@@ -23,15 +23,16 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
         <meta content="" name="description" />
         <meta content="" name="author" />
         <meta name="MobileOptimized" content="320">
-        <link rel="stylesheet" href="${ctx}/assets/css/layer.css">
+		<link rel="stylesheet" href="${ctx}/assets/css/layer.css">
 		<link rel="stylesheet" href="${ctx}/assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="${ctx}/assets/css/common.css">
 		<link rel="stylesheet" href="${ctx}/assets/css/easydropdown.css" />
-		
-    </head>
-    <body >
-    	<script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
-    	<script type="text/javascript" src="${ctx}/assets/plugins/jquery-validation/lib/jquery.form.js"></script>
+		<link rel="stylesheet" type="text/css" href="${ctx }/assets/scripts/uploadify/uploadify.css">
+
+	</head>
+	<body >
+	<script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="${ctx}/assets/plugins/jquery-validation/lib/jquery.form.js"></script>
 		<script type="text/javascript" src="${ctx}/assets/scripts/jquery.easydropdown.js" ></script>
 		<script type="text/javascript" src="${ctx}/assets/scripts/bootstrap.min.js"></script>
 		<script src="${ctx}/assets/scripts/common.js"></script>
@@ -42,48 +43,77 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<script src="${ctx}/assets/UEditor/ueditor.all.js" type="text/javascript"></script>
 		<script src="${ctx}/assets/UEditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
 		<script src="${ctx}/assets/scripts/inputControl.js" type="text/javascript"></script>
+		<script type="text/javascript" src="${ctx }/assets/scripts/uploadify/jquery.uploadify.min.js"></script>
 	<div class="box">
 		<section class = "content">
 			<p class = "detail-title">
 				<span>添加Banner</span>
 			</p>
 		<form id="formId" action="${ctx}/rest/banner/addBanner" method="post" enctype="multipart/form-data" method="post">
-		<input type="hidden" name="catId" value="" id="cat_Id" >
-		<input type="hidden" name="isAll" value="">
+			<input type="hidden" name="cityName" id="cityName" value="" >
 			<ul class = "adminfo row">
- 				<li><span>展示方式：</span>
-					<select name="type" id="selectType" class="dropdown" onchange="selectTypes();">
+				<li><span>展示方式：</span>
+				<select name="type" id="selectType" class="dropdown" onchange="selectTypes();">
 						<option value="" class="label">请选择</option>
 					    <option value="0">单页面</option>
-					    <option value="1">产品/产品类型</option>
 					    <option value="2">外网链接</option>
+					</select>
+				<span class = "_star ">*</span>
+				</li>
+				<li>
+					<span>上线时间：</span>
+					<input type="text" name="startTime" class="Wdate half" id="time3" onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'time4\')}'})" />
+					<em class = "gang">-</em>
+					<input type="text" name="endTime" class="Wdate half" id="time4" onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'time3\')}'})"/>
+				</li>
+				<li><span>城市：</span>
+					<select onchange="setCityName();" name="cityId" id="cityId" style="height: 38px;width: 150px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
+						<option value="">全部</option>
+						<c:forEach items="${cityList}" var="city">
+							<option value="${city.id}">${city.name}</option>
+						</c:forEach>
 					</select>
 					<span class = "_star ">*</span>
 				</li>
-				<li style = "overflow:hidden;">
-				<span style = "float:left;">大图：</span>
-				<div id="img" style= "display:inline-block; float:left;">
-					<div class="imgbox">
-					    <div class="imgnum">
-					        <input id="file1" name="file1" type="file" class="filepath" />
-					        <span class="close">X</span>
-					        <img src="${ctx}/assets/img/btn.png" class="img1" />
-					        <img src="" class="img2" />
-					    </div>
+				<li><span>平台：</span>
+					<select name="source" id="source" style="height: 38px;width: 150px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
+							<option value="0">网站</option>
+						    <option value="1">微站</option>
+					</select>
+					<span class = "_star ">*</span>
+				</li>
+				<li><span>模块：</span>
+					<select name="model" id="model" style="height: 38px;width: 150px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
+						<option value="0">首页</option>
+						<option value="1">新房</option>
+						<option value="2">二手房</option>
+						<option value="3">租房</option>
+					</select>
+					<span class = "_star ">*</span>
+				</li>
+				<li><span>位置：</span>
+					<select name="position" id="position" style="height: 38px;width: 150px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
+						<option value="0">位置１</option>
+						<option value="1">位置２</option>
+						<option value="2">位置３</option>
+						<option value="3">位置４</option>
+					</select>
+					<span class = "_star ">*</span>
+				</li>
+				<li><span>图片：</span>
+					<div style="float: left;">
+						<input type="hidden" name="bannerImg" id="bannerImg" value="${item.iconImg}">
+
+						<img style="margin-bottom: 10px;max-width:200px;max-height:200px" id="iconImg1"
+							 src="${item.iconImg}">
+						<input type="file" name="file_upload" id="file_upload"/>
 					</div>
-				</div>
-				<div style = "font-size:12px; color:#666; height:202px; line-height:202px;">(请添加大小不超过500K、分辨率为1920 * 500 Pix、图片格式为JPG或PNG的图片)</div>
 				</li>
 				<!-- <li><span>小图：</span><img  src="" width="120px" height="100px" alt=""><input type="file" name="file2" id="file2" onchange="previewImg(this)"></li> -->
 				<li id="picLike"><span>图片链接：</span>
 				<input id="bannerId" name="bannerLinkurl" maxlength="255" type="text" value=""> 
 				</li>
-				<li id="textArea" style="display: none;"><span>页面内容：</span><textarea style="width: 92%;min-height: 350px;resize:none; outline-color: #0099e0;" name="bannerInfo" id="myEditor" rows="" cols=""></textarea></li>
-				<li id="searchbatton" style="display: none;"><span>产品信息：</span>&nbsp;&nbsp;<input onclick="searchProduct(1)" style="width: 100px;text-indent: 0px; float:left;" class = "public_btn bg1" type="button" name="inquery" id="inquery" value = "查询商品"/></li>
-				<li id="catInfo" style="display: none;"><span>分类：</span>
-				<div style="display:inline-block" id="catName">
-				</div>
-				</li>
+				<li id="textArea" style="display: none;"><span>页面内容：</span><textarea style="width: 92%;min-height: 350px;resize:none; outline-color: #0099e0;" name="detail" id="myEditor" rows="" cols=""></textarea></li>
 				<div id="prodInfo" style="display: none;" class = "table-responsive m40">
 					<table class="table table-bordered table-add">
 					<thead>
@@ -101,15 +131,15 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				</div>
 				
 				<li><span>图片说明：</span><input type="text" name="imgDesc"></li>
-				<li style="display:flex;align-items:center">
-				<span>state：<input name = "enabled" id = "enabled" type="hidden" value=""></span>
+				<%--<li style="display:flex;align-items:center">
+				<span>状态：<input name = "enabled" id = "enabled" type="hidden" value=""></span>
 					<input style="width: 15px;height: 15px;margin: 0px;" onchange="addIsShow();" type="radio" name="isshow" value="1">
 					<em class = "gang" style = "margin-right:15px;">开放</em>   
 					<input style="width: 15px;height: 15px;margin: 0px;" onchange="addIsShow();" type="radio" name="isshow" value="0">
 					<em class = "gang">关闭</em>
 					<span class = "_star ">*</span> 
 				</li>
-				<li><span>排序：</span><input maxlength="3" type="text" name="sortOrder" onfocus="InitInput.setNumber(this,3,0,0)"><span class = "_star ">*</span></li>
+				<li><span>排序：</span><input maxlength="3" type="text" name="sortOrder" onfocus="InitInput.setNumber(this,3,0,0)"><span class = "_star ">*</span></li>--%>
 			</ul>
 			
 			
@@ -183,23 +213,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		 }
 	 	
 	}
-	//搜索商品
-    function searchProduct(flag){
-    	
-    	var catId = $("#cat_Id").val();
-    	var isAll = $("input:hidden[name='isAll']").val();
-    	layer.open({
-    		type: 2,
-    		title: ['产品搜索'],
-    		shadeClose: false,
-    		shadeClose: false,
-    		shade: 0.5,
-    		area: ['1050px', '500px'],
-    		content: "${ctx}/rest/banner/enterSearchProduct?flag="+flag+"&catId="+catId+"&isAll="+isAll
-    	
-    		});
-        }
-	
+
     function delecte(ths){
 		layer.open({
 			  type: 1,
@@ -302,36 +316,31 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     }
     
     function subumintBanner(){
-    	var form = document.getElementById('formId');
-		var data = new FormData(form);
-    	var required = true;
-    	if($("select[name='type']").val()==""||$("input[name='sortOrder']").val()==""||$("#enabled").val()==""){
-			layer.msg("请完成必填项");
-			required = false;
-    	}
-    	if(required){
-		var options = {
-				url : "${ctx}/rest/banner/addBanner",
-				type : "post",
-				cache : false,
-				contentType : false,
-				processData : false,
-				dataType: "json",
-				async : false,
-				success : function(result) {
-				if(result.result=="ok"){
-					layer.msg("保存成功！",{icon:1});
-					setTimeout(function(){window.open("${ctx}/rest/banner/bannerindex","contentF");},2000); 
-				}
-				},
-				error:function(){
-					layer.msg("保存失败！",{icon:2});
-				}
-				}
-			 $("#formId").ajaxSubmit(options);
-    	}
+		var data = $("#formId").serialize();
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/setting/addBanner",
+            async: false, // 此处必须同步
+            dataType: "json",
+            data:data ,
+            success: function (data) {
+                if(data.result=="ok"){
+                    layer.msg("保存成功！",{icon:1});
+                    setTimeout(function(){window.open("${ctx}/rest/setting/bannerIndex","contentF");},2000);
+                } else {
+                    layer.msg("新增失败！", {icon: 2});
+                }
+            },
+            error: function () {
+                layer.msg("新增失败！", {icon: 2});
+            }
+
+        });
+
     }
-    
+
+
+
     $(function() {
         $(".filepath").on("change",function() {
 //          alert($('.imgbox').length);
@@ -366,6 +375,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     })
 
 
+	function setCityName(){
+        $("#cityName").val($("#cityId option:selected").text())
+	}
+
+
     function getObjectURL(file) {
         var url = null;
         if (window.createObjectURL != undefined) {
@@ -377,6 +391,27 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
         }
         return url
     };
+
+    $(function () {
+        $('#file_upload').uploadify({
+            'swf': '${ctx }/assets/scripts/uploadify/uploadify.swf',
+            'uploader': '${ctx }/rest/upload/img',
+            'multi': false,// 是否支持多个文件上传
+            'buttonText': '上传图片',
+            'onUploadSuccess': function (file, data, response) {
+                console.log(data);
+                $("#bannerImg").attr("value", data);
+                $("#iconImg1").attr("src", "http://localhost"+data);
+            },
+            'onQueueComplete': function (queueData) {
+                if (queueData.uploadsSuccessful < 1) {
+                    alert('文件上传失败');
+                }
+            }
+
+            // Your options here
+        });
+    })
     
     </script>
 </html>

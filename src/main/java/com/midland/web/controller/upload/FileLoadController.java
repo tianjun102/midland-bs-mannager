@@ -1,5 +1,6 @@
 package com.midland.web.controller.upload;
 
+import com.midland.core.util.AppSetting;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -91,13 +92,12 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 		if (!item.isFormField()) {
 			String fileName = item.getName();
 			
-			String storePath = this.servletContext.getRealPath("/");
-			
-			String filePath = "/store/";
-			File file =new File(storePath+filePath);
+			String storePath = AppSetting.getAppSetting("upload_dir");
+			File file =new File(storePath);
 			if (!file.exists()){
 				file.mkdirs();
 			}
+			String filePath = "/store/";
 			File uploadedFile = new File(storePath+filePath + fileName);
 			if(!uploadedFile.exists()) {
 				try {
