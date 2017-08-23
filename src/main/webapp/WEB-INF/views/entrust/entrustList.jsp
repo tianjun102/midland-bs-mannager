@@ -62,7 +62,7 @@
 
                             <a target="contentF" onclick="toRedistribute(${item.id })">重新分配经纪人</a>
 
-                            <a target="contentF" onclick="toUpdateAppointment(${item.id })">修改</a>
+                            <a target="contentF" onclick="toUpdateEntrust(${item.id })">修改</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -97,7 +97,7 @@
     }
 
 
-    function toUpdateAppointment(appointId) {
+    function toUpdateEntrust(appointId) {
         layer.open({
             type: 2,
             title: ['更新'],

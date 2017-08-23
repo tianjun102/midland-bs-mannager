@@ -11,7 +11,7 @@ public class TradeFair{
 	 **/
 	private String imgUrl;
 	/**
-	 * 标题
+	 * 楼盘名称
 	 **/
 	private String title;
 	/**
@@ -23,13 +23,29 @@ public class TradeFair{
 	 **/
 	private String introduction;
 	/**
-	 * 是否开启
+	 * 显示,0开启，1关闭
 	 **/
 	private Integer isShow;
 	/**
 	 * 0未删除，1删除
 	 **/
 	private Integer isDelete;
+	/**
+	 * 图片描述
+	 **/
+	private String description;
+	/**
+	 * 录盘人
+	 **/
+	private Integer operatorId;
+	/**
+	 * 录盘人名称
+	 **/
+	private String operatorName;
+	/**
+	 * 类型：0楼盘展销会，1看楼团
+	 **/
+	private Integer tradeType;
 
 
 	public Integer getId() {
@@ -88,6 +104,38 @@ public class TradeFair{
 		this.isDelete = isDelete;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getOperatorId() {
+		return operatorId;
+	}
+
+	public void setOperatorId(Integer operatorId) {
+		this.operatorId = operatorId;
+	}
+
+	public String getOperatorName() {
+		return operatorName;
+	}
+
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
+	}
+
+	public Integer getTradeType() {
+		return tradeType;
+	}
+
+	public void setTradeType(Integer tradeType) {
+		this.tradeType = tradeType;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("TradeFair{");
@@ -111,6 +159,18 @@ public class TradeFair{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (description != null) {
+			sb.append(", \"description\":\"").append(description).append("\"");
+		}
+		if (operatorId != null) {
+			sb.append(", \"operatorId\":\"").append(operatorId).append("\"");
+		}
+		if (operatorName != null) {
+			sb.append(", \"operatorName\":\"").append(operatorName).append("\"");
+		}
+		if (tradeType != null) {
+			sb.append(", \"tradeType\":\"").append(tradeType).append("\"");
 		}
 		return sb.toString();
 	}

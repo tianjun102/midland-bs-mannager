@@ -6,25 +6,55 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="${ctx }/assets/css/common.css">
 
+    <style type="text/css">
+        .content ul.userinfo > li {
+            margin-left: 0;
+            padding-top: 8px;
+        }
 
+        .content ul.userinfo li > span,
+        .content ul.userinfo li:not(:last-child) input,
+        .content ul.userinfo ._star,
+        .content ul.userinfo .dropdown {
+            height: 30px !important;
+            line-height: 30px !important;
+            vertical-align: middle;
+        }
+        .content ul.userinfo li input[type=checkbox]{
+            float: none;
+            width: auto!important;
+            height: auto!important;
+            margin-right: 3px;
+        }
+        .peitao{
+            height: 30px;line-height: 30px;
+        }
+        .peitao > span{padding-right: 15px;}
+        .peitao > span em{vertical-align: middle;}
+    </style>
 </head>
 <body>
+
+
 <section class="content" style="border:none;">
     <form action="${ctx}/rest/appoint/update" method="post" id="appointInfoForm">
         <ul class="userinfo row">
             <input type="hidden" name="id" id="id" value="${entrust.id}">
-            <li><span>预约编号：</span><input type="text" name="entrustSn" id="entrustSn" value="${entrust.entrustSn}"/>
-                <span>委托时间：</span><input type="text" name="entrustTime" id="entrustTime"
-                                         value="${entrust.entrustTime}" maxlength="50"/><span
-                        class="_star">*</span>
+            <li class="col-md-6"><span>预约编号：</span><input type="text" name="entrustSn" id="entrustSn"
+                                                          value="${entrust.entrustSn}"/>
             </li>
-            <li><span>用户：</span><input type="text" name="nickName" id="nickName" value="${entrust.nickName}"/>
-                <span>手机号码：</span><input type="text" name="phone" id="phone" value="${entrust.phone}"
-                                         maxlength="50"/><span class="_star">*</span>
+            <li class="col-md-6"><span>委托时间：</span><input type="text" name="entrustTime" id="entrustTime"
+                                                          value="${entrust.entrustTime}" maxlength="50"/><span
+                    class="_star">*</span>
             </li>
-            <li> <span>分类：</span>
+            <li class="col-md-6"><span>用户：</span><input type="text" name="nickName" id="nickName"
+                                                        value="${entrust.nickName}"/>
+            </li>
+            <li class="col-md-6"><span>手机号码：</span><input type="text" name="phone" id="phone"
+                                                          value="${entrust.phone}"
+                                                          maxlength="50"/><span class="_star">*</span></li>
+            <li class="col-md-6"><span>分类：</span>
                 <select name="sellRent" id="sellRent" class="dropdown">
                     <!-- <option value="" >请选择</option> -->
                     <option value="0"
@@ -36,69 +66,69 @@
                 </select>
                 <span class="_star">*</span>
             </li>
-            <li><span>委托类型：</span>
+
+            <li class="col-md-6"><span>委托类型：</span>
                 <select name="houseType" id="houseType" class="dropdown">
                     <option value="0"
-                            <c:if test="${entrust.houseType==0}">selected="selected"</c:if>>新房
+                            <c:if test="${entrust.houseType==0}">selected="selected"</c:if>>住宅
                     </option>
                     <option value="1"
-                            <c:if test="${entrust.houseType==1}">selected="selected"</c:if>>二手房
+                            <c:if test="${entrust.houseType==1}">selected="selected"</c:if>>公寓
                     </option>
                     <option value="2"
-                            <c:if test="${entrust.houseType==2}">selected="selected"</c:if>>租房
+                            <c:if test="${entrust.houseType==2}">selected="selected"</c:if>>写字楼
                     </option>
                     <option value="3"
-                            <c:if test="${entrust.houseType==3}">selected="selected"</c:if>>写字楼
-                    </option>
-                    <option value="4"
-                            <c:if test="${entrust.houseType==4}">selected="selected"</c:if>>商铺
-                    </option>
-                    <option value="5"
-                            <c:if test="${entrust.houseType==5}">selected="selected"</c:if>>其它
+                            <c:if test="${entrust.houseType==3}">selected="selected"</c:if>>商铺
                     </option>
                 </select>
             </li>
 
-            <li><span>区域：</span><input type="text" name="area" id="area" value="${entrust.area}"/>
-                <span>小区：</span><input type="text" name="communityName" id="communityName"
-                                       value="${entrust.communityName}" maxlength="50"/><span class="_star">*</span>
+            <li class="col-md-6"><span>区域：</span><input type="text" name="area" id="area" value="${entrust.area}"/>
             </li>
-            <li><span>地址：</span><input type="text" name="address" id="address" value="${entrust.address}"/>
+            <li class="col-md-6"><span>小区：</span><input type="text" name="communityName" id="communityName"
+                                                        value="${entrust.communityName}" maxlength="50"/><span
+                    class="_star">*</span></li>
+            <li class="col-md-6"><span>地址：</span><input type="text" name="address" id="address"
+                                                        value="${entrust.address}"/>
             </li>
-            <li><span>户型：</span><input type="text" name="layout" id="layout" value="${entrust.layout}"/>
-                <span>面积：</span><input type="text" name="measure" id="measure" value="${entrust.measure}"
-                                       maxlength="50"/><span class="_star">*</span>
-            </li>
-            <li><span>装修：</span><input type="text" name="renovation" id="renovation" value="${entrust.renovation}"/>
-                <span>状态：</span><select name="status" id="status" class="dropdown">
-                    <!-- <option value="" >请选择</option> -->
-                    <option value="0"
-                            <c:if test="${entrust.status==0}">selected="selected"</c:if>>处理中
-                    </option>
-                    <option value="1"
-                            <c:if test="${entrust.status==1}">selected="selected"</c:if>>已完成
-                    </option>
-                    <option value="2"
-                            <c:if test="${entrust.status==2}">selected="selected"</c:if>>已取消
-                    </option>
-                </select>
+            <li class="col-md-6"><span>户型：</span><input type="text" name="layout" id="layout"
+                                                        value="${entrust.layout}"/>
 
             </li>
+            <li class="col-md-6"><span>面积：</span><input type="text" name="measure" id="measure"
+                                                        value="${entrust.measure}"
+                                                        maxlength="50"/><span class="_star">*</span></li>
+            <li class="col-md-6"><span>装修：</span><input type="text" name="renovation" id="renovation"
+                                                        value="${entrust.renovation}"/>
 
-            <li><span>备注：</span>
-                <textarea  name="remark" id="remark" style="width:300px;height:50px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;"></textarea></li>
+
             </li>
-            <li><span>处理记录：</span>
-                <textarea  name="record" id="record" disabled="disabled" style="width:260px;height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
-                    <c:forEach items="${entrustLogs}" var="s" >
-                        ${s.state}
-                        ${s.logTime}
-                        ${s.operatorName}
-                        ${s.remark}
-                    </c:forEach>
+            <li class="col-md-6"><span>配套：</span>
+                <div class="peitao">
+                    <span><input type="checkbox"><em>带家电</em></span>
+                    <span><input type="checkbox"><em>宽带</em></span>
+                    <span><input type="checkbox"><em>冰箱</em></span>
+                    <span><input type="checkbox"><em>洗衣机</em></span>
+                </div>
+            </li>
+            <li class="col-md-11"><span>备注：</span>
+                <textarea name="remark" id="remark"
+                          style="width:calc(100% - 120px);height:50px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;"></textarea>
+            </li>
+            </li>
+            <li class="col-md-11"><span>处理记录：</span>
+                <textarea name="record" id="record" disabled="disabled"
+                          style="width:calc(100% - 120px);height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
+<c:forEach items="${entrustLogs}" var="s">
+    ${s.state}
+    ${s.logTime}
+    ${s.operatorName}
+    ${s.remark}
+</c:forEach>
                 </textarea></li>
             </li>
-            <li>
+            <li class="col-md-6">
                 <span></span>
                 <a target="contentF" class="public_btn bg2" id="save" onclick="updateData()">更新</a>
                 <a style="margin-left: 20px" class="public_btn bg3" id="cancel" onclick="closeWin();">取消</a>
@@ -107,6 +137,7 @@
 
     </form>
 </section>
+
 
 <script type="text/javascript">
     //保存数据

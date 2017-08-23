@@ -6,20 +6,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="${ctx }/assets/css/common.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style type="text/css">
-        .content ul.userinfo > li{
+        .content ul.userinfo > li {
             margin-left: 0;
             padding-top: 8px;
         }
-        .content ul.userinfo li>span,
+
+        .content ul.userinfo li > span,
         .content ul.userinfo li:not(:last-child) input,
         .content ul.userinfo ._star,
-        .content ul.userinfo .dropdown{
-            height: 30px!important;
-            line-height: 30px!important;
+        .content ul.userinfo .dropdown {
+            height: 30px !important;
+            line-height: 30px !important;
             vertical-align: middle;
         }
     </style>
@@ -73,7 +71,8 @@
             <li class="col-md-6"><span>区域：</span><input type="text" name="area" id="area" value="${appointment.area}"/>
             </li>
             <li class="col-md-6"><span>小区：</span><input type="text" name="communityName" id="communityName"
-                                                        value="${appointment.communityName}" maxlength="50"/><span class="_star">*</span></li>
+                                                        value="${appointment.communityName}" maxlength="50"/><span
+                    class="_star">*</span></li>
             <li class="col-md-6"><span>地址：</span><input type="text" name="address" id="address"
                                                         value="${appointment.address}"/>
             </li>
@@ -81,7 +80,8 @@
                                                         value="${appointment.layout}"/>
 
             </li>
-            <li class="col-md-6"><span>面积：</span><input type="text" name="measure" id="measure" value="${appointment.measure}"
+            <li class="col-md-6"><span>面积：</span><input type="text" name="measure" id="measure"
+                                                        value="${appointment.measure}"
                                                         maxlength="50"/><span class="_star">*</span></li>
             <li class="col-md-6"><span>装修：</span><input type="text" name="decoration" id="decoration"
                                                         value="${appointment.decoration}"/>
@@ -107,12 +107,13 @@
             </li>
             </li>
             <li class="col-md-11"><span>处理记录：</span>
-                <textarea name="record" id="record" disabled="disabled" style="width:calc(100% - 120px);height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
+                <textarea name="record" id="record" disabled="disabled"
+                          style="width:calc(100% - 120px);height:150px;resize:none; border: 1px solid #dbe2e6; border-radius: 4px; outline-color: #0099e0;">
 <c:forEach items="${appointLogs}" var="s">
-${s.state}
-${s.logTime}
-${s.operatorName}
-${s.remark}
+    ${s.state}
+    ${s.logTime}
+    ${s.operatorName}
+    ${s.remark}
 </c:forEach>
                 </textarea></li>
             </li>

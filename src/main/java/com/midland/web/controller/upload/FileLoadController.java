@@ -92,11 +92,12 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 			String fileName = item.getName();
 			
 			String storePath = this.servletContext.getRealPath("/");
-			File file =new File(storePath);
+			
+			String filePath = "/store/";
+			File file =new File(storePath+filePath);
 			if (!file.exists()){
 				file.mkdirs();
 			}
-			String filePath = "/store/";
 			File uploadedFile = new File(storePath+filePath + fileName);
 			if(!uploadedFile.exists()) {
 				try {

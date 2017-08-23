@@ -17,7 +17,7 @@
                 'uploader': '${ctx }/rest/upload/img',
                 'multi': false,// 是否支持多个文件上传
                 'onUploadSuccess': function (file, data, response) {
-                    $("#iconImg").attr("value", data);
+                    $("#imgUrl").attr("value", data);
                     $("#iconImg1").attr("src", data);
                 },
                 'onQueueComplete': function (queueData) {
@@ -34,39 +34,37 @@
 </head>
 <body>
 <section class="content" style="border:none;">
-    <form action="${ctx}/rest/appoint/update" method="post" id="dataForm">
+    <form action="${ctx}/rest/tradeFair/add" method="post" id="dataForm">
         <ul class="userinfo row">
-            <input type="hidden" name="id" id="id" value="${item.id}">
             <li style="display:flex;align-items:center">
-                <span>城市：</span>
-                <select name="source" id="source" class="dropdown">
-                    <c:forEach items="${citys}" var="s">
-                        <option value="${s.id}" <c:if test="${s.id == item.cityId}">selected="selected"</c:if>>
-                                ${s.cityName}
-                        </option>
-                    </c:forEach>
+                <span>类型：</span>
+                <select name="tradeType" id="tradeType" class="dropdown">
+                    <option value="0">楼盘展销会</option>
+                    <option value="1">看楼团</option>
                 </select>
             </li>
-
-            <li><span>菜单名：</span>
-                <input type="text" name="menuName" id="menuName" value="${item.menuName}"/>
-            </li>
-            <li><span>链接：</span>
-                <input type="text" name="url" id="url" value="${item.url}"/>
-            </li>
-            <li><span>图标：</span>
+            <li><span>图片上传：</span>
                 <div style="float: left;">
-                    <input type="hidden" name="iconImg" id="iconImg" value="${item.iconImg}">
+                    <input type="hidden" name="imgUrl" id="imgUrl" >
 
-                    <img style="margin-bottom: 10px;max-width:80px;max-height:80px" id="iconImg1"
-                         src="${item.iconImg}">
+                    <img style="margin-bottom: 10px;max-width:80px;max-height:80px" id="iconImg1" >
                     <input type="file" name="file_upload" id="file_upload"/>
                 </div>
             </li>
+            <li><span>楼盘ID：</span>
+                <input type="text" name="housesId" id="housesId" />
+            </li>
+
+            <li><span>标题：</span>
+                <input type="text" name="title" id="title" />
+            </li>
+            <li><span>简介：</span>
+                <textarea rows="" cols="" style="width: 250px;height: 100px;border: 1px solid #dbe2e6;" name="introduction" id="introduction"></textarea>
+            </li>
+
             <li>
                 <span></span>
-                <a target="contentF" class="public_btn bg2" id="save" onclick="updateData()">更新</a>
-                <a style="margin-left: 20px" class="public_btn bg3" id="cancel" onclick="closeWin();">取消</a>
+                <a target="contentF" class="public_btn bg2" id="save" onclick="updateData()">保存</a>
             </li>
         </ul>
 
@@ -74,13 +72,17 @@
 </section>
 
 <script type="text/javascript">
+
+
+
+
     //保存数据
     function updateData() {
         var data = $("#dataForm").serialize();
         debugger;
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/menu/update",
+            url: "${ctx}/rest/tradeFair/add",
             async: false, // 此处必须同步
             dataType: "json",
             data: data,
