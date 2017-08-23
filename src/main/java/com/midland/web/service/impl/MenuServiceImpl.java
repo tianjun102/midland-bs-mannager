@@ -33,30 +33,24 @@ public class MenuServiceImpl implements MenuService {
 	 * 查询
 	 **/
 	@Override
-	public Menu selectById(Integer id) {
-		log.info("selectById  {}",id);
-		return menuMapper.selectById(id);
+	public Menu selectMenuById(Integer id) {
+		log.info("selectMenuById  {}",id);
+		return menuMapper.selectMenuById(id);
 	}
-	
-	@Override
-	public List<Menu> selectByParentId(Integer parentId) {
-		log.info("selectByParentId  {}",parentId);
-		return menuMapper.selectByParentId(parentId);
-	}
-	
+
 	/**
 	 * 删除
 	 **/
 	@Override
-	public void deleteById(Integer id)throws Exception {
+	public void deleteMenuById(Integer id)throws Exception {
 		try {
-			log.info("deleteById  {}",id);
-			int result = menuMapper.deleteById(id);
+			log.info("deleteMenuById  {}",id);
+			int result = menuMapper.deleteMenuById(id);
 			if (result < 1) {
-				throw new Exception("deleteById失败");
+				throw new Exception("deleteMenuById失败");
 			}
 		} catch(Exception e) {
-			log.error("deleteById  {}",id,e);
+			log.error("deleteMenuById  {}",id,e);
 			throw e;
 		}
 	}
@@ -64,15 +58,15 @@ public class MenuServiceImpl implements MenuService {
 	 * 更新
 	 **/
 	@Override
-	public void updateById(Menu menu) throws Exception {
+	public void updateMenuById(Menu menu) throws Exception {
 		try {
-			log.info("updateById  {}",menu);
-			int result = menuMapper.updateById(menu);
+			log.info("updateMenuById  {}",menu);
+			int result = menuMapper.updateMenuById(menu);
 			if (result < 1) {
-				throw new Exception("updateById失败");
+				throw new Exception("updateMenuById失败");
 			}
 		} catch(Exception e) {
-			log.error("updateById  {}",menu,e);
+			log.error("updateMenuById  {}",menu,e);
 			throw e;
 		}
 	}

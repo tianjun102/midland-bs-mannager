@@ -54,11 +54,13 @@ public class EntrustController extends BaseController{
 	@ResponseBody
 	public Object deleteByPrimaryKey(Integer id) {
 		Map map = new HashMap<>();
-		int result = entrustServiceImpl.deleteByPrimaryKey(id);
-		if (result>0){
+		try {
+			entrustServiceImpl.deleteEntrustById(id);
 			map.put("state",0);
+		} catch (Exception e) {
+			logger.error("deleteByPrimaryKey id={}",id,e);
+			map.put("state",-1);
 		}
-		map.put("state",-1);
 		return map;
 	}
 	@RequestMapping("/add")
@@ -66,7 +68,7 @@ public class EntrustController extends BaseController{
 	public Object addAppointment(Entrust record) {
 		Map map = new HashMap();
 		try {
-			entrustServiceImpl.insertSelective(record);
+			entrustServiceImpl.insertEntrust(record);
 			map.put("state",0);
 			return map;
 		} catch (Exception e) {
@@ -78,13 +80,13 @@ public class EntrustController extends BaseController{
 	@RequestMapping("/get")
 	public Entrust selectByPrimaryKey(Integer id) {
 		
-		return entrustServiceImpl.selectByPrimaryKey(id);
+		return entrustServiceImpl.selectEntrustById(id);
 	}
 
 	
 	
 	@RequestMapping("/page")
-	public String entrustPage(Model model, Entrust record, String pageNo, String pageSize) {
+	public String entrustPage(Model model, Entrust record, String pageNo, String pageSize) throws Exception {
 		if(pageNo==null||pageNo.equals("")){
 			pageNo = ContextEnums.PAGENO;
 		}
@@ -92,7 +94,7 @@ public class EntrustController extends BaseController{
 			pageSize = ContextEnums.PAGESIZE;
 		}
 		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
-		Page<Entrust> result =(Page<Entrust>) entrustServiceImpl.entrustPage(record);
+		Page<Entrust> result =(Page<Entrust>) entrustServiceImpl.findEntrustList(record);
 		Paginator paginator = result.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("entrusts", result);
@@ -103,7 +105,7 @@ public class EntrustController extends BaseController{
 	
 	@RequestMapping("/to_update")
 	public String toUpdateAppointment(int entrustId, Model model) {
-		Entrust entrust=entrustServiceImpl.selectByPrimaryKey(entrustId);
+		Entrust entrust=entrustServiceImpl.selectEntrustById(entrustId);
 		List<EntrustLog> entrustLogs = entrustLogServiceImpl.selectEntrustLogByEntrustId(entrustId);
 		model.addAttribute("entrust",entrust);
 		model.addAttribute("entrustLogs",entrustLogs);
@@ -116,8 +118,8 @@ public class EntrustController extends BaseController{
 	@ResponseBody
 	public Object updateByPrimaryKeySelective(Entrust entrust, HttpServletRequest request) {
 		Map map = new HashMap();
-		int result = entrustServiceImpl.updateByPrimaryKeySelective(entrust);
-		if (result >0){
+		try {
+			entrustServiceImpl.updateEntrustById(entrust);
 			User user = (User)request.getSession().getAttribute("userInfo");
 			
 			EntrustLog appointLog = new EntrustLog();
@@ -128,15 +130,16 @@ public class EntrustController extends BaseController{
 			}
 			appointLog.setEntrustId(entrust.getId());
 			appointLog.setLogTime(MidlandHelper.getCurrentTime());
-			appointLog.setOperatorid(user.getId());
+			appointLog.setOperatorId(user.getId());
 			appointLog.setOperatorName(user.getUsername());
 			
 			appointLog.setState(entrust.getStatus());
-			entrustLogServiceImpl.insertSelective(appointLog);
+			entrustLogServiceImpl.insertEntrustLog(appointLog);
 			map.put("state",0);
-			return map;
+		} catch (Exception e) {
+			logger.error("updateByPrimaryKeySelective {}",entrust,e);
+			map.put("state",-1);
 		}
-		map.put("state",-1);
 		return map;
 	}
 	
@@ -161,12 +164,14 @@ public class EntrustController extends BaseController{
 	public Object resetAgent(Entrust record) {
 		logger.info("resetAgent ： 重新分配经纪人，{}",record);
 		Map map = new HashMap();
-		int result = entrustServiceImpl.updateByPrimaryKeySelective(record);
-		if (result >0){
+		try {
+			entrustServiceImpl.updateEntrustById(record);
 			map.put("state",0);
-			return map;
+		} catch (Exception e) {
+			logger.error("resetAgent : {}",record,e);
+			map.put("state",-1);
 		}
-		map.put("state",-1);
+		
 		return map;
 	}
 	/**

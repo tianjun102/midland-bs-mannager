@@ -37,7 +37,7 @@ public class JdbcService {
 	 */
 	public Map shiftUp(String primaryKeyName,String id,String orderByColumn, String tableName, String orderByParam){
 		StringBuffer sb = new StringBuffer("SELECT ").append(primaryKeyName+",").append(orderByColumn)
-				.append(" from ").append(tableName).append(" where ").append(orderByColumn)
+				.append(" from ").append(tableName).append(" where ").append("is_delete = 0 and ").append(orderByColumn)
 				.append("<").append(orderByParam).append(" order by ")
 				.append(orderByColumn).append(" desc limit 1");
 		Map map = querySql(sb.toString());
@@ -55,7 +55,7 @@ public class JdbcService {
 	 */
 	public Map shiftDown(String primaryKeyName, String id, String orderByColumn, String tableName, String orderByParam){
 		StringBuffer sb = new StringBuffer("SELECT ").append(primaryKeyName+",").append(orderByColumn)
-				.append(" from ").append(tableName).append(" where ").append(orderByColumn)
+				.append(" from ").append(tableName).append(" where ").append("is_delete = 0 and ").append(orderByColumn)
 				.append(">").append(orderByParam).append(" order by ")
 				.append(orderByColumn).append(" asc limit 1");
 		return querySql(sb.toString());

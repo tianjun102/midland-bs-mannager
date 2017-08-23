@@ -7,21 +7,17 @@ public interface MenuService {
 	/**
 	 * 主键查询
 	 **/
-	Menu selectById(Integer id);
-	/**
-	 * 查询子菜单
-	 **/
-	List<Menu> selectByParentId(Integer id);
+	Menu selectMenuById(Integer id);
 
 	/**
 	 * 主键删除
 	 **/
-	void deleteById(Integer id) throws Exception;
+	void deleteMenuById(Integer id) throws Exception;
 
 	/**
 	 * 主键更新
 	 **/
-	void updateById(Menu menu) throws Exception;
+	void updateMenuById(Menu menu) throws Exception;
 
 	/**
 	 * 插入

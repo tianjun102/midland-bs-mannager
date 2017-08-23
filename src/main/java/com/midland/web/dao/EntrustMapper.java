@@ -1,18 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Entrust;
-
 import java.util.List;
 
 public interface EntrustMapper {
-    int deleteByPrimaryKey(Integer id);
-    
-    List<Entrust> entrustPage(Entrust record);
 
-    int insertSelective(Entrust record);
+	Entrust selectEntrustById(Integer entrust);
 
-    Entrust selectByPrimaryKey(Integer id);
+	int deleteEntrustById(Integer entrust);
 
-    int updateByPrimaryKeySelective(Entrust record);
+	int updateEntrustById(Entrust entrust);
+
+	int insertEntrust(Entrust entrust);
+
+	List<Entrust> findEntrustList(Entrust entrust);
 
 }

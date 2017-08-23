@@ -54,8 +54,8 @@ public class MenuController extends BaseController{
 		String primaryKeyName="id";
 		String primaryParam=String.valueOf(menu.getId());
 		String tableName="menu";
-		String orderByColumn="orderby";
-		String orderByParam=String.valueOf(menu.getOrderby());
+		String orderByColumn="order_by";
+		String orderByParam=String.valueOf(menu.getOrderBy());
 		
 		jdbcService.listDesc(primaryKeyName,primaryParam,orderByColumn,tableName,orderByParam,sort);
 		Map map = new HashMap();
@@ -64,7 +64,7 @@ public class MenuController extends BaseController{
 	}
 	@RequestMapping("to_update")
 	public String toUpdate(int id, Model model, HttpServletRequest request) throws Exception {
-		Menu result = menuServiceImpl.selectById(id);
+		Menu result = menuServiceImpl.selectMenuById(id);
 		List<City> cityList = cityServiceImpl.findCityList(new City());
 		model.addAttribute("item",result);
 		model.addAttribute("citys",cityList);
@@ -74,21 +74,21 @@ public class MenuController extends BaseController{
 	@RequestMapping("update")
 	@ResponseBody
 	public Object update(Menu menu) throws Exception {
-		menuServiceImpl.updateById(menu);
+		menuServiceImpl.updateMenuById(menu);
 		Map map = new HashMap();
 		map.put("state",0);
 		return map;
 	}
 	@RequestMapping("delete")
 	@ResponseBody
-	public Object delete(Integer id) {
+	public Object delete(Menu menu) {
 		Map map = new HashMap();
 		try {
-			menuServiceImpl.deleteById(id);
+			menuServiceImpl.updateMenuById(menu);
 			map.put("state",0);
 			
 		} catch (Exception e) {
-			logger.error("delete : id={}",id,e);
+			logger.error("delete : {}",menu,e);
 			map.put("state",-1);
 		}
 		

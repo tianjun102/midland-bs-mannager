@@ -5,8 +5,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.Paginator;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
-import com.midland.web.model.appointment.AppointLog;
-import com.midland.web.model.appointment.Appointment;
+import com.midland.web.model.AppointLog;
+import com.midland.web.model.Appointment;
 import com.midland.web.model.user.User;
 import com.midland.web.service.AppointLogService;
 import com.midland.web.service.AppointmentService;
@@ -57,11 +57,13 @@ public class AppointmentController extends BaseController{
 	@ResponseBody
 	public Object deleteByPrimaryKey(Integer id) {
 		Map map = new HashMap<>();
-		int result = appointmentServiceImpl.deleteByPrimaryKey(id);
-		if (result>0){
+		try {
+			appointmentServiceImpl.deleteAppointmentById(id);
 			map.put("state",0);
+		} catch (Exception e) {
+			logger.error("deleteByPrimaryKey : id={}",id,e);
+			map.put("state",-1);
 		}
-		map.put("state",-1);
 		return map;
 	}
 	@RequestMapping("/add")
@@ -69,7 +71,7 @@ public class AppointmentController extends BaseController{
 	public Object addAppointment(Appointment record) {
 		Map map = new HashMap();
 		try {
-			appointmentServiceImpl.insertSelective(record);
+			appointmentServiceImpl.insertAppointment(record);
 			map.put("state",0);
 			return map;
 		} catch (Exception e) {
@@ -80,7 +82,8 @@ public class AppointmentController extends BaseController{
 	}
 	@RequestMapping("/get")
 	public Appointment selectByPrimaryKey(Integer id) {
-		return appointmentServiceImpl.selectByPrimaryKey(id);
+		
+		return appointmentServiceImpl.selectAppointmentById(id);
 	}
 	/**
 	 * 用户列表查询（重新分配经纪人）
@@ -96,7 +99,7 @@ public class AppointmentController extends BaseController{
 	
 	
 	@RequestMapping("/page")
-	public String appointmentPage(Model model, Appointment record, String pageNo, String pageSize) {
+	public String appointmentPage(Model model, Appointment record, String pageNo, String pageSize) throws Exception {
 		if(pageNo==null||pageNo.equals("")){
 			pageNo = ContextEnums.PAGENO;
 		}
@@ -104,7 +107,7 @@ public class AppointmentController extends BaseController{
 			pageSize = ContextEnums.PAGESIZE;
 		}
 		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
-		Page<Appointment> result = (Page<Appointment>)appointmentServiceImpl.appointmentPage(record);
+		Page<Appointment> result = (Page<Appointment>)appointmentServiceImpl.findAppointmentList(record);
 		Paginator paginator = result.getPaginator();
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("appoint", result);
@@ -120,12 +123,13 @@ public class AppointmentController extends BaseController{
 	@ResponseBody
 	public Object resetAgent(Appointment record) {
 		Map map = new HashMap();
-		int result = appointmentServiceImpl.updateByPrimaryKeySelective(record);
-		if (result >0){
+		try {
+			appointmentServiceImpl.updateAppointmentById(record);
 			map.put("state",0);
-			return map;
+		} catch (Exception e) {
+			logger.error("resetAgent : {}",record,e);
+			map.put("state",-1);
 		}
-		map.put("state",-1);
 		return map;
 	}
 	
@@ -133,7 +137,7 @@ public class AppointmentController extends BaseController{
 	
 	@RequestMapping("/to_update")
 	public String toUpdateAppointment(int appointId,Model model) {
-		Appointment appointment=appointmentServiceImpl.selectByPrimaryKey(appointId);
+		Appointment appointment=appointmentServiceImpl.selectAppointmentById(appointId);
 		List<AppointLog> appointLogs = appointLogServiceImpl.selectAppointLogByAppointId(appointId);
 		model.addAttribute("appointment",appointment);
 		model.addAttribute("appointLogs",appointLogs);
@@ -146,8 +150,8 @@ public class AppointmentController extends BaseController{
 	@ResponseBody
 	public Object updateByPrimaryKeySelective(Appointment record,HttpServletRequest request) {
 		Map map = new HashMap();
-		int result = appointmentServiceImpl.updateByPrimaryKeySelective(record);
-		if (result >0){
+		try {
+			appointmentServiceImpl.updateAppointmentById(record);
 			User user = (User)request.getSession().getAttribute("userInfo");
 			
 			AppointLog appointLog = new AppointLog();
@@ -158,15 +162,17 @@ public class AppointmentController extends BaseController{
 			}
 			appointLog.setAppointId(record.getId());
 			appointLog.setLogTime(MidlandHelper.getCurrentTime());
-			appointLog.setOperatorid(user.getId());
+			appointLog.setOperatorId(user.getId());
 			appointLog.setOperatorName(user.getUsername());
 			
 			appointLog.setState(record.getStatus());
-			appointLogServiceImpl.insertSelective(appointLog);
+			appointLogServiceImpl.insertAppointLog(appointLog);
 			map.put("state",0);
-			return map;
+		} catch (Exception e) {
+			logger.error("updateByPrimaryKeySelective : {}",record,e);
+			map.put("state",-1);
 		}
-		map.put("state",-1);
+		
 		return map;
 	}
 	

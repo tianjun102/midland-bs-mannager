@@ -43,7 +43,7 @@
                         <td>${appoint.appointSn }</td>
                         <td> <c:if test="${appoint.source ==0 }">网站</c:if>
                              <c:if test="${appoint.source ==1 }">微站</c:if></td>
-                        <td>${appoint.call }</td>
+                        <td>${appoint.nickName }</td>
                         <td>${appoint.phone }</td>
                         <td>${appoint.houseType }</td>
                         <td>${appoint.sellRent }</td>

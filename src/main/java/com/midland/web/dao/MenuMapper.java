@@ -5,12 +5,11 @@ import java.util.List;
 
 public interface MenuMapper {
 
-	Menu selectById(Integer menu);
-	List<Menu> selectByParentId(Integer menu);
+	Menu selectMenuById(Integer menu);
 
-	int deleteById(Integer menu);
+	int deleteMenuById(Integer menu);
 
-	int updateById(Menu menu);
+	int updateMenuById(Menu menu);
 
 	int insertMenu(Menu menu);
 

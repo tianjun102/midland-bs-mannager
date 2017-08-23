@@ -1,10 +1,10 @@
 package com.midland.web.model;
 
-public class EntrustLog{
+public class AppointLog{
 	/**
 	 * 
 	 **/
-	private Integer entrustLogId;
+	private Integer appointLogId;
 	/**
 	 * 记录时间
 	 **/
@@ -26,21 +26,21 @@ public class EntrustLog{
 	 **/
 	private Integer state;
 	/**
-	 * 委拖记录id
+	 * 预约记录id
 	 **/
-	private Integer entrustId;
+	private Integer appointId;
 	/**
 	 * 0未删除，1删除
 	 **/
 	private Integer isDelete;
 
 
-	public Integer getEntrustLogId() {
-		return entrustLogId;
+	public Integer getAppointLogId() {
+		return appointLogId;
 	}
 
-	public void setEntrustLogId(Integer entrustLogId) {
-		this.entrustLogId = entrustLogId;
+	public void setAppointLogId(Integer appointLogId) {
+		this.appointLogId = appointLogId;
 	}
 
 	public String getLogTime() {
@@ -83,12 +83,12 @@ public class EntrustLog{
 		this.state = state;
 	}
 
-	public Integer getEntrustId() {
-		return entrustId;
+	public Integer getAppointId() {
+		return appointId;
 	}
 
-	public void setEntrustId(Integer entrustId) {
-		this.entrustId = entrustId;
+	public void setAppointId(Integer appointId) {
+		this.appointId = appointId;
 	}
 
 	public Integer getIsDelete() {
@@ -101,9 +101,9 @@ public class EntrustLog{
 
 	@Override
 	public String toString() {
-		 final StringBuffer sb=new StringBuffer("EntrustLog{");
-		if (entrustLogId != null) {
-			sb.append(", \"entrustLogId\":\"").append(entrustLogId).append("\"");
+		 final StringBuffer sb=new StringBuffer("AppointLog{");
+		if (appointLogId != null) {
+			sb.append(", \"appointLogId\":\"").append(appointLogId).append("\"");
 		}
 		if (logTime != null) {
 			sb.append(", \"logTime\":\"").append(logTime).append("\"");
@@ -120,8 +120,8 @@ public class EntrustLog{
 		if (state != null) {
 			sb.append(", \"state\":\"").append(state).append("\"");
 		}
-		if (entrustId != null) {
-			sb.append(", \"entrustId\":\"").append(entrustId).append("\"");
+		if (appointId != null) {
+			sb.append(", \"appointId\":\"").append(appointId).append("\"");
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");

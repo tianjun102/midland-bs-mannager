@@ -2,21 +2,29 @@ package com.midland.web.model;
 
 import java.util.Date;
 
-public class Entrust{
+public class Appointment{
 	/**
-	 * 委托表主键id；
+	 * 预约记录表ID，采用自增长
 	 **/
 	private Integer id;
 	/**
-	 * 委托编号
+	 * 预约编号
 	 **/
-	private String entrustSn;
+	private String appointSn;
 	/**
-	 * 网站来源；0=网站；1=微站；
+	 * 0=网站；1=微站
 	 **/
 	private Integer source;
 	/**
-	 * 委托房屋类型：0新房，1二手房，2租房，3写字楼，4商铺，5其它
+	 * 
+	 **/
+	private Integer nickName;
+	/**
+	 * 手机号码
+	 **/
+	private String phone;
+	/**
+	 * 0=住宅；1=公寓；2=写字楼；3=商铺
 	 **/
 	private Integer houseType;
 	/**
@@ -24,9 +32,9 @@ public class Entrust{
 	 **/
 	private Integer sellRent;
 	/**
-	 * 委托时间
+	 * 预约时间
 	 **/
-	private Date entrustTime;
+	private Date appointmentTime;
 	/**
 	 * 所属区域
 	 **/
@@ -48,11 +56,15 @@ public class Entrust{
 	 **/
 	private String measure;
 	/**
-	 * 价格
+	 * 售价/租价
 	 **/
 	private String price;
 	/**
-	 * 用户id
+	 * 委托时间
+	 **/
+	private Date entrustTime;
+	/**
+	 * 经纪人id
 	 **/
 	private Integer userId;
 	/**
@@ -60,7 +72,7 @@ public class Entrust{
 	 **/
 	private String userCnName;
 	/**
-	 * 状态；0=未处理；1=处理中
+	 * 状态；0=未处理；1=处理中；2已完成
 	 **/
 	private Integer status;
 	/**
@@ -68,39 +80,28 @@ public class Entrust{
 	 **/
 	private Date handleTime;
 	/**
-	 * 称呼
+	 * 
 	 **/
-	private String nickName;
-	/**
-	 * 0=简装；1=精装
-	 **/
-	private Integer renovation;
-	/**
-	 * 配套；多种配套使用 “|” 隔开
-	 **/
-	private String supporting;
-	/**
-	 * 手机号码
-	 **/
-	private String phone;
+	private Short decoration;
 	/**
 	 * 0未删除，1删除
 	 **/
 	private Integer isDelete;
-	/**
-	 * 前端备注
-	 **/
-	private String remark;
-	
-	public String getRemark() {
-		return remark;
-	}
-	
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-	
-	public Integer getId() {
+    /**
+     * 前端备注
+     **/
+    private String remark;
+    
+    
+    public String getRemark() {
+        return remark;
+    }
+    
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+    
+    public Integer getId() {
 		return id;
 	}
 
@@ -108,12 +109,12 @@ public class Entrust{
 		this.id = id;
 	}
 
-	public String getEntrustSn() {
-		return entrustSn;
+	public String getAppointSn() {
+		return appointSn;
 	}
 
-	public void setEntrustSn(String entrustSn) {
-		this.entrustSn = entrustSn;
+	public void setAppointSn(String appointSn) {
+		this.appointSn = appointSn;
 	}
 
 	public Integer getSource() {
@@ -122,6 +123,22 @@ public class Entrust{
 
 	public void setSource(Integer source) {
 		this.source = source;
+	}
+
+	public Integer getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(Integer nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Integer getHouseType() {
@@ -140,12 +157,12 @@ public class Entrust{
 		this.sellRent = sellRent;
 	}
 
-	public Date getEntrustTime() {
-		return entrustTime;
+	public Date getAppointmentTime() {
+		return appointmentTime;
 	}
 
-	public void setEntrustTime(Date entrustTime) {
-		this.entrustTime = entrustTime;
+	public void setAppointmentTime(Date appointmentTime) {
+		this.appointmentTime = appointmentTime;
 	}
 
 	public String getArea() {
@@ -196,6 +213,14 @@ public class Entrust{
 		this.price = price;
 	}
 
+	public Date getEntrustTime() {
+		return entrustTime;
+	}
+
+	public void setEntrustTime(Date entrustTime) {
+		this.entrustTime = entrustTime;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}
@@ -228,36 +253,12 @@ public class Entrust{
 		this.handleTime = handleTime;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public Short getDecoration() {
+		return decoration;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
-	public Integer getRenovation() {
-		return renovation;
-	}
-
-	public void setRenovation(Integer renovation) {
-		this.renovation = renovation;
-	}
-
-	public String getSupporting() {
-		return supporting;
-	}
-
-	public void setSupporting(String supporting) {
-		this.supporting = supporting;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setDecoration(Short decoration) {
+		this.decoration = decoration;
 	}
 
 	public Integer getIsDelete() {
@@ -270,15 +271,21 @@ public class Entrust{
 
 	@Override
 	public String toString() {
-		 final StringBuffer sb=new StringBuffer("Entrust{");
+		 final StringBuffer sb=new StringBuffer("Appointment{");
 		if (id != null) {
 			sb.append(", \"id\":\"").append(id).append("\"");
 		}
-		if (entrustSn != null) {
-			sb.append(", \"entrustSn\":\"").append(entrustSn).append("\"");
+		if (appointSn != null) {
+			sb.append(", \"appointSn\":\"").append(appointSn).append("\"");
 		}
 		if (source != null) {
 			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (nickName != null) {
+			sb.append(", \"nickName\":\"").append(nickName).append("\"");
+		}
+		if (phone != null) {
+			sb.append(", \"phone\":\"").append(phone).append("\"");
 		}
 		if (houseType != null) {
 			sb.append(", \"houseType\":\"").append(houseType).append("\"");
@@ -286,8 +293,8 @@ public class Entrust{
 		if (sellRent != null) {
 			sb.append(", \"sellRent\":\"").append(sellRent).append("\"");
 		}
-		if (entrustTime != null) {
-			sb.append(", \"entrustTime\":\"").append(entrustTime).append("\"");
+		if (appointmentTime != null) {
+			sb.append(", \"appointmentTime\":\"").append(appointmentTime).append("\"");
 		}
 		if (area != null) {
 			sb.append(", \"area\":\"").append(area).append("\"");
@@ -307,6 +314,9 @@ public class Entrust{
 		if (price != null) {
 			sb.append(", \"price\":\"").append(price).append("\"");
 		}
+		if (entrustTime != null) {
+			sb.append(", \"entrustTime\":\"").append(entrustTime).append("\"");
+		}
 		if (userId != null) {
 			sb.append(", \"userId\":\"").append(userId).append("\"");
 		}
@@ -319,17 +329,8 @@ public class Entrust{
 		if (handleTime != null) {
 			sb.append(", \"handleTime\":\"").append(handleTime).append("\"");
 		}
-		if (nickName != null) {
-			sb.append(", \"nickName\":\"").append(nickName).append("\"");
-		}
-		if (renovation != null) {
-			sb.append(", \"renovation\":\"").append(renovation).append("\"");
-		}
-		if (supporting != null) {
-			sb.append(", \"supporting\":\"").append(supporting).append("\"");
-		}
-		if (phone != null) {
-			sb.append(", \"phone\":\"").append(phone).append("\"");
+		if (decoration != null) {
+			sb.append(", \"decoration\":\"").append(decoration).append("\"");
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
