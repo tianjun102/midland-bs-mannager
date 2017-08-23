@@ -508,7 +508,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/checkOldPwd", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public String checkPwd(String oldPwd,HttpServletRequest request){
+    public Object checkPwd(String oldPwd,HttpServletRequest request){
     	 HttpSession session = request.getSession();
     	User user=(User) session.getAttribute("userInfo");
     	Map<String, Object> map = new HashMap<String, Object>();
@@ -518,7 +518,7 @@ public class UserController extends BaseController {
     			map.put("flag", 1);
     		}
     	}
-    	return JSONObject.toJSONString(map);
+    	return map;
     }
     
     /**

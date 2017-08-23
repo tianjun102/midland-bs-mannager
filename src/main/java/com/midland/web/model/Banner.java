@@ -30,7 +30,7 @@ public class Banner{
 	/**
 	 * 
 	 **/
-	private Integer cityId;
+	private String cityId;
 	/**
 	 * 0=网站；1=微站
 	 **/
@@ -42,11 +42,11 @@ public class Banner{
 	/**
 	 * 开始时间
 	 **/
-	private Date startTime;
+	private String startTime;
 	/**
 	 * 结束时间
 	 **/
-	private Date endTime;
+	private String endTime;
 	/**
 	 * banner位置
 	 **/
@@ -63,7 +63,15 @@ public class Banner{
 	 * 1=删除；0=正常
 	 **/
 	private Integer isDelete;
+	/**
+	 * 城市名称
+	 * @return
+	 */
+	private String cityName;
 
+	private Integer clikNum;
+
+	private Integer type;
 
 	public Integer getId() {
 		return id;
@@ -113,11 +121,11 @@ public class Banner{
 		this.enabled = enabled;
 	}
 
-	public Integer getCityId() {
+	public String getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 
@@ -137,19 +145,19 @@ public class Banner{
 		this.model = model;
 	}
 
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
@@ -183,6 +191,30 @@ public class Banner{
 
 	public void setIsDelete(Integer isDelete) {
 		this.isDelete = isDelete;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public Integer getClikNum() {
+		return clikNum;
+	}
+
+	public void setClikNum(Integer clikNum) {
+		this.clikNum = clikNum;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
 	@Override
@@ -232,6 +264,12 @@ public class Banner{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (cityName !=null){
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
+		}
+		if (clikNum !=null){
+			sb.append(", \"clikNum\":\"").append(clikNum).append("\"");
 		}
 		return sb.toString();
 	}

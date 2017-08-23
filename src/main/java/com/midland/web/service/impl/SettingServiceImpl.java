@@ -31,7 +31,7 @@ public class SettingServiceImpl implements SettingService {
     @Autowired
     private LinkUrlManagerMapper linkUrlMapper;
 
-
+    @Autowired
     private BannerMapper bannerMapper;
 
     @Override

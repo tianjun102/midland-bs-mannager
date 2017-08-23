@@ -42,7 +42,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<section class = "content">
 			<p class = "detail-title">
 				<span>Banner管理</span>
-				<a class = "setup" href="${ctx}/rest/banner/enterBanner" target="contentF">添加Banner</a>
+				<a class = "setup" href="${ctx}/rest/setting/enterBanner" target="contentF">添加Banner</a>
 			</p>
 			<ul class = "userinfo row">
 				<li>
@@ -93,7 +93,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			  yes: function(index){
 				  $.ajax({ 
 						type: "post", 
-						url: "${ctx}/rest/banner/deleteBanner?bannerId="+id, 
+						url: "${ctx}/rest/setting/deleteBanner?id="+id,
 						cache:false, 
 						async:false, // 此处必须同步
 						dataType: "json",
