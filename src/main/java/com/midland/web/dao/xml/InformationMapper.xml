@@ -1,222 +1,239 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.midland.web.dao.InformationMapper" >
-  <resultMap id="BaseResultMap" type="com.midland.web.model.Information" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="cate_id" property="cateId" jdbcType="INTEGER" />
-    <result column="cate_parentId" property="cateParentid" jdbcType="INTEGER" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="source" property="source" jdbcType="VARCHAR" />
-    <result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
-    <result column="meta_keywords" property="metaKeywords" jdbcType="VARCHAR" />
-    <result column="meta_desc" property="metaDesc" jdbcType="VARCHAR" />
-    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
-    <result column="img_desc" property="imgDesc" jdbcType="VARCHAR" />
-    <result column="orderby" property="orderby" jdbcType="INTEGER" />
-    <result column="clickNum" property="clicknum" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.midland.web.model.Information" extends="BaseResultMap" >
-    <result column="details" property="details" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, cate_id, cate_parentId, type, title, source, enclosure, meta_keywords, meta_desc, 
-    imgUrl, img_desc, orderby, clickNum
-  </sql>
-  <sql id="Blob_Column_List" >
-    details
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from information
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from information
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.midland.web.model.Information" >
-    insert into information (id, cate_id, cate_parentId, 
-      type, title, source, 
-      enclosure, meta_keywords, meta_desc, 
-      imgUrl, img_desc, orderby, 
-      clickNum, details)
-    values (#{id,jdbcType=INTEGER}, #{cateId,jdbcType=INTEGER}, #{cateParentid,jdbcType=INTEGER}, 
-      #{type,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
-      #{enclosure,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, #{metaDesc,jdbcType=VARCHAR}, 
-      #{imgurl,jdbcType=VARCHAR}, #{imgDesc,jdbcType=VARCHAR}, #{orderby,jdbcType=INTEGER}, 
-      #{clicknum,jdbcType=INTEGER}, #{details,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.midland.web.model.Information" >
-    insert into information
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="cateId != null" >
-        cate_id,
-      </if>
-      <if test="cateParentid != null" >
-        cate_parentId,
-      </if>
-      <if test="type != null" >
-        type,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="source != null" >
-        source,
-      </if>
-      <if test="enclosure != null" >
-        enclosure,
-      </if>
-      <if test="metaKeywords != null" >
-        meta_keywords,
-      </if>
-      <if test="metaDesc != null" >
-        meta_desc,
-      </if>
-      <if test="imgurl != null" >
-        imgUrl,
-      </if>
-      <if test="imgDesc != null" >
-        img_desc,
-      </if>
-      <if test="orderby != null" >
-        orderby,
-      </if>
-      <if test="clicknum != null" >
-        clickNum,
-      </if>
-      <if test="details != null" >
-        details,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="cateId != null" >
-        #{cateId,jdbcType=INTEGER},
-      </if>
-      <if test="cateParentid != null" >
-        #{cateParentid,jdbcType=INTEGER},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
-        #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="enclosure != null" >
-        #{enclosure,jdbcType=VARCHAR},
-      </if>
-      <if test="metaKeywords != null" >
-        #{metaKeywords,jdbcType=VARCHAR},
-      </if>
-      <if test="metaDesc != null" >
-        #{metaDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="imgurl != null" >
-        #{imgurl,jdbcType=VARCHAR},
-      </if>
-      <if test="imgDesc != null" >
-        #{imgDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="orderby != null" >
-        #{orderby,jdbcType=INTEGER},
-      </if>
-      <if test="clicknum != null" >
-        #{clicknum,jdbcType=INTEGER},
-      </if>
-      <if test="details != null" >
-        #{details,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.midland.web.model.Information" >
-    update information
-    <set >
-      <if test="cateId != null" >
-        cate_id = #{cateId,jdbcType=INTEGER},
-      </if>
-      <if test="cateParentid != null" >
-        cate_parentId = #{cateParentid,jdbcType=INTEGER},
-      </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="source != null" >
-        source = #{source,jdbcType=VARCHAR},
-      </if>
-      <if test="enclosure != null" >
-        enclosure = #{enclosure,jdbcType=VARCHAR},
-      </if>
-      <if test="metaKeywords != null" >
-        meta_keywords = #{metaKeywords,jdbcType=VARCHAR},
-      </if>
-      <if test="metaDesc != null" >
-        meta_desc = #{metaDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="imgurl != null" >
-        imgUrl = #{imgurl,jdbcType=VARCHAR},
-      </if>
-      <if test="imgDesc != null" >
-        img_desc = #{imgDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="orderby != null" >
-        orderby = #{orderby,jdbcType=INTEGER},
-      </if>
-      <if test="clicknum != null" >
-        clickNum = #{clicknum,jdbcType=INTEGER},
-      </if>
-      <if test="details != null" >
-        details = #{details,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.midland.web.model.Information" >
-    update information
-    set cate_id = #{cateId,jdbcType=INTEGER},
-      cate_parentId = #{cateParentid,jdbcType=INTEGER},
-      type = #{type,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      source = #{source,jdbcType=VARCHAR},
-      enclosure = #{enclosure,jdbcType=VARCHAR},
-      meta_keywords = #{metaKeywords,jdbcType=VARCHAR},
-      meta_desc = #{metaDesc,jdbcType=VARCHAR},
-      imgUrl = #{imgurl,jdbcType=VARCHAR},
-      img_desc = #{imgDesc,jdbcType=VARCHAR},
-      orderby = #{orderby,jdbcType=INTEGER},
-      clickNum = #{clicknum,jdbcType=INTEGER},
-      details = #{details,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.midland.web.model.Information" >
-    update information
-    set cate_id = #{cateId,jdbcType=INTEGER},
-      cate_parentId = #{cateParentid,jdbcType=INTEGER},
-      type = #{type,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
-      source = #{source,jdbcType=VARCHAR},
-      enclosure = #{enclosure,jdbcType=VARCHAR},
-      meta_keywords = #{metaKeywords,jdbcType=VARCHAR},
-      meta_desc = #{metaDesc,jdbcType=VARCHAR},
-      imgUrl = #{imgurl,jdbcType=VARCHAR},
-      img_desc = #{imgDesc,jdbcType=VARCHAR},
-      orderby = #{orderby,jdbcType=INTEGER},
-      clickNum = #{clicknum,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.midland.web.dao.InformationMapper">
+
+ 	<resultMap id="BaseResultMap" type="com.midland.web.model.Information" >
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="cate_id" property="cateId" jdbcType="INTEGER" />
+		<result column="cate_parentId" property="cateParentid" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="source" property="source" jdbcType="VARCHAR" />
+		<result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+		<result column="meta_keywords" property="metaKeywords" jdbcType="VARCHAR" />
+		<result column="meta_desc" property="metaDesc" jdbcType="VARCHAR" />
+		<result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+		<result column="img_desc" property="imgDesc" jdbcType="VARCHAR" />
+		<result column="details" property="details" jdbcType="LONGVARCHAR" />
+		<result column="order_by" property="orderBy" jdbcType="INTEGER" />
+		<result column="click_num" property="clickNum" jdbcType="INTEGER" />
+		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,cate_id,cate_parentId,type,title,source,enclosure,meta_keywords,meta_desc,img_url,img_desc,details,order_by,click_num,is_delete
+	</sql>
+
+	<select id="selectInformationById" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from information
+		 where id= #{id}
+	</select>
+
+	<delete id="deleteInformationById" >
+		delete from information
+		 where id= #{id}
+	</delete>
+
+	<update id="updateInformationById" >
+		update information 
+		<set>
+		<include refid="update_option"/>
+		</set>
+
+		 where id= #{id}
+	</update>
+
+	<select id="findInformationList" parameterType="com.midland.web.model.Information" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from information
+		where 
+		is_delete=0
+		<include refid="select_option" />
+	</select>
+
+	<insert id="insertInformation" parameterType="com.midland.web.model.Information">
+		insert into information
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="cateId != null">
+				cate_id,
+			</if>
+			<if test="cateParentid != null">
+				cate_parentId,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+			<if test="enclosure != null">
+				enclosure,
+			</if>
+			<if test="metaKeywords != null">
+				meta_keywords,
+			</if>
+			<if test="metaDesc != null">
+				meta_desc,
+			</if>
+			<if test="imgUrl != null">
+				img_url,
+			</if>
+			<if test="imgDesc != null">
+				img_desc,
+			</if>
+			<if test="details != null">
+				details,
+			</if>
+			<if test="orderBy != null">
+				order_by,
+			</if>
+			<if test="clickNum != null">
+				click_num,
+			</if>
+			<if test="isDelete != null">
+				is_delete,
+			</if>
+		</trim>
+		values
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="cateId != null">
+				#{cateId,jdbcType=INTEGER},
+			</if>
+			<if test="cateParentid != null">
+				#{cateParentid,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="enclosure != null">
+				#{enclosure,jdbcType=VARCHAR},
+			</if>
+			<if test="metaKeywords != null">
+				#{metaKeywords,jdbcType=VARCHAR},
+			</if>
+			<if test="metaDesc != null">
+				#{metaDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="imgUrl != null">
+				#{imgUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="imgDesc != null">
+				#{imgDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="details != null">
+				#{details,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="orderBy != null">
+				#{orderBy,jdbcType=INTEGER},
+			</if>
+			<if test="clickNum != null">
+				#{clickNum,jdbcType=INTEGER},
+			</if>
+			<if test="isDelete != null">
+				#{isDelete,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+	<sql id="update_option">
+		<if test="cateId != null">
+			cate_id= #{cateId,jdbcType=INTEGER},
+		</if>
+		<if test="cateParentid != null">
+			cate_parentId= #{cateParentid,jdbcType=INTEGER},
+		</if>
+		<if test="type != null">
+			type= #{type,jdbcType=VARCHAR},
+		</if>
+		<if test="title != null">
+			title= #{title,jdbcType=VARCHAR},
+		</if>
+		<if test="source != null">
+			source= #{source,jdbcType=VARCHAR},
+		</if>
+		<if test="enclosure != null">
+			enclosure= #{enclosure,jdbcType=VARCHAR},
+		</if>
+		<if test="metaKeywords != null">
+			meta_keywords= #{metaKeywords,jdbcType=VARCHAR},
+		</if>
+		<if test="metaDesc != null">
+			meta_desc= #{metaDesc,jdbcType=VARCHAR},
+		</if>
+		<if test="imgUrl != null">
+			img_url= #{imgUrl,jdbcType=VARCHAR},
+		</if>
+		<if test="imgDesc != null">
+			img_desc= #{imgDesc,jdbcType=VARCHAR},
+		</if>
+		<if test="details != null">
+			details= #{details,jdbcType=LONGVARCHAR},
+		</if>
+		<if test="orderBy != null">
+			order_by= #{orderBy,jdbcType=INTEGER},
+		</if>
+		<if test="clickNum != null">
+			click_num= #{clickNum,jdbcType=INTEGER},
+		</if>
+		<if test="isDelete != null">
+			is_delete= #{isDelete,jdbcType=INTEGER},
+		</if>
+	</sql>
+
+	<sql id="select_option">
+		<if test="id != null">
+			 and id= #{id,jdbcType=INTEGER}
+		</if>
+		<if test="cateId != null">
+			 and cate_id= #{cateId,jdbcType=INTEGER}
+		</if>
+		<if test="cateParentid != null">
+			 and cate_parentId= #{cateParentid,jdbcType=INTEGER}
+		</if>
+		<if test="type != null">
+			 and type= #{type,jdbcType=VARCHAR}
+		</if>
+		<if test="title != null">
+			 and title= #{title,jdbcType=VARCHAR}
+		</if>
+		<if test="source != null">
+			 and source= #{source,jdbcType=VARCHAR}
+		</if>
+		<if test="enclosure != null">
+			 and enclosure= #{enclosure,jdbcType=VARCHAR}
+		</if>
+		<if test="metaKeywords != null">
+			 and meta_keywords= #{metaKeywords,jdbcType=VARCHAR}
+		</if>
+		<if test="metaDesc != null">
+			 and meta_desc= #{metaDesc,jdbcType=VARCHAR}
+		</if>
+		<if test="imgUrl != null">
+			 and img_url= #{imgUrl,jdbcType=VARCHAR}
+		</if>
+		<if test="imgDesc != null">
+			 and img_desc= #{imgDesc,jdbcType=VARCHAR}
+		</if>
+		<if test="details != null">
+			 and details= #{details,jdbcType=LONGVARCHAR}
+		</if>
+		<if test="orderBy != null">
+			 and order_by= #{orderBy,jdbcType=INTEGER}
+		</if>
+		<if test="clickNum != null">
+			 and click_num= #{clickNum,jdbcType=INTEGER}
+		</if>
+		<if test="isDelete != null">
+			 and is_delete= #{isDelete,jdbcType=INTEGER}
+		</if>
+	</sql>
+
 </mapper>

@@ -1,17 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Category;
+import java.util.List;
 
 public interface CategoryMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Category record);
+	Category selectCategoryById(Integer category);
 
-    int insertSelective(Category record);
+	int deleteCategoryById(Integer category);
 
-    Category selectByPrimaryKey(Integer id);
+	int updateCategoryById(Category category);
 
-    int updateByPrimaryKeySelective(Category record);
+	int insertCategory(Category category);
 
-    int updateByPrimaryKey(Category record);
+	List<Category> findCategoryList(Category category);
+
 }

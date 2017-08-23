@@ -1,63 +1,117 @@
 package com.midland.web.model;
 
-public class Category {
-    private Integer id;
 
-    private String cateName;
+public class Category{
+	/**
+	 * 
+	 **/
+	private Integer id;
+	/**
+	 * 分类名称
+	 **/
+	private String cateName;
+	/**
+	 * 0=开放；1=关闭
+	 **/
+	private Integer status;
+	/**
+	 * 排序值
+	 **/
+	private Integer orderBy;
+	/**
+	 * 父节点id
+	 **/
+	private Integer parentId;
+	/**
+	 * 0=市场调研分类；1=资讯分类
+	 **/
+	private Integer type;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
 
-    private Integer status;
 
-    private Integer orderby;
+	public Integer getId() {
+		return id;
+	}
 
-    private Integer parentid;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private Integer type;
+	public String getCateName() {
+		return cateName;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public String getCateName() {
-        return cateName;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setCateName(String cateName) {
-        this.cateName = cateName == null ? null : cateName.trim();
-    }
+	public Integer getOrderBy() {
+		return orderBy;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public void setOrderBy(Integer orderBy) {
+		this.orderBy = orderBy;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public Integer getParentId() {
+		return parentId;
+	}
 
-    public Integer getOrderby() {
-        return orderby;
-    }
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
 
-    public void setOrderby(Integer orderby) {
-        this.orderby = orderby;
-    }
+	public Integer getType() {
+		return type;
+	}
 
-    public Integer getParentid() {
-        return parentid;
-    }
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public Integer getType() {
-        return type;
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("Category{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (cateName != null) {
+			sb.append(", \"cateName\":\"").append(cateName).append("\"");
+		}
+		if (status != null) {
+			sb.append(", \"status\":\"").append(status).append("\"");
+		}
+		if (orderBy != null) {
+			sb.append(", \"orderBy\":\"").append(orderBy).append("\"");
+		}
+		if (parentId != null) {
+			sb.append(", \"parentId\":\"").append(parentId).append("\"");
+		}
+		if (type != null) {
+			sb.append(", \"type\":\"").append(type).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		return sb.toString();
+	}
 }

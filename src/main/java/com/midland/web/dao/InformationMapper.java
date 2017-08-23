@@ -1,19 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Information;
+import java.util.List;
 
 public interface InformationMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Information record);
+	Information selectInformationById(Integer information);
 
-    int insertSelective(Information record);
+	int deleteInformationById(Integer information);
 
-    Information selectByPrimaryKey(Integer id);
+	int updateInformationById(Information information);
 
-    int updateByPrimaryKeySelective(Information record);
+	int insertInformation(Information information);
 
-    int updateByPrimaryKeyWithBLOBs(Information record);
+	List<Information> findInformationList(Information information);
 
-    int updateByPrimaryKey(Information record);
 }

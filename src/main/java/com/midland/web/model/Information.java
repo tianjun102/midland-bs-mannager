@@ -1,143 +1,237 @@
 package com.midland.web.model;
 
-public class Information {
-    private Integer id;
 
-    private Integer cateId;
+public class Information{
+	/**
+	 * 资讯表，主键
+	 **/
+	private Integer id;
+	/**
+	 * 分类id
+	 **/
+	private Integer cateId;
+	/**
+	 * 分类父id
+	 **/
+	private Integer cateParentid;
+	/**
+	 * 楼盘类型；住宅；商铺等
+	 **/
+	private String type;
+	/**
+	 * 标题
+	 **/
+	private String title;
+	/**
+	 * 来源
+	 **/
+	private String source;
+	/**
+	 * 附件地址
+	 **/
+	private String enclosure;
+	/**
+	 * meta关键字
+	 **/
+	private String metaKeywords;
+	/**
+	 * meta描述
+	 **/
+	private String metaDesc;
+	/**
+	 * 缩略图
+	 **/
+	private String imgUrl;
+	/**
+	 * 缩略图描述
+	 **/
+	private String imgDesc;
+	/**
+	 * 详细描述
+	 **/
+	private String details;
+	/**
+	 * 排序
+	 **/
+	private Integer orderBy;
+	/**
+	 * 点击次数
+	 **/
+	private Integer clickNum;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
 
-    private Integer cateParentid;
 
-    private String type;
+	public Integer getId() {
+		return id;
+	}
 
-    private String title;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private String source;
+	public Integer getCateId() {
+		return cateId;
+	}
 
-    private String enclosure;
+	public void setCateId(Integer cateId) {
+		this.cateId = cateId;
+	}
 
-    private String metaKeywords;
+	public Integer getCateParentid() {
+		return cateParentid;
+	}
 
-    private String metaDesc;
+	public void setCateParentid(Integer cateParentid) {
+		this.cateParentid = cateParentid;
+	}
 
-    private String imgurl;
+	public String getType() {
+		return type;
+	}
 
-    private String imgDesc;
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    private Integer orderby;
+	public String getTitle() {
+		return title;
+	}
 
-    private Integer clicknum;
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    private String details;
+	public String getSource() {
+		return source;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setSource(String source) {
+		this.source = source;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public String getEnclosure() {
+		return enclosure;
+	}
 
-    public Integer getCateId() {
-        return cateId;
-    }
+	public void setEnclosure(String enclosure) {
+		this.enclosure = enclosure;
+	}
 
-    public void setCateId(Integer cateId) {
-        this.cateId = cateId;
-    }
+	public String getMetaKeywords() {
+		return metaKeywords;
+	}
 
-    public Integer getCateParentid() {
-        return cateParentid;
-    }
+	public void setMetaKeywords(String metaKeywords) {
+		this.metaKeywords = metaKeywords;
+	}
 
-    public void setCateParentid(Integer cateParentid) {
-        this.cateParentid = cateParentid;
-    }
+	public String getMetaDesc() {
+		return metaDesc;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setMetaDesc(String metaDesc) {
+		this.metaDesc = metaDesc;
+	}
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
+	public String getImgUrl() {
+		return imgUrl;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+	public String getImgDesc() {
+		return imgDesc;
+	}
 
-    public String getSource() {
-        return source;
-    }
+	public void setImgDesc(String imgDesc) {
+		this.imgDesc = imgDesc;
+	}
 
-    public void setSource(String source) {
-        this.source = source == null ? null : source.trim();
-    }
+	public String getDetails() {
+		return details;
+	}
 
-    public String getEnclosure() {
-        return enclosure;
-    }
+	public void setDetails(String details) {
+		this.details = details;
+	}
 
-    public void setEnclosure(String enclosure) {
-        this.enclosure = enclosure == null ? null : enclosure.trim();
-    }
+	public Integer getOrderBy() {
+		return orderBy;
+	}
 
-    public String getMetaKeywords() {
-        return metaKeywords;
-    }
+	public void setOrderBy(Integer orderBy) {
+		this.orderBy = orderBy;
+	}
 
-    public void setMetaKeywords(String metaKeywords) {
-        this.metaKeywords = metaKeywords == null ? null : metaKeywords.trim();
-    }
+	public Integer getClickNum() {
+		return clickNum;
+	}
 
-    public String getMetaDesc() {
-        return metaDesc;
-    }
+	public void setClickNum(Integer clickNum) {
+		this.clickNum = clickNum;
+	}
 
-    public void setMetaDesc(String metaDesc) {
-        this.metaDesc = metaDesc == null ? null : metaDesc.trim();
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public String getImgurl() {
-        return imgurl;
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public void setImgurl(String imgurl) {
-        this.imgurl = imgurl == null ? null : imgurl.trim();
-    }
-
-    public String getImgDesc() {
-        return imgDesc;
-    }
-
-    public void setImgDesc(String imgDesc) {
-        this.imgDesc = imgDesc == null ? null : imgDesc.trim();
-    }
-
-    public Integer getOrderby() {
-        return orderby;
-    }
-
-    public void setOrderby(Integer orderby) {
-        this.orderby = orderby;
-    }
-
-    public Integer getClicknum() {
-        return clicknum;
-    }
-
-    public void setClicknum(Integer clicknum) {
-        this.clicknum = clicknum;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details == null ? null : details.trim();
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("Information{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (cateId != null) {
+			sb.append(", \"cateId\":\"").append(cateId).append("\"");
+		}
+		if (cateParentid != null) {
+			sb.append(", \"cateParentid\":\"").append(cateParentid).append("\"");
+		}
+		if (type != null) {
+			sb.append(", \"type\":\"").append(type).append("\"");
+		}
+		if (title != null) {
+			sb.append(", \"title\":\"").append(title).append("\"");
+		}
+		if (source != null) {
+			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (enclosure != null) {
+			sb.append(", \"enclosure\":\"").append(enclosure).append("\"");
+		}
+		if (metaKeywords != null) {
+			sb.append(", \"metaKeywords\":\"").append(metaKeywords).append("\"");
+		}
+		if (metaDesc != null) {
+			sb.append(", \"metaDesc\":\"").append(metaDesc).append("\"");
+		}
+		if (imgUrl != null) {
+			sb.append(", \"imgUrl\":\"").append(imgUrl).append("\"");
+		}
+		if (imgDesc != null) {
+			sb.append(", \"imgDesc\":\"").append(imgDesc).append("\"");
+		}
+		if (details != null) {
+			sb.append(", \"details\":\"").append(details).append("\"");
+		}
+		if (orderBy != null) {
+			sb.append(", \"orderBy\":\"").append(orderBy).append("\"");
+		}
+		if (clickNum != null) {
+			sb.append(", \"clickNum\":\"").append(clickNum).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		return sb.toString();
+	}
 }

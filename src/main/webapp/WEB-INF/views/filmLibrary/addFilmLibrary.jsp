@@ -70,7 +70,7 @@
                 <input type="text" name="title" id="title" />
             </li>
             <li><span>简介：</span>
-                <textarea rows="" cols="" style="width: 250px;height: 100px;border: 1px solid #dbe2e6;" name="introduction" id="introduction"></textarea>
+                <textarea rows="" cols="" style="width: 250px;height: 70px;border: 1px solid #dbe2e6;" name="introduction" id="introduction"></textarea>
             </li>
 
             <li><span>视频上传：</span>
