@@ -1,8 +1,10 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
 import com.midland.web.model.Category;
 import com.midland.web.service.CategoryService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.SettingService;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -24,12 +26,19 @@ public class CategoryController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(CategoryController.class);
 	@Autowired
 	private CategoryService categoryServiceImpl;
-
+	@Autowired
+	private SettingService settingService;
 	/**
-	 * 
+	 * 分类控制层
 	 **/
 	@RequestMapping("index")
 	public String categoryIndex(Category category,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "category/categoryIndex";
 	}
 
@@ -38,6 +47,12 @@ public class CategoryController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddCategory(Category category,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "category/addCategory";
 	}
 
@@ -91,7 +106,13 @@ public class CategoryController extends BaseController  {
 	 **/
 	@RequestMapping("to_update")
 	public String toUpdateCategory(Integer id,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
 		Category result = categoryServiceImpl.selectCategoryById(id);
+		model.addAttribute("cityList",cityList);
 		model.addAttribute("item",result);
 		return "category/updateCategory";
 	}

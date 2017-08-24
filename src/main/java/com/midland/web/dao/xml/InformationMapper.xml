@@ -23,10 +23,11 @@
 		<result column="comment" property="comment" jdbcType="LONGVARCHAR" />
 		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
 		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		<result column="cate_name" property="cateName" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,cate_id,cate_parentId,type,title,source,enclosure,meta_keywords,meta_desc,img_url,img_desc,details,order_by,click_num,is_delete,artice_type,release_time,comment,city_id,city_name
+		id,cate_id,cate_parentId,type,title,source,enclosure,meta_keywords,meta_desc,img_url,img_desc,details,order_by,click_num,is_delete,artice_type,DATE_FORMAT(release_time,'%Y-%m-%d %H:%i:%s') release_time,comment,city_id,city_name,cate_name
 	</sql>
 
 	<select id="selectInformationById" resultMap="BaseResultMap">
@@ -115,6 +116,9 @@
 			<if test="cityName != null">
 				city_name,
 			</if>
+			<if test="cateName != null">
+				cate_name,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -169,12 +173,15 @@
 			<if test="comment != null">
 				#{comment,jdbcType=LONGVARCHAR},
 			</if>
-			<if test="cityId != null">
-				#{cityId,jdbcType=VARCHAR},
-			</if>
-			<if test="cityName != null">
-				#{cityName,jdbcType=VARCHAR},
-			</if>
+			 <if test="cityId != null">
+				 #{cityId},
+			 </if>
+			 <if test="cityName != null">
+				 #{cityName},
+			 </if>
+			 <if test="cateName != null">
+				 #{cateName},
+			 </if>
 		</trim>
 	</insert>
 
@@ -231,10 +238,13 @@
 			comment= #{comment,jdbcType=LONGVARCHAR},
 		</if>
 		<if test="cityId != null">
-			city_id= #{cityId,jdbcType=VARCHAR},
+			city_id = #{cityId},
 		</if>
 		<if test="cityName != null">
-			city_name= #{cityName,jdbcType=VARCHAR},
+			city_name = #{cityName},
+		</if>
+		<if test="cateName != null">
+			cate_name = #{cateName},
 		</if>
 	</sql>
 
@@ -294,10 +304,13 @@
 			 and comment= #{comment,jdbcType=LONGVARCHAR}
 		</if>
 		<if test="cityId != null">
-			 and city_id= #{cityId,jdbcType=VARCHAR}
+			 and city_id = #{cityId}
 		</if>
 		<if test="cityName != null">
-			 and city_name= #{cityName,jdbcType=VARCHAR}
+			 and city_name = #{cityName}
+		</if>
+		<if test="cateName != null">
+			 and cate_name = #{cateName}
 		</if>
 	</sql>
 

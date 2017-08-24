@@ -10,10 +10,12 @@
 		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
 		<result column="type" property="type" jdbcType="INTEGER" />
 		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
+		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,cate_name,status,order_by,parent_id,type,is_delete
+		id,cate_name,status,order_by,parent_id,type,is_delete,city_id,city_name
 	</sql>
 
 	<select id="selectCategoryById" resultMap="BaseResultMap">
@@ -63,6 +65,12 @@
 			<if test="isDelete != null">
 				is_delete,
 			</if>
+			<if test="cityId != null">
+				city_id,
+			</if>
+			<if test="cityName != null">
+				city_name,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -84,6 +92,12 @@
 			<if test="isDelete != null">
 				#{isDelete,jdbcType=INTEGER},
 			</if>
+			 <if test="cityId != null">
+				 #{cityId},
+			 </if>
+			 <if test="cityName != null">
+				 #{cityName},
+			 </if>
 		</trim>
 	</insert>
 
@@ -105,6 +119,12 @@
 		</if>
 		<if test="isDelete != null">
 			is_delete= #{isDelete,jdbcType=INTEGER},
+		</if>
+		<if test="cityId != null">
+			city_id= #{cityId},
+		</if>
+		<if test="cityName != null">
+			city_name= #{cityName},
 		</if>
 	</sql>
 
@@ -129,6 +149,12 @@
 		</if>
 		<if test="isDelete != null">
 			 and is_delete= #{isDelete,jdbcType=INTEGER}
+		</if>
+		<if test="cityId != null">
+			and city_id= #{cityId}
+		</if>
+		<if test="cityName != null">
+			and city_name= #{cityName}
 		</if>
 	</sql>
 
