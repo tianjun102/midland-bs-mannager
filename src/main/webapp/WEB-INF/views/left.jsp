@@ -72,19 +72,10 @@
 				</dt>
 				<dd>
 					<shiro:hasPermission name="categoryList">
-						<a id = "showCategoryIndex" href="${ctx}/rest/product/showCategoryIndex" target="contentF"><span>分类</span></a>
+						<a id = "showCategoryIndex" href="${ctx}/rest/category/index" target="contentF"><span>分类</span></a>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="productList">
-						<a id = "showProductIndex" href="${ctx}/rest/product/showProductIndex" target="contentF"><span>产品列表</span></a>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="kctzdList">
-						<a id = "showKctzdIndex" href="${ctx}/rest/stock/showKctzdIndex" target="contentF"><span>库存调整单</span></a>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="queryList">
-						<a id = "stockQueryIndex" href="${ctx}/rest/stock/stockQueryIndex" target="contentF"><span>库存查询</span></a>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="distPlanList">
-						<a id = "showDistPlanIndex" href="${ctx}/rest/distPlan/showDistPlanIndex" target="contentF"><span>产品分销区域</span></a>
+						<a id = "showProductIndex" href="${ctx}/rest/information/index" target="contentF"><span>资讯列表</span></a>
 					</shiro:hasPermission>
 				</dd>
 			</dl>

@@ -70,11 +70,23 @@ public class Information{
 	/**
 	 * 发布时间
 	 **/
-	private Date releaseTime;
+	private String releaseTime;
 	/**
 	 * 评论
 	 **/
 	private String comment;
+	/**
+	 * 城市id
+	 */
+	private String cityId;
+	/**
+	 * 城市名称
+	 */
+	private String cityName;
+	/**
+	 * 分类名称
+	 */
+	private String cateName;
 
 
 	public Integer getId() {
@@ -205,11 +217,11 @@ public class Information{
 		this.articeType = articeType;
 	}
 
-	public Date getReleaseTime() {
+	public String getReleaseTime() {
 		return releaseTime;
 	}
 
-	public void setReleaseTime(Date releaseTime) {
+	public void setReleaseTime(String releaseTime) {
 		this.releaseTime = releaseTime;
 	}
 
@@ -219,6 +231,30 @@ public class Information{
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public String getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getCateName() {
+		return cateName;
+	}
+
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
 	}
 
 	@Override
@@ -277,6 +313,15 @@ public class Information{
 		}
 		if (comment != null) {
 			sb.append(", \"comment\":\"").append(comment).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
+		}
+		if (cateName != null) {
+			sb.append(", \"cateName\":\"").append(cateName).append("\"");
 		}
 		return sb.toString();
 	}

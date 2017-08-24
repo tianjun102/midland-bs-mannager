@@ -30,6 +30,14 @@ public class Category{
 	 * 0未删除，1删除
 	 **/
 	private Integer isDelete;
+	/**
+	 * 城市名称
+	 **/
+	private String cityName;
+	/**
+	 * 城市ID
+	 **/
+	private String cityId;
 
 
 	public Integer getId() {
@@ -88,6 +96,22 @@ public class Category{
 		this.isDelete = isDelete;
 	}
 
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("Category{");
@@ -111,6 +135,12 @@ public class Category{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
 		}
 		return sb.toString();
 	}

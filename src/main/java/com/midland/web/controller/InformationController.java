@@ -1,8 +1,12 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
+import com.midland.web.model.Category;
 import com.midland.web.model.Information;
+import com.midland.web.service.CategoryService;
 import com.midland.web.service.InformationService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.SettingService;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -26,11 +30,23 @@ public class InformationController extends BaseController  {
 	@Autowired
 	private InformationService informationServiceImpl;
 
+	@Autowired
+	private SettingService settingService;
+
+	@Autowired
+	private CategoryService categoryService;
+
 	/**
 	 * 
 	 **/
 	@RequestMapping("index")
 	public String informationIndex(Information information,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "information/informationIndex";
 	}
 
@@ -39,6 +55,17 @@ public class InformationController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddInformation(Information information,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		Category category = new Category();
+		//查询资讯分类
+		category.setType(1);
+		List<Category> cateList = categoryService.findCategoryList(category);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
+		model.addAttribute("cateList",cateList);
 		return "information/addInformation";
 	}
 
