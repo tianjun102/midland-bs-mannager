@@ -4,17 +4,21 @@
 
  	<resultMap id="BaseResultMap" type="com.midland.web.model.Feedback" >
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
 		<result column="phone" property="phone" jdbcType="VARCHAR" />
 		<result column="feedback_content" property="feedbackContent" jdbcType="LONGVARCHAR" />
 		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
 		<result column="status" property="status" jdbcType="INTEGER" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+		<result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,username,phone,feedback_content,add_time,status,remark,is_delete
+		id,nick_name,phone,feedback_content,add_time,status,remark,is_delete,purpose,user_id,operator_id,operator_name
 	</sql>
 
 	<select id="selectFeedbackById" resultMap="BaseResultMap">
@@ -46,8 +50,8 @@
 	<insert id="insertFeedback" parameterType="com.midland.web.model.Feedback">
 		insert into feedback
 		<trim prefix="(" suffix=")" suffixOverrides="," >
-			<if test="username != null">
-				username,
+			<if test="nickName != null">
+				nick_name,
 			</if>
 			<if test="phone != null">
 				phone,
@@ -67,11 +71,23 @@
 			<if test="isDelete != null">
 				is_delete,
 			</if>
+			<if test="purpose != null">
+				purpose,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="operatorId != null">
+				operator_id,
+			</if>
+			<if test="operatorName != null">
+				operator_name,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
-			<if test="username != null">
-				#{username,jdbcType=VARCHAR},
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
 			</if>
 			<if test="phone != null">
 				#{phone,jdbcType=VARCHAR},
@@ -91,12 +107,24 @@
 			<if test="isDelete != null">
 				#{isDelete,jdbcType=INTEGER},
 			</if>
+			<if test="purpose != null">
+				#{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="operatorId != null">
+				#{operatorId,jdbcType=INTEGER},
+			</if>
+			<if test="operatorName != null">
+				#{operatorName,jdbcType=VARCHAR},
+			</if>
 		</trim>
 	</insert>
 
 	<sql id="update_option">
-		<if test="username != null">
-			username= #{username,jdbcType=VARCHAR},
+		<if test="nickName != null">
+			nick_name= #{nickName,jdbcType=VARCHAR},
 		</if>
 		<if test="phone != null">
 			phone= #{phone,jdbcType=VARCHAR},
@@ -116,14 +144,26 @@
 		<if test="isDelete != null">
 			is_delete= #{isDelete,jdbcType=INTEGER},
 		</if>
+		<if test="purpose != null">
+			purpose= #{purpose,jdbcType=VARCHAR},
+		</if>
+		<if test="userId != null">
+			user_id= #{userId,jdbcType=INTEGER},
+		</if>
+		<if test="operatorId != null">
+			operator_id= #{operatorId,jdbcType=INTEGER},
+		</if>
+		<if test="operatorName != null">
+			operator_name= #{operatorName,jdbcType=VARCHAR},
+		</if>
 	</sql>
 
 	<sql id="select_option">
 		<if test="id != null">
 			 and id= #{id,jdbcType=INTEGER}
 		</if>
-		<if test="username != null">
-			 and username= #{username,jdbcType=VARCHAR}
+		<if test="nickName != null">
+			 and nick_name= #{nickName,jdbcType=VARCHAR}
 		</if>
 		<if test="phone != null">
 			 and phone= #{phone,jdbcType=VARCHAR}
@@ -142,6 +182,18 @@
 		</if>
 		<if test="isDelete != null">
 			 and is_delete= #{isDelete,jdbcType=INTEGER}
+		</if>
+		<if test="purpose != null">
+			 and purpose= #{purpose,jdbcType=VARCHAR}
+		</if>
+		<if test="userId != null">
+			 and user_id= #{userId,jdbcType=INTEGER}
+		</if>
+		<if test="operatorId != null">
+			 and operator_id= #{operatorId,jdbcType=INTEGER}
+		</if>
+		<if test="operatorName != null">
+			 and operator_name= #{operatorName,jdbcType=VARCHAR}
 		</if>
 	</sql>
 

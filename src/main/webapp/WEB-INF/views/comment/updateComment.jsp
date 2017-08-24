@@ -12,30 +12,24 @@
 </head>
 <body>
 <section class="content" style="border:none;">
-    <form action="${ctx}/rest/feedback/update" method="post" id="dataForm">
+    <form action="${ctx}/rest/comment/update" method="post" id="dataForm">
         <ul class="userinfo row">
             <input type="hidden" name="id" id="id" value="${item.id}">
-            <li><span>昵称：</span>
-               <input type="text" name="nickName" disabled="disabled" id="nickName" value="${item.nickName}"/>
+            <li><span>comment：</span>
+               <input type="text" name="comment" id="comment" value="${item.comment}"/>
             </li>
-            <li><span>手机号：</span>
-               <input type="text" name="phone" disabled="disabled" id="phone" value="${item.phone}"/>
+            <li><span>user：</span>
+               <input type="text" name="user" id="user" value="${item.user}"/>
             </li>
-            <li><span>反馈内容：</span>
-               <input type="text" name="feedbackContent"  disabled="disabled"  id="feedbackContent" value="${item.feedbackContent}"/>
+            <li><span>status：</span>
+               <input type="text" name="status" id="status" value="${item.status}"/>
             </li>
-            <li><span>状态：</span>
-                <select name="status" id="status" class="dropdown">
-                    <option value="0" <c:if test="${item.status == 0}">selected</c:if>>未处理</option>
-                    <option value="1" <c:if test="${item.status == 1}">selected</c:if> >处理中</option>
-                    <option value="2" <c:if test="${item.status == 2}">selected</c:if> >已处理</option>
-                    <option value="3" <c:if test="${item.status == 3}">selected</c:if> >已取消</option>
-                </select>
-            <li>
-            <li><span>备注：</span>
-            <textarea rows="" cols="" style="width: 250px;height: 100px;border: 1px solid #dbe2e6;" name="remark" id="remark" >${item.remark}</textarea>
+            <li><span>source：</span>
+               <input type="text" name="source" id="source" value="${item.source}"/>
             </li>
-
+            <li><span>isDelete：</span>
+               <input type="text" name="isDelete" id="isDelete" value="${item.isDelete}"/>
+            </li>
             <li>
                 <span></span>
                 <a target="contentF" class="public_btn bg2" id="save" onclick="updateData()">更新</a>
@@ -53,7 +47,7 @@
         debugger;
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/feedback/update",
+            url: "${ctx}/rest/comment/update",
             async: false, // 此处必须同步
             dataType: "json",
             data: data,

@@ -14,10 +14,11 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">用户昵称</th>
-				<th style="width: 8%">手机号</th>
-				<th style="width: 8%">反馈内容</th>
-				<th style="width: 8%">反馈时间</th>
+				<th style="width: 8%">comment</th>
+				<th style="width: 8%">user</th>
+				<th style="width: 8%">status</th>
+				<th style="width: 8%">source</th>
+				<th style="width: 8%">isDelete</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -27,12 +28,12 @@
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
 						<input type="hidden" id="id" value="${item.id}"/>
-						<td>${item.nickName}</td>
-						<td>${item.phone}</td>
-						<td>${item.feedbackContent}</td>
-						<td>${item.addTime}</td>
-
-                        <td>
+						<td>${item.comment}</td>
+						<td>${item.user}</td>
+						<td>${item.status}</td>
+						<td>${item.source}</td>
+						<td>${item.isDelete}</td>
+						<td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>
                         </td>
@@ -60,7 +61,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/feedback/update?id="+id+"&isDelete=1",
+            url: "${ctx}/rest/comment/update?id="+id+"&isDelete=1",
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -80,8 +81,8 @@
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['500px', '500px'],
-            content: ['${ctx}/rest/feedback/to_update?id='+id,'no']
+            area: ['500px', '700px'],
+            content: ['${ctx}/rest/comment/to_update?id='+id,'no']
         });
     }
 

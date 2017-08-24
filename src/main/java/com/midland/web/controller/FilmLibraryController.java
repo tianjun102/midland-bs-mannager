@@ -60,7 +60,7 @@ public class FilmLibraryController extends BaseController  {
 		Map<String,Object> map = new HashMap<>();
 		try {
 			User user = MidlandHelper.getCurrentUser(request);
-			filmLibrary.setOperatorName(user.getUsername());
+			filmLibrary.setOperatorName(user.getUserCnName());
 			filmLibrary.setOperatorId(user.getId());
 			log.info("addFilmLibrary {}",filmLibrary);
 			filmLibraryServiceImpl.insertFilmLibrary(filmLibrary);

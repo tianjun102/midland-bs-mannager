@@ -57,7 +57,7 @@ public class TradeFairController extends BaseController  {
 			log.info("addTradeFair {}",tradeFair);
 			User user = (User)request.getSession().getAttribute("userInfo");
 			tradeFair.setOperatorId(user.getId());
-			tradeFair.setOperatorName(user.getUsername());
+			tradeFair.setOperatorName(user.getUserCnName());
 			tradeFairServiceImpl.insertTradeFair(tradeFair);
 			map.put("state",0);
 		} catch(Exception e) {

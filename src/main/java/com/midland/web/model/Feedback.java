@@ -10,7 +10,7 @@ public class Feedback{
 	/**
 	 * 用户昵称
 	 **/
-	private String username;
+	private String nickName;
 	/**
 	 * 手机号码
 	 **/
@@ -22,7 +22,7 @@ public class Feedback{
 	/**
 	 * 反馈时间
 	 **/
-	private Date addTime;
+	private String addTime;
 	/**
 	 * 状态 0=已取消；1=已完成；2=处理中
 	 **/
@@ -35,6 +35,22 @@ public class Feedback{
 	 * 0未删除，1删除
 	 **/
 	private Integer isDelete;
+	/**
+	 * 主旨：0楼盘资料，1刊登广告，2精英招聘，3客户服务，4其他
+	 **/
+	private String purpose;
+	/**
+	 * 用户id
+	 **/
+	private Integer userId;
+	/**
+	 * 操作人
+	 **/
+	private Integer operatorId;
+	/**
+	 * 操作人用户名
+	 **/
+	private String operatorName;
 
 
 	public Integer getId() {
@@ -45,12 +61,12 @@ public class Feedback{
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getPhone() {
@@ -69,11 +85,11 @@ public class Feedback{
 		this.feedbackContent = feedbackContent;
 	}
 
-	public Date getAddTime() {
+	public String getAddTime() {
 		return addTime;
 	}
 
-	public void setAddTime(Date addTime) {
+	public void setAddTime(String addTime) {
 		this.addTime = addTime;
 	}
 
@@ -101,14 +117,46 @@ public class Feedback{
 		this.isDelete = isDelete;
 	}
 
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getOperatorId() {
+		return operatorId;
+	}
+
+	public void setOperatorId(Integer operatorId) {
+		this.operatorId = operatorId;
+	}
+
+	public String getOperatorName() {
+		return operatorName;
+	}
+
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("Feedback{");
 		if (id != null) {
 			sb.append(", \"id\":\"").append(id).append("\"");
 		}
-		if (username != null) {
-			sb.append(", \"username\":\"").append(username).append("\"");
+		if (nickName != null) {
+			sb.append(", \"nickName\":\"").append(nickName).append("\"");
 		}
 		if (phone != null) {
 			sb.append(", \"phone\":\"").append(phone).append("\"");
@@ -127,6 +175,18 @@ public class Feedback{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (purpose != null) {
+			sb.append(", \"purpose\":\"").append(purpose).append("\"");
+		}
+		if (userId != null) {
+			sb.append(", \"userId\":\"").append(userId).append("\"");
+		}
+		if (operatorId != null) {
+			sb.append(", \"operatorId\":\"").append(operatorId).append("\"");
+		}
+		if (operatorName != null) {
+			sb.append(", \"operatorName\":\"").append(operatorName).append("\"");
 		}
 		return sb.toString();
 	}

@@ -1,6 +1,7 @@
 package com.midland.web.controller;
 
 import com.midland.web.model.Feedback;
+import com.midland.web.model.user.User;
 import com.midland.web.service.FeedbackService;
 import com.midland.web.controller.base.BaseController;
 import org.slf4j.Logger;
@@ -47,9 +48,11 @@ public class FeedbackController extends BaseController  {
 	 **/
 	@RequestMapping("add")
 	@ResponseBody
-	public Object addFeedback(Feedback feedback) throws Exception {
+	public Object addFeedback(Feedback feedback,HttpServletRequest request) throws Exception {
 		Map<String,Object> map = new HashMap<>();
 		try {
+			
+			feedback.setAddTime(MidlandHelper.getCurrentTime());
 			log.info("addFeedback {}",feedback);
 			feedbackServiceImpl.insertFeedback(feedback);
 			map.put("state",0);
@@ -91,7 +94,7 @@ public class FeedbackController extends BaseController  {
 	 * 
 	 **/
 	@RequestMapping("to_update")
-	public String toUpdateFeedback(Integer id,Model model) throws Exception {
+	public String toUpdateFeedback(Integer id,Model model,HttpServletRequest request) throws Exception {
 		Feedback result = feedbackServiceImpl.selectFeedbackById(id);
 		model.addAttribute("item",result);
 		return "feedback/updateFeedback";
@@ -102,9 +105,12 @@ public class FeedbackController extends BaseController  {
 	 **/
 	@RequestMapping("update")
 	@ResponseBody
-	public Object updateFeedbackById(Feedback feedback) throws Exception {
+	public Object updateFeedbackById(Feedback feedback,HttpServletRequest request) throws Exception {
 		Map<String,Object> map = new HashMap<>();
 		try {
+			User user = MidlandHelper.getCurrentUser(request);
+			feedback.setOperatorId(user.getId());
+			feedback.setOperatorName(user.getUserCnName());
 			log.info("updateFeedbackById  {}",feedback);
 			feedbackServiceImpl.updateFeedbackById(feedback);
 			map.put("state",0);

@@ -17,7 +17,7 @@
 			<p class = "detail-title">
 				<a class = "setup"  target="contentF" onclick="toAddPage()">新增</a>
 			</p>
-		<form action="${ctx }/rest/feedback/list" method="POST" id="searchForm"
+		<form action="${ctx }/rest/comment/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
 				<li><span>select：</span>
@@ -48,7 +48,7 @@
                 title:['新增'],
                 resize: false,
                 scrollbar:false,
-                content:['${ctx}/rest/feedback/to_add', 'no']
+                content:['${ctx}/rest/comment/to_add', 'no']
             });
         }
 		 window.onload = function(){
