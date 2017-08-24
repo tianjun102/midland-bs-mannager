@@ -143,7 +143,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     </body>
     <script type="text/javascript">
     $(function(){
-    	debugger;
+
     	if("${banner.enabled }" == "1"){
     		$("#radio1").attr("checked","checked");
     	}else if("${banner.enabled }" == "0"){

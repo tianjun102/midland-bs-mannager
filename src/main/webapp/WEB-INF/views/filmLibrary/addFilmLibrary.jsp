@@ -115,7 +115,7 @@
     //保存数据
     function saveData() {
         var data = $("#dataForm").serialize();
-        debugger;
+
         $.ajax({
             type: "post",
             url: "${ctx}/rest/filmLibrary/add",

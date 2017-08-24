@@ -75,7 +75,7 @@
 
         function exportUsers(){
             var data = $("#searchForm").serialize();
-            debugger;
+
             window.location.href="${ctx}/rest/user/export?"+data;
         }
 

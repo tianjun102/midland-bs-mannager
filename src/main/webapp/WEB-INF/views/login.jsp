@@ -142,7 +142,7 @@ top.location.href = location.href;
 	
 		// jQuery完成登录界面的tab切换
 		$('.login-tab').on('click', 'li', function() {
-			/* debugger; */
+			/*  */
 			$('.login-tab li').removeClass('li_focus');
 			$(this).addClass('li_focus');
 			$("input.boxwrap:not(:last-child)").each(function() {

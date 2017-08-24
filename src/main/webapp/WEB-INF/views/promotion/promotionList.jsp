@@ -115,7 +115,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			dataType: "json",
 			data:"",
 			success: function(data){ 
-				debugger;
+
 				$('#searchForm').submit();
 			} 
 		});

@@ -196,7 +196,7 @@
 </div>
 	<script type="text/javascript">
 		function addMore() {
-			debugger;
+
 			$("#addCbox").show();
 			$("#prodName").show();
 			$("#add").hide();
@@ -236,7 +236,7 @@
 		}
 
 		function delCheckbox(t) {
-			debugger;
+
 			t.parentNode.parentNode.removeChild(t.parentNode);
 		}
 

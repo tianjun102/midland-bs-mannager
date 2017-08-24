@@ -217,7 +217,7 @@
 	}
 
 	function addMore(){
-		debugger;
+
 		$("#addCbox").show();
 		$("#prodName").show();
 		$("#add").hide();
