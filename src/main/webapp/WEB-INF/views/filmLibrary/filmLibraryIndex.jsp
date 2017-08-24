@@ -15,7 +15,7 @@
 	<div class="box"> 
 		<section class = "content">
 			<p class = "detail-title">
-				<a class = "setup"  target="contentF" onclick="toAddPage()">新增</a>
+				<a class = "setup"  target="contentF" onclick="toAddPage1()">新增</a>
 			</p>
 		<form action="${ctx }/rest/filmLibrary/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
@@ -49,7 +49,7 @@
 
 
 
-        function toAddPage(){
+        function toAddPage1(){
             layer.open({
                 type: 2,
                 skin: 'layer-style',
@@ -66,8 +66,9 @@
 		}
 	</script>
 	<!-- 本页私有js -->
-	
-	
+
+
+	<script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>
 
 	<script src="${ctx}/assets/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </body>
