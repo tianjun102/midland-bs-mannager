@@ -31,7 +31,7 @@
                     <tr>
                         <input type="hidden" id="id" value="${item.id}"/>
                         <td>${xh.count }</td>
-                        <td><img src="${item.imgUrl }" style="width:80px;height:80px" alt=""></td>
+                        <td><img src="${item.imgUrl }" style="width:40px;height:40px" alt=""></td>
                         <td><c:choose>
                             <c:when test="${item.isShow==0 }">
                                 显示

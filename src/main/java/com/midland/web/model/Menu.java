@@ -13,7 +13,7 @@ public class Menu{
 	/**
 	 * 城市id
 	 **/
-	private Integer cityId;
+	private String cityId;
 	/**
 	 * 城市名称
 	 **/
@@ -83,11 +83,11 @@ public class Menu{
 		this.iconImg = iconImg;
 	}
 
-	public Integer getCityId() {
+	public String getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 

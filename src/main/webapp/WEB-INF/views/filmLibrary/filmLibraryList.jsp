@@ -31,7 +31,7 @@
                     <tr>
                         <input type="hidden" id="id" value="${item.id}"/>
                         <td>${xh.count }</td>
-                        <td><img src="${item.imgUrl }" style="width:80px;height:80px" alt=""></td>
+                        <td><img src="${item.imgUrl }" style="width:40px;height:40px" alt=""></td>
                         <td><c:choose>
                             <c:when test="${item.isShow==0 }">
                                 显示
@@ -40,7 +40,7 @@
                                 隐藏
                             </c:otherwise>
                         </c:choose></td>
-                        <td>${item.housesName }</td>
+                        <td>${item.introduction }</td>
                         <td>${item.housesId }</td>
                         <td>${item.operatorName }</td>
                         <td>
@@ -72,7 +72,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/tradeFair/delete?id="+id,
+            url: "${ctx}/rest/filmLibrary/update?id="+id+"&isDelete=1",
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -93,7 +93,7 @@
             title: ['修改'],
             shade: 0.3,
             area: ['500px', '700px'],
-            content: ['${ctx}/rest/tradeFair/to_update?id='+id,'no']
+            content: ['${ctx}/rest/filmLibrary/to_update?id='+id,'no']
         });
     }
 

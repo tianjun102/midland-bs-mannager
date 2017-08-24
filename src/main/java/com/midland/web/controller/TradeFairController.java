@@ -1,7 +1,9 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
 import com.midland.web.model.TradeFair;
 import com.midland.web.model.user.User;
+import com.midland.web.service.SettingService;
 import com.midland.web.service.TradeFairService;
 import com.midland.web.controller.base.BaseController;
 import org.slf4j.Logger;
@@ -25,6 +27,7 @@ public class TradeFairController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(TradeFairController.class);
 	@Autowired
 	private TradeFairService tradeFairServiceImpl;
+	
 
 	/**
 	 * 
@@ -39,6 +42,7 @@ public class TradeFairController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddTradeFair(TradeFair tradeFair,Model model) throws Exception {
+		
 		return "tradeFair/addTradeFair";
 	}
 

@@ -19,8 +19,10 @@ public interface SettingService {
     public int insertPopular(Popular popular);
 
     public Map<String, List<Area>> queryCityByRedis(Map<String,String> parem);
-
-    public Map<String, List<Area>> queryAreaByRedis(Map<String,String> parem);
+	
+	List<Area> queryAllCityByRedis();
+	
+	public Map<String, List<Area>> queryAreaByRedis(Map<String,String> parem);
 
     /**
      * 友情链接

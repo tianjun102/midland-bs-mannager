@@ -1,8 +1,11 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
 import com.midland.web.model.FilmLibrary;
+import com.midland.web.model.user.User;
 import com.midland.web.service.FilmLibraryService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.SettingService;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -18,18 +21,23 @@ import com.midland.web.util.MidlandHelper;
 import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
 @Controller
+@SuppressWarnings("all")
 @RequestMapping("/filmLibrary/")
 public class FilmLibraryController extends BaseController  {
 
 	private Logger log = LoggerFactory.getLogger(FilmLibraryController.class);
 	@Autowired
 	private FilmLibraryService filmLibraryServiceImpl;
+	@Autowired
+	private SettingService settingService;
 
 	/**
 	 * 
 	 **/
 	@RequestMapping("index")
 	public String filmLibraryIndex(FilmLibrary filmLibrary,Model model) throws Exception {
+		List<Area> list = settingService.queryAllCityByRedis();
+		model.addAttribute("citys",list);
 		return "filmLibrary/filmLibraryIndex";
 	}
 
@@ -38,6 +46,8 @@ public class FilmLibraryController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddFilmLibrary(FilmLibrary filmLibrary,Model model) throws Exception {
+		List<Area> list = settingService.queryAllCityByRedis();
+		model.addAttribute("citys",list);
 		return "filmLibrary/addFilmLibrary";
 	}
 
@@ -46,9 +56,12 @@ public class FilmLibraryController extends BaseController  {
 	 **/
 	@RequestMapping("add")
 	@ResponseBody
-	public Object addFilmLibrary(FilmLibrary filmLibrary) throws Exception {
-		Map map = new HashMap<>();
+	public Object addFilmLibrary(FilmLibrary filmLibrary,HttpServletRequest request) throws Exception {
+		Map<String,Object> map = new HashMap<>();
 		try {
+			User user = MidlandHelper.getCurrentUser(request);
+			filmLibrary.setOperatorName(user.getUsername());
+			filmLibrary.setOperatorId(user.getId());
 			log.info("addFilmLibrary {}",filmLibrary);
 			filmLibraryServiceImpl.insertFilmLibrary(filmLibrary);
 			map.put("state",0);
@@ -75,7 +88,7 @@ public class FilmLibraryController extends BaseController  {
 	@RequestMapping("delete")
 	@ResponseBody
 	public Object deleteFilmLibraryById(Integer id)throws Exception {
-		Map map = new HashMap<>();
+		Map<String,Object> map = new HashMap<>();
 		try {
 			log.info("deleteFilmLibraryById  {}",id);
 			filmLibraryServiceImpl.deleteFilmLibraryById(id);
@@ -93,6 +106,8 @@ public class FilmLibraryController extends BaseController  {
 	public String toUpdateFilmLibrary(Integer id,Model model) throws Exception {
 		FilmLibrary result = filmLibraryServiceImpl.selectFilmLibraryById(id);
 		model.addAttribute("item",result);
+		List<Area> list = settingService.queryAllCityByRedis();
+		model.addAttribute("citys",list);
 		return "filmLibrary/updateFilmLibrary";
 	}
 
@@ -102,7 +117,7 @@ public class FilmLibraryController extends BaseController  {
 	@RequestMapping("update")
 	@ResponseBody
 	public Object updateFilmLibraryById(FilmLibrary filmLibrary) throws Exception {
-		Map map = new HashMap<>();
+		Map<String,Object> map = new HashMap<>();
 		try {
 			log.info("updateFilmLibraryById  {}",filmLibrary);
 			filmLibraryServiceImpl.updateFilmLibraryById(filmLibrary);

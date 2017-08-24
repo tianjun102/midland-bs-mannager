@@ -7,11 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="${ctx }/assets/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="${ctx }/assets/css/easydropdown.css" />
-<link rel="stylesheet" href="${ctx }/assets/css/common.css">
-
 </head>
 <body>
 	
@@ -25,7 +20,14 @@
 		<form action="${ctx }/rest/filmLibrary/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
-
+				<li><span>城市：</span>
+					<select name="cityId" id="cityId" class="dropdown">
+						<option value="" >全部</option>
+						<c:forEach items="${citys}" var="item">
+						<option value="${item.id}" >${item.name}</option>
+						</c:forEach>
+					</select>
+				</li>
 				<li><span>状态：</span>
 					<select name="isShow" id="isShow" class="dropdown">
 						<option value="">全部</option>
@@ -53,7 +55,7 @@
                 skin: 'layer-style',
                 area: ['500px','700px'],
                 shadeClose: false, //点击遮罩关闭
-                title:['新增楼盘信息'],
+                title:['片库信息'],
                 resize: false,
                 scrollbar:false,
                 content:['${ctx}/rest/filmLibrary/to_add', 'no']
@@ -66,12 +68,7 @@
 	<!-- 本页私有js -->
 	
 	
-	<script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
-	<script type="text/javascript" src="${ctx}/assets/scripts/jquery.easydropdown.js" ></script>
-	<script type="text/javascript" src="${ctx}/assets/scripts/bootstrap.min.js"></script>
-	<script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>
-	<script type="text/javascript" src="${ctx}/assets/scripts/common.js"></script>
-	<script type="text/javascript" src="${ctx}/assets/scripts/base.js" ></script>
+
 	<script src="${ctx}/assets/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </body>
 </html>

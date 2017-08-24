@@ -9,7 +9,7 @@ public class FilmLibrary{
 	/**
 	 * 城市id
 	 **/
-	private Integer cityId;
+	private String cityId;
 	/**
 	 * 图片描述
 	 **/
@@ -57,7 +57,15 @@ public class FilmLibrary{
 	/**
 	 * 视频时长
 	 **/
-	private Integer duration;
+	private Double duration;
+	/**
+	 * 显示，0显示，1隐藏
+	 **/
+	private Integer isShow;
+	/**
+	 * 城市名称
+	 **/
+	private String cityName;
 
 
 	public Integer getId() {
@@ -68,11 +76,11 @@ public class FilmLibrary{
 		this.id = id;
 	}
 
-	public Integer getCityId() {
+	public String getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 
@@ -164,12 +172,28 @@ public class FilmLibrary{
 		this.operatorName = operatorName;
 	}
 
-	public Integer getDuration() {
+	public Double getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Integer duration) {
+	public void setDuration(Double duration) {
 		this.duration = duration;
+	}
+
+	public Integer getIsShow() {
+		return isShow;
+	}
+
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
 	@Override
@@ -216,6 +240,12 @@ public class FilmLibrary{
 		}
 		if (duration != null) {
 			sb.append(", \"duration\":\"").append(duration).append("\"");
+		}
+		if (isShow != null) {
+			sb.append(", \"isShow\":\"").append(isShow).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
 		}
 		return sb.toString();
 	}

@@ -75,6 +75,14 @@ public class Information{
 	 * 评论
 	 **/
 	private String comment;
+	/**
+	 * 城市id
+	 **/
+	private String cityId;
+	/**
+	 * 城市名称
+	 **/
+	private String cityName;
 
 
 	public Integer getId() {
@@ -221,6 +229,22 @@ public class Information{
 		this.comment = comment;
 	}
 
+	public String getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("Information{");
@@ -277,6 +301,12 @@ public class Information{
 		}
 		if (comment != null) {
 			sb.append(", \"comment\":\"").append(comment).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
 		}
 		return sb.toString();
 	}

@@ -93,12 +93,14 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 		if (!item.isFormField()) {
 			String fileName = item.getName();
 			
-			String storePath = null;
-			
+			String storePath;
+			String opposite;
 			if (isMacOSX()){
-				storePath = this.servletContext.getRealPath("/")+"/store/";
+				opposite="/store/";
+				storePath = this.servletContext.getRealPath("/")+opposite;
 			}else{
 				storePath = AppSetting.getAppSetting("upload_dir");
+				opposite = storePath;
 			}
 			File file =new File(storePath);
 			if (!file.exists()){
@@ -112,7 +114,7 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 					throw new FileUploadException("上传失败");
 				}
 			}
-			return storePath+fileName;
+			return opposite+fileName;
 		}
 		return null;
 	}
