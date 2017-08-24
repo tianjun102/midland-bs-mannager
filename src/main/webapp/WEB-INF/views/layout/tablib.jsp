@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="${ctx }/assets/css/common.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>
+    <link rel="stylesheet" href="${ctx }/assets/css/easydropdown.css" />
+    <script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/scripts/jquery.easydropdown.js" ></script>
+    <script type="text/javascript" src="${ctx}/assets/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/scripts/common.js"></script>
+    <script type="text/javascript" src="${ctx}/assets/scripts/base.js" ></script>
 </head>
 
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>

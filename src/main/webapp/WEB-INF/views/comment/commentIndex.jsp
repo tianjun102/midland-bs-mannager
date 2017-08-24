@@ -11,30 +11,24 @@
 <body>
 	
 	
-	<!--委托列表界面-->
+	<!--列表界面-->
 	<div class="box"> 
 		<section class = "content">
 			<p class = "detail-title">
 				<a class = "setup"  target="contentF" onclick="toAddPage()">新增</a>
 			</p>
-		<form action="${ctx }/rest/filmLibrary/list" method="POST" id="searchForm"
+		<form action="${ctx }/rest/comment/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
-				<li><span>城市：</span>
+				<li><span>select：</span>
 					<select name="cityId" id="cityId" class="dropdown">
 						<option value="" >全部</option>
 						<c:forEach items="${citys}" var="item">
 						<option value="${item.id}" >${item.name}</option>
 						</c:forEach>
 					</select>
-				</li>
-				<li><span>状态：</span>
-					<select name="isShow" id="isShow" class="dropdown">
-						<option value="">全部</option>
-						<option value="0">上线</option>
-						<option value="1">下线</option>
-
-					</select>
+				<li><span>手机号码：</span>
+					<input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
 				</li>
 				<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>
 			</ul>
@@ -45,30 +39,22 @@
 	
 	
 	<script type="text/javascript">
-
-
-
-
         function toAddPage(){
             layer.open({
                 type: 2,
                 skin: 'layer-style',
                 area: ['500px','700px'],
                 shadeClose: false, //点击遮罩关闭
-                title:['片库信息'],
+                title:['新增'],
                 resize: false,
                 scrollbar:false,
-                content:['${ctx}/rest/filmLibrary/to_add', 'no']
+                content:['${ctx}/rest/comment/to_add', 'no']
             });
         }
 		 window.onload = function(){
              $('#searchForm').submit();
 		}
 	</script>
-	<!-- 本页私有js -->
-	
-	
-
-	<script src="${ctx}/assets/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+	<script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>
 </body>
 </html>

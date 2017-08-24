@@ -6,9 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="${ctx }/assets/css/common.css">
     <link rel="stylesheet" type="text/css" href="${ctx }/assets/scripts/uploadify/uploadify.css">
-    <script type="text/javascript" src="${ctx }/assets/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="${ctx }/assets/scripts/uploadify/jquery.uploadify.min.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -110,8 +108,6 @@
 
 
 </script>
-<script type="text/javascript" src="${ctx}/assets/scripts/layer/layer.js"></script>
-
 
 </body>
 </html>

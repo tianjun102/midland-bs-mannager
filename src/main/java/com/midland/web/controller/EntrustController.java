@@ -131,7 +131,7 @@ public class EntrustController extends BaseController{
 			appointLog.setEntrustId(entrust.getId());
 			appointLog.setLogTime(MidlandHelper.getCurrentTime());
 			appointLog.setOperatorId(user.getId());
-			appointLog.setOperatorName(user.getUsername());
+			appointLog.setOperatorName(user.getUserCnName());
 			
 			appointLog.setState(entrust.getStatus());
 			entrustLogServiceImpl.insertEntrustLog(appointLog);

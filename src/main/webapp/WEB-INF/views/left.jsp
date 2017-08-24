@@ -105,6 +105,9 @@
 					</dt>
 					<dd>
 						<shiro:hasPermission name="noticelist">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/feedback/index" target="contentF"><span>反馈管理</span></a>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="noticelist">
 							<a id = "enterPromotionIndex" href="${ctx}/rest/tradeFair/index" target="contentF"><span>楼盘展销会</span></a>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="noticelist">

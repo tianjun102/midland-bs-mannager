@@ -1,19 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Feedback;
+import java.util.List;
 
 public interface FeedbackMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Feedback record);
+	Feedback selectFeedbackById(Integer feedback);
 
-    int insertSelective(Feedback record);
+	int deleteFeedbackById(Integer feedback);
 
-    Feedback selectByPrimaryKey(Integer id);
+	int updateFeedbackById(Feedback feedback);
 
-    int updateByPrimaryKeySelective(Feedback record);
+	int insertFeedback(Feedback feedback);
 
-    int updateByPrimaryKeyWithBLOBs(Feedback record);
+	List<Feedback> findFeedbackList(Feedback feedback);
 
-    int updateByPrimaryKey(Feedback record);
 }

@@ -163,7 +163,7 @@ public class AppointmentController extends BaseController{
 			appointLog.setAppointId(record.getId());
 			appointLog.setLogTime(MidlandHelper.getCurrentTime());
 			appointLog.setOperatorId(user.getId());
-			appointLog.setOperatorName(user.getUsername());
+			appointLog.setOperatorName(user.getUserCnName());
 			
 			appointLog.setState(record.getStatus());
 			appointLogServiceImpl.insertAppointLog(appointLog);

@@ -56,6 +56,23 @@ public class SettingServiceImpl implements SettingService {
 
     @Override
     public Map<String, List<Area>> queryCityByRedis(Map<String, String> parem) {
+        return getStringListMap(parem);
+    }
+    
+    /**
+     * 查询所有城市
+     * @return
+     */
+    @Override
+    public List<Area> queryAllCityByRedis() {
+        Map<String,String> param = new HashMap<>();
+        param.put("flag","city");
+        param.put("id","*");
+        Map<String, List<Area>> list=getStringListMap(param);
+        return list.get("city");
+    }
+    
+    private Map<String, List<Area>> getStringListMap(Map<String, String> parem) {
         //先在缓存中查询
         Map<String, List<Area>> areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
         //如果缓存查不到再调接口查
@@ -79,11 +96,10 @@ public class SettingServiceImpl implements SettingService {
 
             areaMap = this.getArea(parem.get("flag"),parem.get("id"),parem.get("parentId"));
         }
-
+        
         return areaMap;
-
     }
-
+    
     /**
      *
      * @param parem flag = province(省) , city(市) ,area(区), sheet(片区) id 或 parentId

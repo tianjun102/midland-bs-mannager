@@ -5,7 +5,7 @@
  	<resultMap id="BaseResultMap" type="com.midland.web.model.Menu" >
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="icon_img" property="iconImg" jdbcType="VARCHAR" />
-		<result column="city_id" property="cityId" jdbcType="INTEGER" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
 		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
 		<result column="platform" property="platform" jdbcType="INTEGER" />
 		<result column="menu_name" property="menuName" jdbcType="VARCHAR" />
@@ -96,7 +96,7 @@
 				#{iconImg,jdbcType=VARCHAR},
 			</if>
 			<if test="cityId != null">
-				#{cityId,jdbcType=INTEGER},
+				#{cityId,jdbcType=VARCHAR},
 			</if>
 			<if test="platform != null">
 				#{platform,jdbcType=INTEGER},
@@ -136,7 +136,7 @@
 			icon_img= #{iconImg,jdbcType=VARCHAR},
 		</if>
 		<if test="cityId != null">
-			city_id= #{cityId,jdbcType=INTEGER},
+			city_id= #{cityId,jdbcType=VARCHAR},
 		</if>
 		<if test="platform != null">
 			platform= #{platform,jdbcType=INTEGER},
@@ -178,7 +178,7 @@
 			 and icon_img= #{iconImg,jdbcType=VARCHAR}
 		</if>
 		<if test="cityId != null">
-			 and city_id= #{cityId,jdbcType=INTEGER}
+			 and city_id= #{cityId,jdbcType=VARCHAR}
 		</if>
 		<if test="platform != null">
 			 and platform= #{platform,jdbcType=INTEGER}

@@ -4,7 +4,7 @@
 
  	<resultMap id="BaseResultMap" type="com.midland.web.model.FilmLibrary" >
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="city_id" property="cityId" jdbcType="INTEGER" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
 		<result column="img_desc" property="imgDesc" jdbcType="VARCHAR" />
 		<result column="houses_name" property="housesName" jdbcType="VARCHAR" />
 		<result column="houses_id" property="housesId" jdbcType="INTEGER" />
@@ -16,11 +16,13 @@
 		<result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
 		<result column="operator_id" property="operatorId" jdbcType="INTEGER" />
 		<result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
-		<result column="duration" property="duration" jdbcType="INTEGER" />
+		<result column="duration" property="duration" jdbcType="DECIMAL" />
+		<result column="is_show" property="isShow" jdbcType="INTEGER" />
+		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,city_id,img_desc,houses_name,houses_id,introduction,video_url,is_delete,click_num,film_type,img_url,operator_id,operator_name,duration
+		id,city_id,img_desc,houses_name,houses_id,introduction,video_url,is_delete,click_num,film_type,img_url,operator_id,operator_name,duration,is_show,city_name
 	</sql>
 
 	<select id="selectFilmLibraryById" resultMap="BaseResultMap">
@@ -91,11 +93,17 @@
 			<if test="duration != null">
 				duration,
 			</if>
+			<if test="isShow != null">
+				is_show,
+			</if>
+			<if test="cityName != null">
+				city_name,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="cityId != null">
-				#{cityId,jdbcType=INTEGER},
+				#{cityId,jdbcType=VARCHAR},
 			</if>
 			<if test="imgDesc != null">
 				#{imgDesc,jdbcType=VARCHAR},
@@ -131,14 +139,20 @@
 				#{operatorName,jdbcType=VARCHAR},
 			</if>
 			<if test="duration != null">
-				#{duration,jdbcType=INTEGER},
+				#{duration,jdbcType=DECIMAL},
+			</if>
+			<if test="isShow != null">
+				#{isShow,jdbcType=INTEGER},
+			</if>
+			<if test="cityName != null">
+				#{cityName,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
 
 	<sql id="update_option">
 		<if test="cityId != null">
-			city_id= #{cityId,jdbcType=INTEGER},
+			city_id= #{cityId,jdbcType=VARCHAR},
 		</if>
 		<if test="imgDesc != null">
 			img_desc= #{imgDesc,jdbcType=VARCHAR},
@@ -174,7 +188,13 @@
 			operator_name= #{operatorName,jdbcType=VARCHAR},
 		</if>
 		<if test="duration != null">
-			duration= #{duration,jdbcType=INTEGER},
+			duration= #{duration,jdbcType=DECIMAL},
+		</if>
+		<if test="isShow != null">
+			is_show= #{isShow,jdbcType=INTEGER},
+		</if>
+		<if test="cityName != null">
+			city_name= #{cityName,jdbcType=VARCHAR},
 		</if>
 	</sql>
 
@@ -183,7 +203,7 @@
 			 and id= #{id,jdbcType=INTEGER}
 		</if>
 		<if test="cityId != null">
-			 and city_id= #{cityId,jdbcType=INTEGER}
+			 and city_id= #{cityId,jdbcType=VARCHAR}
 		</if>
 		<if test="imgDesc != null">
 			 and img_desc= #{imgDesc,jdbcType=VARCHAR}
@@ -219,7 +239,13 @@
 			 and operator_name= #{operatorName,jdbcType=VARCHAR}
 		</if>
 		<if test="duration != null">
-			 and duration= #{duration,jdbcType=INTEGER}
+			 and duration= #{duration,jdbcType=DECIMAL}
+		</if>
+		<if test="isShow != null">
+			 and is_show= #{isShow,jdbcType=INTEGER}
+		</if>
+		<if test="cityName != null">
+			 and city_name= #{cityName,jdbcType=VARCHAR}
 		</if>
 	</sql>
 

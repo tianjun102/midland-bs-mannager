@@ -36,6 +36,7 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 	
 	private ServletConfig servletConfig;
 	
+	private static String OS = System.getProperty("os.name").toLowerCase();
 	
 	@RequestMapping("/check")
 	@ResponseBody
@@ -92,13 +93,20 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 		if (!item.isFormField()) {
 			String fileName = item.getName();
 			
-			String storePath = AppSetting.getAppSetting("upload_dir");
+			String storePath;
+			String opposite;
+			if (isMacOSX()){
+				opposite="/store/";
+				storePath = this.servletContext.getRealPath("/")+opposite;
+			}else{
+				storePath = AppSetting.getAppSetting("upload_dir");
+				opposite = storePath;
+			}
 			File file =new File(storePath);
 			if (!file.exists()){
 				file.mkdirs();
 			}
-			String filePath = "/store/";
-			File uploadedFile = new File(storePath+filePath + fileName);
+			File uploadedFile = new File(storePath + fileName);
 			if(!uploadedFile.exists()) {
 				try {
 					item.write(uploadedFile);
@@ -106,7 +114,7 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 					throw new FileUploadException("上传失败");
 				}
 			}
-			return filePath+fileName;
+			return opposite+fileName;
 		}
 		return null;
 	}
@@ -118,7 +126,9 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 			String value = item.getString();
 		}
 	}
-	
+	public static boolean isMacOSX(){
+		return OS.indexOf("mac")>=0&&OS.indexOf("os")>0&&OS.indexOf("x")>0;
+	}
 	
 	@Override
 	public void setServletConfig(ServletConfig servletConfig) {

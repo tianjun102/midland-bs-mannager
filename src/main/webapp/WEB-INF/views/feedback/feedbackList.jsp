@@ -13,38 +13,26 @@
 <div class="table-responsive m40">
     <table class="table table-bordered table-add">
         <thead>
-        <tr>
-            <th style="width: 8%"></th>
-            <th style="width: 15%">预览图</th>
-            <th style="width: 10%">状态</th>
-            <th style="width: 32%">楼盘名称</th>
-            <th style="width: 10%">楼盘ID</th>
-            <th style="width: 15%">录盘人</th>
-            <th style="width: 10%">操作</th>
-        </tr>
+            <tr>
+				<th style="width: 8%">用户昵称</th>
+				<th style="width: 8%">手机号</th>
+				<th style="width: 8%">反馈内容</th>
+				<th style="width: 8%">反馈时间</th>
+                <th style="width: 10%">操作</th>
+            </tr>
         </thead>
         <tbody>
         <c:choose>
             <c:when test="${!empty requestScope.items }">
-                <c:forEach items="${requestScope.items }" var="item"
-                           varStatus="xh">
+                <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
-                        <input type="hidden" id="id" value="${item.id}"/>
-                        <td>${xh.count }</td>
-                        <td><img src="${item.imgUrl }" style="width:40px;height:40px" alt=""></td>
-                        <td><c:choose>
-                            <c:when test="${item.isShow==0 }">
-                                显示
-                            </c:when>
-                            <c:otherwise>
-                                隐藏
-                            </c:otherwise>
-                        </c:choose></td>
-                        <td>${item.title }</td>
-                        <td>${item.housesId }</td>
-                        <td>${item.operatorName }</td>
-                        <td>
+						<input type="hidden" id="id" value="${item.id}"/>
+						<td>${item.nickName}</td>
+						<td>${item.phone}</td>
+						<td>${item.feedbackContent}</td>
+						<td>${item.addTime}</td>
 
+                        <td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>
                         </td>
@@ -72,7 +60,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/tradeFair/delete?id="+id,
+            url: "${ctx}/rest/feedback/update?id="+id+"&isDelete=1",
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -92,8 +80,8 @@
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['500px', '700px'],
-            content: ['${ctx}/rest/tradeFair/to_update?id='+id,'no']
+            area: ['500px', '500px'],
+            content: ['${ctx}/rest/feedback/to_update?id='+id,'no']
         });
     }
 
