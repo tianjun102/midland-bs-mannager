@@ -26,6 +26,10 @@ public class Comment{
 	 * 0=正常；1=删除
 	 **/
 	private Integer isDelete;
+	/**
+	 * 关联资讯表id
+	 **/
+	private Integer informationId;
 
 
 	public Integer getId() {
@@ -76,6 +80,14 @@ public class Comment{
 		this.isDelete = isDelete;
 	}
 
+	public Integer getInformationId() {
+		return informationId;
+	}
+
+	public void setInformationId(Integer informationId) {
+		this.informationId = informationId;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("Comment{");
@@ -96,6 +108,9 @@ public class Comment{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (informationId != null) {
+			sb.append(", \"informationId\":\"").append(informationId).append("\"");
 		}
 		return sb.toString();
 	}

@@ -19,6 +19,7 @@
 				<th style="width: 8%">status</th>
 				<th style="width: 8%">source</th>
 				<th style="width: 8%">isDelete</th>
+				<th style="width: 8%">informationId</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -33,6 +34,7 @@
 						<td>${item.status}</td>
 						<td>${item.source}</td>
 						<td>${item.isDelete}</td>
+						<td>${item.informationId}</td>
 						<td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>

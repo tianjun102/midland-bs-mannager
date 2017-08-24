@@ -30,6 +30,9 @@
             <li><span>isDelete：</span>
                <input type="text" name="isDelete" id="isDelete" value="${item.menuName}"/>
             </li>
+            <li><span>informationId：</span>
+               <input type="text" name="informationId" id="informationId" value="${item.menuName}"/>
+            </li>
             <li>
                 <span></span>
                 <a target="contentF" class="public_btn bg2" id="save" onclick="updateData()">更新</a>
