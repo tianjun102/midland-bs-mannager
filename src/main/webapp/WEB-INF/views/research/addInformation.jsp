@@ -64,15 +64,14 @@
         <p class = "detail-title">
             <span>添加资讯</span>
         </p>
-        <form id="formId" action="${ctx}/rest/banner/addBanner" method="post" enctype="multipart/form-data" method="post">
+        <form id="formId" action="" method="post" enctype="multipart/form-data" method="post">
             <ul class = "adminfo row">
                 <li><span>分类：</span>
-                    <input type="hidden" name="id" id="id" value="${item.id}">
-                    <input type="hidden" name="cateName" id="cateName" value="${item.cateName}">
+                    <input type="hidden" name="cateName" id="cateName" value="">
                     <select name="cateId" id="cateId" class="dropdown" onchange="setCateName();">
                         <option value="" class="label">请选择</option>
                         <c:forEach items="${cateList}" var="cate">
-                            <option <c:if test="${item.cateId == cate.id}"> selected ='selected' </c:if> value="${cate.id}">${cate.cateName}</option>
+                            <option value="${cate.id}">${cate.cateName}</option>
                         </c:forEach>
                     </select>
                     <span class = "_star ">*</span>
@@ -83,45 +82,45 @@
                     <select onchange="setCityName()" name="cityId" id="cityId" style="height: 38px;width: 274px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
                         <option value="">全部</option>
                         <c:forEach items="${cityList}" var="city">
-                            <option <c:if test="${item.cityId == city.id}"> selected ='selected' </c:if>  value="${city.id}">${city.name}</option>
+                            <option value="${city.id}">${city.name}</option>
                         </c:forEach>
                     </select>
                 </li>
                 <li>
                     <span>标题：</span>
-                    <input type="text" name="title" value="${item.title}" />
+                    <input type="text" name="title"  />
                 </li>
-                <li><span>来源：</span><input name="source" id="source" type="text" value="${item.source}" />
+                <li><span>来源：</span><input name="source" id="source" type="text">
                 </li>
                 <li><span>附件：</span>
                     <div style="float: left;">
-                        <input type="hidden" name="enclosure" id="enclosure" value="${item.enclosure}">
+                        <input type="hidden" name="enclosure" id="enclosure" value="${item.iconImg}">
 
                         <img style="margin-bottom: 10px;max-width:200px;max-height:200px" id="iconImg1"
-                             src="${item.enclosure}">
+                             src="${item.iconImg}">
                         <input type="file" name="file_upload" id="file_upload"/>
                     </div>
                 </li>
                 <li>
                     <span>META关键字：</span>
-                    <input type="text" name="metaKeywords" value="${item.metaKeywords}" />
+                    <input type="text" name="metaKeywords"  />
                 </li>
                 <li>
                     <span>META描述：</span>
-                    <input type="text" name="metaDesc" value="${item.metaDesc}" />
+                    <input type="text" name="metaDesc"  />
                 </li>
 
                 <li><span>缩略图：</span>
-                    <div style="float: left;">
-                        <input type="hidden" name="imgUrl" id="imgUrl" value="${item.imgDesc}">
+                <div style="float: left;">
+                        <input type="hidden" name="imgUrl" id="imgUrl" value="${item.iconImg}">
 
                         <img style="margin-bottom: 10px;max-width:200px;max-height:200px" id="iconImg2"
-                             src="${item.imgDesc}">
+                             src="${item.iconImg}">
                         <input type="file" name="file_upload1" id="file_upload1"/>
                     </div>
                 </li>
                 <li><span>图片说明：</span><input type="text" name="imgDesc"></li>
-                <li style="overflow: hidden" id="textArea"><span style = "float:left;">页面内容：</span><textarea style="width: 90%;min-height: 350px;resize:none; outline-color: #0099e0;float: right" name="details" id="myEditor" rows="" cols="">${item.details}</textarea></li>
+                <li style="overflow: hidden" id="textArea"><span style = "float:left;">页面内容：</span><textarea style="width: 90%;min-height: 350px;resize:none; outline-color: #0099e0;float: right" name="details" id="myEditor" rows="" cols=""></textarea></li>
             </ul>
 
 
@@ -131,7 +130,7 @@
                 <li>
                     <span></span>
                     <a onclick="subumintInformation();" target="contentF" class = "public_btn bg2">保存</a>
-                    <a style="margin-left: 20px" href="${ctx}/rest//information/index" target="contentF" class="public_btn bg3" id="cancel">取消</a>
+                    <a style="margin-left: 20px" href="${ctx}/rest/research/index" target="contentF" class="public_btn bg3" id="cancel">取消</a>
                 </li>
             </ul>
         </form>
@@ -167,25 +166,60 @@
         var data = $("#formId").serialize();
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/information/update",
+            url: "${ctx}/rest/research/add",
             async: false, // 此处必须同步
             dataType: "json",
             data:data ,
             success: function (data) {
                 if(data.state==0){
-                    layer.msg("更新成功！",{icon:1});
-                    setTimeout(function(){window.open("${ctx}/rest/information/index","contentF");},2000);
+                    layer.msg("保存成功！",{icon:1});
+                    setTimeout(function(){window.open("${ctx}/rest/research/index","contentF");},2000);
                 } else {
-                    layer.msg("更新失败！", {icon: 2});
+                    layer.msg("新增失败！", {icon: 2});
                 }
             },
             error: function () {
-                layer.msg("更新失败！", {icon: 2});
+                layer.msg("新增失败！", {icon: 2});
             }
 
         });
 
     }
+
+
+
+    $(function() {
+        $(".filepath").on("change",function() {
+//          alert($('.imgbox').length);
+            FileExt=this.value.substr(this.value.lastIndexOf(".")).toLowerCase();
+
+            if(AllowExt!=0&&AllowExt.indexOf(FileExt+"|")==-1) //判断文件类型是否允许上传
+            {
+                ErrMsg="\n该文件类型不允许上传。请上传 "+AllowExt+" 类型的文件，当前文件类型为"+FileExt;
+                $(this).val("");
+                layer.alert(ErrMsg);
+                return false;
+            }
+            ImgFileSize=document.getElementById(this.id).files.item(0).size;
+            ImgFileSize=Math.round(ImgFileSize*1000/(1024*1024))/1000;//取得图片文件的大小
+            if(ImgFileSize>1){
+                layer.alert("图片大小为"+ImgFileSize+"M，请上传小于1M的图片！");
+                return false;
+            }
+            var srcs = getObjectURL(this.files[0]);   //获取路径
+            $(this).nextAll(".img1").hide();   //this指的是input
+            $(this).nextAll(".img2").show();  //fireBUg查看第二次换图片不起做用
+            $(this).nextAll('.close').show();   //this指的是input
+            $(this).nextAll(".img2").attr("src",srcs);    //this指的是input
+            //$(this).val('');    //必须制空
+            $(".close").on("click",function() {
+                $(this).hide();     //this指的是span
+                $(this).nextAll(".img2").hide();
+                $(this).nextAll(".img1").show();
+                $(this).prev().val('');
+            })
+        })
+    })
 
 
     function setCityName(){

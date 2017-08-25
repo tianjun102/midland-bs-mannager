@@ -1,32 +1,34 @@
 package com.midland.web.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.Paginator;
+import com.midland.web.controller.base.BaseController;
 import com.midland.web.model.Area;
 import com.midland.web.model.Category;
 import com.midland.web.model.Information;
 import com.midland.web.service.CategoryService;
 import com.midland.web.service.InformationService;
-import com.midland.web.controller.base.BaseController;
 import com.midland.web.service.SettingService;
+import com.midland.web.util.MidlandHelper;
 import org.slf4j.Logger;
-import java.util.Map;
-import java.util.HashMap;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.Paginator;
-import java.util.List;
-import com.midland.web.util.MidlandHelper;
-import org.springframework.ui.Model;
+
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @SuppressWarnings("all")
-@RequestMapping("/information/")
-public class InformationController extends BaseController  {
+@RequestMapping("/research/")
+public class ResearchController extends BaseController  {
 
-	private Logger log = LoggerFactory.getLogger(InformationController.class);
+	private Logger log = LoggerFactory.getLogger(ResearchController.class);
 	@Autowired
 	private InformationService informationServiceImpl;
 
@@ -47,7 +49,7 @@ public class InformationController extends BaseController  {
 		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
 		List<Area> cityList = cityMap.get("city");
 		model.addAttribute("cityList",cityList);
-		return "information/informationIndex";
+		return "research/informationIndex";
 	}
 
 	/**
@@ -61,12 +63,12 @@ public class InformationController extends BaseController  {
 		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
 		Category category = new Category();
 		//查询资讯分类
-		category.setType(1);
+		category.setType(0);
 		List<Category> cateList = categoryService.findCategoryList(category);
 		List<Area> cityList = cityMap.get("city");
 		model.addAttribute("cityList",cityList);
 		model.addAttribute("cateList",cateList);
-		return "information/addInformation";
+		return "research/addInformation";
 	}
 
 	/**
@@ -78,8 +80,7 @@ public class InformationController extends BaseController  {
 		Map<String,Object> map = new HashMap<>();
 		try {
 			log.info("addInformation {}",information);
-			//1=资讯；0=市场调研
-			information.setArticeType(1);
+			information.setArticeType(0);
 			informationServiceImpl.insertInformation(information);
 			map.put("state",0);
 		} catch(Exception e) {
@@ -97,7 +98,7 @@ public class InformationController extends BaseController  {
 		log.info("getInformationById  {}",id);
 		Information result = informationServiceImpl.selectInformationById(id);
 		model.addAttribute("item",result);
-		return "information/updateInformation";	}
+		return "research/updateInformation";	}
 
 	/**
 	 * 删除
@@ -128,13 +129,13 @@ public class InformationController extends BaseController  {
 		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
 		Category category = new Category();
 		//查询资讯分类
-		category.setType(1);
+		category.setType(0);
 		List<Category> cateList = categoryService.findCategoryList(category);
 		List<Area> cityList = cityMap.get("city");
 		model.addAttribute("item",result);
 		model.addAttribute("cityList",cityList);
 		model.addAttribute("cateList",cateList);
-		return "information/updateInformation";
+		return "research/updateInformation";
 	}
 
 	/**
@@ -163,7 +164,7 @@ public class InformationController extends BaseController  {
 		try {
 			log.info("findInformationList  {}",information);
 			MidlandHelper.doPage(request);
-			information.setArticeType(1);
+			information.setArticeType(0);
 			Page<Information> result = (Page<Information>)informationServiceImpl.findInformationList(information);
 			Paginator paginator=result.getPaginator();
 			model.addAttribute("paginator",paginator);
@@ -173,6 +174,6 @@ public class InformationController extends BaseController  {
 			model.addAttribute("paginator",null);
 			model.addAttribute("items",null);
 		}
-		return "information/informationList";
+		return "research/informationList";
 	}
 }

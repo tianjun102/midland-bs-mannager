@@ -87,6 +87,10 @@ public class Information{
 	 * 分类名称
 	 */
 	private String cateName;
+	/**
+	 * 上架状态；0=上架；1=下架
+	 */
+	private Integer status;
 
 
 	public Integer getId() {
@@ -257,6 +261,15 @@ public class Information{
 		this.cateName = cateName;
 	}
 
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("Information{");
@@ -322,6 +335,9 @@ public class Information{
 		}
 		if (cateName != null) {
 			sb.append(", \"cateName\":\"").append(cateName).append("\"");
+		}
+		if (status != null) {
+			sb.append(", \"status\":\"").append(status).append("\"");
 		}
 		return sb.toString();
 	}

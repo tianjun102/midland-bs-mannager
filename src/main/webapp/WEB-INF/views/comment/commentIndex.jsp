@@ -14,13 +14,20 @@
 	<!--列表界面-->
 	<div class="box"> 
 		<section class = "content">
-			<p class = "detail-title">
-				<a class = "setup"  target="contentF" onclick="toAddPage()">新增</a>
-			</p>
 		<form action="${ctx }/rest/comment/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
+			<input type="hidden" name="informationId" value="${comment.informationId}">
+			<li><span>城市：</span>
+				<p>${information.cityName}</p>
+			</li>
+			<li><span>标题：</span>
+				<p>${information.title}</p>
+			</li>
+			<li><span>发布时间：</span>
+				<p>${information.releaseTime}</p>
+			</li>
 			<ul class = "userinfo row">
-				<li><span>select：</span>
+				<%--<li><span>select：</span>
 					<select name="cityId" id="cityId" class="dropdown">
 						<option value="" >全部</option>
 						<c:forEach items="${citys}" var="item">
@@ -29,8 +36,8 @@
 					</select>
 				<li><span>手机号码：</span>
 					<input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
-				</li>
-				<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>
+				</li>--%>
+				<%--<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>--%>
 			</ul>
 			</form>
 			<div id="listDiv"></div>

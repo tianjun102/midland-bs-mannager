@@ -156,7 +156,7 @@
 				</dt>
 				<dd>
 					<shiro:hasPermission name="showCustDataTable">
-						<a id = "report1" href="${ctx}/rest/dataTable/showCustDataTable" target="contentF"><span>市场调究列表</span></a>
+						<a id = "report1" href="${ctx}/rest/research/index" target="contentF"><span>市场调究列表</span></a>
 					</shiro:hasPermission>
 				</dd>
 			</dl>

@@ -17,8 +17,8 @@
             <th style="width: 8%"></th>
             <th style="width: 15%">分类名称</th>
             <th style="width: 10%">城市</th>
-            <th style="width: 32%">类型</th>
-            <th style="width: 10%">操作</th>
+            <th style="width: 10%">类型</th>
+            <th style="width: 32%">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +36,8 @@
 
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},1)">上移</a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},2)">下移</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -61,7 +63,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/tradeFair/delete?id="+id,
+            url: "${ctx}/rest/category/delete?id="+id,
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -84,6 +86,25 @@
             area: ['500px', '400px'],
             content: ['${ctx}/rest/category/to_update?id='+id,'no']
         });
+    }
+
+    //排序
+    function sort(id,orderById,sort) {
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/category/sort?sort="+sort+"&orderBy="+orderById+"&id="+id,
+            async: false, // 此处必须同步
+            dataType: "json",
+
+            success: function (data) {
+                if (data.state==0){
+                    $('#searchForm').submit();
+                }
+            },
+            error: function () {
+                layer.msg("操作失败！", {icon: 2});
+            }
+        })
     }
 
 
