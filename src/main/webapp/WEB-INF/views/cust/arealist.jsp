@@ -63,7 +63,7 @@
 	
 	//删除
 	function isDelete(areaId){
-		debugger;
+
 		if(isEmploy(areaId)){
 			layer.msg("使用中不能删除！",{icon:7});
 			return ;

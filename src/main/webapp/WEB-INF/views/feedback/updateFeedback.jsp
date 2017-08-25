@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="../layout/tablib.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,7 +51,7 @@
     //保存数据
     function updateData() {
         var data = $("#dataForm").serialize();
-        debugger;
+
         $.ajax({
             type: "post",
             url: "${ctx}/rest/feedback/update",

@@ -58,7 +58,7 @@
 		var sendTime = $("input[name='sendTime']").val();
 		var msgType = $("#msgType option:selected").val();
 		var content =$("#notice_content").val();
-		debugger;
+
 		if(title==""||sendTime==""||msgType==""||content==""){
 			layer.msg("还有未输入的选项，请完成后再提交！",{icon:7});
 			return;

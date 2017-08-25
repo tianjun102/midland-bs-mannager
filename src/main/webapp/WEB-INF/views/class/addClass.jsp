@@ -257,7 +257,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     }
     //选择是否开放
 	function addIsCloseVal(){
-		debugger;
 		if($('input[name="isclose"]:checked ').val()=="0"){
 			$("#iscolse").val("0");
 		}

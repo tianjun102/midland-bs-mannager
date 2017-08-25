@@ -84,7 +84,7 @@
 	
 	//检查角色名称唯一性
 	function checkRoleName(){
-		debugger;
+
 		var roleName = $("input[name='roleName']").val();
 		if(roleName==null|| roleName.trim() =="" ){
 			layer.tips("角色名称不能为空!", "input[name='roleName']",{tips:1});

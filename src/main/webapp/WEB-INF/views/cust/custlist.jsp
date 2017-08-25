@@ -64,7 +64,7 @@
 
 	//检查客户已使用
 	function checkCustIsEmploy(custId){
-		debugger;
+
 		var bool=true;
 		$.ajax({ 
 			type: "post", 

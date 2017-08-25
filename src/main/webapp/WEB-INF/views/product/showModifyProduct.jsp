@@ -303,7 +303,7 @@
 	}
 
 	function imgDelete(span) {
-		//debugger;
+		//
 		var pid  = $(span).find("input:hidden").val();
 		if(pid==null || pid == undefined){
 			$(span).hide(); //this指的是span

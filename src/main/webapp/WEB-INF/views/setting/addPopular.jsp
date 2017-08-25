@@ -295,7 +295,7 @@
             data : "",
             success : function(data) {
                 $("#citys").html("<option  >请选择</option>");
-                debugger;
+
                 data.result.forEach(function(list) {
                     $("#citys").append(
                         "<option value="+list.id+" >" + list.name + "</option>");

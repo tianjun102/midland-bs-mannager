@@ -156,7 +156,7 @@
     }
     //检查手机号格式
     function checkPhone() {
-        debugger;
+
         var phone0 = $("#ph").val();
         var reg = /^1[3,4,5,7,8]\d{9}$/;
         var phone = $("input[name='phone']").val();

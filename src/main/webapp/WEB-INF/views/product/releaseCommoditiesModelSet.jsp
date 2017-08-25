@@ -189,7 +189,7 @@
 					async : false,
 					success : function(result) {
 						//console.log(result);
-						//debugger;
+						//
 						if (result.result.length == 0) {
 							addPro();//默认添加一行空白的
 						} else {

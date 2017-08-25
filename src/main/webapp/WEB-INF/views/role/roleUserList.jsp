@@ -58,7 +58,7 @@
 	$(document).ready(function(){
 		//checkbox的整体选中与取消选中
 		$("#selectAll").on("click",function() {
-			debugger;
+
 			if($("input[name = 'selectAll']").is(":checked")){
 				$("table td input").each(function(){
 					$(this)[0].checked = true;

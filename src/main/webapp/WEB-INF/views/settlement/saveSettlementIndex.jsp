@@ -185,7 +185,7 @@ window.onload=function(){
 		})
 	});
 	function setOrder(){
-		debugger;
+
 		var html = $("input[name^='orderInfoList']");
 		$("#settlement").append(html);
 	}
@@ -196,7 +196,7 @@ window.onload=function(){
 			required = false;
 			layer.msg("请完成必填项");
 		}
-		debugger;
+
 		var SettlementData = $("#formId").serialize()+"&"+$("#orderInfo").serialize()+"&"+$("#searchForm").serialize();
 		if(required){
 		$.ajax({
@@ -227,7 +227,7 @@ window.onload=function(){
 			data : SettlementData,
 			success : function(data) {
 				$("#listDiv").html(data);
-				//debugger;
+				//
 				$("input[name='total_amount']").val($("#orderAmountCount1").val());
 				$("#total_amount").val($("#orderAmountCount1").val());
 			}
@@ -298,7 +298,7 @@ window.onload=function(){
 	}
 	
 	function deleteOrder(orderId,orderAmount,ths){
-		debugger;
+
 		var settId = $("#settId").val();
 		var total_amount = $("#total_amount").val();//订单总额
 		if (settId==""){
