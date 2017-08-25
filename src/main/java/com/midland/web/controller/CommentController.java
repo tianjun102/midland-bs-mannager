@@ -1,8 +1,10 @@
 package com.midland.web.controller;
 
 import com.midland.web.model.Comment;
+import com.midland.web.model.Information;
 import com.midland.web.service.CommentService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.InformationService;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -25,12 +27,18 @@ public class CommentController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(CommentController.class);
 	@Autowired
 	private CommentService commentServiceImpl;
+	@Autowired
+	private InformationService informationService;
 
 	/**
 	 * 
 	 **/
 	@RequestMapping("index")
 	public String commentIndex(Comment comment,Model model) throws Exception {
+		Information information = new Information();
+		information = informationService.selectInformationById(comment.getInformationId());
+		model.addAttribute("comment",comment);
+		model.addAttribute("information",information);
 		return "comment/commentIndex";
 	}
 

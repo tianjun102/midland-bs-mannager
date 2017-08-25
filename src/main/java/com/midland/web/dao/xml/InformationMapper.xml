@@ -24,10 +24,11 @@
 		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
 		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
 		<result column="cate_name" property="cateName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,cate_id,cate_parentId,type,title,source,enclosure,meta_keywords,meta_desc,img_url,img_desc,details,order_by,click_num,is_delete,artice_type,DATE_FORMAT(release_time,'%Y-%m-%d %H:%i:%s') release_time,comment,city_id,city_name,cate_name
+		id,cate_id,cate_parentId,type,title,source,enclosure,meta_keywords,meta_desc,img_url,img_desc,details,order_by,click_num,is_delete,artice_type,DATE_FORMAT(release_time,'%Y-%m-%d %H:%i:%s') release_time,comment,city_id,city_name,cate_name,status
 	</sql>
 
 	<select id="selectInformationById" resultMap="BaseResultMap">
@@ -119,6 +120,9 @@
 			<if test="cateName != null">
 				cate_name,
 			</if>
+			<if test="status != null">
+				status,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -181,6 +185,9 @@
 			 </if>
 			 <if test="cateName != null">
 				 #{cateName},
+			 </if>
+			 <if test="status != null">
+				 #{status},
 			 </if>
 		</trim>
 	</insert>
@@ -245,6 +252,9 @@
 		</if>
 		<if test="cateName != null">
 			cate_name = #{cateName},
+		</if>
+		<if test="status != null">
+			status = #{status},
 		</if>
 	</sql>
 
@@ -311,6 +321,9 @@
 		</if>
 		<if test="cateName != null">
 			 and cate_name = #{cateName}
+		</if>
+		<if test="status != null">
+			 and status = #{status}
 		</if>
 	</sql>
 

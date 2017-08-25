@@ -2,8 +2,10 @@ package com.midland.web.controller;
 
 import com.midland.web.model.Area;
 import com.midland.web.model.Category;
+import com.midland.web.model.Menu;
 import com.midland.web.service.CategoryService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.JdbcService;
 import com.midland.web.service.SettingService;
 import org.slf4j.Logger;
 import java.util.Map;
@@ -28,6 +30,8 @@ public class CategoryController extends BaseController  {
 	private CategoryService categoryServiceImpl;
 	@Autowired
 	private SettingService settingService;
+	@Autowired
+	private JdbcService jdbcService;
 	/**
 	 * 分类控制层
 	 **/
@@ -154,4 +158,22 @@ public class CategoryController extends BaseController  {
 		}
 		return "category/categoryList";
 	}
+
+
+	@RequestMapping("sort")
+	@ResponseBody
+	public Map listDesc(Category category, int sort, Model model, HttpServletRequest request) throws Exception {
+		String primaryKeyName="id";
+		String primaryParam=String.valueOf(category.getId());
+		String tableName="category";
+		String orderByColumn="order_by";
+		String orderByParam=String.valueOf(category.getOrderBy());
+		jdbcService.listDesc(primaryKeyName,primaryParam,orderByColumn,tableName,orderByParam,sort);
+		Map map = new HashMap();
+		map.put("state",0);
+		return map;
+	}
+
 }
+
+

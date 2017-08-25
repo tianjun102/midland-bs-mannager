@@ -38,7 +38,7 @@
                         <td>${item.releaseTime }</td>
                         <td>
                             <a target="contentF" onclick="to_comment(${item.id});" >评论</a>
-                            <a target="contentF" href="${ctx}/rest/information/to_update?id=${item.id}">编辑</a>
+                            <a target="contentF" href="${ctx}/rest/research/to_update?id=${item.id}">编辑</a>
                             <a target="contentF" onclick="deleteInfrmateion(${item.id })">删除</a>
                         </td>
                     </tr>
@@ -65,7 +65,7 @@
     function deleteInfrmateion(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/information/delete?id="+id,
+            url: "${ctx}/rest/research/delete?id="+id,
             async: false, // 此处必须同步
             dataType: "json",
 

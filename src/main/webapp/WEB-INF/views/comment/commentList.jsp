@@ -10,16 +10,14 @@
 <body>
 
 
-<div class="table-responsive m40">
+<div class="table-responsive m40" style="overflow-y:scroll;">
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">comment</th>
-				<th style="width: 8%">user</th>
-				<th style="width: 8%">status</th>
-				<th style="width: 8%">source</th>
-				<th style="width: 8%">isDelete</th>
-				<th style="width: 8%">informationId</th>
+				<th style="width: 20%">评论</th>
+				<th style="width: 8%">用户</th>
+				<th style="width: 8%">状态</th>
+				<th style="width: 8%">来源</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -33,10 +31,9 @@
 						<td>${item.user}</td>
 						<td>${item.status}</td>
 						<td>${item.source}</td>
-						<td>${item.isDelete}</td>
-						<td>${item.informationId}</td>
 						<td>
-                            <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
+                            <a target="contentF" onclick="editStatus(${item.id },0)">审核通过</a>
+                            <a target="contentF" onclick="editStatus(${item.id },1)">审核拒绝</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>
                         </td>
                     </tr>
@@ -78,14 +75,22 @@
         })
     }
 
-    function to_edit(id){
-        layer.open({
-            type: 2,
-            title: ['修改'],
-            shade: 0.3,
-            area: ['500px', '700px'],
-            content: ['${ctx}/rest/comment/to_update?id='+id,'no']
-        });
+    function editStatus(id,status){
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/comment/update?id="+id+"&status="+status,
+            async: false, // 此处必须同步
+            dataType: "json",
+
+            success: function (data) {
+                if (data.state==0){
+                    $('#searchForm').submit();
+                }
+            },
+            error: function () {
+                layer.msg("操作失败！", {icon: 2});
+            }
+        })
     }
 
 

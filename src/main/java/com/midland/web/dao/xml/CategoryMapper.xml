@@ -42,9 +42,13 @@
 		where 
 		is_delete=0
 		<include refid="select_option" />
+		ORDER BY order_by ASC
 	</select>
 
 	<insert id="insertCategory" parameterType="com.midland.web.model.Category">
+		<selectKey resultType="INTEGER" order="BEFORE" keyProperty="orderBy">
+			SELECT count(0)+1 as orderBy from category
+		</selectKey>
 		insert into category
 		<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="cateName != null">
