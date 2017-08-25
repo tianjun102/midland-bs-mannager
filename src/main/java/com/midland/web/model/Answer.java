@@ -1,7 +1,5 @@
 package com.midland.web.model;
 
-import java.util.Date;
-
 public class Answer{
 	/**
 	 * 回答表主键ID
@@ -14,7 +12,7 @@ public class Answer{
 	/**
 	 * 回答时间
 	 **/
-	private Date answerTime;
+	private String answerTime;
 	/**
 	 * 回答人名字
 	 **/
@@ -49,11 +47,11 @@ public class Answer{
 		this.answerArea = answerArea;
 	}
 
-	public Date getAnswerTime() {
+	public String getAnswerTime() {
 		return answerTime;
 	}
 
-	public void setAnswerTime(Date answerTime) {
+	public void setAnswerTime(String answerTime) {
 		this.answerTime = answerTime;
 	}
 

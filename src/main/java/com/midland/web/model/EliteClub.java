@@ -1,7 +1,5 @@
 package com.midland.web.model;
 
-import java.util.Date;
-
 public class EliteClub {
     private Integer id;
 
@@ -13,7 +11,7 @@ public class EliteClub {
 
     private String adName;
 
-    private Date adTime;
+    private String adTime;
 
     private String adTitle;
 
@@ -63,11 +61,11 @@ public class EliteClub {
         this.adName = adName == null ? null : adName.trim();
     }
 
-    public Date getAdTime() {
+    public String getAdTime() {
         return adTime;
     }
 
-    public void setAdTime(Date adTime) {
+    public void setAdTime(String adTime) {
         this.adTime = adTime;
     }
 

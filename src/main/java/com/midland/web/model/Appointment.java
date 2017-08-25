@@ -1,6 +1,5 @@
 package com.midland.web.model;
 
-import java.util.Date;
 
 public class Appointment{
 	/**
@@ -34,7 +33,7 @@ public class Appointment{
 	/**
 	 * 预约时间
 	 **/
-	private Date appointmentTime;
+	private String appointmentTime;
 	/**
 	 * 所属区域
 	 **/
@@ -62,7 +61,7 @@ public class Appointment{
 	/**
 	 * 委托时间
 	 **/
-	private Date entrustTime;
+	private String entrustTime;
 	/**
 	 * 经纪人id
 	 **/
@@ -78,7 +77,7 @@ public class Appointment{
 	/**
 	 * 处理时间
 	 **/
-	private Date handleTime;
+	private String handleTime;
 	/**
 	 * 
 	 **/
@@ -157,11 +156,11 @@ public class Appointment{
 		this.sellRent = sellRent;
 	}
 
-	public Date getAppointmentTime() {
+	public String getAppointmentTime() {
 		return appointmentTime;
 	}
 
-	public void setAppointmentTime(Date appointmentTime) {
+	public void setAppointmentTime(String appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
 
@@ -213,11 +212,11 @@ public class Appointment{
 		this.price = price;
 	}
 
-	public Date getEntrustTime() {
+	public String getEntrustTime() {
 		return entrustTime;
 	}
 
-	public void setEntrustTime(Date entrustTime) {
+	public void setEntrustTime(String entrustTime) {
 		this.entrustTime = entrustTime;
 	}
 
@@ -245,11 +244,11 @@ public class Appointment{
 		this.status = status;
 	}
 
-	public Date getHandleTime() {
+	public String getHandleTime() {
 		return handleTime;
 	}
 
-	public void setHandleTime(Date handleTime) {
+	public void setHandleTime(String handleTime) {
 		this.handleTime = handleTime;
 	}
 

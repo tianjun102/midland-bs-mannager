@@ -1,6 +1,6 @@
 package com.midland.web.model;
 
-import java.util.Date;
+
 
 public class LiaisonRecord {
     private Integer id;
@@ -11,7 +11,7 @@ public class LiaisonRecord {
 
     private String cate;
 
-    private Date addTime;
+    private String addTime;
 
     private Integer isOntact;
 
@@ -49,11 +49,11 @@ public class LiaisonRecord {
         this.cate = cate == null ? null : cate.trim();
     }
 
-    public Date getAddTime() {
+    public String getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Date addTime) {
+    public void setAddTime(String addTime) {
         this.addTime = addTime;
     }
 

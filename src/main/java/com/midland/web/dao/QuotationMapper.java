@@ -1,17 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.Quotation;
+import java.util.List;
 
 public interface QuotationMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Quotation record);
+	Quotation selectQuotationById(Integer quotation);
 
-    int insertSelective(Quotation record);
+	int deleteQuotationById(Integer quotation);
 
-    Quotation selectByPrimaryKey(Integer id);
+	int updateQuotationById(Quotation quotation);
 
-    int updateByPrimaryKeySelective(Quotation record);
+	int insertQuotation(Quotation quotation);
 
-    int updateByPrimaryKey(Quotation record);
+	List<Quotation> findQuotationList(Quotation quotation);
+
 }

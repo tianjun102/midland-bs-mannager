@@ -1,7 +1,5 @@
 package com.midland.web.model;
 
-import java.util.Date;
-
 public class Feedback{
 	/**
 	 * 反馈信息表
