@@ -20,7 +20,7 @@
 		<form action="${ctx }/rest/quotation/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
 			<ul class = "userinfo row">
-				<li><span>select：</span>
+				<li><span>城市：</span>
 					<select name="cityId" id="cityId" class="dropdown">
 						<option value="" >全部</option>
 						<c:forEach items="${citys}" var="item">
@@ -28,7 +28,10 @@
 						</c:forEach>
 					</select>
 				</li>
-				<li><span>手机号码：</span>
+				<li><span>区域：</span>
+					<input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
+				</li>
+				<li><span>类型：</span>
 					<input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
 				</li>
 				<li>
