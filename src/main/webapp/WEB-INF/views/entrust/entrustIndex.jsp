@@ -27,26 +27,35 @@
 			<ul class = "userinfo row">
 				<li><span>小区名：</span><input type="text" name="communityName" id="communityName" placeholder="请输入小区" /></li>
 				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
-				<li><span>分类：</span>
+				<li>
+					<span>分类：</span>
 					<select name="sellRent" id="sellRent" class="dropdown">
 						<option value="">全部</option>
-						<option value="0">租房</option>
-						<option value="1">卖房</option>
+						<c:forEach items="${sellRents}" var="s" >
+							<option value="${s.id}">
+									${s.name}
+							</option>
+						</c:forEach>
 					</select>
+				</li>
 				<li><span>状态：</span>
 					<select name="status" id="status" class="dropdown">
 						<option value="">全部</option>
-						<option value="0">待分配</option>
-						<option value="1">未联系</option>
-						<option value="2">已联系</option>
-
+						<c:forEach items="${statusList}" var="s1" >
+							<option value="${s1.id}">
+									${s1.name}
+							</option>
+						</c:forEach>
 					</select>
 				</li>
 				<li><span>来源：</span>
 					<select name="source" id="source" class="dropdown">
-                        <option value="" >请选择</option>
-						<option value="0">网站</option>
-						<option value="1">微商</option>
+						<option value="">全部</option>
+						<c:forEach items="${sources}" var="s1" >
+							<option value="${s1.id}">
+									${s1.name}
+							</option>
+						</c:forEach>
 					</select>
 				</li>
 				<li><span>委托时间</span><input  class="Wdate half" id="time1"

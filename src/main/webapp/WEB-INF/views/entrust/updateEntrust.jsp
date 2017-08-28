@@ -21,17 +21,26 @@
             line-height: 30px !important;
             vertical-align: middle;
         }
-        .content ul.userinfo li input[type=checkbox]{
+
+        .content ul.userinfo li input[type=checkbox] {
             float: none;
-            width: auto!important;
-            height: auto!important;
+            width: auto !important;
+            height: auto !important;
             margin-right: 3px;
         }
-        .peitao{
-            height: 30px;line-height: 30px;
+
+        .peitao {
+            height: 30px;
+            line-height: 30px;
         }
-        .peitao > span{padding-right: 15px;}
-        .peitao > span em{vertical-align: middle;}
+
+        .peitao > span {
+            padding-right: 15px;
+        }
+
+        .peitao > span em {
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -56,31 +65,24 @@
                                                           maxlength="50"/><span class="_star">*</span></li>
             <li class="col-md-6"><span>分类：</span>
                 <select name="sellRent" id="sellRent" class="dropdown">
-                    <!-- <option value="" >请选择</option> -->
-                    <option value="0"
-                            <c:if test="${entrust.sellRent==0}">selected="selected"</c:if>>出售
-                    </option>
-                    <option value="1"
-                            <c:if test="${entrust.sellRent==1}">selected="selected"</c:if>>出租
-                    </option>
+                    <c:forEach items="${sellRents}" var="s">
+                        <option value="${s.id}" <c:if test="${s.id==entrust.sellRent}">selected</c:if>>
+                                ${s.name}
+                        </option>
+                    </c:forEach>
                 </select>
                 <span class="_star">*</span>
             </li>
 
             <li class="col-md-6"><span>委托类型：</span>
                 <select name="houseType" id="houseType" class="dropdown">
-                    <option value="0"
-                            <c:if test="${entrust.houseType==0}">selected="selected"</c:if>>住宅
-                    </option>
-                    <option value="1"
-                            <c:if test="${entrust.houseType==1}">selected="selected"</c:if>>公寓
-                    </option>
-                    <option value="2"
-                            <c:if test="${entrust.houseType==2}">selected="selected"</c:if>>写字楼
-                    </option>
-                    <option value="3"
-                            <c:if test="${entrust.houseType==3}">selected="selected"</c:if>>商铺
-                    </option>
+
+                    <c:forEach items="${houses}" var="s">
+                        <option value="${s.id}" <c:if test="${s.id==entrust.houseType}">selected</c:if>>
+                                ${s.name}
+                        </option>
+                    </c:forEach>
+
                 </select>
             </li>
 
@@ -106,10 +108,23 @@
             </li>
             <li class="col-md-6"><span>配套：</span>
                 <div class="peitao">
-                    <span><input type="checkbox"><em>带家电</em></span>
-                    <span><input type="checkbox"><em>宽带</em></span>
-                    <span><input type="checkbox"><em>冰箱</em></span>
-                    <span><input type="checkbox"><em>洗衣机</em></span>
+                    <span><input onchange="lick(this,'household')"  type="checkbox"
+                                 <c:if test="${entrust.household == 1}">checked</c:if> ><em>带家电</em>
+                        <input type="hidden" name="household" id="household" value="${entrust.household}">
+                    </span>
+                    <span><input onchange="lick(this,'broadband')"  type="checkbox"
+                                 <c:if test="${entrust.broadband == 1}">checked</c:if> ><em>宽带</em>
+                    <input type="hidden" name="broadband" id="broadband" value="${entrust.broadband}">
+                    </span>
+                    <span><input onchange="lick(this,'fridge')"  type="checkbox"
+                                 <c:if test="${entrust.fridge == 1}">checked</c:if> ><em>冰箱</em>
+
+                    <input type="hidden" name="fridge" id="fridge" value="${entrust.fridge}">
+                    </span>
+                    <span><input onchange="lick(this,'washingMachine')"  type="checkbox"
+                                 <c:if test="${entrust.washingMachine == 1}">checked</c:if> ><em>洗衣机</em>
+                    <input type="hidden" name="washingMachine" id="washingMachine" value="${entrust.washingMachine}">
+                    </span>
                 </div>
             </li>
             <li class="col-md-11"><span>备注：</span>
@@ -140,6 +155,16 @@
 
 
 <script type="text/javascript">
+
+    function lick(be,id) {
+        if ($(be).is(':checked')) {
+            $('#'+id).val(1);
+        } else {
+            $('#'+id).val(0);
+        }
+    }
+
+
     //保存数据
     function updateData() {
         var data = $("#appointInfoForm").serialize();

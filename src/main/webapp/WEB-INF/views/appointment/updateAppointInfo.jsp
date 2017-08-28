@@ -43,8 +43,8 @@
             <li class="col-md-6"><span>预约类型：</span>
                 <select name="houseType" id="houseType" class="dropdown">
 
-                    <c:forEach items="${houses}" var="s" >
-                        <option value="${s.id}" <c:if test="${s.id==appointment.houseType}" >selected</c:if>>
+                    <c:forEach items="${houses}" var="s">
+                        <option value="${s.id}" <c:if test="${s.id==appointment.houseType}">selected</c:if>>
                                 ${s.name}
                         </option>
                     </c:forEach>
@@ -53,8 +53,8 @@
             </li>
             <li class="col-md-6"><span>分类：</span>
                 <select name="sellRent" id="sellRent" class="dropdown">
-                    <c:forEach items="${sellRents}" var="s" >
-                        <option value="${s.id}" <c:if test="${s.id==appointment.sellRent}" >selected</c:if>>
+                    <c:forEach items="${sellRents}" var="s">
+                        <option value="${s.id}" <c:if test="${s.id==appointment.sellRent}">selected</c:if>>
                                 ${s.name}
                         </option>
                     </c:forEach>
@@ -81,15 +81,17 @@
 
 
             </li>
-            <li class="col-md-6"><span>状态：</span><select name="status" id="status" class="dropdown">
+            <li class="col-md-6"><span>状态：</span>
+                <select name="status" id="status" class="dropdown">
 
-                <c:forEach items="${statusList}" var="s" >
-                    <option value="${s.id}" <c:if test="${s.id==appointment.status}" >selected</c:if>>
-                            ${s.name}
-                    </option>
-                </c:forEach>
+                    <c:forEach items="${statusList}" var="s">
+                        <option value="${s.id}" <c:if test="${s.id==appointment.status}">selected</c:if>>
+                                ${s.name}
+                        </option>
+                    </c:forEach>
 
-            </select></li>
+                </select>
+            </li>
 
             <li class="col-md-11"><span>备注：</span>
                 <textarea name="remark" id="remark"

@@ -122,6 +122,7 @@ public class EntrustController extends BaseController{
 	public String toUpdateAppointment(int entrustId, Model model) {
 		Entrust entrust=entrustServiceImpl.selectEntrustById(entrustId);
 		List<EntrustLog> entrustLogs = entrustLogServiceImpl.selectEntrustLogByEntrustId(entrustId);
+		getSelectParam(model);
 		model.addAttribute("entrust",entrust);
 		model.addAttribute("entrustLogs",entrustLogs);
 		return "entrust/updateEntrust";

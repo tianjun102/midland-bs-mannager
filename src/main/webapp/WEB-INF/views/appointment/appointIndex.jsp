@@ -38,7 +38,7 @@
 						</c:forEach>
 					</select>
 				</li>
-				<li><span>state：</span>
+				<li><span>状态：</span>
 					<select name="status" id="status" class="dropdown">
 						<option value="">全部</option>
 						<c:forEach items="${statusList}" var="s1" >
