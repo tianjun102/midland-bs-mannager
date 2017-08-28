@@ -6,7 +6,6 @@ import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by jim on 2017/6/14.
@@ -17,7 +16,7 @@ public class JsonMapReader
     private static String mapName = "jsonMap/midland.json";
     private static List<ParamObject> map = null;
 
-    public  void getPayChannelInfo(String pro) {
+    public  void getlist(String pro) {
         ClassPathResource cpr = new ClassPathResource(pro);
         if (cpr != null && cpr.exists()) {
             try {
@@ -32,7 +31,7 @@ public class JsonMapReader
     public static List<ParamObject> getMap() {
         if (map == null) {
             JsonMapReader jsonMapReader = new JsonMapReader();
-            jsonMapReader.getPayChannelInfo(mapName);
+            jsonMapReader.getlist(mapName);
         }
         return map;
     }
