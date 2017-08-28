@@ -16,15 +16,15 @@
     <table class="table table-bordered table-add">
         <thead>
         <tr>
-            <th style="width: 3%"></th>
-            <th style="width: 3%">问题主题</th>
-            <th style="width: 3%">来源</th>
-            <th style="width: 3%">提问时间</th>
-            <th style="width: 5%">提问人昵称</th>
-            <th style="width: 2%">提问人手机号</th>
-            <th style="width: 2%">审核人</th>
-            <th style="width: 5%">状态</th>
-            <th style="width: 25%">操作</th>
+            <th style=""></th>
+            <th style="">问题主题</th>
+            <th style="">来源</th>
+            <th style="">提问时间</th>
+            <th style="">提问人昵称</th>
+            <th style="">提问人手机号</th>
+            <th style="">审核人</th>
+            <th style="">状态</th>
+            <th style="">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -50,10 +50,10 @@
                         <td>
                             <c:choose>
                                 <c:when test="${item.status==0}">
-                                    <a target="contentF" onclick="toAudit(${item.id })">审核</a>
+                                    <a style="width: auto;" target="contentF" onclick="toAudit(${item.id })">审核</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a target="contentF" onclick="viewQuestion(${item.id })">查看问题</a>
+                                    <a style="width: auto;" target="contentF" onclick="viewQuestion(${item.id })">查看问题</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>

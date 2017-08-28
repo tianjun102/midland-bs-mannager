@@ -6,8 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.midland.ueditor.define.State;
+import com.midland.web.controller.base.BaseController;
 
-public class Uploader {
+public class Uploader  extends BaseController {
 	private HttpServletRequest request = null;
 	private Map<String, Object> conf = null;
 

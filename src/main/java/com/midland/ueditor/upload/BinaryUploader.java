@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.midland.web.controller.base.BaseController;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
@@ -22,9 +23,13 @@ import com.midland.ueditor.define.AppInfo;
 import com.midland.ueditor.define.BaseState;
 import com.midland.ueditor.define.FileType;
 import com.midland.ueditor.define.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class BinaryUploader {
+public class BinaryUploader  extends BaseController {
 
+	private static final Logger logger = LoggerFactory.getLogger(BinaryUploader.class);
+	
 	public static final State save(HttpServletRequest request,
 			Map<String, Object> conf) {
 		FileItemStream fileStream = null;
@@ -88,8 +93,10 @@ public class BinaryUploader {
 
 			return storageState;
 		} catch (FileUploadException e) {
+			logger.error("save ",e);
 			return new BaseState(false, AppInfo.PARSE_REQUEST_ERROR);
 		} catch (IOException e) {
+			logger.error("save ",e);
 		}
 		return new BaseState(false, AppInfo.IO_ERROR);
 	}

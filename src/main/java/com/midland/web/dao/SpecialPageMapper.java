@@ -1,20 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.SpecialPage;
-import com.midland.web.model.SpecialPageWithBLOBs;
+import java.util.List;
 
 public interface SpecialPageMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(SpecialPageWithBLOBs record);
+	SpecialPage selectSpecialPageById(Integer specialPage);
 
-    int insertSelective(SpecialPageWithBLOBs record);
+	int deleteSpecialPageById(Integer specialPage);
 
-    SpecialPageWithBLOBs selectByPrimaryKey(Integer id);
+	int updateSpecialPageById(SpecialPage specialPage);
 
-    int updateByPrimaryKeySelective(SpecialPageWithBLOBs record);
+	int insertSpecialPage(SpecialPage specialPage);
 
-    int updateByPrimaryKeyWithBLOBs(SpecialPageWithBLOBs record);
+	List<SpecialPage> findSpecialPageList(SpecialPage specialPage);
 
-    int updateByPrimaryKey(SpecialPage record);
 }

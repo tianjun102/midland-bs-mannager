@@ -1,145 +1,282 @@
 package com.midland.web.model;
 
-import java.util.Date;
 
-public class Quotation {
-    private Integer id;
+public class Quotation{
+	/**
+	 * 行情表，主键
+	 **/
+	private Integer id;
+	/**
+	 * 数据时间
+	 **/
+	private String dataTime;
+	/**
+	 * 类型
+	 **/
+	private Integer type;
+	/**
+	 * 
+	 **/
+	private Integer cityId;
+	/**
+	 * 区域id
+	 **/
+	private Integer areaId;
+	/**
+	 * 片区
+	 **/
+	private Integer sliceId;
+	/**
+	 * 成交数量
+	 **/
+	private Integer dealNum;
+	/**
+	 * 成交面积
+	 **/
+	private Integer dealAcreage;
+	/**
+	 * 成交均价
+	 **/
+	private String price;
+	/**
+	 * 可售套数
+	 **/
+	private Integer soldNum;
+	/**
+	 * 可售面积
+	 **/
+	private String soldArea;
+	/**
+	 * 环比
+	 **/
+	private String ringRatio;
+	/**
+	 * 更新时间
+	 **/
+	private String updateTime;
+	/**
+	 * 1，新房；0，二手房
+	 **/
+	private Integer isNew;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
+	/**
+	 * 城市名称
+	 **/
+	private String cityName;
+	/**
+	 * 区域名称
+	 **/
+	private String areaName;
+	/**
+	 * 片区名称
+	 **/
+	private String sliceName;
 
-    private Date dataTime;
 
-    private Integer type;
+	public Integer getId() {
+		return id;
+	}
 
-    private Integer cityId;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private Integer areaId;
+	public String getDataTime() {
+		return dataTime;
+	}
 
-    private Integer sliceId;
+	public void setDataTime(String dataTime) {
+		this.dataTime = dataTime;
+	}
 
-    private Integer dealNum;
+	public Integer getType() {
+		return type;
+	}
 
-    private Integer dealAcreage;
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
-    private String price;
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    private Integer soldNum;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    private String soldArea;
+	public Integer getAreaId() {
+		return areaId;
+	}
 
-    private String ringRatio;
+	public void setAreaId(Integer areaId) {
+		this.areaId = areaId;
+	}
 
-    private String updateTime;
+	public Integer getSliceId() {
+		return sliceId;
+	}
 
-    private Integer isNew;
+	public void setSliceId(Integer sliceId) {
+		this.sliceId = sliceId;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getDealNum() {
+		return dealNum;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setDealNum(Integer dealNum) {
+		this.dealNum = dealNum;
+	}
 
-    public Date getDataTime() {
-        return dataTime;
-    }
+	public Integer getDealAcreage() {
+		return dealAcreage;
+	}
 
-    public void setDataTime(Date dataTime) {
-        this.dataTime = dataTime;
-    }
+	public void setDealAcreage(Integer dealAcreage) {
+		this.dealAcreage = dealAcreage;
+	}
 
-    public Integer getType() {
-        return type;
-    }
+	public String getPrice() {
+		return price;
+	}
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public Integer getSoldNum() {
+		return soldNum;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setSoldNum(Integer soldNum) {
+		this.soldNum = soldNum;
+	}
 
-    public Integer getAreaId() {
-        return areaId;
-    }
+	public String getSoldArea() {
+		return soldArea;
+	}
 
-    public void setAreaId(Integer areaId) {
-        this.areaId = areaId;
-    }
+	public void setSoldArea(String soldArea) {
+		this.soldArea = soldArea;
+	}
 
-    public Integer getSliceId() {
-        return sliceId;
-    }
+	public String getRingRatio() {
+		return ringRatio;
+	}
 
-    public void setSliceId(Integer sliceId) {
-        this.sliceId = sliceId;
-    }
+	public void setRingRatio(String ringRatio) {
+		this.ringRatio = ringRatio;
+	}
 
-    public Integer getDealNum() {
-        return dealNum;
-    }
+	public String getUpdateTime() {
+		return updateTime;
+	}
 
-    public void setDealNum(Integer dealNum) {
-        this.dealNum = dealNum;
-    }
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    public Integer getDealAcreage() {
-        return dealAcreage;
-    }
+	public Integer getIsNew() {
+		return isNew;
+	}
 
-    public void setDealAcreage(Integer dealAcreage) {
-        this.dealAcreage = dealAcreage;
-    }
+	public void setIsNew(Integer isNew) {
+		this.isNew = isNew;
+	}
 
-    public String getPrice() {
-        return price;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public void setPrice(String price) {
-        this.price = price == null ? null : price.trim();
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public Integer getSoldNum() {
-        return soldNum;
-    }
+	public String getCityName() {
+		return cityName;
+	}
 
-    public void setSoldNum(Integer soldNum) {
-        this.soldNum = soldNum;
-    }
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
 
-    public String getSoldArea() {
-        return soldArea;
-    }
+	public String getAreaName() {
+		return areaName;
+	}
 
-    public void setSoldArea(String soldArea) {
-        this.soldArea = soldArea == null ? null : soldArea.trim();
-    }
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
 
-    public String getRingRatio() {
-        return ringRatio;
-    }
+	public String getSliceName() {
+		return sliceName;
+	}
 
-    public void setRingRatio(String ringRatio) {
-        this.ringRatio = ringRatio == null ? null : ringRatio.trim();
-    }
+	public void setSliceName(String sliceName) {
+		this.sliceName = sliceName;
+	}
 
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime == null ? null : updateTime.trim();
-    }
-
-    public Integer getIsNew() {
-        return isNew;
-    }
-
-    public void setIsNew(Integer isNew) {
-        this.isNew = isNew;
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("Quotation{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (dataTime != null) {
+			sb.append(", \"dataTime\":\"").append(dataTime).append("\"");
+		}
+		if (type != null) {
+			sb.append(", \"type\":\"").append(type).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (areaId != null) {
+			sb.append(", \"areaId\":\"").append(areaId).append("\"");
+		}
+		if (sliceId != null) {
+			sb.append(", \"sliceId\":\"").append(sliceId).append("\"");
+		}
+		if (dealNum != null) {
+			sb.append(", \"dealNum\":\"").append(dealNum).append("\"");
+		}
+		if (dealAcreage != null) {
+			sb.append(", \"dealAcreage\":\"").append(dealAcreage).append("\"");
+		}
+		if (price != null) {
+			sb.append(", \"price\":\"").append(price).append("\"");
+		}
+		if (soldNum != null) {
+			sb.append(", \"soldNum\":\"").append(soldNum).append("\"");
+		}
+		if (soldArea != null) {
+			sb.append(", \"soldArea\":\"").append(soldArea).append("\"");
+		}
+		if (ringRatio != null) {
+			sb.append(", \"ringRatio\":\"").append(ringRatio).append("\"");
+		}
+		if (updateTime != null) {
+			sb.append(", \"updateTime\":\"").append(updateTime).append("\"");
+		}
+		if (isNew != null) {
+			sb.append(", \"isNew\":\"").append(isNew).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
+		}
+		if (areaName != null) {
+			sb.append(", \"areaName\":\"").append(areaName).append("\"");
+		}
+		if (sliceName != null) {
+			sb.append(", \"sliceName\":\"").append(sliceName).append("\"");
+		}
+		return sb.toString();
+	}
 }

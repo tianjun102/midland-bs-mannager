@@ -1,7 +1,5 @@
 package com.midland.web.model.user;
 
-import java.util.Date;
-
 public class UserBlackLog {
     private Integer blackLogId;
 

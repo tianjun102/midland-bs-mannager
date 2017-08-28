@@ -1,6 +1,7 @@
 package com.midland.web.controller.upload;
 
 import com.midland.core.util.AppSetting;
+import com.midland.web.util.MidlandHelper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -97,7 +98,7 @@ public class FileLoadController implements ServletConfigAware,ServletContextAwar
 			String opposite;
 			if (isMacOSX()){
 				opposite="/store/";
-				storePath = this.servletContext.getRealPath("/")+opposite;
+				storePath = System.getProperty("test.webapp")+opposite;
 			}else{
 				storePath = AppSetting.getAppSetting("upload_dir");
 				opposite = storePath;

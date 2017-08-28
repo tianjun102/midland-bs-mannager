@@ -44,10 +44,10 @@
         <table class="table table-bordered table-add">
             <thead>
             <tr>
-                <th style="width: 3%">回答内容</th>
-                <th style="width: 3%">回答时间</th>
-                <th style="width: 3%">经纪人姓名</th>
-                <th style="width: 25%">操作</th>
+                <th>回答内容</th>
+                <th>回答时间</th>
+                <th>经纪人姓名</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>

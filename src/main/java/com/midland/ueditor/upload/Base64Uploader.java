@@ -10,9 +10,10 @@ import com.midland.ueditor.define.State;
 
 import java.util.Map;
 
+import com.midland.web.controller.base.BaseController;
 import org.apache.commons.codec.binary.Base64;
 
-public final class Base64Uploader {
+public final class Base64Uploader extends BaseController{
 
 	public static State save(String content, Map<String, Object> conf) {
 		

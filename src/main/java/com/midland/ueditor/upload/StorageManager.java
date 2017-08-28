@@ -9,15 +9,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.midland.web.controller.base.BaseController;
 import org.apache.commons.io.FileUtils;
 
 import com.midland.ueditor.define.AppInfo;
 import com.midland.ueditor.define.BaseState;
 import com.midland.ueditor.define.State;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-public class StorageManager {
+public class StorageManager  extends BaseController {
 	public static final int BUFFER_SIZE = 8192;
+	private static final Logger logger = LoggerFactory.getLogger(BinaryUploader.class);
 
 	public StorageManager() {
 	}
@@ -83,6 +87,7 @@ public class StorageManager {
 			return state;
 			
 		} catch (IOException e) {
+			logger.error("save ",e);
 		}
 		return new BaseState(false, AppInfo.IO_ERROR);
 	}
@@ -134,6 +139,7 @@ public class StorageManager {
 		try {
 			FileUtils.moveFile(tmpFile, targetFile);
 		} catch (IOException e) {
+			logger.error("",e);
 			return new BaseState(false, AppInfo.IO_ERROR);
 		}
 

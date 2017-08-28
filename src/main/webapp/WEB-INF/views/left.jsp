@@ -104,6 +104,20 @@
 								class="glyphicon glyphicon-menu-right"></span></a>
 					</dt>
 					<dd>
+
+						<%--<shiro:hasPermission name="noticelist">--%>
+							<%--<a id = "enterPromotionIndex" href="${ctx}/rest/footer/index" target="contentF"><span>系统配置</span></a>--%>
+						<%--</shiro:hasPermission>--%>
+
+						<shiro:hasPermission name="noticelist">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/serviceArea/index" target="contentF"><span>服务范围</span></a>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="noticelist">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/aboutUs/index" target="contentF"><span>关于我们</span></a>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="noticelist">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/tradingProcess/index" target="contentF"><span>买卖流程</span></a>
+						</shiro:hasPermission>
 						<shiro:hasPermission name="noticelist">
 							<a id = "enterPromotionIndex" href="${ctx}/rest/feedback/index" target="contentF"><span>反馈管理</span></a>
 						</shiro:hasPermission>
@@ -141,7 +155,10 @@
 				</dt>
 				<dd>
 					<shiro:hasPermission name="settlementList">
-						<a id = "settlementIndex" target="contentF" href="${ctx}/rest/settlement/settlementIndex"><span>行情信息列表</span></a>
+						<a id = "settlementIndex" target="contentF" href="${ctx}/rest/quotation/index?isNew=0"><span>新房</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="settlementList">
+						<a id = "settlementIndex" target="contentF" href="${ctx}/rest/quotation/index?isNew=1"><span>二手房</span></a>
 					</shiro:hasPermission>
 				</dd>
 			</dl>

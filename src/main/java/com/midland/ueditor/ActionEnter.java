@@ -12,11 +12,13 @@ import com.midland.ueditor.define.State;
 import com.midland.ueditor.hunter.FileManager;
 import com.midland.ueditor.hunter.ImageHunter;
 import com.midland.ueditor.upload.Uploader;
+import com.midland.web.controller.base.BaseController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-
-public class ActionEnter {
-	
+public class ActionEnter extends BaseController{
+	private final Logger logger = LoggerFactory.getLogger(ActionEnter.class);
 	private HttpServletRequest request = null;
 	
 	private String rootPath = null;
@@ -37,20 +39,25 @@ public class ActionEnter {
 	}
 	
 	public String exec () {
-		
-		String callbackName = this.request.getParameter("callback");
-		
-		if ( callbackName != null ) {
-
-			if ( !validCallbackName( callbackName ) ) {
-				return new BaseState( false, AppInfo.ILLEGAL ).toJSONString();
+		try {
+			String callbackName = this.request.getParameter("callback");
+			
+			if ( callbackName != null ) {
+				
+				if ( !validCallbackName( callbackName ) ) {
+					return new BaseState( false, AppInfo.ILLEGAL ).toJSONString();
+				}
+				
+				return callbackName+"("+this.invoke()+");";
+				
+			} else {
+				return this.invoke();
 			}
-			
-			return callbackName+"("+this.invoke()+");";
-			
-		} else {
-			return this.invoke();
+		}catch (Exception e){
+			logger.error("",e);
+			throw e;
 		}
+		
 
 	}
 	
