@@ -4,6 +4,7 @@ import com.midland.web.model.Quotation;
 import com.midland.web.service.QuotationService;
 import com.midland.web.controller.base.BaseController;
 import com.midland.web.util.JsonMapReader;
+import com.midland.web.util.ParamObject;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -32,7 +33,8 @@ public class QuotationController extends BaseController  {
 	 **/
 	@RequestMapping("index")
 	public String quotationIndex(Quotation quotation,Model model) throws Exception {
-		JsonMapReader.getMap();
+		List<ParamObject> paramObjects = JsonMapReader.getMap("quotation_type");
+		model.addAttribute("types",paramObjects);
 		return "quotation/quotationIndex";
 	}
 

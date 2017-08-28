@@ -58,6 +58,10 @@ public class SpecialPage{
 	 * 0未删除，1删除
 	 **/
 	private Integer isDelete;
+	/**
+	 * 城市名称
+	 **/
+	private String cityName;
 
 
 	public Integer getId() {
@@ -172,6 +176,14 @@ public class SpecialPage{
 		this.isDelete = isDelete;
 	}
 
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("SpecialPage{");
@@ -216,6 +228,9 @@ public class SpecialPage{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
 		}
 		return sb.toString();
 	}

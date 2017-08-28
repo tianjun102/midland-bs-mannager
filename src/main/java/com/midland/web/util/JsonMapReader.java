@@ -1,5 +1,6 @@
 package com.midland.web.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
@@ -13,37 +14,41 @@ import java.util.List;
 public class JsonMapReader
 {
     private Logger logger = LoggerFactory.getLogger(JsonMapReader.class);
-    private static String mapName = "jsonMap/midland.json";
-    private static List<ParamObject> map = null;
+    private static String PAY_CHANNEL = "jsonMap/midland.json";
+    private ObjectMapper mapper = new ObjectMapper();
+    private static List<ParamObject> objects = null;
+    private static ClassPathResource cpr = null;
 
-    public  void getlist(String pro) {
-        ClassPathResource cpr = new ClassPathResource(pro);
+    public  void getPayChannelInfo(String pro) {
+        if (cpr == null){
+             cpr = new ClassPathResource(PAY_CHANNEL);
+        }
         if (cpr != null && cpr.exists()) {
             try {
-                String packDeliveries = JsonUtil.getNodeValue(cpr.getInputStream(), "quotation_type");
-                map = JsonUtil.getListValues(packDeliveries, ParamObject.class);
+                String packDeliveries = JsonUtil.getNodeValue(cpr.getInputStream(), pro);
+                objects = JsonUtil.getListValues(packDeliveries, ParamObject.class);
             } catch (IOException e) {
                 logger.error("", e);
             }
         }
     }
 
-    public static List<ParamObject> getMap() {
-        if (map == null) {
+    public static List<ParamObject> getMap(String note) {
+        if (objects == null) {
             JsonMapReader jsonMapReader = new JsonMapReader();
-            jsonMapReader.getlist(mapName);
+            jsonMapReader.getPayChannelInfo(note);
         }
-        return map;
+        return objects;
     }
 
-    public void setMap(List<ParamObject> map) {
-        this.map = map;
+    public void setMap(List<ParamObject> objects) {
+        this.objects = objects;
     }
 
 
     public static void main(String[] args) {
         JsonMapReader properties = new JsonMapReader();
-        List<ParamObject> result = properties.getMap();
+        List<ParamObject> result = properties.getMap("quotation_type");
         System.out.println(result);
     }
 }
