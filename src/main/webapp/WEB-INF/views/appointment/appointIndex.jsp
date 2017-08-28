@@ -29,10 +29,36 @@
 				<li><span>小区名：</span><input type="text" name="communityName" id="communityName" placeholder="请输入小区" /></li>
 				<li><span>手机号码：</span><input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
 				<li>
-					<span>分类：</span><input type="text" name="sellRent" id="sellRent" placeholder="请输入分类" />
+					<span>分类：</span>
+					<select name="sellRent" id="sellRent" class="dropdown">
+						<option value="">全部</option>
+						<c:forEach items="${sellRents}" var="s" >
+							<option value="${s.id}">
+									${s.name}
+							</option>
+						</c:forEach>
+					</select>
 				</li>
-				<li><span>state：</span><input type="text" name="status" id="status" placeholder="请输入状态" /></li>
-				<li><span>来源：</span><input type="text" name="source" id="source" placeholder="请输入来源" /></li>
+				<li><span>state：</span>
+					<select name="status" id="status" class="dropdown">
+						<option value="">全部</option>
+						<c:forEach items="${statusList}" var="s1" >
+							<option value="${s1.id}">
+									${s1.name}
+							</option>
+						</c:forEach>
+					</select>
+				</li>
+				<li><span>来源：</span>
+					<select name="source" id="source" class="dropdown">
+						<option value="">全部</option>
+						<c:forEach items="${sources}" var="s1" >
+							<option value="${s1.id}">
+									${s1.name}
+							</option>
+						</c:forEach>
+					</select>
+				</li>
 				<li><span>预约时间</span><input class="Wdate half" id="time1"
 										onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'time2\')}'})"
 										name="startTime" /> <em class = "gang">-</em><input

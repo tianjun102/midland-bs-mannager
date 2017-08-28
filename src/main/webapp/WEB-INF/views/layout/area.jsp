@@ -22,7 +22,7 @@
 
             <li><span>省：</span> <!-- 省 -->
                 <p id="province" style="display: inline-block;height: 38px;">
-                    <label for="pop-14"></label> <input type="hidden" name="provinceId">
+                    <label ></label> <input type="hidden" name="provinceId">
                     <input type="hidden" name="regionSn"> <input type="hidden"
                                                                  name="provinceName">
                     <!-- 第一次进页面加载省 -->
@@ -39,7 +39,7 @@
                 <!-- 市 -->
                 <p id="city" style="display: inline-block;height: 38px;">
                     <span>市：</span>
-                    <label for="pop-15"></label> <input type="hidden" name="cityId">
+                    <label ></label> <input type="hidden" name="cityId">
                     <input type="hidden" name="cityName">
                     <select id="citys" onchange="initCity()" style="height: 100%;width: 65px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
                         <option value="">请选择</option>
@@ -48,7 +48,7 @@
 
                 <p id="district" style="display: inline-block;height: 38px;">
                     <span>地区：</span>
-                    <label for="pop-16"></label> <input type="hidden" value="" name="distId"> <input type="hidden" value="" name="distName">
+                    <label ></label> <input type="hidden" value="" name="distId"> <input type="hidden" value="" name="distName">
                     <select id="districts" onchange="initDistrict()" style="height: 100%;width: 65px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
                         <option value="">请选择</option>
                     </select>
@@ -59,7 +59,7 @@
                 <!-- 片区 -->
                 <span>片区：</span>
                 <p id="sheet" style="display: inline-block;height: 38px;">
-                    <label for="pop-16"></label> <input type="hidden" value="" name="sheetId"> <input type="hidden" value="" name="sheetName">
+                    <label ></label> <input type="hidden" value="" name="sheetId"> <input type="hidden" value="" name="sheetName">
                     <select id="sheets" onchange="initSheet()" style="height: 100%;width: 274px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
                         <option value="">请选择</option>
                     </select>

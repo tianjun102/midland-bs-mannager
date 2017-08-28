@@ -1,63 +1,147 @@
 package com.midland.web.model;
 
-public class QrCode {
-    private Integer id;
 
-    private String imgUrl;
+public class QrCode{
+	/**
+	 * id 二维码管理表
+	 **/
+	private Integer id;
+	/**
+	 * 二维码连接
+	 **/
+	private String imgUrl;
+	/**
+	 * 城市id
+	 **/
+	private String cityId;
+	/**
+	 * 平台 来源
+	 **/
+	private Integer source;
+	/**
+	 * 名称
+	 **/
+	private String name;
+	/**
+	 * 是否开放
+	 **/
+	private Integer isShow;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
+	/**
+	 * 城市名称
+	 **/
+	private String cityName;
+	/**
+	 * 设置底部版权信息、备案号等
+	 **/
+	private String detail;
 
-    private String cityId;
 
-    private Integer source;
+	public Integer getId() {
+		return id;
+	}
 
-    private String name;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private Integer isshow;
+	public String getImgUrl() {
+		return imgUrl;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public String getCityId() {
+		return cityId;
+	}
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl == null ? null : imgUrl.trim();
-    }
+	public Integer getSource() {
+		return source;
+	}
 
-    public String getCityId() {
-        return cityId;
-    }
+	public void setSource(Integer source) {
+		this.source = source;
+	}
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId == null ? null : cityId.trim();
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Integer getSource() {
-        return source;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setSource(Integer source) {
-        this.source = source;
-    }
+	public Integer getIsShow() {
+		return isShow;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public Integer getIsshow() {
-        return isshow;
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public void setIsshow(Integer isshow) {
-        this.isshow = isshow;
-    }
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("QrCode{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (imgUrl != null) {
+			sb.append(", \"imgUrl\":\"").append(imgUrl).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (source != null) {
+			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (name != null) {
+			sb.append(", \"name\":\"").append(name).append("\"");
+		}
+		if (isShow != null) {
+			sb.append(", \"isShow\":\"").append(isShow).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (cityName != null) {
+			sb.append(", \"cityName\":\"").append(cityName).append("\"");
+		}
+		if (detail != null) {
+			sb.append(", \"detail\":\"").append(detail).append("\"");
+		}
+		return sb.toString();
+	}
 }

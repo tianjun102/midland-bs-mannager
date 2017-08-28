@@ -14,16 +14,14 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">城市</th>
-				<th style="width: 8%">区域</th>
-				<th style="width: 8%">类型</th>
-				<th style="width: 8%">成交套数</th>
-				<th style="width: 8%">成交面积</th>
-				<th style="width: 8%">成交均价</th>
-				<th style="width: 8%">可售套数</th>
-				<th style="width: 8%">可售面积</th>
-				<th style="width: 8%">数据时间</th>
-				<th style="width: 8%">更新时间</th>
+				<th style="width: 8%">imgUrl</th>
+				<th style="width: 8%">cityId</th>
+				<th style="width: 8%">source</th>
+				<th style="width: 8%">name</th>
+				<th style="width: 8%">isShow</th>
+				<th style="width: 8%">isDelete</th>
+				<th style="width: 8%">cityName</th>
+				<th style="width: 8%">detail</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -33,18 +31,14 @@
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
 						<input type="hidden" id="id" value="${item.id}"/>
+						<td>${item.imgUrl}</td>
+						<td>${item.cityId}</td>
+						<td>${item.source}</td>
+						<td>${item.name}</td>
+						<td>${item.isShow}</td>
+						<td>${item.isDelete}</td>
 						<td>${item.cityName}</td>
-						<td>${item.areaName}</td>
-						<td><c:forEach items="${types}" var="s">
-                            <c:if test="${item.type == s.id}" >${s.name}</c:if>
-                        </c:forEach></td>
-						<td>${item.dealNum}</td>
-						<td>${item.dealAcreage}</td>
-						<td>${item.price}</td>
-						<td>${item.soldNum}</td>
-						<td>${item.soldArea}</td>
-						<td>${item.dataTime}</td>
-						<td>${item.updateTime}</td>
+						<td>${item.detail}</td>
 						<td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>
@@ -73,7 +67,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/quotation/update?id="+id+"&isDelete=1",
+            url: "${ctx}/rest/qrCode/update?id="+id+"&isDelete=1",
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -93,8 +87,8 @@
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['900px', '700px'],
-            content: ['${ctx}/rest/quotation/to_update?id='+id,'no']
+            area: ['500px', '700px'],
+            content: ['${ctx}/rest/qrCode/to_update?id='+id,'no']
         });
     }
 

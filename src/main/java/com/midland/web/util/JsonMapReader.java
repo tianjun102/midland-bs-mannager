@@ -34,10 +34,8 @@ public class JsonMapReader
     }
 
     public static List<ParamObject> getMap(String note) {
-        if (objects == null) {
-            JsonMapReader jsonMapReader = new JsonMapReader();
-            jsonMapReader.getPayChannelInfo(note);
-        }
+        JsonMapReader jsonMapReader = new JsonMapReader();
+        jsonMapReader.getPayChannelInfo(note);
         return objects;
     }
 

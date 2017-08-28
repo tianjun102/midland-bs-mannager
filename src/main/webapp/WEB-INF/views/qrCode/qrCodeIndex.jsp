@@ -17,11 +17,10 @@
 			<p class = "detail-title">
 				<a class = "setup"  target="contentF" onclick="toAddPage()">新增</a>
 			</p>
-		<form action="${ctx }/rest/quotation/list" method="POST" id="searchForm"
+		<form action="${ctx }/rest/qrCode/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
-			<input type="hidden" name="isNew" value="${isNew}"/>
 			<ul class = "userinfo row">
-				<li><span>城市：</span>
+				<li><span>select：</span>
 					<select name="cityId" id="cityId" class="dropdown">
 						<option value="" >全部</option>
 						<c:forEach items="${citys}" var="item">
@@ -29,17 +28,8 @@
 						</c:forEach>
 					</select>
 				</li>
-				<li><span>区域：</span>
+				<li><span>手机号码：</span>
 					<input type="text" name="phone" id="phone" placeholder="请输入手机号码" /></li>
-				</li>
-				<li><span>类型：</span>
-					<select name="type" id="type" class="dropdown">
-						<option value="" >全部</option>
-						<c:forEach items="${types}" var="type">
-							<option value="${type.id}" >${type.name}</option>
-						</c:forEach>
-					</select>
-
 				</li>
 				<li>
 					<input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/>
@@ -61,7 +51,7 @@
                 title:['新增'],
                 resize: false,
                 scrollbar:false,
-                content:['${ctx}/rest/quotation/to_add', 'no']
+                content:['${ctx}/rest/qrCode/to_add', 'no']
             });
         }
 		 window.onload = function(){
