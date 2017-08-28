@@ -9,7 +9,7 @@ public class SpecialPage{
 	/**
 	 * 城市id
 	 **/
-	private Integer cityId;
+	private String cityId;
 	/**
 	 * 0=网站；1=微站
 	 **/
@@ -76,11 +76,11 @@ public class SpecialPage{
 		this.id = id;
 	}
 
-	public Integer getCityId() {
+	public String getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 

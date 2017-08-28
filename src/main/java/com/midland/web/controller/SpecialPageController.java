@@ -108,7 +108,13 @@ public class SpecialPageController extends BaseController  {
 	 **/
 	@RequestMapping("to_update")
 	public String toUpdateSpecialPage(Integer id,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
 		SpecialPage result = specialPageServiceImpl.selectSpecialPageById(id);
+		model.addAttribute("cityList",cityList);
 		model.addAttribute("item",result);
 		return "specialPage/updateSpecialPage";
 	}
