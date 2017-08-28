@@ -28,6 +28,7 @@
 				<th style="width: 8%">detail</th>
 				<th style="width: 8%">isDelete</th>
 				<th style="width: 8%">cityName</th>
+				<th style="width: 8%">imgDesc</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -51,6 +52,7 @@
 						<td>${item.detail}</td>
 						<td>${item.isDelete}</td>
 						<td>${item.cityName}</td>
+						<td>${item.imgDesc}</td>
 						<td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>

@@ -19,6 +19,7 @@
 			</p>
 		<form action="${ctx }/rest/quotation/list" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
+			<input type="hidden" name="isNew" value="${isNew}"/>
 			<ul class = "userinfo row">
 				<li><span>城市：</span>
 					<select name="cityId" id="cityId" class="dropdown">

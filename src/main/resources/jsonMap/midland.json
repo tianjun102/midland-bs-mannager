@@ -1,16 +1,44 @@
 {
-  "quotation_type": [
+  "appointment_houseType": [
     {
       "id": "0",
-      "name": "商业"
+      "name": "住宅"
     },
     {
       "id": "1",
-      "name": "办公楼"
+      "name": "公寓"
     },
     {
       "id": "2",
+      "name": "写字楼"
+    },
+    {
+      "id": "3",
+      "name": "商铺"
+    }
+  ],
+  "appointment_sellRent": [
+    {
+      "id": "0",
+      "name": "出售"
+    },
+    {
+      "id": "1",
+      "name": "出租"
+    }
+  ],
+  "quotation_type": [
+    {
+      "id": "0",
       "name": "住宅"
+    },
+    {
+      "id": "2",
+      "name": "办公楼"
+    },
+    {
+      "id": "3",
+      "name": "商业"
     }
   ]
 }

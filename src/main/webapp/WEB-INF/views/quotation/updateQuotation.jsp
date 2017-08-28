@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="../layout/tablib.jsp" %>
+<%@include file="../layout/.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,61 +9,49 @@
     <title>Insert title here</title>
     <script type="text/javascript">
     </script>
-
 </head>
 <body>
 <section class="content" style="border:none;">
     <form action="${ctx}/rest/quotation/update" method="post" id="dataForm">
         <ul class="userinfo row">
             <input type="hidden" name="id" id="id" value="${item.id}">
-            <li><span>dataTime：</span>
-               <input type="text" name="dataTime" id="dataTime" value="${item.dataTime}"/>
+            <li><span>数据时间：</span>
+                <input class="Wdate half" id="time1" onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"
+                                        name="dataTime" value="${item.dataTime}" style="
+    width: 250px;
+"/>
             </li>
-            <li><span>type：</span>
-               <input type="text" name="type" id="type" value="${item.type}"/>
+            <li><span>类型：</span>
+                <select name="type" id="type" class="dropdown">
+                    <option value="" >全部</option>
+                    <c:forEach items="${types}" var="type">
+                    <option value="${type.id}" <c:if test="${type.id==item.type}">selected</c:if> >${type.name}</option>
+                    </c:forEach>
+                </select>
             </li>
-            <li><span>cityId：</span>
+            <li><span>城市：</span>
                <input type="text" name="cityId" id="cityId" value="${item.cityId}"/>
             </li>
-            <li><span>areaId：</span>
+            <li><span>区域：</span>
                <input type="text" name="areaId" id="areaId" value="${item.areaId}"/>
             </li>
-            <li><span>sliceId：</span>
+            <li><span>片区：</span>
                <input type="text" name="sliceId" id="sliceId" value="${item.sliceId}"/>
             </li>
-            <li><span>dealNum：</span>
+            <li><span>成交套数：</span>
                <input type="text" name="dealNum" id="dealNum" value="${item.dealNum}"/>
             </li>
-            <li><span>dealAcreage：</span>
+            <li><span>成交面积：</span>
                <input type="text" name="dealAcreage" id="dealAcreage" value="${item.dealAcreage}"/>
             </li>
-            <li><span>price：</span>
+            <li><span>成交均价：</span>
                <input type="text" name="price" id="price" value="${item.price}"/>
             </li>
-            <li><span>soldNum：</span>
+            <li><span>可售套数：</span>
                <input type="text" name="soldNum" id="soldNum" value="${item.soldNum}"/>
             </li>
-            <li><span>soldArea：</span>
+            <li><span>可售面积：</span>
                <input type="text" name="soldArea" id="soldArea" value="${item.soldArea}"/>
-            </li>
-            <li><span>ringRatio：</span>
-               <input type="text" name="ringRatio" id="ringRatio" value="${item.ringRatio}"/>
-            </li>
-            <li><span>updateTime：</span>
-               <input type="text" name="updateTime" id="updateTime" value="${item.updateTime}"/>
-            </li>
-            <li><span>isNew：</span>
-               <input type="text" name="isNew" id="isNew" value="${item.isNew}"/>
-            </li>
-
-            <li><span>cityName：</span>
-               <input type="text" name="cityName" id="cityName" value="${item.cityName}"/>
-            </li>
-            <li><span>areaName：</span>
-               <input type="text" name="areaName" id="areaName" value="${item.areaName}"/>
-            </li>
-            <li><span>sliceName：</span>
-               <input type="text" name="sliceName" id="sliceName" value="${item.sliceName}"/>
             </li>
             <li>
                 <span></span>

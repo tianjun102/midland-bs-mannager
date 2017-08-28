@@ -18,10 +18,11 @@
 		<result column="detail" property="detail" jdbcType="LONGVARCHAR" />
 		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
 		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		<result column="img_desc" property="imgDesc" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,city_id,source,mode_name,position,title,description,price,address,img_url,subway_distance,link_url,detail,is_delete,city_name
+		id,city_id,source,mode_name,position,title,description,price,address,img_url,subway_distance,link_url,detail,is_delete,city_name,img_desc
 	</sql>
 
 	<select id="selectSpecialPageById" resultMap="BaseResultMap">
@@ -95,6 +96,9 @@
 			<if test="cityName != null">
 				city_name,
 			</if>
+			<if test="imgDesc != null">
+				img_desc,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -139,6 +143,9 @@
 			</if>
 			<if test="cityName != null">
 				#{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="imgDesc != null">
+				#{imgDesc,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -185,6 +192,9 @@
 		</if>
 		<if test="cityName != null">
 			city_name= #{cityName,jdbcType=VARCHAR},
+		</if>
+		<if test="imgDesc != null">
+			img_desc= #{imgDesc,jdbcType=VARCHAR},
 		</if>
 	</sql>
 
@@ -233,6 +243,9 @@
 		</if>
 		<if test="cityName != null">
 			 and city_name= #{cityName,jdbcType=VARCHAR}
+		</if>
+		<if test="imgDesc != null">
+			 and img_desc= #{imgDesc,jdbcType=VARCHAR}
 		</if>
 	</sql>
 

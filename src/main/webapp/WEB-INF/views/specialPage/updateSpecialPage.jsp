@@ -57,6 +57,9 @@
             <li><span>cityName：</span>
                <input type="text" name="cityName" id="cityName" value="${item.cityName}"/>
             </li>
+            <li><span>imgDesc：</span>
+               <input type="text" name="imgDesc" id="imgDesc" value="${item.imgDesc}"/>
+            </li>
             <li>
                 <span></span>
                 <a target="contentF" class="public_btn bg2" id="save" onclick="updateData()">更新</a>

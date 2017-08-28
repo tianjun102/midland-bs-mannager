@@ -35,6 +35,7 @@ public class QuotationController extends BaseController  {
 	public String quotationIndex(Quotation quotation,Model model) throws Exception {
 		List<ParamObject> paramObjects = JsonMapReader.getMap("quotation_type");
 		model.addAttribute("types",paramObjects);
+		model.addAttribute("isNew",quotation.getIsNew());
 		return "quotation/quotationIndex";
 	}
 
@@ -97,6 +98,8 @@ public class QuotationController extends BaseController  {
 	@RequestMapping("to_update")
 	public String toUpdateQuotation(Integer id,Model model) throws Exception {
 		Quotation result = quotationServiceImpl.selectQuotationById(id);
+		List<ParamObject> paramObjects = JsonMapReader.getMap("quotation_type");
+		model.addAttribute("types",paramObjects);
 		model.addAttribute("item",result);
 		return "quotation/updateQuotation";
 	}
@@ -129,6 +132,8 @@ public class QuotationController extends BaseController  {
 			MidlandHelper.doPage(request);
 			Page<Quotation> result = (Page<Quotation>)quotationServiceImpl.findQuotationList(quotation);
 			Paginator paginator=result.getPaginator();
+			List<ParamObject> paramObjects = JsonMapReader.getMap("quotation_type");
+			model.addAttribute("types",paramObjects);
 			model.addAttribute("paginator",paginator);
 			model.addAttribute("items",result);
 		} catch(Exception e) {

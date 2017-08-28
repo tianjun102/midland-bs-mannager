@@ -35,7 +35,9 @@
 						<input type="hidden" id="id" value="${item.id}"/>
 						<td>${item.cityName}</td>
 						<td>${item.areaName}</td>
-						<td>${item.type}</td>
+						<td><c:forEach items="${types}" var="s">
+                            <c:if test="${item.type == s.id}" >${s.name}</c:if>
+                        </c:forEach></td>
 						<td>${item.dealNum}</td>
 						<td>${item.dealAcreage}</td>
 						<td>${item.price}</td>
@@ -91,7 +93,7 @@
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['500px', '700px'],
+            area: ['900px', '700px'],
             content: ['${ctx}/rest/quotation/to_update?id='+id,'no']
         });
     }
