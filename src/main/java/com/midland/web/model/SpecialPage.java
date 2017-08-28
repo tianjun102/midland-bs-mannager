@@ -1,113 +1,222 @@
 package com.midland.web.model;
 
-public class SpecialPage {
-    private Integer id;
 
-    private Integer cityId;
+public class SpecialPage{
+	/**
+	 * 特殊页面配置表；id主键
+	 **/
+	private Integer id;
+	/**
+	 * 城市id
+	 **/
+	private Integer cityId;
+	/**
+	 * 0=网站；1=微站
+	 **/
+	private Integer source;
+	/**
+	 * 模块名称
+	 **/
+	private String modeName;
+	/**
+	 * 位置
+	 **/
+	private Integer position;
+	/**
+	 * 标题
+	 **/
+	private String title;
+	/**
+	 * 描述
+	 **/
+	private String description;
+	/**
+	 * 价格
+	 **/
+	private Double price;
+	/**
+	 * 地址
+	 **/
+	private String address;
+	/**
+	 * 图片连接
+	 **/
+	private String imgUrl;
+	/**
+	 * 地铁距离描述
+	 **/
+	private String subwayDistance;
+	/**
+	 * 外网连接
+	 **/
+	private String linkUrl;
+	/**
+	 * 详情
+	 **/
+	private String detail;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
 
-    private Integer source;
 
-    private String modeName;
+	public Integer getId() {
+		return id;
+	}
 
-    private Integer position;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private String title;
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    private Float price;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    private String address;
+	public Integer getSource() {
+		return source;
+	}
 
-    private String imgUrl;
+	public void setSource(Integer source) {
+		this.source = source;
+	}
 
-    private String subwayDistance;
+	public String getModeName() {
+		return modeName;
+	}
 
-    private String linkUrl;
+	public void setModeName(String modeName) {
+		this.modeName = modeName;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getPosition() {
+		return position;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setPosition(Integer position) {
+		this.position = position;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public Integer getSource() {
-        return source;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setSource(Integer source) {
-        this.source = source;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getModeName() {
-        return modeName;
-    }
+	public Double getPrice() {
+		return price;
+	}
 
-    public void setModeName(String modeName) {
-        this.modeName = modeName == null ? null : modeName.trim();
-    }
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
-    public Integer getPosition() {
-        return position;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setPosition(Integer position) {
-        this.position = position;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getImgUrl() {
+		return imgUrl;
+	}
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 
-    public Float getPrice() {
-        return price;
-    }
+	public String getSubwayDistance() {
+		return subwayDistance;
+	}
 
-    public void setPrice(Float price) {
-        this.price = price;
-    }
+	public void setSubwayDistance(String subwayDistance) {
+		this.subwayDistance = subwayDistance;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getLinkUrl() {
+		return linkUrl;
+	}
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
+	public void setLinkUrl(String linkUrl) {
+		this.linkUrl = linkUrl;
+	}
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
+	public String getDetail() {
+		return detail;
+	}
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl == null ? null : imgUrl.trim();
-    }
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
 
-    public String getSubwayDistance() {
-        return subwayDistance;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public void setSubwayDistance(String subwayDistance) {
-        this.subwayDistance = subwayDistance == null ? null : subwayDistance.trim();
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public String getLinkUrl() {
-        return linkUrl;
-    }
-
-    public void setLinkUrl(String linkUrl) {
-        this.linkUrl = linkUrl == null ? null : linkUrl.trim();
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("SpecialPage{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (cityId != null) {
+			sb.append(", \"cityId\":\"").append(cityId).append("\"");
+		}
+		if (source != null) {
+			sb.append(", \"source\":\"").append(source).append("\"");
+		}
+		if (modeName != null) {
+			sb.append(", \"modeName\":\"").append(modeName).append("\"");
+		}
+		if (position != null) {
+			sb.append(", \"position\":\"").append(position).append("\"");
+		}
+		if (title != null) {
+			sb.append(", \"title\":\"").append(title).append("\"");
+		}
+		if (description != null) {
+			sb.append(", \"description\":\"").append(description).append("\"");
+		}
+		if (price != null) {
+			sb.append(", \"price\":\"").append(price).append("\"");
+		}
+		if (address != null) {
+			sb.append(", \"address\":\"").append(address).append("\"");
+		}
+		if (imgUrl != null) {
+			sb.append(", \"imgUrl\":\"").append(imgUrl).append("\"");
+		}
+		if (subwayDistance != null) {
+			sb.append(", \"subwayDistance\":\"").append(subwayDistance).append("\"");
+		}
+		if (linkUrl != null) {
+			sb.append(", \"linkUrl\":\"").append(linkUrl).append("\"");
+		}
+		if (detail != null) {
+			sb.append(", \"detail\":\"").append(detail).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		return sb.toString();
+	}
 }
