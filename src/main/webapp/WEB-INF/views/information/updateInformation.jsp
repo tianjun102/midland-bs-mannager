@@ -17,33 +17,14 @@
 <head>
     <base href="<%=basePath%>">
     <meta charset="utf-8" />
-    <title>添加资讯</title>
+    <title>修改资讯</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
     <meta name="MobileOptimized" content="320">
-    <link rel="stylesheet" href="${ctx}/assets/css/layer.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/common.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/easydropdown.css" />
-    <link rel="stylesheet" type="text/css" href="${ctx }/assets/scripts/uploadify/uploadify.css">
-
 </head>
 <body >
-<script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="${ctx}/assets/plugins/jquery-validation/lib/jquery.form.js"></script>
-<script type="text/javascript" src="${ctx}/assets/scripts/jquery.easydropdown.js" ></script>
-<script type="text/javascript" src="${ctx}/assets/scripts/bootstrap.min.js"></script>
-<script src="${ctx}/assets/scripts/common.js"></script>
-<script src="${ctx}/assets/scripts/layer.js" type="text/javascript"></script>
-<script src="${ctx}/assets/scripts/base.js" type="text/javascript"></script>
-<script src="${ctx}/assets/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
-<script src="${ctx}/assets/UEditor/ueditor.config.js" type="text/javascript"></script>
-<script src="${ctx}/assets/UEditor/ueditor.all.js" type="text/javascript"></script>
-<script src="${ctx}/assets/UEditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
-<script src="${ctx}/assets/scripts/inputControl.js" type="text/javascript"></script>
-<script type="text/javascript" src="${ctx }/assets/scripts/uploadify/jquery.uploadify.min.js"></script>
 <style>
 
     .content ul.adminfo li > span {
@@ -56,7 +37,9 @@
         font-size: 14px;
         color: rgb(102, 102, 102);
     }
-
+    .layui-layer{
+        top:260px!important;
+    }
 
 </style>
 <div class="box">

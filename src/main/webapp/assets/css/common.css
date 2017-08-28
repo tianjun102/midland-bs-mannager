@@ -25,7 +25,7 @@ input:-webkit-autofill { box-shadow: 0 0 0px 1000px white inset !important;}
 	line-height: 70px;
 }
 .login_head .login>a:nth-child(1) {
-	color: #ffd200;	
+	color: #ffd200;
 	margin-right: 60px;
 	font-size: 14px;
 }
@@ -78,7 +78,7 @@ input:-webkit-autofill { box-shadow: 0 0 0px 1000px white inset !important;}
 #key  {top: 181px}
 .form-hide {display: none;}
 input#id-code{width: 225px; border-right: none;}
-input#logsub {width: 100%; height: 52px; background-color: #ffd200; color: #FFFFFF; font-size:  18px; letter-spacing: 30px; text-indent: 30px; border: none; outline: none; border-radius: 3px;} 
+input#logsub {width: 100%; height: 52px; background-color: #ffd200; color: #FFFFFF; font-size:  18px; letter-spacing: 30px; text-indent: 30px; border: none; outline: none; border-radius: 3px;}
 input#logsub:hover {background-color: rgba(255, 195, 0, 0.9);}
 p.forget {padding: 10px 0; text-align: right;}
 p.forget a {color: #666;}
@@ -157,13 +157,13 @@ header.head .user .admin {
 }
 header.head .user .out {
 	right: 10px;
-	width: 90px; 
-	height: 28px; 
-	line-height: 28px; 
+	width: 90px;
+	height: 28px;
+	line-height: 28px;
 	text-align: center;
-	color: #ffd200; 
-	background: #FFF; 
-	border: 1px solid #d3d8db; 
+	color: #ffd200;
+	background: #FFF;
+	border: 1px solid #d3d8db;
 	position: absolute;
 	display: none;
 }
@@ -194,7 +194,7 @@ nav.nav dl dt {
 .turnWH {
 	color:#ffffff!important;
 	/*border-left: 5px solid #a50001;*/
-}	
+}
 nav.nav dl dt a {
 	display: block;
 	height: 50px;
@@ -233,7 +233,7 @@ nav.nav dl dd a:hover {
 	width: 100%;
 	height: 40px;
 	line-height: 40px;
-	color: #ffd200!important; 
+	color: #ffd200!important;
 	background-color: #fff;
 	border-right: 1px solid #d8dde0;
 }
@@ -353,7 +353,7 @@ input.date {
 	border: none;
 	border-radius: 4px;
 	text-indent: 0;
-}	
+}
 .bg1{
 	color: #ffffff;
 	background-color: #a0a9ba;
@@ -398,7 +398,7 @@ input.date {
 }
 .table-add tr td {
 	text-align: center;
-	
+
 }
 .table-add tr td a {
 	display: inline-block;
@@ -643,8 +643,8 @@ input.date {
 
 .table2>li {
 	height: 40px;
-	line-height: 40px;	
-	position: relative;	
+	line-height: 40px;
+	position: relative;
 }
 .table2>li:nth-child(1) {
 	height: 50px;
@@ -747,10 +747,10 @@ body .layer-style {
 	border-radius: 5px;
 }
 body .layer-style .layui-layer-title {
-	background-color:#f5f5f5; 
-	color:#000; 
-	font-size:14px; 
-	font-weight:bolder;	
+	background-color:#f5f5f5;
+	color:#000;
+	font-size:14px;
+	font-weight:bolder;
 	border-bottom: 1px solid #E2E2E2;
 }
 body .layer-style .layui-layer-btn .layui-layer-btn0 {
@@ -833,12 +833,12 @@ body .layer-style .layui-layer-btn .layui-layer-btn1:hover{
        	    max-width: 182px;
     		max-height: 182px;
         }
-       
-        
+
+
         .filepath1{
         	width: 182px !important;
         }
-        
+
           .filepath{
         	width: 182px !important;
         }
@@ -850,7 +850,7 @@ body .layer-style .layui-layer-btn .layui-layer-btn1:hover{
             z-index:999;
             display: none;
         }
-        
+
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus,
 	.pagination>li>span:hover {
 	background-color: #a9b3c0 !important;
@@ -866,7 +866,7 @@ body .layer-style .layui-layer-btn .layui-layer-btn1:hover{
 	{
 	color: #ffffff !important;
 	background-color: #18aec9 !important;
-}        
+}
 .detail-titleBtn{
 	height: 48px;
 	line-height: 48px;

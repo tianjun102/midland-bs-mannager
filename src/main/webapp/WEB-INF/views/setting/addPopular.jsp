@@ -95,26 +95,9 @@
                     </select>
                 </p>
             </li>
-
-            <li>
-            </li>
-
             <li><span>链接URL：</span><input style="width:274px;" type="text" name="url" id="url" value=""
                                          onblur="checkPhone();"/><span class="_star">*</span>
             </li>
-            <%-- <li>
-                <span>角色类型：</span>
-                <div style = "width:252px; display:flex;align-items:center; flex-wrap: wrap;">
-                    <c:if test="${!empty roles }">
-                    <c:forEach items="${roles }" var="role">
-                        <span style = "width: 82px;">
-                            <input style="width:24px;height: 14px" type="checkbox" name="userRoles" value="${role.id }"/>
-                            <label>${role.roleName }</label>
-                        </span>
-                    </c:forEach>
-                </c:if>
-                </div>
-            </li> --%>
             <li style="padding-top:30px;">
                 <span></span>
                 <a target="contentF" class="public_btn bg2" id="save" onclick="saveData()">保存</a>

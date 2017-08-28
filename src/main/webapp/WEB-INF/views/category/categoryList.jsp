@@ -34,8 +34,8 @@
                         <td>${item.type }</td>
                         <td>
 
-                            <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
-                            <a target="contentF" onclick="delete1(${item.id })">删除</a>
+                            <a target="contentF" class="edit_img" title="编辑" onclick="to_edit(${item.id })"></a>
+                            <a target="contentF" class="delete_img" title="删除" onclick="delete1(${item.id })"></a>
                             <a target="contentF" onclick="sort(${item.id },${item.orderBy},1)">上移</a>
                             <a target="contentF" onclick="sort(${item.id },${item.orderBy},2)">下移</a>
                         </td>

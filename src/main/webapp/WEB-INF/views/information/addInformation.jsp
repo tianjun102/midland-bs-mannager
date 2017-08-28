@@ -23,27 +23,8 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <meta name="MobileOptimized" content="320">
-    <link rel="stylesheet" href="${ctx}/assets/css/layer.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/common.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/easydropdown.css" />
-    <link rel="stylesheet" type="text/css" href="${ctx }/assets/scripts/uploadify/uploadify.css">
-
 </head>
 <body >
-<script type="text/javascript" src="${ctx}/assets/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="${ctx}/assets/plugins/jquery-validation/lib/jquery.form.js"></script>
-<script type="text/javascript" src="${ctx}/assets/scripts/jquery.easydropdown.js" ></script>
-<script type="text/javascript" src="${ctx}/assets/scripts/bootstrap.min.js"></script>
-<script src="${ctx}/assets/scripts/common.js"></script>
-<script src="${ctx}/assets/scripts/layer.js" type="text/javascript"></script>
-<script src="${ctx}/assets/scripts/base.js" type="text/javascript"></script>
-<script src="${ctx}/assets/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
-<script src="${ctx}/assets/UEditor/ueditor.config.js" type="text/javascript"></script>
-<script src="${ctx}/assets/UEditor/ueditor.all.js" type="text/javascript"></script>
-<script src="${ctx}/assets/UEditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
-<script src="${ctx}/assets/scripts/inputControl.js" type="text/javascript"></script>
-<script type="text/javascript" src="${ctx }/assets/scripts/uploadify/jquery.uploadify.min.js"></script>
 <style>
 
     .content ul.adminfo li > span {
@@ -55,6 +36,10 @@
         text-align: right;
         font-size: 14px;
         color: rgb(102, 102, 102);
+    }
+
+    .layui-layer{
+        top:260px!important;
     }
 
 
@@ -185,41 +170,6 @@
         });
 
     }
-
-
-
-    $(function() {
-        $(".filepath").on("change",function() {
-//          alert($('.imgbox').length);
-            FileExt=this.value.substr(this.value.lastIndexOf(".")).toLowerCase();
-
-            if(AllowExt!=0&&AllowExt.indexOf(FileExt+"|")==-1) //判断文件类型是否允许上传
-            {
-                ErrMsg="\n该文件类型不允许上传。请上传 "+AllowExt+" 类型的文件，当前文件类型为"+FileExt;
-                $(this).val("");
-                layer.alert(ErrMsg);
-                return false;
-            }
-            ImgFileSize=document.getElementById(this.id).files.item(0).size;
-            ImgFileSize=Math.round(ImgFileSize*1000/(1024*1024))/1000;//取得图片文件的大小
-            if(ImgFileSize>1){
-                layer.alert("图片大小为"+ImgFileSize+"M，请上传小于1M的图片！");
-                return false;
-            }
-            var srcs = getObjectURL(this.files[0]);   //获取路径
-            $(this).nextAll(".img1").hide();   //this指的是input
-            $(this).nextAll(".img2").show();  //fireBUg查看第二次换图片不起做用
-            $(this).nextAll('.close').show();   //this指的是input
-            $(this).nextAll(".img2").attr("src",srcs);    //this指的是input
-            //$(this).val('');    //必须制空
-            $(".close").on("click",function() {
-                $(this).hide();     //this指的是span
-                $(this).nextAll(".img2").hide();
-                $(this).nextAll(".img1").show();
-                $(this).prev().val('');
-            })
-        })
-    })
 
 
     function setCityName(){

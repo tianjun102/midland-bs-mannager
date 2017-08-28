@@ -106,10 +106,6 @@
                     </select>
                 </p>
             </li>
-
-            <li>
-            </li>
-
             <li><span>链接URL：</span><input style="width:274px;" type="text" name="url" id="url" value="${popular.url}"
                                          onblur="checkPhone();"/><span class="_star">*</span>
             </li>
