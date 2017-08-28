@@ -15,6 +15,7 @@ import com.midland.web.util.MidlandHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.io.UnsupportedEncodingException;
 import java.util.*;
@@ -57,6 +58,19 @@ public class SettingServiceImpl implements SettingService {
     @Override
     public Map<String, List<Area>> queryCityByRedis(Map<String, String> parem) {
         return getStringListMap(parem);
+    }
+    
+    /**
+     * 查询所有省份
+     * @param model
+     */
+    @Override
+    public void getAllProvinceList(Model model) {
+        Map<String,String> param = new HashMap<>();
+        param.put("flag","province");
+        Map<String, List<Area>> result = queryCityByRedis(param);
+        List<Area> provinceList = result.get("province");
+        model.addAttribute("provinceList",provinceList);
     }
     
     /**

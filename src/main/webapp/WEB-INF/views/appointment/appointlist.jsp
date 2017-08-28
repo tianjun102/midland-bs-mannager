@@ -41,12 +41,17 @@
                            varStatus="xh">
                     <tr>
                         <td>${appoint.appointSn }</td>
-                        <td> <c:if test="${appoint.source ==0 }">网站</c:if>
-                             <c:if test="${appoint.source ==1 }">微站</c:if></td>
+                        <td><c:forEach items="${sources}" var="s">
+                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
                         <td>${appoint.nickName }</td>
                         <td>${appoint.phone }</td>
-                        <td>${appoint.houseType }</td>
-                        <td>${appoint.sellRent }</td>
+                        <td><c:forEach items="${hources}" var="s">
+                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
+                        <td><c:forEach items="${sellRents}" var="s">
+                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
                         <td>${appoint.appointmentTime }</td>
                         <td>${appoint.area }</td>
                         <td>${appoint.communityName }</td>
@@ -56,13 +61,17 @@
                         <td>${appoint.price }</td>
                         <td>${appoint.entrustTime }</td>
                         <td>${appoint.userCnName }</td>
-                        <td>${appoint.status }</td>
+                        <td><c:forEach items="${statusList}" var="s">
+                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
                         <td>${appoint.handleTime }</td>
                         <td>
 
-                            <a target="contentF" class="edit_img" title="重新分配经纪人" onclick="toRedistribute(${appoint.id })"></a>
+                            <a target="contentF" class="edit_img" title="重新分配经纪人"
+                               onclick="toRedistribute(${appoint.id })"></a>
 
-                            <a target="contentF" class="edit_img" title="编辑" onclick="toUpdateAppointment(${appoint.id})"></a>
+                            <a target="contentF" class="edit_img" title="编辑"
+                               onclick="toUpdateAppointment(${appoint.id})"></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -92,7 +101,7 @@
             title: ['重新分配经纪人'],
             shade: 0.3,
             area: ['1000px', '700px'],
-            content: ['${ctx}/rest/appoint/toRedistribute?appointId=' + id , 'no']
+            content: ['${ctx}/rest/appoint/toRedistribute?appointId=' + id, 'no']
         });
     }
 
@@ -103,7 +112,7 @@
             title: ['更新'],
             shade: 0.3,
             area: ['1000px', '700px'],
-            content: ['${ctx}/rest/appoint/to_update?appointId=' + appointId , 'no']
+            content: ['${ctx}/rest/appoint/to_update?appointId=' + appointId, 'no']
         });
     }
 </script>

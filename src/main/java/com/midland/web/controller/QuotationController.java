@@ -3,6 +3,7 @@ package com.midland.web.controller;
 import com.midland.web.model.Quotation;
 import com.midland.web.service.QuotationService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.SettingService;
 import com.midland.web.util.JsonMapReader;
 import com.midland.web.util.ParamObject;
 import org.slf4j.Logger;
@@ -27,6 +28,8 @@ public class QuotationController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(QuotationController.class);
 	@Autowired
 	private QuotationService quotationServiceImpl;
+	@Autowired
+	private SettingService settingService;
 
 	/**
 	 * 
@@ -44,6 +47,8 @@ public class QuotationController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddQuotation(Quotation quotation,Model model) throws Exception {
+		settingService.getAllProvinceList(model);
+		
 		return "quotation/addQuotation";
 	}
 
@@ -100,6 +105,7 @@ public class QuotationController extends BaseController  {
 		Quotation result = quotationServiceImpl.selectQuotationById(id);
 		List<ParamObject> paramObjects = JsonMapReader.getMap("quotation_type");
 		model.addAttribute("types",paramObjects);
+		settingService.getAllProvinceList(model);
 		model.addAttribute("item",result);
 		return "quotation/updateQuotation";
 	}

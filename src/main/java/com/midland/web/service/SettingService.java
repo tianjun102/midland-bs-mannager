@@ -4,6 +4,7 @@ import com.midland.web.model.Area;
 import com.midland.web.model.Banner;
 import com.midland.web.model.LinkUrlManager;
 import com.midland.web.model.Popular;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,8 @@ public interface SettingService {
     public int insertPopular(Popular popular);
 
     public Map<String, List<Area>> queryCityByRedis(Map<String,String> parem);
+	
+	void getAllProvinceList(Model model);
 	
 	List<Area> queryAllCityByRedis();
 	

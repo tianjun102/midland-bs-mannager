@@ -144,9 +144,9 @@
 			<if test="cityName != null">
 				#{cityName,jdbcType=VARCHAR},
 			</if>
-			<if test="imgDesc != null">
-				#{imgDesc,jdbcType=VARCHAR},
-			</if>
+			 <if test="imgDesc != null">
+				 #{imgDesc,jdbcType=VARCHAR},
+			 </if>
 		</trim>
 	</insert>
 

@@ -62,14 +62,12 @@ private SettingService settingService;
 
     @RequestMapping(value = "toAddPage", method = { RequestMethod.GET, RequestMethod.POST })
     public String toAddPage(Model model, HttpServletRequest request){
-        Map<String,String> parem = new HashMap<>();
-        parem.put("flag","province");
-        Map<String, List<Area>> result = settingService.queryCityByRedis(parem);
-        List<Area> provinceList = result.get("province");
-        model.addAttribute("provinceList",provinceList);
+        settingService.getAllProvinceList(model);
         return "setting/addPopular";
     }
-
+    
+   
+    
     @RequestMapping(value = "seleAddress", method = { RequestMethod.GET, RequestMethod.POST })
     @ResponseBody
     public Object seleAddress(Model model, HttpServletRequest request,String id,String flag,String parentId){

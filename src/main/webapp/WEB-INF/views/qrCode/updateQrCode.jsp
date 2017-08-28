@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="../layout/tablib.jsp" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,41 +8,36 @@
     <title>Insert title here</title>
     <script type="text/javascript">
     </script>
+
 </head>
 <body>
 <section class="content" style="border:none;">
-    <form action="${ctx}/rest/quotation/update" method="post" id="dataForm">
+    <form action="${ctx}/rest/qrCode/update" method="post" id="dataForm">
         <ul class="userinfo row">
             <input type="hidden" name="id" id="id" value="${item.id}">
-            <li><span>数据时间：</span>
-                <input class="Wdate half" id="time1" onFocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"
-                                        name="dataTime" value="${item.dataTime}" style="
-    width: 250px;
-"/>
+            <li><span>imgUrl：</span>
+               <input type="text" name="imgUrl" id="imgUrl" value="${item.imgUrl}"/>
             </li>
-            <li><span>类型：</span>
-                <select name="type" id="type" class="dropdown">
-                    <option value="" >全部</option>
-                    <c:forEach items="${types}" var="type">
-                    <option value="${type.id}" <c:if test="${type.id==item.type}">selected</c:if> >${type.name}</option>
-                    </c:forEach>
-                </select>
+            <li><span>cityId：</span>
+               <input type="text" name="cityId" id="cityId" value="${item.cityId}"/>
             </li>
-            <%@include file="../layout/area.jsp" %>
-            <li><span>成交套数：</span>
-               <input type="text" name="dealNum" id="dealNum" value="${item.dealNum}"/>
+            <li><span>source：</span>
+               <input type="text" name="source" id="source" value="${item.source}"/>
             </li>
-            <li><span>成交面积：</span>
-               <input type="text" name="dealAcreage" id="dealAcreage" value="${item.dealAcreage}"/>
+            <li><span>name：</span>
+               <input type="text" name="name" id="name" value="${item.name}"/>
             </li>
-            <li><span>成交均价：</span>
-               <input type="text" name="price" id="price" value="${item.price}"/>
+            <li><span>isShow：</span>
+               <input type="text" name="isShow" id="isShow" value="${item.isShow}"/>
             </li>
-            <li><span>可售套数：</span>
-               <input type="text" name="soldNum" id="soldNum" value="${item.soldNum}"/>
+            <li><span>isDelete：</span>
+               <input type="text" name="isDelete" id="isDelete" value="${item.isDelete}"/>
             </li>
-            <li><span>可售面积：</span>
-               <input type="text" name="soldArea" id="soldArea" value="${item.soldArea}"/>
+            <li><span>cityName：</span>
+               <input type="text" name="cityName" id="cityName" value="${item.cityName}"/>
+            </li>
+            <li><span>detail：</span>
+               <input type="text" name="detail" id="detail" value="${item.detail}"/>
             </li>
             <li>
                 <span></span>
@@ -62,7 +56,7 @@
         debugger;
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/quotation/update",
+            url: "${ctx}/rest/qrCode/update",
             async: false, // 此处必须同步
             dataType: "json",
             data: data,

@@ -1,17 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.QrCode;
+import java.util.List;
 
 public interface QrCodeMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(QrCode record);
+	QrCode selectQrCodeById(Integer qrCode);
 
-    int insertSelective(QrCode record);
+	int deleteQrCodeById(Integer qrCode);
 
-    QrCode selectByPrimaryKey(Integer id);
+	int updateQrCodeById(QrCode qrCode);
 
-    int updateByPrimaryKeySelective(QrCode record);
+	int insertQrCode(QrCode qrCode);
 
-    int updateByPrimaryKey(QrCode record);
+	List<QrCode> findQrCodeList(QrCode qrCode);
+
 }

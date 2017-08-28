@@ -14,10 +14,14 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">序号</th>
-				<th style="width: 8%">平台</th>
-				<th style="width: 8%">模块名称</th>
-				<th style="width: 8%">城市</th>
+				<th style="width: 8%">imgUrl</th>
+				<th style="width: 8%">cityId</th>
+				<th style="width: 8%">source</th>
+				<th style="width: 8%">name</th>
+				<th style="width: 8%">isShow</th>
+				<th style="width: 8%">isDelete</th>
+				<th style="width: 8%">cityName</th>
+				<th style="width: 8%">detail</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -27,13 +31,14 @@
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
 						<input type="hidden" id="id" value="${item.id}"/>
-						<td>${xh.count}</td>
-						<td>
-                            <c:if test="${item.source == '0'}">网站</c:if>
-                            <c:if test="${item.source == '1'}">微站</c:if>
-                        </td>
-						<td>${item.modeName}</td>
+						<td>${item.imgUrl}</td>
+						<td>${item.cityId}</td>
+						<td>${item.source}</td>
+						<td>${item.name}</td>
+						<td>${item.isShow}</td>
+						<td>${item.isDelete}</td>
 						<td>${item.cityName}</td>
+						<td>${item.detail}</td>
 						<td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>
@@ -62,7 +67,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/specialPage/update?id="+id+"&isDelete=1",
+            url: "${ctx}/rest/qrCode/update?id="+id+"&isDelete=1",
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -83,7 +88,7 @@
             title: ['修改'],
             shade: 0.3,
             area: ['500px', '700px'],
-            content: ['${ctx}/rest/specialPage/to_update?id='+id,'no']
+            content: ['${ctx}/rest/qrCode/to_update?id='+id,'no']
         });
     }
 
