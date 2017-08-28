@@ -42,29 +42,22 @@
                                                           maxlength="50"/><span class="_star">*</span></li>
             <li class="col-md-6"><span>预约类型：</span>
                 <select name="houseType" id="houseType" class="dropdown">
-                    <option value="0"
-                            <c:if test="${appointment.houseType==0}">selected="selected"</c:if>>住宅
-                    </option>
-                    <option value="1"
-                            <c:if test="${appointment.houseType==1}">selected="selected"</c:if>>公寓
-                    </option>
-                    <option value="2"
-                            <c:if test="${appointment.houseType==2}">selected="selected"</c:if>>写字楼
-                    </option>
-                    <option value="3"
-                            <c:if test="${appointment.houseType==3}">selected="selected"</c:if>>商铺
-                    </option>
+
+                    <c:forEach items="${houses}" var="s" >
+                        <option value="${s.id}" <c:if test="${s.id==appointment.houseType}" >selected</c:if>>
+                                ${s.name}
+                        </option>
+                    </c:forEach>
+
                 </select>
             </li>
             <li class="col-md-6"><span>分类：</span>
                 <select name="sellRent" id="sellRent" class="dropdown">
-                    <!-- <option value="" >请选择</option> -->
-                    <option value="0"
-                            <c:if test="${appointment.sellRent==0}">selected="selected"</c:if>>出售
-                    </option>
-                    <option value="1"
-                            <c:if test="${appointment.sellRent==1}">selected="selected"</c:if>>出租
-                    </option>
+                    <c:forEach items="${sellRents}" var="s" >
+                        <option value="${s.id}" <c:if test="${s.id==appointment.sellRent}" >selected</c:if>>
+                                ${s.name}
+                        </option>
+                    </c:forEach>
                 </select>
                 <span class="_star">*</span>
             </li>
@@ -89,16 +82,13 @@
 
             </li>
             <li class="col-md-6"><span>状态：</span><select name="status" id="status" class="dropdown">
-                <!-- <option value="" >请选择</option> -->
-                <option value="0"
-                        <c:if test="${appointment.status==0}">selected="selected"</c:if>>预约生成
-                </option>
-                <option value="1"
-                        <c:if test="${appointment.status==1}">selected="selected"</c:if>>经纪人重新分配
-                </option>
-                <option value="2"
-                        <c:if test="${appointment.status==2}">selected="selected"</c:if>>已联系
-                </option>
+
+                <c:forEach items="${statusList}" var="s" >
+                    <option value="${s.id}" <c:if test="${s.id==appointment.status}" >selected</c:if>>
+                            ${s.name}
+                    </option>
+                </c:forEach>
+
             </select></li>
 
             <li class="col-md-11"><span>备注：</span>

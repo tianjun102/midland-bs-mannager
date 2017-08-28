@@ -11,7 +11,9 @@ import com.midland.web.model.user.User;
 import com.midland.web.service.DingJiangService;
 import com.midland.web.service.EntrustLogService;
 import com.midland.web.service.EntrustService;
+import com.midland.web.util.JsonMapReader;
 import com.midland.web.util.MidlandHelper;
+import com.midland.web.util.ParamObject;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +46,9 @@ public class EntrustController extends BaseController{
 	Logger logger = LoggerFactory.getLogger(EntrustController.class);
 	
 	@RequestMapping("/index")
-	public String showAppointIndex(HttpServletRequest request)
+	public String showAppointIndex(HttpServletRequest request,Model model)
 	{
+		getSelectParam(model);
 		return "/entrust/entrustIndex";
 	}
 	
@@ -82,7 +85,18 @@ public class EntrustController extends BaseController{
 		
 		return entrustServiceImpl.selectEntrustById(id);
 	}
-
+	
+	private void getSelectParam(Model model) {
+		List<ParamObject> paramObjects = JsonMapReader.getMap("appointment_sellRent");
+		;
+		model.addAttribute("sellRents",paramObjects);
+		List<ParamObject> paramObjects1 = JsonMapReader.getMap("appointment_status");
+		model.addAttribute("statusList",paramObjects1);
+		List<ParamObject> paramObjects2 = JsonMapReader.getMap("source");
+		model.addAttribute("sources",paramObjects2);
+		List<ParamObject> paramObjects3 = JsonMapReader.getMap("appointment_houseType");
+		model.addAttribute("houses",paramObjects3);
+	}
 	
 	
 	@RequestMapping("/page")
@@ -96,6 +110,7 @@ public class EntrustController extends BaseController{
 		PageHelper.startPage(Integer.valueOf(pageNo),Integer.valueOf(pageSize));
 		Page<Entrust> result =(Page<Entrust>) entrustServiceImpl.findEntrustList(record);
 		Paginator paginator = result.getPaginator();
+		getSelectParam(model);
 		model.addAttribute("paginator", paginator);
 		model.addAttribute("entrusts", result);
 		return "entrust/entrustList";

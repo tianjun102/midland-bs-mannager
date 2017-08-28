@@ -14,64 +14,64 @@
     <table class="table table-bordered table-add">
         <thead>
         <tr>
-            <th style="width: 3%">委托编号</th>
-            <th style="width: 3%">信息来源</th>
-            <th style="width: 3%">称呼</th>
-            <th style="width: 5%">电话</th>
-            <th style="width: 2%">类型</th>
-            <th style="width: 2%">分类</th>
-            <th style="width: 5%">委托时间</th>
-            <th style="width: 5%">所属区域</th>
-            <th style="width: 5%">小区名</th>
-            <th style="width: 5%">门牌地址</th>
-            <th style="width: 5%">户型</th>
-            <th style="width: 5%">面积</th>
-            <th style="width: 5%">售价/租价</th>
-            <th style="width: 15%">预约时间</th>
-            <th style="width: 5%">经纪人</th>
-            <th style="width: 5%">state</th>
-            <th style="width: 5%">处理时间</th>
-            <th style="width: 25%">操作</th>
+            <th style="width:auto">委托编号</th>
+            <th style="width:auto">信息来源</th>
+            <th style="width:auto">称呼</th>
+            <th style="width:auto">电话</th>
+            <th style="width:auto">类型</th>
+            <th style="width:auto">分类</th>
+            <th style="width:auto">委托时间</th>
+            <th style="width:auto">所属区域</th>
+            <th style="width:auto">小区名</th>
+            <th style="width:auto">门牌地址</th>
+            <th style="width:auto">户型</th>
+            <th style="width:auto">面积</th>
+            <th style="width:auto">售价/租价</th>
+            <th style="width:auto">预约时间</th>
+            <th style="width:auto">经纪人</th>
+            <th style="width:auto">状态</th>
+            <th style="width:auto">处理时间</th>
+            <th style="width:auto">操作</th>
         </tr>
         </thead>
         <tbody>
         <c:choose>
             <c:when test="${!empty requestScope.appoint }">
-                <c:forEach items="${requestScope.appoint }" var="appoint"
+                <c:forEach items="${requestScope.appoint }" var="item"
                            varStatus="xh">
                     <tr>
-                        <td>${appoint.appointSn }</td>
+                        <td>${item.appointSn }</td>
                         <td><c:forEach items="${sources}" var="s">
-                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                            <c:if test="${item.source == s.id}">${s.name}</c:if>
                         </c:forEach></td>
-                        <td>${appoint.nickName }</td>
-                        <td>${appoint.phone }</td>
-                        <td><c:forEach items="${hources}" var="s">
-                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                        <td>${item.nickName }</td>
+                        <td>${item.phone }</td>
+                        <td><c:forEach items="${houses}" var="s">
+                            <c:if test="${item.houseType == s.id}">${s.name}</c:if>
                         </c:forEach></td>
                         <td><c:forEach items="${sellRents}" var="s">
-                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                            <c:if test="${item.sellRent == s.id}">${s.name}</c:if>
                         </c:forEach></td>
-                        <td>${appoint.appointmentTime }</td>
-                        <td>${appoint.area }</td>
-                        <td>${appoint.communityName }</td>
-                        <td>${appoint.address }</td>
-                        <td>${appoint.layout }</td>
-                        <td>${appoint.measure }</td>
-                        <td>${appoint.price }</td>
-                        <td>${appoint.entrustTime }</td>
-                        <td>${appoint.userCnName }</td>
+                        <td>${item.appointmentTime }</td>
+                        <td>${item.area }</td>
+                        <td>${item.communityName }</td>
+                        <td>${item.address }</td>
+                        <td>${item.layout }</td>
+                        <td>${item.measure }</td>
+                        <td>${item.price }</td>
+                        <td>${item.entrustTime }</td>
+                        <td>${item.userCnName }</td>
                         <td><c:forEach items="${statusList}" var="s">
-                            <c:if test="${item.type == s.id}">${s.name}</c:if>
+                            <c:if test="${item.status == s.id}">${s.name}</c:if>
                         </c:forEach></td>
-                        <td>${appoint.handleTime }</td>
+                        <td>${item.handleTime }</td>
                         <td>
 
                             <a target="contentF" class="edit_img" title="重新分配经纪人"
-                               onclick="toRedistribute(${appoint.id })"></a>
+                               onclick="toRedistribute(${item.id })"></a>
 
                             <a target="contentF" class="edit_img" title="编辑"
-                               onclick="toUpdateAppointment(${appoint.id})"></a>
+                               onclick="toUpdateAppointment(${item.id})"></a>
                         </td>
                     </tr>
                 </c:forEach>

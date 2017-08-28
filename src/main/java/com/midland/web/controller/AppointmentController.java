@@ -63,6 +63,8 @@ public class AppointmentController extends BaseController{
 		model.addAttribute("statusList",paramObjects1);
 		List<ParamObject> paramObjects2 = JsonMapReader.getMap("source");
 		model.addAttribute("sources",paramObjects2);
+		List<ParamObject> paramObjects3 = JsonMapReader.getMap("appointment_houseType");
+		model.addAttribute("houses",paramObjects3);
 	}
 	
 	
@@ -153,6 +155,7 @@ public class AppointmentController extends BaseController{
 	public String toUpdateAppointment(int appointId,Model model) {
 		Appointment appointment=appointmentServiceImpl.selectAppointmentById(appointId);
 		List<AppointLog> appointLogs = appointLogServiceImpl.selectAppointLogByAppointId(appointId);
+		getSelectParam(model);
 		model.addAttribute("appointment",appointment);
 		model.addAttribute("appointLogs",appointLogs);
 		return "appointment/updateAppointInfo";
