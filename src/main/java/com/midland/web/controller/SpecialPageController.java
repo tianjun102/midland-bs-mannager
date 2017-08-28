@@ -1,6 +1,8 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
 import com.midland.web.model.SpecialPage;
+import com.midland.web.service.SettingService;
 import com.midland.web.service.SpecialPageService;
 import com.midland.web.controller.base.BaseController;
 import org.slf4j.Logger;
@@ -25,12 +27,20 @@ public class SpecialPageController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(SpecialPageController.class);
 	@Autowired
 	private SpecialPageService specialPageServiceImpl;
+	@Autowired
+	private SettingService settingService;
 
 	/**
 	 * 
 	 **/
 	@RequestMapping("index")
 	public String specialPageIndex(SpecialPage specialPage,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "specialPage/specialPageIndex";
 	}
 
@@ -39,6 +49,12 @@ public class SpecialPageController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddSpecialPage(SpecialPage specialPage,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "specialPage/addSpecialPage";
 	}
 

@@ -62,6 +62,10 @@ public class SpecialPage{
 	 * 城市名称
 	 **/
 	private String cityName;
+	/**
+	 * 缩略图描述
+	 **/
+	private String imgDesc;
 
 
 	public Integer getId() {
@@ -184,6 +188,14 @@ public class SpecialPage{
 		this.cityName = cityName;
 	}
 
+	public String getImgDesc() {
+		return imgDesc;
+	}
+
+	public void setImgDesc(String imgDesc) {
+		this.imgDesc = imgDesc;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("SpecialPage{");
@@ -231,6 +243,9 @@ public class SpecialPage{
 		}
 		if (cityName != null) {
 			sb.append(", \"cityName\":\"").append(cityName).append("\"");
+		}
+		if (imgDesc != null) {
+			sb.append(", \"imgDesc\":\"").append(imgDesc).append("\"");
 		}
 		return sb.toString();
 	}

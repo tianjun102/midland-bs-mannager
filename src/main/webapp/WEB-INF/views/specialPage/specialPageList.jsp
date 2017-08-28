@@ -14,20 +14,10 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">cityId</th>
-				<th style="width: 8%">source</th>
-				<th style="width: 8%">modeName</th>
-				<th style="width: 8%">position</th>
-				<th style="width: 8%">title</th>
-				<th style="width: 8%">description</th>
-				<th style="width: 8%">price</th>
-				<th style="width: 8%">address</th>
-				<th style="width: 8%">imgUrl</th>
-				<th style="width: 8%">subwayDistance</th>
-				<th style="width: 8%">linkUrl</th>
-				<th style="width: 8%">detail</th>
-				<th style="width: 8%">isDelete</th>
-				<th style="width: 8%">cityName</th>
+				<th style="width: 8%">序号</th>
+				<th style="width: 8%">平台</th>
+				<th style="width: 8%">模块名称</th>
+				<th style="width: 8%">城市</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -37,19 +27,12 @@
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
 						<input type="hidden" id="id" value="${item.id}"/>
-						<td>${item.cityId}</td>
-						<td>${item.source}</td>
+						<td>${xh.count}</td>
+						<td>
+                            <c:if test="${item.source == '0'}">网站</c:if>
+                            <c:if test="${item.source == '1'}">微站</c:if>
+                        </td>
 						<td>${item.modeName}</td>
-						<td>${item.position}</td>
-						<td>${item.title}</td>
-						<td>${item.description}</td>
-						<td>${item.price}</td>
-						<td>${item.address}</td>
-						<td>${item.imgUrl}</td>
-						<td>${item.subwayDistance}</td>
-						<td>${item.linkUrl}</td>
-						<td>${item.detail}</td>
-						<td>${item.isDelete}</td>
 						<td>${item.cityName}</td>
 						<td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
