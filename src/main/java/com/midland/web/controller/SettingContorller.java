@@ -114,21 +114,21 @@ private SettingService settingService;
         List<Area> provinceList = result.get("province");
         model.addAttribute("provinceList",provinceList);
         Map<String, List<Area>> cityList = null;
-        if(StringUtils.isNotEmpty(popular.getProvinceId())){
+        if(StringUtils.isNotEmpty(popular.getProvinceId())&&StringUtils.isNotEmpty(popular.getCityId())){
             parem.put("flag","city");
             parem.put("id",popular.getProvinceId());
             cityList = settingService.queryCityByRedis(parem);
         }
         model.addAttribute("cityList",cityList==null?null:cityList.get("city"));
         Map<String, List<Area>> areaList = null;
-        if(StringUtils.isNotEmpty(popular.getCityId())){
+        if(StringUtils.isNotEmpty(popular.getCityId())/*&&StringUtils.isNotEmpty(popular.getAreaId())*/){
             parem.put("flag","area");
             parem.put("id",popular.getCityId());
             areaList = settingService.queryAreaByRedis(parem);
         }
-        model.addAttribute("areaList",areaList==null?null:areaList.get("area"));
+         model.addAttribute("areaList",areaList==null?null:areaList.get("area"));
         Map<String, List<Area>> sheetLst = null;
-        if(StringUtils.isNotEmpty(popular.getCityId())){
+        if(StringUtils.isNotEmpty(popular.getCityId())/*&&StringUtils.isNotEmpty(popular.getAreaId())*/){
             parem.put("flag","sheet");
             parem.put("id",popular.getCityId());
             parem.put("parentId",popular.getAreaId());

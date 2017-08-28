@@ -38,8 +38,10 @@
                         <td>${item.releaseTime }</td>
                         <td>
                             <a target="contentF" onclick="to_comment(${item.id});" >评论</a>
-                            <a target="contentF" href="${ctx}/rest/information/to_update?id=${item.id}">编辑</a>
-                            <a target="contentF" onclick="deleteInfrmateion(${item.id })">删除</a>
+                            <a target="contentF" title="编辑" class="edit_img" href="${ctx}/rest/information/to_update?id=${item.id}"></a>
+                            <a target="contentF" title="删除" class="delete_img" onclick="deleteInfrmateion(${item.id })"></a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},1)">上移</a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},2)">下移</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -62,23 +64,49 @@
 
 <script type="text/javascript">
 
-    function deleteInfrmateion(id){
-        $.ajax({
-            type: "post",
-            url: "${ctx}/rest/information/delete?id="+id,
-            async: false, // 此处必须同步
-            dataType: "json",
 
-            success: function (data) {
-                if (data.state==0){
-                    $('#searchForm').submit();
-                }
-            },
-            error: function () {
-                layer.msg("操作失败！", {icon: 2});
+    function deleteInfrmateion(id){
+        layer.open({
+            type: 1,
+            skin: 'layer-style',
+            area: ['350px','200px'],
+            shadeClose: false, //点击遮罩关闭
+            title:['删除资讯'],
+            resize: false,
+            scrollbar:false,
+            content:
+            '<section class = "content" style = "border:none; height:100%;">'+
+            '<p style = "text-align: center; font-size:16px; color:#000; margin-top:30px;">您确定要删除当前资讯吗?</p>'+
+            '</section>',
+            btn:['确定','取消'],
+            yes: function(index){
+                $.ajax({
+                    type: "post",
+                    url: "${ctx}/rest/information/delete?id="+id,
+                    cache:false,
+                    async:false, // 此处必须同步
+                    dataType: "json",
+                    success: function(data){
+                        if(data.state==0){
+                            layer.msg("删除成功！",{icon:1});
+                            setTimeout(function(){$("#searchForm").submit();},1000);
+                        }else{
+                            layer.msg("删除失败！！",{icon:7});
+                        }
+                        layer.close(index);
+                    }
+                });
             }
-        })
+            ,success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.css('text-align', 'center');
+            }
+        });
     }
+
+
+
+
 
     function to_comment(id){
         layer.open({
@@ -93,6 +121,27 @@
         });
 
     }
+
+    //排序
+    function sort(id,orderById,sort) {
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/information/sort?sort="+sort+"&orderBy="+orderById+"&id="+id,
+            async: false, // 此处必须同步
+            dataType: "json",
+
+            success: function (data) {
+                if (data.state==0){
+                    $('#searchForm').submit();
+                }
+            },
+            error: function () {
+                layer.msg("操作失败！", {icon: 2});
+            }
+        })
+    }
+
+
 
 
 </script>

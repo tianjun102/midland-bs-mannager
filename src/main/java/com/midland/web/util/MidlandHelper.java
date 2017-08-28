@@ -54,9 +54,14 @@ public class MidlandHelper {
 	 */
 	public static <T> List getPojoList(String str, Class<T> clazz)  {
 		List resList = new ArrayList<T>();
-		JSONObject rootJsonObject = JSON.parseObject(str);
+		JSONObject rootJsonObject = null;
+		try {
+			rootJsonObject = JSON.parseObject(str);
+		}catch (Exception e){
+			return null;
+		}
 		String messageStr;
-		if(rootJsonObject.getString("STATE").equals("SUCCESS")){
+		if(rootJsonObject!=null && rootJsonObject.getString("STATE").equals("SUCCESS")){
 			messageStr = rootJsonObject.getString("DATA");
 		}else{
 			return null;

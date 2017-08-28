@@ -8,6 +8,7 @@ import com.midland.web.model.Category;
 import com.midland.web.model.Information;
 import com.midland.web.service.CategoryService;
 import com.midland.web.service.InformationService;
+import com.midland.web.service.JdbcService;
 import com.midland.web.service.SettingService;
 import com.midland.web.util.MidlandHelper;
 import org.slf4j.Logger;
@@ -37,6 +38,9 @@ public class ResearchController extends BaseController  {
 
 	@Autowired
 	private CategoryService categoryService;
+
+	@Autowired
+	private JdbcService jdbcService;
 
 	/**
 	 * 
@@ -175,5 +179,20 @@ public class ResearchController extends BaseController  {
 			model.addAttribute("items",null);
 		}
 		return "research/informationList";
+	}
+
+
+	@RequestMapping("sort")
+	@ResponseBody
+	public Map listDesc(Information information, int sort, Model model, HttpServletRequest request) throws Exception {
+		String primaryKeyName="id";
+		String primaryParam=String.valueOf(information.getId());
+		String tableName="information";
+		String orderByColumn="order_by";
+		String orderByParam=String.valueOf(information.getOrderBy());
+		jdbcService.listDesc(primaryKeyName,primaryParam,orderByColumn,tableName,orderByParam,sort);
+		Map map = new HashMap();
+		map.put("state",0);
+		return map;
 	}
 }
