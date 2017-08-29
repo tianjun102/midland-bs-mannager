@@ -1,8 +1,10 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
 import com.midland.web.model.QrCode;
 import com.midland.web.service.QrCodeService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.SettingService;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -25,12 +27,20 @@ public class QrCodeController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(QrCodeController.class);
 	@Autowired
 	private QrCodeService qrCodeServiceImpl;
+	@Autowired
+	private SettingService settingService;
 
 	/**
 	 * 
 	 **/
 	@RequestMapping("index")
 	public String qrCodeIndex(QrCode qrCode,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "qrCode/qrCodeIndex";
 	}
 
@@ -39,6 +49,12 @@ public class QrCodeController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddQrCode(QrCode qrCode,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "qrCode/addQrCode";
 	}
 
@@ -92,7 +108,13 @@ public class QrCodeController extends BaseController  {
 	 **/
 	@RequestMapping("to_update")
 	public String toUpdateQrCode(Integer id,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
 		QrCode result = qrCodeServiceImpl.selectQrCodeById(id);
+		model.addAttribute("cityList",cityList);
 		model.addAttribute("item",result);
 		return "qrCode/updateQrCode";
 	}

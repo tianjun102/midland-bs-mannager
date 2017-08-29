@@ -14,14 +14,11 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">imgUrl</th>
-				<th style="width: 8%">cityId</th>
-				<th style="width: 8%">source</th>
-				<th style="width: 8%">name</th>
-				<th style="width: 8%">isShow</th>
-				<th style="width: 8%">isDelete</th>
-				<th style="width: 8%">cityName</th>
-				<th style="width: 8%">detail</th>
+                <th style="width: 8%">序列号</th>
+				<th style="width: 8%">二维码</th>
+				<th style="width: 8%">城市名称</th>
+				<th style="width: 8%">平台</th>
+				<th style="width: 8%">名称</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -31,17 +28,17 @@
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
 						<input type="hidden" id="id" value="${item.id}"/>
-						<td>${item.imgUrl}</td>
-						<td>${item.cityId}</td>
-						<td>${item.source}</td>
-						<td>${item.name}</td>
-						<td>${item.isShow}</td>
-						<td>${item.isDelete}</td>
+                        <td>${xh.count}</td>
+						<td><img src="${item.imgUrl}" alt="" style="width:40px;height:40px"></td>
 						<td>${item.cityName}</td>
-						<td>${item.detail}</td>
 						<td>
-                            <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
-                            <a target="contentF" onclick="delete1(${item.id })">删除</a>
+                            <c:if test="${item.source == '0'}">网站</c:if>
+                            <c:if test="${item.source == '1'}">微站</c:if>
+                        </td>
+						<td>${item.name}</td>
+						<td>
+                            <a class="edit_img" target="contentF" title="编辑" onclick="to_edit(${item.id })"></a>
+                            <a class="delete_img" target="contentF" title="删除" onclick="delete1(${item.id })"></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -64,30 +61,54 @@
 
 <script type="text/javascript">
 
-    function delete1(id){
-        $.ajax({
-            type: "post",
-            url: "${ctx}/rest/qrCode/update?id="+id+"&isDelete=1",
-            async: false, // 此处必须同步
-            dataType: "json",
 
-            success: function (data) {
-                if (data.state==0){
-                    $('#searchForm').submit();
-                }
-            },
-            error: function () {
-                layer.msg("操作失败！", {icon: 2});
+    function delete1(id){
+        layer.open({
+            type: 1,
+            skin: 'layer-style',
+            area: ['350px','200px'],
+            shadeClose: false, //点击遮罩关闭
+            title:['删除Banner'],
+            resize: false,
+            scrollbar:false,
+            content:
+            '<section class = "content" style = "border:none; height:100%;">'+
+            '<p style = "text-align: center; font-size:16px; color:#000; margin-top:30px;">您确定要删除当前配置吗?</p>'+
+            '</section>',
+            btn:['确定','取消'],
+            yes: function(index){
+                $.ajax({
+                    type: "post",
+                    url: "${ctx}/rest/qrCode/update?id="+id+"&isDelete=1",
+                    cache:false,
+                    async:false, // 此处必须同步
+                    dataType: "json",
+                    success: function(data){
+                        if(data.state==0){
+                            layer.msg("删除成功！",{icon:1});
+                            setTimeout(function(){$("#searchForm").submit();},1000);
+                        }else{
+                            layer.msg("删除失败！！",{icon:7});
+                        }
+                        layer.close(index);
+                    }
+                });
             }
-        })
+            ,success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.css('text-align', 'center');
+            }
+        });
     }
+
+
 
     function to_edit(id){
         layer.open({
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['500px', '700px'],
+            area: ['500px', '500px'],
             content: ['${ctx}/rest/qrCode/to_update?id='+id,'no']
         });
     }
