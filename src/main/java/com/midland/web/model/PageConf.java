@@ -54,6 +54,10 @@ public class PageConf{
 	 * 标题
 	 **/
 	private String title;
+	/**
+	 * 是否删除；0=正常；1=删除
+	 **/
+	private Integer isDelete;
 
 
 	public Integer getId() {
@@ -160,6 +164,14 @@ public class PageConf{
 		this.title = title;
 	}
 
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("PageConf{");
@@ -201,6 +213,9 @@ public class PageConf{
 		}
 		if (title != null) {
 			sb.append(", \"title\":\"").append(title).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
 		}
 		return sb.toString();
 	}

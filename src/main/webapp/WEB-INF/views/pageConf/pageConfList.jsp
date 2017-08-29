@@ -26,6 +26,7 @@
 				<th style="width: 8%">baiduCodeWechat</th>
 				<th style="width: 8%">metaDesc</th>
 				<th style="width: 8%">title</th>
+				<th style="width: 8%">isDelete</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -47,6 +48,7 @@
 						<td>${item.baiduCodeWechat}</td>
 						<td>${item.metaDesc}</td>
 						<td>${item.title}</td>
+						<td>${item.isDelete}</td>
 						<td>
                             <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
                             <a target="contentF" onclick="delete1(${item.id })">删除</a>

@@ -51,6 +51,9 @@
             <li><span>title：</span>
                <input type="text" name="title" id="title" value="${item.title}"/>
             </li>
+            <li><span>isDelete：</span>
+               <input type="text" name="isDelete" id="isDelete" value="${item.isDelete}"/>
+            </li>
             <li>
                 <span></span>
                 <a target="contentF" class="public_btn bg2" id="save" onclick="updateData()">更新</a>

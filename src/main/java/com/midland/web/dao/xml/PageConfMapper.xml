@@ -16,10 +16,11 @@
 		<result column="baidu_code_wechat" property="baiduCodeWechat" jdbcType="LONGVARCHAR" />
 		<result column="meta_desc" property="metaDesc" jdbcType="LONGVARCHAR" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id,city_id,city_name,model,meta_lable,meta_show,baidu_code,baidu_show,cnzz_code,cnzz_code_wechat,baidu_code_wechat,meta_desc,title
+		id,city_id,city_name,model,meta_lable,meta_show,baidu_code,baidu_show,cnzz_code,cnzz_code_wechat,baidu_code_wechat,meta_desc,title,is_delete
 	</sql>
 
 	<select id="selectPageConfById" resultMap="BaseResultMap">
@@ -87,6 +88,9 @@
 			<if test="title != null">
 				title,
 			</if>
+			<if test="isDelete != null">
+				is_delete,
+			</if>
 		</trim>
 		values
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -125,6 +129,9 @@
 			</if>
 			<if test="title != null">
 				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="isDelete != null">
+				#{isDelete,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -165,6 +172,9 @@
 		</if>
 		<if test="title != null">
 			title= #{title,jdbcType=VARCHAR},
+		</if>
+		<if test="isDelete != null">
+			is_delete= #{isDelete,jdbcType=INTEGER},
 		</if>
 	</sql>
 
@@ -207,6 +217,9 @@
 		</if>
 		<if test="title != null">
 			 and title= #{title,jdbcType=VARCHAR}
+		</if>
+		<if test="isDelete != null">
+			 and is_delete= #{isDelete,jdbcType=INTEGER}
 		</if>
 	</sql>
 
