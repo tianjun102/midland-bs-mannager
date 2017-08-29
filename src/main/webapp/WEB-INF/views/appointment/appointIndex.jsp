@@ -21,7 +21,6 @@
 		<section class = "content">
 			<p class = "detail-title">
 				<span>看房记录列表</span>
-				<a class = "setup"  target="contentF" onclick="toAddPage()">创建用户</a>
 			</p>
 		<form action="${ctx }/rest/appoint/page" method="POST" id="searchForm"
 				onsubmit="submitSearchRequest('searchForm','listDiv');return false;">
@@ -39,7 +38,7 @@
 						</c:forEach>
 					</select>
 				</li>
-				<li><span>state：</span>
+				<li><span>状态：</span>
 					<select name="status" id="status" class="dropdown">
 						<option value="">全部</option>
 						<c:forEach items="${statusList}" var="s1" >

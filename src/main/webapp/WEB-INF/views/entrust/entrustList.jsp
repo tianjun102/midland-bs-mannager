@@ -14,24 +14,24 @@
     <table class="table table-bordered table-add">
         <thead>
         <tr>
-            <th style="width: 3%">委托编号</th>
-            <th style="width: 3%">信息来源</th>
-            <th style="width: 3%">称呼</th>
-            <th style="width: 5%">电话</th>
-            <th style="width: 2%">类型</th>
-            <th style="width: 2%">分类</th>
-            <th style="width: 5%">委托时间</th>
-            <th style="width: 5%">所属区域</th>
-            <th style="width: 5%">小区名</th>
-            <th style="width: 5%">门牌地址</th>
-            <th style="width: 5%">户型</th>
-            <th style="width: 5%">面积</th>
-            <th style="width: 5%">售价/租价</th>
-            <th style="width: 15%">预约时间</th>
-            <th style="width: 5%">经纪人</th>
-            <th style="width: 5%">state</th>
-            <th style="width: 5%">处理时间</th>
-            <th style="width: 25%">操作</th>
+            <th style="width: auto">委托编号</th>
+            <th style="width: auto">信息来源</th>
+            <th style="width: auto">称呼</th>
+            <th style="width: auto">电话</th>
+            <th style="width: auto">类型</th>
+            <th style="width: auto">分类</th>
+            <th style="width: auto">委托时间</th>
+            <th style="width: auto">所属区域</th>
+            <th style="width: auto">小区名</th>
+            <th style="width: auto">门牌地址</th>
+            <th style="width: auto">户型</th>
+            <th style="width: auto">面积</th>
+            <th style="width: auto">售价/租价</th>
+            <th style="width: auto">预约时间</th>
+            <th style="width: auto">经纪人</th>
+            <th style="width: auto">state</th>
+            <th style="width: auto">处理时间</th>
+            <th style="width: auto">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -40,13 +40,18 @@
                 <c:forEach items="${requestScope.entrusts }" var="item"
                            varStatus="xh">
                     <tr>
-                        <td>${appoint.entrustSn }</td>
-                        <td> <c:if test="${item.source ==0 }">网站</c:if>
-                            <c:if test="${item.source ==1 }">微站</c:if></td>
+                        <td>${item.entrustSn }</td>
+                        <td><c:forEach items="${sources}" var="s">
+                            <c:if test="${item.source == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
                         <td>${item.nickName }</td>
                         <td>${item.phone }</td>
-                        <td>${item.houseType }</td>
-                        <td>${item.sellRent }</td>
+                        <td><c:forEach items="${houses}" var="s">
+                            <c:if test="${item.houseType == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
+                        <td><c:forEach items="${sellRents}" var="s">
+                            <c:if test="${item.sellRent == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
                         <td>${item.entrustTime }</td>
                         <td>${item.area }</td>
                         <td>${item.communityName }</td>
@@ -56,11 +61,13 @@
                         <td>${item.price }</td>
                         <td>${item.entrustTime }</td>
                         <td>${item.userCnName }</td>
-                        <td>${item.status }</td>
+                        <td><c:forEach items="${statusList}" var="s">
+                            <c:if test="${item.status == s.id}">${s.name}</c:if>
+                        </c:forEach></td>
                         <td>${item.handleTime }</td>
                         <td>
 
-                            <a target="contentF" onclick="toRedistribute(${item.id })">重新分配经纪人</a>
+                            <a target="contentF" onclick="toRedistribute(${item.id })">分配</a>
 
                             <a target="contentF" onclick="toUpdateEntrust(${item.id })">修改</a>
                         </td>
