@@ -326,13 +326,13 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "/saveUserRole", method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public String saveUserRole(Integer userId,String roleIds){
+    public Object saveUserRole(Integer userId,String roleIds){
     	Map<String, Object> map = new HashMap<String, Object>();
     	map.put("flag", 0);
     	if(userService.updateUserRole(userId,roleIds)>0){
     		map.put("flag", 1);
     	}
-    	return JSONObject.toJSONString(map);
+    	return map;
     }
 	
 	/**

@@ -56,9 +56,6 @@
 					<shiro:hasPermission name="arealist">
 						<a id = "areaIndex" href="${ctx}/rest/appoint/index" target="contentF"><span>预约记录</span></a>
 					</shiro:hasPermission>
-					<shiro:hasPermission name="custlist">
-						<a id = "custIndex" href="${ctx}/rest/cust/custIndex" target="contentF"><span>客户列表</span></a>
-					</shiro:hasPermission>
 				</dd>
 			</dl>
 		</shiro:hasPermission>
@@ -104,10 +101,6 @@
 								class="glyphicon glyphicon-menu-right"></span></a>
 					</dt>
 					<dd>
-
-						<%--<shiro:hasPermission name="noticelist">--%>
-							<%--<a id = "enterPromotionIndex" href="${ctx}/rest/footer/index" target="contentF"><span>系统配置</span></a>--%>
-						<%--</shiro:hasPermission>--%>
 
 						<shiro:hasPermission name="noticelist">
 							<a id = "enterPromotionIndex" href="${ctx}/rest/serviceArea/index" target="contentF"><span>服务范围</span></a>
@@ -178,7 +171,7 @@
 				</dd>
 			</dl>
 		</shiro:hasPermission>
-		<shiro:hasPermission name="noticelist">
+		<%--<shiro:hasPermission name="noticelist">
 			<dl class="list-left7">
 				<dt>
 					<a href="javascript:;"
@@ -201,7 +194,7 @@
 					</shiro:hasPermission>
 				</dd>
 			</dl>
-		</shiro:hasPermission>
+		</shiro:hasPermission>--%>
 		<shiro:hasPermission name="systemManage">
 			<dl class="list-left8">
 				<dt>
@@ -211,12 +204,6 @@
 						class="glyphicon glyphicon-menu-right"></span></a>
 				</dt>
 				<dd>
-					<shiro:hasPermission name="noticelist">
-						<a id = "system1" href="${ctx}/rest/notice/noticeIndex" target="contentF"><span>公告管理</span></a>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="noticelist">
-						<a id = "system2" href="${ctx}/rest/product/rcms" target="contentF"><span>系统设置</span></a>
-					</shiro:hasPermission>
 
 					<shiro:hasPermission name="noticelist">
 						<a id = "system2" href="${ctx}/rest/setting/showPopularIndex" target="contentF"><span>热门关注管理</span></a>
@@ -230,28 +217,26 @@
 						<a id = "system2" href="${ctx}/rest/setting/bannerIndex" target="contentF"><span>Banner管理</span></a>
 					</shiro:hasPermission>
 
-					<shiro:hasPermission name="backupList">
-						<a id = "system3" href="${ctx}/rest/dataBackup/index" target="contentF"><span>数据备份</span></a>
-					</shiro:hasPermission>
-
 					<shiro:hasPermission name="noticelist">
 						<a id = "system1" href="${ctx}/rest/menu/index" target="contentF"><span>菜单管理</span></a>
 					</shiro:hasPermission>
+
 					<shiro:hasPermission name="userList">
 						<a id = "system4" href="${ctx}/rest/user/userIndex" target="contentF"><span>用户列表</span></a>
 					</shiro:hasPermission>
+
 					<shiro:hasPermission name="rolelist">
 						<a id = "system5" href="${ctx}/rest/role/roleIndex" target="contentF"><span>角色列表</span></a>
 					</shiro:hasPermission>
-					<shiro:hasPermission name="sysLoglist">
-						<a id = "system6" href="${ctx}/rest/sysLog/sysLogIndex" target="contentF"><span>系统日志</span></a>
-					</shiro:hasPermission>
+
 					<shiro:hasPermission name="sysLoglist">
 						<a id = "system6" href="${ctx}/rest/specialPage/index" target="contentF"><span>首页特殊模块配置</span></a>
 					</shiro:hasPermission>
+
 					<shiro:hasPermission name="sysLoglist">
 						<a id = "system6" href="${ctx}/rest/qrCode/index" target="contentF"><span>二维码管理</span></a>
 					</shiro:hasPermission>
+
 					<shiro:hasPermission name="sysLoglist">
 						<a id = "system6" href="${ctx}/rest/pageConf/index" target="contentF"><span>页面配置</span></a>
 					</shiro:hasPermission>

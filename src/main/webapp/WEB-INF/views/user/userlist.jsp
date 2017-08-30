@@ -16,15 +16,15 @@
 	 				<thead>
 						<tr>
 							<th style="width: 5%">序号</th>
-							<th style="width: 5%">用户名</th>
+							<th style="width: 7%">用户名</th>
 							<th style="width: 10%">手机号码</th>
-							<th style="width: 5%">注册时间</th>
-							<th style="width: 10%">注册来源</th>
-							<th style="width: 4%">实名状态</th>
-							<th style="width: 5%">审核人</th>
-							<th style="width: 10%">审核时间</th>
+							<th style="width: 15%">注册时间</th>
+							<th style="width: 6%">注册来源</th>
+							<th style="width: 6%">实名状态</th>
+							<th style="width: 7%">审核人</th>
+							<th style="width: 15%">审核时间</th>
 							<th style="width: 10%">用户类型</th>
-							<th style="width: 15%">操作</th>
+							<th style="width: 25%">操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,11 +48,11 @@
 								</td>
 								<td>
 									<%--<a onclick="preUpdate(${cust.id })" target="contentF" class = "edit_img" title = "编辑"></a>--%>
-									<%--<a onclick="userRole(${cust.id },'${cust.userCnName }')" target="contentF" class = "uList_img" title = "角色列表"></a>--%>
+									<a onclick="userRole(${cust.id },'${cust.userCnName }')" target="contentF" class = "uList_img" title = "角色列表"></a>
 									<%--<a href="#" onclick="isReset(${cust.id })" target="contentF" class = "reset_img" title = "重置密码"></a>--%>
 									<%--<a target="contentF" class = "delete_img" title = "删除" onclick="isDelete(${cust.id })" --%>
 
-										<a target="contentF" onclick="alterUser(${cust.id })">编辑</a>
+										<a target="contentF" onclick="alterUser(${cust.id })" class="edit_img" title="编辑"></a>
 
 										<a target="contentF" onclick="takeblacklist(${cust.id })">加入黑名单</a>
 										<a target="contentF" onclick="viewRealRegistration(${cust.id })">
