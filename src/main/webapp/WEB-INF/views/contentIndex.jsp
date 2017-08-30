@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>智者汇 - 关于平台</title>
+<title>美联物业 - 关于平台</title>
 <link rel="stylesheet" href="${ctx }/assets/css/common.css">
 
 </head>
@@ -17,7 +17,7 @@
 				<span>后台管理首页</span>
 			</p>
 			<dl>
-			<dt style = "font-size:28px; color:#d20000; margin-top:45px; margin-bottom:30px; text-align:center;">【智者行天下】全国服务网点分布图</dt>
+			<dt style = "font-size:28px; color:#d20000; margin-top:45px; margin-bottom:30px; text-align:center;">美联物业首页面</dt>
 			<dt style = "text-align:center;">
 				<img style = "border:0; width:70%;" src="${ctx}/assets/img/indexImg.png"/>
 			</dt>

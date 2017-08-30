@@ -105,6 +105,7 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <defaultGoal>compile</defaultGoal>
     </build>
 
     <properties>
