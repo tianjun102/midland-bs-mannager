@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>智者汇 - 关于平台</title>
+<title>美联物业 - 关于平台</title>
 <link rel="stylesheet" href="${ctx }/assets/css/common.css">
 
 </head>
@@ -20,7 +20,7 @@
 				<dt>
 					<img src="${ctx}/assets/img/logo1.png"/>
 				</dt>
-				<dd>智者汇经营管理平台</dd>
+				<dd>美联物业管理平台</dd>
 				<dd>版本 v1.0</dd>
 				<dd>Copyright ©2016-2017开发支持融创 All Rights Reserved.</dd>
 			</dl>
