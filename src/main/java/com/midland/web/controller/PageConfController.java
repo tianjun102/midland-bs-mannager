@@ -1,8 +1,10 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
 import com.midland.web.model.PageConf;
 import com.midland.web.service.PageConfService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.SettingService;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -25,12 +27,20 @@ public class PageConfController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(PageConfController.class);
 	@Autowired
 	private PageConfService pageConfServiceImpl;
+	@Autowired
+	private SettingService settingService;
 
 	/**
 	 * 
 	 **/
 	@RequestMapping("index")
 	public String pageConfIndex(PageConf pageConf,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "pageConf/pageConfIndex";
 	}
 
@@ -39,6 +49,12 @@ public class PageConfController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddPageConf(PageConf pageConf,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "pageConf/addPageConf";
 	}
 
@@ -92,7 +108,13 @@ public class PageConfController extends BaseController  {
 	 **/
 	@RequestMapping("to_update")
 	public String toUpdatePageConf(Integer id,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
 		PageConf result = pageConfServiceImpl.selectPageConfById(id);
+		model.addAttribute("cityList",cityList);
 		model.addAttribute("item",result);
 		return "pageConf/updatePageConf";
 	}

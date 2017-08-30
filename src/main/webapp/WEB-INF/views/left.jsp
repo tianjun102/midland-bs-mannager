@@ -252,6 +252,10 @@
 					<shiro:hasPermission name="sysLoglist">
 						<a id = "system6" href="${ctx}/rest/qrCode/index" target="contentF"><span>二维码管理</span></a>
 					</shiro:hasPermission>
+					<shiro:hasPermission name="sysLoglist">
+						<a id = "system6" href="${ctx}/rest/pageConf/index" target="contentF"><span>页面配置</span></a>
+					</shiro:hasPermission>
+
 						<a id = "system7" href="${ctx}/rest/user/toModifyPwdPage" target="contentF"><span>修改密码</span></a>
 						<a id = "system8" href="${ctx}/rest/user/about" target="contentF"><span>关于平台</span></a>
 				</dd>

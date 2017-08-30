@@ -58,6 +58,10 @@ public class PageConf{
 	 * 是否删除；0=正常；1=删除
 	 **/
 	private Integer isDelete;
+	/**
+	 * 是否删除；0=网站；1=微站
+	 **/
+	private Integer source;
 
 
 	public Integer getId() {
@@ -172,6 +176,14 @@ public class PageConf{
 		this.isDelete = isDelete;
 	}
 
+	public Integer getSource() {
+		return source;
+	}
+
+	public void setSource(Integer source) {
+		this.source = source;
+	}
+
 	@Override
 	public String toString() {
 		 final StringBuffer sb=new StringBuffer("PageConf{");
@@ -216,6 +228,9 @@ public class PageConf{
 		}
 		if (isDelete != null) {
 			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (source != null) {
+			sb.append(", \"source\":\"").append(source).append("\"");
 		}
 		return sb.toString();
 	}
