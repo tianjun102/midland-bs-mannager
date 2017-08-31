@@ -11,7 +11,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>智者汇 - 经营管理平台</title>
+	<title>美联物业管理平台</title>
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/common.css">
 	<script src = "assets/scripts/common.js"></script>

@@ -12,7 +12,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>智者汇 - 经营管理平台</title>
+	<title>美联物业管理平台</title>
 	<link rel="stylesheet" href="${ctx}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${ctx}/assets/css/common.css">
 </head>
@@ -36,7 +36,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						</c:forEach>
 				</c:when>
 				<c:otherwise>
-						<li><span class="date">2017-03-09</span><a href="javascript:;" target="_blank">系统公告：欢迎来到智者汇经营管理平台！</a></li>
+						<li><span class="date">2017-03-09</span><a href="javascript:;" target="_blank">系统公告：欢迎来到美联物业管理平台！</a></li>
 				</c:otherwise>
 				</c:choose>
 				</ul>

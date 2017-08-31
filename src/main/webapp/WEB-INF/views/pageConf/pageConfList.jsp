@@ -14,19 +14,12 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">cityId</th>
-				<th style="width: 8%">cityName</th>
-				<th style="width: 8%">model</th>
-				<th style="width: 8%">metaLable</th>
-				<th style="width: 8%">metaShow</th>
-				<th style="width: 8%">baiduCode</th>
-				<th style="width: 8%">baiduShow</th>
-				<th style="width: 8%">cnzzCode</th>
-				<th style="width: 8%">cnzzCodeWechat</th>
-				<th style="width: 8%">baiduCodeWechat</th>
-				<th style="width: 8%">metaDesc</th>
-				<th style="width: 8%">title</th>
-				<th style="width: 8%">isDelete</th>
+				<th style="width: 8%">序号</th>
+				<th style="width: 8%">城市名称</th>
+                <th style="width: 8%">平台</th>
+				<th style="width: 8%">页面</th>
+				<th style="width: 8%">百度计量代码</th>
+				<th style="width: 8%">CNZZ代码</th>
                 <th style="width: 10%">操作</th>
             </tr>
         </thead>
@@ -36,22 +29,26 @@
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
 						<input type="hidden" id="id" value="${item.id}"/>
-						<td>${item.cityId}</td>
+                        <td>${xh.count}</td>
 						<td>${item.cityName}</td>
-						<td>${item.model}</td>
-						<td>${item.metaLable}</td>
-						<td>${item.metaShow}</td>
-						<td>${item.baiduCode}</td>
-						<td>${item.baiduShow}</td>
-						<td>${item.cnzzCode}</td>
-						<td>${item.cnzzCodeWechat}</td>
-						<td>${item.baiduCodeWechat}</td>
-						<td>${item.metaDesc}</td>
-						<td>${item.title}</td>
-						<td>${item.isDelete}</td>
+                        <td>
+                            <c:if test="${item.source=='0'}">网站</c:if>
+                            <c:if test="${item.source=='1'}">微站</c:if>
+                        </td>
 						<td>
-                            <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
-                            <a target="contentF" onclick="delete1(${item.id })">删除</a>
+                            <c:if test="${item.model =='0'}">首页</c:if>
+                            <c:if test="${item.model =='1'}">新房</c:if>
+                            <c:if test="${item.model =='2'}">二手房</c:if>
+                            <c:if test="${item.model =='3'}">租房</c:if>
+                            <c:if test="${item.model =='4'}">写字楼</c:if>
+                            <c:if test="${item.model =='5'}">商铺</c:if>
+                            <c:if test="${item.model =='6'}">小区</c:if>
+                        </td>
+						<td>${item.baiduShow}</td>
+                        <td>${item.metaShow}</td>
+						<td>
+                            <a class="edit_img" target="contentF" href="${ctx}/rest/pageConf/to_update?id=${item.id}"></a>
+                            <a class="delete_img" target="contentF" onclick="delete1(${item.id })"></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -75,21 +72,44 @@
 <script type="text/javascript">
 
     function delete1(id){
-        $.ajax({
-            type: "post",
-            url: "${ctx}/rest/pageConf/update?id="+id+"&isDelete=1",
-            async: false, // 此处必须同步
-            dataType: "json",
 
-            success: function (data) {
-                if (data.state==0){
-                    $('#searchForm').submit();
-                }
-            },
-            error: function () {
-                layer.msg("操作失败！", {icon: 2});
+        layer.open({
+            type: 1,
+            skin: 'layer-style',
+            area: ['350px','200px'],
+            shadeClose: false, //点击遮罩关闭
+            title:['删除页面配置'],
+            resize: false,
+            scrollbar:false,
+            content:
+            '<section class = "content" style = "border:none; height:100%;">'+
+            '<p style = "text-align: center; font-size:16px; color:#000; margin-top:30px;">您确定要删除当前页面配置吗?</p>'+
+            '</section>',
+            btn:['确定','取消'],
+            yes: function(index){
+                $.ajax({
+                    type: "post",
+                    url: "${ctx}/rest/pageConf/update?id="+id+"&isDelete=1",
+                    cache:false,
+                    async:false, // 此处必须同步
+                    dataType: "json",
+                    success: function(data){
+                        if(data.state==0){
+                            layer.msg("删除成功！",{icon:1});
+                            setTimeout(function(){$("#searchForm").submit();},1000);
+                        }else{
+                            layer.msg("删除失败！！",{icon:7});
+                        }
+                        layer.close(index);
+                    }
+                });
             }
-        })
+            ,success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.css('text-align', 'center');
+            }
+        });
+
     }
 
     function to_edit(id){

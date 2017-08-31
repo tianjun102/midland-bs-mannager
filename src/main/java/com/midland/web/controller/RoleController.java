@@ -249,12 +249,12 @@ public class RoleController extends BaseController {
 	 */
 	@RequestMapping(value = "/saveRolePermissions",method = {RequestMethod.POST})
 	@ResponseBody
-	public String saveRolePermissions(String roleId,String permissionIds) throws Exception {
+	public Object saveRolePermissions(String roleId,String permissionIds) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Integer  saveFlag = roleService.saveRolePermissions(roleId, permissionIds);
 		
 		map.put("saveFlag",saveFlag);
-		return JSONObject.toJSONString(map);
+		return map;
 	}
 	
 	/**
