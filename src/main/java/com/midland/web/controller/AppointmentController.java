@@ -7,6 +7,7 @@ import com.midland.web.controller.base.BaseController;
 import com.midland.web.enums.ContextEnums;
 import com.midland.web.model.AppointLog;
 import com.midland.web.model.Appointment;
+import com.midland.web.model.ExportModel;
 import com.midland.web.model.user.User;
 import com.midland.web.service.AppointLogService;
 import com.midland.web.service.AppointmentService;
@@ -15,6 +16,7 @@ import com.midland.web.service.UserService;
 import com.midland.web.util.JsonMapReader;
 import com.midland.web.util.MidlandHelper;
 import com.midland.web.util.ParamObject;
+import com.midland.web.util.PoiExcelExport;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -207,5 +211,44 @@ public class AppointmentController extends BaseController{
 		return "appointment/redistributeList";
 	}
 	
+	@RequestMapping("/export")
+	public void userInfoExportExcel(Appointment appointment,HttpServletResponse response) throws Exception {
+		List<Appointment> dataList = appointmentServiceImpl.findAppointmentList(appointment);
+		PoiExcelExport pee = new PoiExcelExport(response,"预约看房","sheet1");
+		//调用
+		List<ExportModel> exportModels=new ArrayList<>();
+		for (Appointment appointment1:dataList){
+			ExportModel exportModel = new ExportModel();
+			exportModel.setModelName1(appointment1.getAppointSn());
+			List<ParamObject> sources = JsonMapReader.getMap("source");
+			exportModel.setModelName2(MidlandHelper.getNameById(appointment1.getSource(), sources));
+			exportModel.setModelName3(appointment1.getNickName());
+			exportModel.setModelName4(appointment1.getPhone());
+			List<ParamObject> houseTypes = JsonMapReader.getMap("appointment_houseType");
+			exportModel.setModelName5(MidlandHelper.getNameById(appointment1.getHouseType(), houseTypes));
+			List<ParamObject> sellRents = JsonMapReader.getMap("appointment_sellRent");
+			exportModel.setModelName6(MidlandHelper.getNameById(appointment1.getSellRent(), sellRents));
+			exportModel.setModelName7(appointment1.getAppointmentTime());
+			exportModel.setModelName8(appointment1.getArea());
+			exportModel.setModelName9(appointment1.getCommunityName());
+			exportModel.setModelName10(appointment1.getAddress());
+			exportModel.setModelName11(appointment1.getLayout());
+			exportModel.setModelName12(appointment1.getMeasure());
+			exportModel.setModelName13(appointment1.getPrice());
+			exportModel.setModelName14(appointment1.getEntrustTime());
+			exportModel.setModelName15(appointment1.getUserCnName());
+			List<ParamObject> statusList = JsonMapReader.getMap("appointment_status");
+			exportModel.setModelName16(MidlandHelper.getNameById(appointment1.getStatus(), statusList));
+			exportModel.setModelName17(appointment1.getHandleTime());
+			exportModels.add(exportModel);
+		}
+		String titleColumn[] = {"modelName1","modelName2","modelName3","modelName4","modelName5","modelName6","modelName7","modelName8","modelName9","modelName10","modelName11","modelName12","modelName13","modelName14","modelName15","modelName16","modelName17"};
+		String titleName[] = {"委托编号","信息来源","称呼","电话","类型","分类","委托时间","所属区域","小区名","门牌地址","户型","面积","售价/租价","预约时间","经纪人","状态","处理时间"};
+		int titleSize[] = {13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13};
+		//其他设置 set方法可全不调用
+		pee.wirteExcel(titleColumn, titleName, titleSize, exportModels);
+	}
+	
 	
 }
+

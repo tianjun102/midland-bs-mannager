@@ -112,7 +112,16 @@ public class MidlandHelper {
 		return user;
 	}
 	
-	
+	public static String getNameById(Integer id, List<ParamObject> paramObjects) {
+		String source = null;
+		for (ParamObject paramObject : paramObjects){
+			if (paramObject.getId().equals(String.valueOf(id))){
+				source=paramObject.getName();
+				break;
+			}
+		}
+		return source;
+	}
 	
 	
 }

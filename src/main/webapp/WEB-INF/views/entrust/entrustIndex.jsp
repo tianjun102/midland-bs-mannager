@@ -68,13 +68,18 @@
 				<li><input class = "public_btn bg1" type="submit" name="inquery" id="inquery" value = "查询"/></li>
 			</ul>
 			</form>
+			<a href="#" onclick="export1()">导出</a>
 			<div id="listDiv"></div>
 		</section>
 	</div>
 	
 	
 	<script type="text/javascript">
+        function export1(){
+            var data = $("#searchForm").serialize();
 
+            window.location.href="${ctx}/rest/entrust/export?"+data;
+        }
 		 window.onload = function(){
              $('#searchForm').submit();
 		}

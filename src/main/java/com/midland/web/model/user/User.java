@@ -101,8 +101,26 @@ public class User {
     private List<Role> roles;
     
     private String flag;
-
-    public User() {
+    private String cityId;
+    private String cityName;
+	
+	public String getCityId() {
+		return cityId;
+	}
+	
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+	
+	public String getCityName() {
+		return cityName;
+	}
+	
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	
+	public User() {
 
     }
 

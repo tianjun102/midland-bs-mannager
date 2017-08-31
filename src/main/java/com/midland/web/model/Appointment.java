@@ -17,7 +17,7 @@ public class Appointment{
 	/**
 	 * 
 	 **/
-	private Integer nickName;
+	private String nickName;
 	/**
 	 * 手机号码
 	 **/
@@ -124,11 +124,11 @@ public class Appointment{
 		this.source = source;
 	}
 
-	public Integer getNickName() {
+	public String getNickName() {
 		return nickName;
 	}
 
-	public void setNickName(Integer nickName) {
+	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
 
