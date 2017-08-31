@@ -163,17 +163,38 @@
 				</dd>
 			</dl>
 		</shiro:hasPermission>
+			<shiro:hasPermission name="settlement">
+				<dl class="list-left5">
+					<dt>
+						<a href="javascript:;"
+						   dota="url(${ctx}/assets/img/05.png) no-repeat 20px center"
+						   data-img="url(${ctx}/assets/img/05_w.png) no-repeat 20px center">行情信息管理<span
+								class="glyphicon glyphicon-menu-right"></span></a>
+					</dt>
+					<dd>
+						<shiro:hasPermission name="settlementList">
+							<a id = "settlementIndex" target="contentF" href="${ctx}/rest/quotation/index?isNew=0"><span>新房</span></a>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="settlementList">
+							<a id = "settlementIndex" target="contentF" href="${ctx}/rest/quotation/index?isNew=1"><span>二手房</span></a>
+						</shiro:hasPermission>
+					</dd>
+				</dl>
+			</shiro:hasPermission>
 		<shiro:hasPermission name="dataTable">
 			<dl class="list-left6">
 				<dt>
 					<a href="javascript:;"
 						dota="url(${ctx}/assets/img/06.png) no-repeat 20px center"
-						data-img="url(${ctx}/assets/img/06_w.png) no-repeat 20px center">市场调究管理<span
+						data-img="url(${ctx}/assets/img/06_w.png) no-repeat 20px center">经纪人<span
 						class="glyphicon glyphicon-menu-right"></span></a>
 				</dt>
 				<dd>
 					<shiro:hasPermission name="showCustDataTable">
-						<a id = "report1" href="${ctx}/rest/research/index" target="contentF"><span>市场调究列表</span></a>
+						<a id = "report1" href="${ctx}/rest/liaisonRecord/index" target="contentF"><span>联络记录管理</span></a>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="showCustDataTable">
+						<a id = "report1" href="${ctx}/rest/leaveMsg/index" target="contentF"><span>留言管理</span></a>
 					</shiro:hasPermission>
 				</dd>
 			</dl>

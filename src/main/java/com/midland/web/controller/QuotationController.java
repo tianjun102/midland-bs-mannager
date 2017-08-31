@@ -48,7 +48,8 @@ public class QuotationController extends BaseController  {
 	@RequestMapping("to_add")
 	public String toAddQuotation(Quotation quotation,Model model) throws Exception {
 		settingService.getAllProvinceList(model);
-		
+		List<ParamObject> paramObjects = JsonMapReader.getMap("quotation_type");
+		model.addAttribute("types",paramObjects);
 		return "quotation/addQuotation";
 	}
 

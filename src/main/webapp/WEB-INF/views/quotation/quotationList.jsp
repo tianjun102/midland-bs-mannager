@@ -93,7 +93,7 @@
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['900px', '700px'],
+            area: ['500px','700px'],
             content: ['${ctx}/rest/quotation/to_update?id='+id,'no']
         });
     }

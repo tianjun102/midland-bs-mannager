@@ -1,75 +1,180 @@
 package com.midland.web.model;
 
+import java.util.Date;
 
+public class LiaisonRecord{
+	/**
+	 * 联络记录表id
+	 **/
+	private Integer id;
+	/**
+	 * 留言者名称
+	 **/
+	private String name;
+	/**
+	 * 手机
+	 **/
+	private String phone;
+	/**
+	 * 分类
+	 **/
+	private String category;
+	/**
+	 * 留言
+	 **/
+	private String leavingMessage;
+	/**
+	 * 提交时间
+	 **/
+	private Date addTime;
+	/**
+	 * 是否联系:0未联系，1已联系
+	 **/
+	private Integer isOntact;
+	/**
+	 * 0未删除，1删除
+	 **/
+	private Integer isDelete;
+	/**
+	 * 留言者id
+	 **/
+	private Integer userId;
+	/**
+	 * 邮箱
+	 **/
+	private String email;
+	private String startTime;
+	private String endTime;
+	
+	public String getStartTime() {
+		return startTime;
+	}
+	
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	
+	public String getEndTime() {
+		return endTime;
+	}
+	
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
 
-public class LiaisonRecord {
-    private Integer id;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    private String name;
+	public String getName() {
+		return name;
+	}
 
-    private String phone;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    private String cate;
+	public String getPhone() {
+		return phone;
+	}
 
-    private String addTime;
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    private Integer isOntact;
+	public String getCategory() {
+		return category;
+	}
 
-    private String leavingMessage;
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public String getLeavingMessage() {
+		return leavingMessage;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setLeavingMessage(String leavingMessage) {
+		this.leavingMessage = leavingMessage;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Date getAddTime() {
+		return addTime;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public Integer getIsOntact() {
+		return isOntact;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
+	public void setIsOntact(Integer isOntact) {
+		this.isOntact = isOntact;
+	}
 
-    public String getCate() {
-        return cate;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public void setCate(String cate) {
-        this.cate = cate == null ? null : cate.trim();
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
-    public String getAddTime() {
-        return addTime;
-    }
+	public Integer getUserId() {
+		return userId;
+	}
 
-    public void setAddTime(String addTime) {
-        this.addTime = addTime;
-    }
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
-    public Integer getIsOntact() {
-        return isOntact;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setIsOntact(Integer isOntact) {
-        this.isOntact = isOntact;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getLeavingMessage() {
-        return leavingMessage;
-    }
-
-    public void setLeavingMessage(String leavingMessage) {
-        this.leavingMessage = leavingMessage == null ? null : leavingMessage.trim();
-    }
+	@Override
+	public String toString() {
+		 final StringBuffer sb=new StringBuffer("LiaisonRecord{");
+		if (id != null) {
+			sb.append(", \"id\":\"").append(id).append("\"");
+		}
+		if (name != null) {
+			sb.append(", \"name\":\"").append(name).append("\"");
+		}
+		if (phone != null) {
+			sb.append(", \"phone\":\"").append(phone).append("\"");
+		}
+		if (category != null) {
+			sb.append(", \"category\":\"").append(category).append("\"");
+		}
+		if (leavingMessage != null) {
+			sb.append(", \"leavingMessage\":\"").append(leavingMessage).append("\"");
+		}
+		if (addTime != null) {
+			sb.append(", \"addTime\":\"").append(addTime).append("\"");
+		}
+		if (isOntact != null) {
+			sb.append(", \"isOntact\":\"").append(isOntact).append("\"");
+		}
+		if (isDelete != null) {
+			sb.append(", \"isDelete\":\"").append(isDelete).append("\"");
+		}
+		if (userId != null) {
+			sb.append(", \"userId\":\"").append(userId).append("\"");
+		}
+		if (email != null) {
+			sb.append(", \"email\":\"").append(email).append("\"");
+		}
+		return sb.toString();
+	}
 }
