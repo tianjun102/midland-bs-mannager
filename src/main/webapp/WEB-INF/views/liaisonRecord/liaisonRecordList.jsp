@@ -14,17 +14,13 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">城市</th>
-				<th style="width: 8%">区域</th>
-				<th style="width: 8%">类型</th>
-				<th style="width: 8%">成交套数</th>
-				<th style="width: 8%">成交面积</th>
-				<th style="width: 8%">成交均价</th>
-				<th style="width: 8%">可售套数</th>
-				<th style="width: 8%">可售面积</th>
-				<th style="width: 8%">数据时间</th>
-				<th style="width: 8%">更新时间</th>
-                <th style="width: 10%">操作</th>
+				<th style="width: 8%">姓名</th>
+				<th style="width: 8%">电话</th>
+				<th style="width: 8%">分类</th>
+				<th style="width: 8%">留言</th>
+				<th style="width: 8%">提交时间</th>
+				<th style="width: 8%">邮箱</th>
+                <%--<th style="width: 10%">操作</th>--%>
             </tr>
         </thead>
         <tbody>
@@ -33,22 +29,16 @@
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
 						<input type="hidden" id="id" value="${item.id}"/>
-						<td>${item.cityName}</td>
-						<td>${item.areaName}</td>
-						<td><c:forEach items="${types}" var="s">
-                            <c:if test="${item.type == s.id}" >${s.name}</c:if>
-                        </c:forEach></td>
-						<td>${item.dealNum}</td>
-						<td>${item.dealAcreage}</td>
-						<td>${item.price}</td>
-						<td>${item.soldNum}</td>
-						<td>${item.soldArea}</td>
-						<td>${item.dataTime}</td>
-						<td>${item.updateTime}</td>
-						<td>
-                            <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
-                            <a target="contentF" onclick="delete1(${item.id })">删除</a>
-                        </td>
+						<td>${item.name}</td>
+						<td>${item.phone}</td>
+						<td>${item.category}</td>
+						<td>${item.leavingMessage}</td>
+						<td>${item.addTime}</td>
+						<td>${item.email}</td>
+						<%--<td>--%>
+                            <%--<a target="contentF" onclick="to_edit(${item.id })">编辑</a>--%>
+                            <%--<a target="contentF" onclick="delete1(${item.id })">删除</a>--%>
+                        <%--</td>--%>
                     </tr>
                 </c:forEach>
             </c:when>
@@ -73,7 +63,7 @@
     function delete1(id){
         $.ajax({
             type: "post",
-            url: "${ctx}/rest/quotation/update?id="+id+"&isDelete=1",
+            url: "${ctx}/rest/liaisonRecord/update?id="+id+"&isDelete=1",
             async: false, // 此处必须同步
             dataType: "json",
 
@@ -93,8 +83,8 @@
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['500px','700px'],
-            content: ['${ctx}/rest/quotation/to_update?id='+id,'no']
+            area: ['500px', '700px'],
+            content: ['${ctx}/rest/liaisonRecord/to_update?id='+id,'no']
         });
     }
 

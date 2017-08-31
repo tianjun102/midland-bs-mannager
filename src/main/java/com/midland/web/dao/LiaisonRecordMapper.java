@@ -1,9 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.LiaisonRecord;
+import java.util.List;
 
 public interface LiaisonRecordMapper {
-    int insert(LiaisonRecord record);
 
-    int insertSelective(LiaisonRecord record);
+	LiaisonRecord selectLiaisonRecordById(Integer liaisonRecord);
+
+	int deleteLiaisonRecordById(Integer liaisonRecord);
+
+	int updateLiaisonRecordById(LiaisonRecord liaisonRecord);
+
+	int insertLiaisonRecord(LiaisonRecord liaisonRecord);
+
+	List<LiaisonRecord> findLiaisonRecordList(LiaisonRecord liaisonRecord);
+
 }
