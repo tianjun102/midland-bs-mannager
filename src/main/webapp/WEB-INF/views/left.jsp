@@ -101,7 +101,15 @@
 								class="glyphicon glyphicon-menu-right"></span></a>
 					</dt>
 					<dd>
-
+						<shiro:hasPermission name="serviceAreaList">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/privacy/index" target="contentF"><span>隐私政策管理</span></a>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="serviceAreaList">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/disclaimer/index" target="contentF"><span>免责声明</span></a>
+						</shiro:hasPermission>
+						<shiro:hasPermission name="serviceAreaList">
+							<a id = "enterPromotionIndex" href="${ctx}/rest/registrationProtocol/index" target="contentF"><span>注册协议</span></a>
+						</shiro:hasPermission>
 						<shiro:hasPermission name="serviceAreaList">
 							<a id = "enterPromotionIndex" href="${ctx}/rest/serviceArea/index" target="contentF"><span>服务范围</span></a>
 						</shiro:hasPermission>
@@ -168,30 +176,7 @@
 				</dd>
 			</dl>
 		</shiro:hasPermission>
-		<%--<shiro:hasPermission name="noticelist">
-			<dl class="list-left7">
-				<dt>
-					<a href="javascript:;"
-						dota="url(${ctx}/assets/img/07.png) no-repeat 20px center"
-						data-img="url(${ctx}/assets/img/07_w.png) no-repeat 20px center">内容管理<span
-						class="glyphicon glyphicon-menu-right"></span></a>
-				</dt>
-				<dd>
-					<shiro:hasPermission name="noticelist">
-						<a id = "content1" href="${ctx}/rest/class/index" target="contentF"><span>栏目管理</span></a>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="noticelist">
-						<a id = "content2" href="${ctx}/rest/activity/index" target="contentF"><span>活动管理</span></a>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="noticelist">
-						<a id = "content3" href="${ctx}/rest/ad/listindex" target="contentF"><span>广告管理</span></a>
-					</shiro:hasPermission>
-					<shiro:hasPermission name="noticelist">
-						<a id = "content4" href="${ctx}/rest/banner/bannerindex" target="contentF"><span>Banner管理</span></a>
-					</shiro:hasPermission>
-				</dd>
-			</dl>
-		</shiro:hasPermission>--%>
+
 		<shiro:hasPermission name="systemManage">
 			<dl class="list-left8">
 				<dt>

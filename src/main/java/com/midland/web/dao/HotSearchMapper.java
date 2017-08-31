@@ -1,17 +1,18 @@
 package com.midland.web.dao;
 
 import com.midland.web.model.HotSearch;
+import java.util.List;
 
 public interface HotSearchMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(HotSearch record);
+	HotSearch selectHotSearchById(Integer hotSearch);
 
-    int insertSelective(HotSearch record);
+	int deleteHotSearchById(Integer hotSearch);
 
-    HotSearch selectByPrimaryKey(Integer id);
+	int updateHotSearchById(HotSearch hotSearch);
 
-    int updateByPrimaryKeySelective(HotSearch record);
+	int insertHotSearch(HotSearch hotSearch);
 
-    int updateByPrimaryKey(HotSearch record);
+	List<HotSearch> findHotSearchList(HotSearch hotSearch);
+
 }
