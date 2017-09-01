@@ -161,6 +161,21 @@
 				</dd>
 			</dl>
 		</shiro:hasPermission>
+		<shiro:hasPermission name="hotSearchManage">
+				<dl class="list-left6">
+					<dt>
+						<a href="javascript:;"
+						   dota="url(${ctx}/assets/img/06.png) no-repeat 20px center"
+						   data-img="url(${ctx}/assets/img/06_w.png) no-repeat 20px center">搜索管理<span
+								class="glyphicon glyphicon-menu-right"></span></a>
+					</dt>
+					<dd>
+						<shiro:hasPermission name="hotSearchList">
+							<a id = "report1" href="${ctx}/rest/hotSearch/index" target="contentF"><span>搜索列表</span></a>
+						</shiro:hasPermission>
+					</dd>
+				</dl>
+		</shiro:hasPermission>
 		<shiro:hasPermission name="researchManage">
 			<dl class="list-left6">
 				<dt>
