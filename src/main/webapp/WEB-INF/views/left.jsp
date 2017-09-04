@@ -20,30 +20,6 @@
 	style="background-color: #eff2f6; border-right: 1px solid #d8dde0; overflow-x:hidden; height:100%;">
 	<!--左侧导航-->
 	<nav class="nav">
-
-		<%--<c:forEach items="${items}" var="item">--%>
-			<%--<shiro:hasPermission name="custManage">--%>
-				<%--<dl class="list-left1">--%>
-					<%--<dt>--%>
-						<%--<a href="javascript:;"--%>
-						   <%--dota="url(${ctx}/assets/img/01.png) no-repeat 20px center"--%>
-						   <%--data-img="url(${ctx}/assets/img/01_w.png) no-repeat 20px center">${item.menuName}<span--%>
-								<%--class="glyphicon glyphicon-menu-right"></span></a>--%>
-					<%--</dt>--%>
-					<%--<dd>--%>
-						<%--<c:forEach items="${item.menuChilds}" var="s" >--%>
-							<%--<shiro:hasPermission name="arealist">--%>
-								<%--<a id = "areaIndex" href="${ctx}/rest/${s.url}" target="contentF"><span>${s.menuName}</span></a>--%>
-							<%--</shiro:hasPermission>--%>
-						<%--</c:forEach>--%>
-
-					<%--</dd>--%>
-				<%--</dl>--%>
-			<%--</shiro:hasPermission>--%>
-		<%--</c:forEach>--%>
-
-
-
 		<shiro:hasPermission name="appointManange">
 			<dl class="list-left1">
 				<dt>

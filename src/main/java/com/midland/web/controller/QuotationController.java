@@ -1,5 +1,7 @@
 package com.midland.web.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.midland.core.util.DateUtils;
 import com.midland.web.model.Quotation;
 import com.midland.web.service.QuotationService;
 import com.midland.web.controller.base.BaseController;
@@ -7,8 +9,10 @@ import com.midland.web.service.SettingService;
 import com.midland.web.util.JsonMapReader;
 import com.midland.web.util.ParamObject;
 import org.slf4j.Logger;
-import java.util.Map;
-import java.util.HashMap;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.Paginator;
-import java.util.List;
 import com.midland.web.util.MidlandHelper;
 import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
@@ -150,4 +153,23 @@ public class QuotationController extends BaseController  {
 		}
 		return "quotation/quotationList";
 	}
+	/**
+	 *
+	 **/
+	@RequestMapping("showTooltip")
+	public String showTooltip(Integer id,Quotation quotation,Model model) throws Exception {
+		List<Map> result = quotationServiceImpl.tooltip(quotation);
+		List<String> month=new ArrayList<>();
+		List<Double> data=new ArrayList<>();
+		for (Map map : result){
+			Date mon = (Date)map.get("months");
+			double avgPrice = (Double)map.get("avgPrice");
+			month.add(DateUtils.formatDateToString(mon,"yyyy-MM"));
+			data.add(avgPrice);
+		}
+		model.addAttribute("month",JSONArray.toJSONString(month));
+		model.addAttribute("data",data);
+		return "quotation/contentIndex";
+	}
+	
 }

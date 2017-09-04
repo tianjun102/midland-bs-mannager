@@ -47,11 +47,13 @@
 			</ul>
 			</form>
 			<div id="listDiv"></div>
+			<a class="edit_img" target="contentF" href="${ctx}/rest/quotation/showTooltip">生成预览</a>
 		</section>
 	</div>
 	
 	
 	<script type="text/javascript">
+
         function toAddPage(){
             layer.open({
                 type: 2,

@@ -27,6 +27,18 @@
 		id,data_time,type,city_id,area_id,slice_id,deal_num,deal_acreage,price,sold_num,sold_area,ring_ratio,update_time,is_new,is_delete,city_name,area_name,slice_name
 	</sql>
 
+	<select id="tooltip" resultType="Map">
+		select STR_TO_DATE(data_time,'%Y-%m')months,ROUND(sum(price)/DAYOFMONTH(LAST_DAY(STR_TO_DATE(data_time,'%Y-%m'))),2)avgPrice from quotation where 1=1
+		 <include refid="select_option"/>
+		 GROUP BY months ORDER BY  months ASC
+
+		SELECT DATE_FORMAT(a.data_time,'%Y-%m') as months, ROUND(sum(price)/DAYOFMONTH(LAST_DAY(STR_TO_DATE(data_time,'%Y-%m'))),2) as `current`,
+		(select ROUND(sum(price)/DAYOFMONTH(LAST_DAY(DATE_add(data_time,INTERVAL 1 MONTH))),2) from quotation where
+		DATE_FORMAT(a.data_time,'%Y%m') = DATE_FORMAT(DATE_add(data_time,INTERVAL 1 MONTH),'%Y%m')
+		) as 'pre'
+		FROM quotation a group by MONTH asc
+	</select>
+
 	<select id="selectQuotationById" resultMap="BaseResultMap">
 		select <include refid="Base_Column_List" /> from quotation
 		 where id= #{id}

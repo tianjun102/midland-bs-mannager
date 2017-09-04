@@ -23,18 +23,20 @@
 
             <li>
                 <span>提问人：</span><span >${questions.questionName}</span>
+            </li>
+
+            <li>
                 <span>手机号码：</span><span >${questions.questionPhone}</span>
             </li>
 
-
-        </ul>
-        <ul>
             <li>
                 <span>提问时间：</span><span >${questions.questionTime}</span>
             </li>
+
             <li>
                 <span>提问主题：</span><span >${questions.questionsTitle}</span>
             </li>
+
             <li>
                 <span>提问内容：</span><span >${questions.questionsArea}</span>
             </li>
@@ -76,7 +78,7 @@
             </c:choose>
             </tbody>
         </table>
-
+        <a href="${ctx}/rest/questions/index" >返回</a>
     </section>
 </div>
 

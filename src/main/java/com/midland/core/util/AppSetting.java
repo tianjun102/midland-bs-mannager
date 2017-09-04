@@ -9,11 +9,10 @@ public class AppSetting {
 	private static Properties prop = new Properties();    
     static{        
         try {
-            InputStream inputStream = AppSetting.class.getClassLoader().
-                    getResourceAsStream("/properties/appsetting.properties");
-            
-            prop.load(inputStream);
-        } catch (IOException e) {
+            InputStream inputStream =
+                    AppSetting.class.getClassLoader().getResourceAsStream("/properties/appsetting.properties");
+             prop.load(inputStream);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

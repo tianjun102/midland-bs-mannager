@@ -2,23 +2,36 @@ package com.midland.test.service;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.Page;
 import com.midland.core.util.ApplicationUtils;
 import com.midland.core.feature.test.TestSupport;
 import com.midland.core.util.HttpUtils;
+import com.midland.web.SmsSender.SmsClient;
+import com.midland.web.SmsSender.SmsModel;
+import com.midland.web.SmsSender.SmsResult;
 import com.midland.web.model.LinkUrlManager;
 import com.midland.web.service.JdbcService;
 import com.midland.web.service.LinkUrlManagerService;
 import com.midland.web.util.MidlandHelper;
 import com.midland.web.model.user.User;
 import com.midland.web.service.UserService;
+import org.jdom.JDOMException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath*:spring/*.xml"})
 public class UserServiceTest extends TestSupport {
     
+    @Autowired
+    private SmsClient smsClient;
     
     @Autowired
     private LinkUrlManagerService linkUrlManagerServiceImpl;
@@ -32,14 +45,13 @@ public class UserServiceTest extends TestSupport {
     
     
     @Test
-    public void sdfsf(){
-        LinkUrlManager ob=new LinkUrlManager();
-        try {
-            Page<LinkUrlManager> result = (Page<LinkUrlManager>) linkUrlManagerServiceImpl.findLinkUrlManagerList(ob);
-            System.out.println(result.getPageNum());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void sdfsf() throws JDOMException, IOException {
+        SmsModel smsModel=new SmsModel();
+        smsModel.setPhones("12435465");
+        smsModel.setCont("sdfdfsdf");
+        smsModel.setSendType(1);
+        SmsResult result = smsClient.execute(smsModel);
+        System.out.println(JSONArray.toJSONString(result));
     }
     
     
