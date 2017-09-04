@@ -7,7 +7,7 @@
 		<result column="keywords" property="keywords" jdbcType="VARCHAR" />
 		<result column="count" property="count" jdbcType="INTEGER" />
 		<result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
-		<result column="city_id" property="cityId" jdbcType="INTEGER" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR" />
 		<result column="menu_id" property="menuId" jdbcType="INTEGER" />
 		<result column="is_show" property="isShow" jdbcType="INTEGER" />
 		<result column="order_by" property="orderBy" jdbcType="INTEGER" />
@@ -92,7 +92,7 @@
 				#{sortOrder,jdbcType=INTEGER},
 			</if>
 			<if test="cityId != null">
-				#{cityId,jdbcType=INTEGER},
+				#{cityId,jdbcType=VARCHAR},
 			</if>
 			<if test="menuId != null">
 				#{menuId,jdbcType=INTEGER},
@@ -126,7 +126,7 @@
 			sort_order= #{sortOrder,jdbcType=INTEGER},
 		</if>
 		<if test="cityId != null">
-			city_id= #{cityId,jdbcType=INTEGER},
+			city_id= #{cityId,jdbcType=VARCHAR},
 		</if>
 		<if test="menuId != null">
 			menu_id= #{menuId,jdbcType=INTEGER},
@@ -162,7 +162,7 @@
 			 and sort_order= #{sortOrder,jdbcType=INTEGER}
 		</if>
 		<if test="cityId != null">
-			 and city_id= #{cityId,jdbcType=INTEGER}
+			 and city_id= #{cityId,jdbcType=VARCHAR}
 		</if>
 		<if test="menuId != null">
 			 and menu_id= #{menuId,jdbcType=INTEGER}

@@ -1,8 +1,12 @@
 package com.midland.web.controller;
 
+import com.midland.web.model.Area;
 import com.midland.web.model.HotSearch;
+import com.midland.web.model.Information;
 import com.midland.web.service.HotSearchService;
 import com.midland.web.controller.base.BaseController;
+import com.midland.web.service.JdbcService;
+import com.midland.web.service.SettingService;
 import org.slf4j.Logger;
 import java.util.Map;
 import java.util.HashMap;
@@ -25,12 +29,22 @@ public class HotSearchController extends BaseController  {
 	private Logger log = LoggerFactory.getLogger(HotSearchController.class);
 	@Autowired
 	private HotSearchService hotSearchServiceImpl;
+	@Autowired
+	private SettingService settingService;
+	@Autowired
+	private JdbcService jdbcService;
 
 	/**
 	 * 
 	 **/
 	@RequestMapping("index")
 	public String hotSearchIndex(HotSearch hotSearch,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "hotSearch/hotSearchIndex";
 	}
 
@@ -39,6 +53,12 @@ public class HotSearchController extends BaseController  {
 	 **/
 	@RequestMapping("to_add")
 	public String toAddHotSearch(HotSearch hotSearch,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
+		model.addAttribute("cityList",cityList);
 		return "hotSearch/addHotSearch";
 	}
 
@@ -92,7 +112,13 @@ public class HotSearchController extends BaseController  {
 	 **/
 	@RequestMapping("to_update")
 	public String toUpdateHotSearch(Integer id,Model model) throws Exception {
+		Map<String,String> parem = new HashMap<>();
+		parem.put("flag","city");
+		parem.put("id","*");
+		Map<String, List<Area>> cityMap = settingService.queryCityByRedis(parem);
+		List<Area> cityList = cityMap.get("city");
 		HotSearch result = hotSearchServiceImpl.selectHotSearchById(id);
+		model.addAttribute("cityList",cityList);
 		model.addAttribute("item",result);
 		return "hotSearch/updateHotSearch";
 	}
@@ -133,5 +159,19 @@ public class HotSearchController extends BaseController  {
 			model.addAttribute("items",null);
 		}
 		return "hotSearch/hotSearchList";
+	}
+
+	@RequestMapping("sort")
+	@ResponseBody
+	public Map listDesc(Information information, int sort, Model model, HttpServletRequest request) throws Exception {
+		String primaryKeyName="id";
+		String primaryParam=String.valueOf(information.getId());
+		String tableName="hot_search";
+		String orderByColumn="order_by";
+		String orderByParam=String.valueOf(information.getOrderBy());
+		jdbcService.listDesc(primaryKeyName,primaryParam,orderByColumn,tableName,orderByParam,sort);
+		Map map = new HashMap();
+		map.put("state",0);
+		return map;
 	}
 }

@@ -21,7 +21,7 @@ public class HotSearch{
 	/**
 	 * 城市id
 	 **/
-	private Integer cityId;
+	private String cityId;
 	/**
 	 * 菜单id
 	 **/
@@ -80,11 +80,11 @@ public class HotSearch{
 		this.sortOrder = sortOrder;
 	}
 
-	public Integer getCityId() {
+	public String getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 

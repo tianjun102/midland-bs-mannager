@@ -12,38 +12,39 @@
 </head>
 <body>
 <section class="content" style="border:none;">
-    <form action="${ctx}/rest/hotSearch/update" method="post" id="dataForm">
+    <form action="${ctx}/rest/hotSearch/add" method="post" id="dataForm">
         <ul class="userinfo row">
             <input type="hidden" name="id" id="id" value="${item.id}">
-            <li><span>keywords：</span>
-               <input type="text" name="keywords" id="keywords" value="${item.keywords}"/>
+            <li><span>搜索词：</span>
+                <input type="text" name="keywords" id="keywords" value="${item.keywords}" />
             </li>
-            <li><span>count：</span>
-               <input type="text" name="count" id="count" value="${item.count}"/>
+            <li>
+                <span style = "float:left;">城市：</span>
+                <input type="hidden" name="cityName" id="cityName" value="${item.cityName}">
+                <select onchange="setCityName()" name="cityId" id="cityId" style="height: 38px;width: 274px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
+                    <option value="">全部</option>
+                    <c:forEach items="${cityList}" var="city">
+                    <option <c:if test="${item.cityId == city.id}">selected="selected"</c:if> value="${city.id}">${city.name}</option>
+                    </c:forEach>
+                </select>
             </li>
-            <li><span>sortOrder：</span>
-               <input type="text" name="sortOrder" id="sortOrder" value="${item.sortOrder}"/>
-            </li>
-            <li><span>cityId：</span>
-               <input type="text" name="cityId" id="cityId" value="${item.cityId}"/>
-            </li>
-            <li><span>menuId：</span>
-               <input type="text" name="menuId" id="menuId" value="${item.menuId}"/>
-            </li>
-            <li><span>isShow：</span>
-               <input type="text" name="isShow" id="isShow" value="${item.isShow}"/>
-            </li>
-            <li><span>orderBy：</span>
-               <input type="text" name="orderBy" id="orderBy" value="${item.orderBy}"/>
-            </li>
-            <li><span>isDelete：</span>
-               <input type="text" name="isDelete" id="isDelete" value="${item.isDelete}"/>
-            </li>
-            <li><span>cityName：</span>
-               <input type="text" name="cityName" id="cityName" value="${item.cityName}"/>
-            </li>
-            <li><span>menuName：</span>
-               <input type="text" name="menuName" id="menuName" value="${item.menuName}"/>
+            <li><span>模块：</span>
+                <input type="hidden" id="menuName" name="menuName" value="${item.menuName}" >
+                <select onchange="setMenuName()" name="menuId" id="menuId" style="height: 38px;width: 150px; display: inline-table;border-radius: 4px;border: 1px solid #dbe2e6;">
+                    <option value="">全部</option>
+                    <option <c:if test="${item.menuId =='0'}">selected="selected"</c:if> value="0">首页</option>
+                    <option <c:if test="${item.menuId =='1'}">selected="selected"</c:if> value="1">新房</option>
+                    <option <c:if test="${item.menuId =='2'}">selected="selected"</c:if> value="2">二手房</option>
+                    <option <c:if test="${item.menuId =='3'}">selected="selected"</c:if> value="3">租房</option>
+                    <option <c:if test="${item.menuId =='4'}">selected="selected"</c:if> value="4">写字楼</option>
+                    <option <c:if test="${item.menuId =='5'}">selected="selected"</c:if> value="5">商铺</option>
+                    <option <c:if test="${item.menuId =='6'}">selected="selected"</c:if> value="6">小区</option>
+                    <option <c:if test="${item.menuId =='7'}">selected="selected"</c:if> value="7">经纪人</option>
+                    <option <c:if test="${item.menuId =='8'}">selected="selected"</c:if> value="8">外销网</option>
+                    <option <c:if test="${item.menuId =='9'}">selected="selected"</c:if> value="9">市场调究</option>
+                    <option <c:if test="${item.menuId =='10'}">selected="selected"</c:if> value="10">资讯</option>
+                    <option <c:if test="${item.menuId =='11'}">selected="selected"</c:if> value="11">问答</option>
+                </select>
             </li>
             <li>
                 <span></span>
@@ -89,6 +90,15 @@
         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
         parent.layer.close(index);
     }
+
+    function setCityName(){
+        $("#cityName").val($("#cityId option:selected").text())
+    }
+
+    function setMenuName(){
+        $("#menuName").val($("#menuId option:selected").text())
+    }
+
 </script>
 </body>
 </html>

@@ -14,17 +14,10 @@
     <table class="table table-bordered table-add">
         <thead>
             <tr>
-				<th style="width: 8%">keywords</th>
-				<th style="width: 8%">count</th>
-				<th style="width: 8%">sortOrder</th>
-				<th style="width: 8%">cityId</th>
-				<th style="width: 8%">menuId</th>
-				<th style="width: 8%">isShow</th>
-				<th style="width: 8%">orderBy</th>
-				<th style="width: 8%">isDelete</th>
-				<th style="width: 8%">cityName</th>
-				<th style="width: 8%">menuName</th>
-                <th style="width: 10%">操作</th>
+                <th style="width: 10%">城市</th>
+                <th style="width: 20%">热搜词</th>
+				<th style="width: 10%">模块</th>
+                <th style="width: 30%">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -32,20 +25,14 @@
             <c:when test="${!empty requestScope.items }">
                 <c:forEach items="${requestScope.items }" var="item" varStatus="xh">
                     <tr>
-						<input type="hidden" id="id" value="${item.id}"/>
-						<td>${item.keywords}</td>
-						<td>${item.count}</td>
-						<td>${item.sortOrder}</td>
-						<td>${item.cityId}</td>
-						<td>${item.menuId}</td>
-						<td>${item.isShow}</td>
-						<td>${item.orderBy}</td>
-						<td>${item.isDelete}</td>
 						<td>${item.cityName}</td>
-						<td>${item.menuName}</td>
+                        <td>${item.keywords}</td>
+                        <td>${item.menuName}</td>
 						<td>
-                            <a target="contentF" onclick="to_edit(${item.id })">编辑</a>
-                            <a target="contentF" onclick="delete1(${item.id })">删除</a>
+                            <a class="edit_img" target="contentF" onclick="to_edit(${item.id })"></a>
+                            <a class="delete_img" target="contentF" onclick="delete1(${item.id })"></a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},1)">上移</a>
+                            <a target="contentF" onclick="sort(${item.id },${item.orderBy},2)">下移</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -91,9 +78,28 @@
             type: 2,
             title: ['修改'],
             shade: 0.3,
-            area: ['500px', '700px'],
+            area: ['500px', '350px'],
             content: ['${ctx}/rest/hotSearch/to_update?id='+id,'no']
         });
+    }
+
+    //排序
+    function sort(id,orderById,sort) {
+        $.ajax({
+            type: "post",
+            url: "${ctx}/rest/hotSearch/sort?sort="+sort+"&orderBy="+orderById+"&id="+id,
+            async: false, // 此处必须同步
+            dataType: "json",
+
+            success: function (data) {
+                if (data.state==0){
+                    $('#searchForm').submit();
+                }
+            },
+            error: function () {
+                layer.msg("操作失败！", {icon: 2});
+            }
+        })
     }
 
 
